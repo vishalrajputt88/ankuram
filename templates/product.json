@@ -16,15 +16,15 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
+            "media_presentation": "carousel",
             "media_columns": "two",
             "image_gap": 4,
             "large_first_image": false,
             "icons_style": "none",
-            "slideshow_controls_style": "counter",
+            "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
-            "thumbnail_width": 44,
+            "thumbnail_position": "left",
+            "thumbnail_width": 72,
             "thumbnail_radius": 0,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
@@ -68,10 +68,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "judge_me_reviews_preview_badge_nQPxFT": {
-              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-              "settings": {}
-            },
             "group_icgrde": {
               "type": "group",
               "name": "Header",
@@ -254,7 +250,6 @@
             }
           },
           "block_order": [
-            "judge_me_reviews_preview_badge_nQPxFT",
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
@@ -418,20 +413,6 @@
     },
     "section_DP938y": {
       "type": "section",
-      "blocks": {
-        "judge_me_reviews_review_widget_acFM3C": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_acFM3C"
-      ],
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
