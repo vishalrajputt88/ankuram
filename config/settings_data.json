@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/Group_4688_1_1.png",
+    "logo": "shopify://shop_images/simply-otp-login-banner.png",
     "logo_inverse": "shopify://shop_images/Group_4688_1_1.png",
     "logo_height": 30,
     "logo_height_mobile": 28,
@@ -80,13 +80,6 @@
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
     "content_for_index": [],
-    "blocks": {
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      }
-    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
