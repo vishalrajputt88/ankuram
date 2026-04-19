@@ -256,6 +256,27 @@
         "show_social_proof": true,
         "social_proof_text": "507+ bought in last week"
       }
+    },
+    "watch_and_buy_9ahyKR": {
+      "type": "watch-and-buy",
+      "blocks": {
+        "reel_xhUgt4": {
+          "type": "reel",
+          "settings": {
+            "reel_image": "shopify://shop_images/Group_1722.png",
+            "reel_product": "aglaonema-ice",
+            "reel_discount": "30% Off"
+          }
+        }
+      },
+      "block_order": [
+        "reel_xhUgt4"
+      ],
+      "name": "Watch & Buy Reels",
+      "settings": {
+        "heading": "Watch Reels & Buy Our New Arrivals",
+        "button_text": "Add To Cart"
+      }
     }
   },
   "order": [
@@ -263,6 +284,7 @@
     "ankooram_category_nTjQpT",
     "ankooram_product_grid_BBfDUh",
     "ankooram_banner_PrbcRa",
-    "ankooram_peoples_chois_plant_8i8btm"
+    "ankooram_peoples_chois_plant_8i8btm",
+    "watch_and_buy_9ahyKR"
   ]
 }
