@@ -136,11 +136,19 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
+    },
+    "ankooram_custom_menus_NLKyFM": {
+      "type": "ankooram-custom-menus",
+      "name": "Custom Center Menu",
+      "settings": {
+        "menu": "main-menu"
+      }
     }
   },
   "order": [
     "header_announcements_9jGBFp",
     "custom_announcementbar_JXkG7n",
-    "header_section"
+    "header_section",
+    "ankooram_custom_menus_NLKyFM"
   ]
 }
