@@ -252,7 +252,7 @@
         "banner_image": "shopify://shop_images/ankooram-left-banner.png",
         "collection": "indoor-and-outdoor",
         "show_rating": true,
-        "button_text": "Purchase Option",
+        "button_text": "Add To Cart",
         "show_social_proof": true,
         "social_proof_text": "507+ bought in last week"
       }
