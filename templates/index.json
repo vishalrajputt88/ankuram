@@ -15,8 +15,7 @@
         "slide_7mJRLd": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ankoor-hero-slider.png",
-            "mobile_image": "shopify://shop_images/ankoor-hero-mobile.png",
+            "image": "shopify://shop_images/Frame_235.png",
             "heading": "",
             "subheading": "",
             "description": "",
@@ -27,8 +26,8 @@
         "slide_bJTpan": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/ankoor-hero-slider.png",
-            "mobile_image": "shopify://shop_images/ankoor-hero-mobile.png",
+            "image": "shopify://shop_images/Frame_236.png",
+            "mobile_image": "shopify://shop_images/Frame_236_tab.png",
             "heading": "",
             "subheading": "",
             "description": "",
@@ -87,7 +86,6 @@
         "category_item_Mcwi7V": {
           "type": "category_item",
           "settings": {
-            "category_image": "shopify://shop_images/Group_1717.png",
             "category_title": "XL Plants",
             "category_url": ""
           }
@@ -95,7 +93,6 @@
         "category_item_eBgfK9": {
           "type": "category_item",
           "settings": {
-            "category_image": "shopify://shop_images/Group_1720.png",
             "category_title": "Large Plants",
             "category_url": ""
           }
@@ -103,7 +100,6 @@
         "category_item_XzL6m3": {
           "type": "category_item",
           "settings": {
-            "category_image": "shopify://shop_images/Group_1721.png",
             "category_title": "Herb Plants",
             "category_url": ""
           }
@@ -111,7 +107,6 @@
         "category_item_YgWiGf": {
           "type": "category_item",
           "settings": {
-            "category_image": "shopify://shop_images/Group_1722.png",
             "category_title": "Refreshment",
             "category_url": ""
           }
@@ -119,7 +114,6 @@
         "category_item_7ifkhf": {
           "type": "category_item",
           "settings": {
-            "category_image": "shopify://shop_images/Group_1724.png",
             "category_title": "Wealth Plants",
             "category_url": ""
           }
@@ -127,7 +121,6 @@
         "category_item_pYxUDW": {
           "type": "category_item",
           "settings": {
-            "category_image": "shopify://shop_images/Group_1723.png",
             "category_title": "Cacti Plants",
             "category_url": ""
           }
@@ -233,7 +226,6 @@
       "type": "ankooram-banner",
       "name": "Ankooram Banner",
       "settings": {
-        "banner_image": "shopify://shop_images/banner_2.png",
         "desktop_width_percent": 100,
         "custom_width": 1340,
         "object_fit": "cover",
@@ -250,7 +242,6 @@
       "settings": {
         "heading": "The People's Choice Plants",
         "subheading": "we're on a mission to make greenery accessible and stylish. Discover our story and explore how we're transforming spaces with nature.",
-        "banner_image": "shopify://shop_images/Gemini_Generated_Image_8s3ey48s3ey48s3e_1.png",
         "collection": "frontpage",
         "show_rating": true,
         "button_text": "Purchase Option",
