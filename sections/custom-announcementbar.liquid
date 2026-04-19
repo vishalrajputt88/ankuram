@@ -1,0 +1,96 @@
+{% schema %}
+{
+  "name": "Custom Announcement Bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Get 4 Plants @ just ₹699!"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Custom Announcement Bar"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="announcement-bar">
+  <div class="announcement-wrapper">
+    <div class="announcement-track" id="announcementTrack">
+      {% for block in section.blocks %}
+        <div class="slide">{{ block.settings.text }}</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.announcement-bar {
+  background-color: #0e3a23;
+  height: 35px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.announcement-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.announcement-track {
+  display: flex;
+}
+
+.slide {
+  min-width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  line-height: 35px;
+  white-space: nowrap;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const track = document.getElementById("announcementTrack");
+  const slides = track.children;
+
+  if (slides.length <= 1) return;
+
+  // 👉 clone first slide for infinite loop
+  const firstClone = slides[0].cloneNode(true);
+  track.appendChild(firstClone);
+
+  let index = 0;
+
+  function moveSlide() {
+    index++;
+    track.style.transition = "transform 0.5s ease-in-out";
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    // 👉 reset after last (no jump visible)
+    if (index === slides.length) {
+      setTimeout(() => {
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+        index = 0;
+      }, 500);
+    }
+  }
+
+  setInterval(moveSlide, 3000); // speed control
+});
+</script>

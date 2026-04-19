@@ -1,0 +1,269 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ankooram_slider_HFHtKt": {
+      "type": "ankooram-slider",
+      "blocks": {
+        "slide_7mJRLd": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ankoor-hero-slider.png",
+            "mobile_image": "shopify://shop_images/ankoor-hero-mobile.png",
+            "heading": "",
+            "subheading": "",
+            "description": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "slide_bJTpan": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ankoor-hero-slider.png",
+            "mobile_image": "shopify://shop_images/ankoor-hero-mobile.png",
+            "heading": "",
+            "subheading": "",
+            "description": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_7mJRLd",
+        "slide_bJTpan"
+      ],
+      "name": "Ankooram Hero Slider",
+      "settings": {
+        "desktop_width_percent": 100,
+        "border_radius": 0,
+        "image_position": "center",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "transition_speed": 0.5,
+        "show_navigation": true,
+        "show_dots": true,
+        "nav_button_size": 45,
+        "nav_offset": 20,
+        "nav_icon_color": "#000000",
+        "dot_size": 10,
+        "dots_spacing": 8,
+        "dot_color": "#ffffff",
+        "dot_active_color": "#7cb342",
+        "overlay_style": "left_fade",
+        "overlay_opacity": 1,
+        "text_area_width": 50,
+        "content_alignment": "center",
+        "content_spacing": 20,
+        "padding_vertical": 60,
+        "padding_horizontal": 40,
+        "heading_size": 50,
+        "heading_color": "#ffffff",
+        "subheading_size": 20,
+        "description_size": 16,
+        "text_color": "#f5f5f5",
+        "text_shadow": "medium",
+        "button_font_size": 16,
+        "button_padding_vertical": 14,
+        "button_padding_horizontal": 32,
+        "button_bg_color": "#7cb342",
+        "button_text_color": "#ffffff",
+        "button_hover_bg_color": "#558b2f",
+        "button_hover_text_color": "#ffffff",
+        "button_border_radius": 8
+      }
+    },
+    "ankooram_category_nTjQpT": {
+      "type": "ankooram-category",
+      "blocks": {
+        "category_item_Mcwi7V": {
+          "type": "category_item",
+          "settings": {
+            "category_image": "shopify://shop_images/Group_1717.png",
+            "category_title": "XL Plants",
+            "category_url": ""
+          }
+        },
+        "category_item_eBgfK9": {
+          "type": "category_item",
+          "settings": {
+            "category_image": "shopify://shop_images/Group_1720.png",
+            "category_title": "Large Plants",
+            "category_url": ""
+          }
+        },
+        "category_item_XzL6m3": {
+          "type": "category_item",
+          "settings": {
+            "category_image": "shopify://shop_images/Group_1721.png",
+            "category_title": "Herb Plants",
+            "category_url": ""
+          }
+        },
+        "category_item_YgWiGf": {
+          "type": "category_item",
+          "settings": {
+            "category_image": "shopify://shop_images/Group_1722.png",
+            "category_title": "Refreshment",
+            "category_url": ""
+          }
+        },
+        "category_item_7ifkhf": {
+          "type": "category_item",
+          "settings": {
+            "category_image": "shopify://shop_images/Group_1724.png",
+            "category_title": "Wealth Plants",
+            "category_url": ""
+          }
+        },
+        "category_item_pYxUDW": {
+          "type": "category_item",
+          "settings": {
+            "category_image": "shopify://shop_images/Group_1723.png",
+            "category_title": "Cacti Plants",
+            "category_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_item_Mcwi7V",
+        "category_item_eBgfK9",
+        "category_item_XzL6m3",
+        "category_item_YgWiGf",
+        "category_item_7ifkhf",
+        "category_item_pYxUDW"
+      ],
+      "name": "Shop by categories",
+      "settings": {
+        "heading": "",
+        "heading_font": "poppins_n4",
+        "heading_font_weight": "700",
+        "heading_size": 40,
+        "heading_text_transform": "none",
+        "heading_letter_spacing": 0,
+        "heading_color": "#000000",
+        "heading_spacing": 48,
+        "background_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "item_spacing": 30,
+        "circle_size": 180,
+        "enable_hover_effect": true,
+        "title_font": "assistant_n4",
+        "title_font_weight": "600",
+        "title_size": 16,
+        "title_line_height": "1.3",
+        "title_text_transform": "none",
+        "title_letter_spacing": 0,
+        "title_color": "#000000"
+      }
+    },
+    "ankooram_product_grid_BBfDUh": {
+      "type": "ankooram-product-grid",
+      "blocks": {
+        "tab_collection_yNz7VQ": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Indoor Plants",
+            "collection": "frontpage"
+          }
+        },
+        "tab_collection_pnJC6e": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Outdoor Plants",
+            "collection": "plant-collection"
+          }
+        },
+        "tab_collection_3bk6pP": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Outdoor & Flowering",
+            "collection": "frontpage"
+          }
+        },
+        "tab_collection_WETp3n": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Medicinal Herb",
+            "collection": "plant-collection"
+          }
+        },
+        "tab_collection_TwWkEj": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Succulents & Cacti",
+            "collection": "frontpage"
+          }
+        }
+      },
+      "block_order": [
+        "tab_collection_yNz7VQ",
+        "tab_collection_pnJC6e",
+        "tab_collection_3bk6pP",
+        "tab_collection_WETp3n",
+        "tab_collection_TwWkEj"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "heading": "Checkout Our Amazing Plants",
+        "subheading": "we're on a mission to make greenery accessible and stylish . Discover our story and explore how we're transforming spaces with nature.",
+        "collection": "frontpage",
+        "products_per_row_desktop": 4,
+        "products_per_row_mobile": "2",
+        "show_rating": true,
+        "button_text": "Add to Cart",
+        "show_social_proof": true,
+        "social_proof_text": "507+ bought in last week",
+        "show_metafield": false,
+        "metafield_reference": "",
+        "show_view_all": true,
+        "view_all_text": "VIEW ALL BEST SELLING PRODUCTS"
+      }
+    },
+    "ankooram_banner_PrbcRa": {
+      "type": "ankooram-banner",
+      "name": "Ankooram Banner",
+      "settings": {
+        "banner_image": "shopify://shop_images/banner_2.png",
+        "desktop_width_percent": 100,
+        "custom_width": 1340,
+        "object_fit": "cover",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "background_color": "",
+        "open_new_tab": false,
+        "banner_link": ""
+      }
+    },
+    "ankooram_peoples_chois_plant_8i8btm": {
+      "type": "ankooram-peoples-chois-plant",
+      "name": "People's Choice Plants",
+      "settings": {
+        "heading": "The People's Choice Plants",
+        "subheading": "we're on a mission to make greenery accessible and stylish. Discover our story and explore how we're transforming spaces with nature.",
+        "banner_image": "shopify://shop_images/Gemini_Generated_Image_8s3ey48s3ey48s3e_1.png",
+        "collection": "frontpage",
+        "show_rating": true,
+        "button_text": "Purchase Option",
+        "show_social_proof": true,
+        "social_proof_text": "507+ bought in last week"
+      }
+    }
+  },
+  "order": [
+    "ankooram_slider_HFHtKt",
+    "ankooram_category_nTjQpT",
+    "ankooram_product_grid_BBfDUh",
+    "ankooram_banner_PrbcRa",
+    "ankooram_peoples_chois_plant_8i8btm"
+  ]
+}

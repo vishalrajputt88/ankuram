@@ -1,0 +1,193 @@
+{% assign custom_selling_banner = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .full-width-image-{{ custom_selling_banner }} {
+    display: block;
+    width: 100%;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+  }
+
+  .full-width-image-wrapper-{{ custom_selling_banner }} {
+    width: {{ section.settings.desktop_width_percent }}%;
+    margin: 0 auto;
+    position: relative;
+       max-width: {{ section.settings.custom_width }}px;
+      margin: 0 auto;
+      padding: 0px 20px ;
+  }
+
+  .full-width-image-wrapper-{{ custom_selling_banner }} img {
+    width: 100%;
+    display: block;
+  
+      height: auto;
+      object-fit: cover;
+  
+  }
+
+  .full-width-image-placeholder-{{ custom_selling_banner }} {
+    width: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+   
+   
+  }
+
+  .full-width-image-placeholder-{{ custom_selling_banner }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 749px) {
+    .full-width-image-wrapper-{{ custom_selling_banner }} {
+      width: 77%;
+      
+    }
+
+    .full-width-image-placeholder-{{ custom_selling_banner }} {
+      /* {% if section.settings.image_height != 'auto' %}
+        height: {{ section.settings.custom_height_mobile }}px;
+      {% endif %} */
+    }
+  }
+{% endstyle %}
+
+<div class="full-width-image-{{ custom_selling_banner }}" {{ section.shopify_attributes }}>
+  <div class="full-width-image-wrapper-{{ custom_selling_banner }}">
+    <a href="{{ section.settings.banner_link }}"
+   {% if section.settings.open_new_tab %} target="_blank" rel="noopener"{% endif %}>
+    {% if section.settings.banner_image %}
+      <img
+        src="{{ section.settings.banner_image | image_url: width: 2000 }}"
+        srcset="{{ section.settings.banner_image | image_url: width: 600 }} 600w,
+                {{ section.settings.banner_image | image_url: width: 1200 }} 1200w,
+                {{ section.settings.banner_image | image_url: width: 1800 }} 1800w,
+                {{ section.settings.banner_image | image_url: width: 2000 }} 2000w"
+        sizes="100vw"
+        alt="{{ section.settings.banner_image.alt | escape }}"
+        loading="lazy"
+        width="{{ section.settings.banner_image.width }}"
+        height="{{ section.settings.banner_image.height }}"
+      >
+    {% else %}
+    </a>
+      <div class="full-width-image-placeholder-{{ custom_selling_banner }}">
+        {{ 'image' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ankooram Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Image dimensions"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+   
+   
+    {
+      "type": "range",
+      "id": "custom_width",
+      "label": "Desktop width",
+      "min": 200,
+      "max": 1360,
+      "step": 20,
+      "unit": "px",
+      "default": 500
+    },
+    
+    {
+      "type": "select",
+      "id": "object_fit",
+      "label": "Image fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover",
+      "info": "Only applies when using custom height"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+  "type": "checkbox",
+  "id": "open_new_tab",
+  "label": "Open link in new tab",
+  "default": false
+},
+{
+  "type": "url",
+  "id": "banner_link",
+  "label": "Banner Link"
+}
+  ],
+  "presets": [
+    {
+      "name": "Ankooram Banner"
+    }
+  ],
+  "tag": "section"
+}
+{% endschema %}

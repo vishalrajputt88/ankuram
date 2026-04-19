@@ -1,0 +1,185 @@
+{%- doc -%}
+  Renders the search action button.
+
+  @param {string} [style] - The style of the search action.
+  @param {string} [class] - Additional classes for the search action.
+  @param {string} [display_style] - The display style ('icon' or 'text').
+
+  @example
+  {% render 'search', style: 'default', class: 'custom-class', display_style: 'icon' %}
+{%- enddoc -%}
+
+
+<style>
+  .inline-search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 193px;
+   {% comment %}  min-width: 580px  {% endcomment %}
+    {% comment %} max-width: {{ max_width | default: 420 }}px; {% endcomment %}
+  }
+
+  .inline-search-input {
+    min-width: 580px;
+    width: 100%;
+    padding: 11.5px 44px 11.5px 18px;
+    border: 1.5px solid #0E3A23;
+    border-radius: 40px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 14px;
+    line-height: 1.4;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .inline-search-input::placeholder {
+    color: #aaaaaa;
+    font-size: 13px;
+  }
+
+  .inline-search-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.12);
+  }
+
+  .inline-search-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4caf50;
+    transition: color 0.2s ease;
+  }
+
+  .inline-search-btn:hover {
+    color: #2e7d32;
+  }
+
+  .inline-search-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: #0E3A23;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .mobile_button  { display: none; }
+   .inline-search-wrap  { display: inline-block }
+
+
+
+  /* Mobile: full width */
+  @media (max-width: 768px) {
+    .inline-search-wrap {
+      max-width: 100%;
+    }
+    .inline-search-wrap { display: none; }
+    .mobile_button { display: inline-block }
+  }
+</style>
+
+{% unless style == 'none' %}
+  <search-button
+    class="search-action{% if display_style == 'text' %} search-action--text{% endif %}{% if class != blank %} {{ class | strip }}{% endif %}"
+  >
+   <div class="inline-search-wrap">
+  <form action="{{ routes.search_url }}" method="get" role="search">
+    <input type="hidden" name="type" value="product">
+    <input
+      type="search"
+      name="q"
+      class="inline-search-input"
+      placeholder="Search Product or By Technical Name"
+      aria-label="{{ 'content.search_input_label' | t | default: 'Search' }}"
+      value="{{ search.terms | escape }}"
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <button type="submit" class="inline-search-btn" aria-label="{{ 'content.search' | t | default: 'Search' }}">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </button>
+  </form>
+</div>
+<div class="mobile_button">
+    <button
+      on:click="#search-modal/showDialog"
+      class="button-unstyled header-actions__action{% if display_style == 'text' %} header-actions__text-style{% endif %}"
+      aria-label="{{ 'content.search_input_label' | t }}"
+      aria-haspopup="dialog"
+    >
+      <span class="{% if display_style == 'icon' %}hidden{% else %}mobile:hidden{% endif %}">
+        {{ 'content.search' | t }}
+      </span>
+
+      <span class="svg-wrapper {% if display_style != 'icon' %}desktop:hidden{% endif %}">
+        {{ 'icon-search.svg' | inline_asset_content }}
+      </span>
+    </button>
+ 
+</div>
+  </search-button>
+{% endunless %}
+
+{% stylesheet %}
+  .search-action {
+    --search-border-radius: var(--style-border-radius-inputs);
+    --search-border-width: var(--style-border-width-inputs);
+
+    display: flex;
+  }
+
+  @media screen and (max-width: 749px) {
+    .search-action--hidden-on-drawer {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    [data-menu-style='drawer'] .search-action--hidden-on-drawer {
+      display: none;
+    }
+
+    [data-menu-style='menu'] .search-action--hidden-on-menu {
+      display: none;
+    }
+  }
+
+  /* [data-menu-style='menu'] .header__column--left .search-action {
+    @media screen and (min-width: 750px) {
+      margin-inline: calc(var(--padding-lg) * -1);
+    }
+  } */
+
+  .header__column--right .search-action {
+    @media screen and (min-width: 750px) {
+      margin-inline: calc(var(--gap-md) * -1) calc(var(--gap-xs) * -1);
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .header__column--right .search-action--text {
+      margin-inline: 0;
+    }
+
+    [data-menu-style='menu'] .header__column--left .search-action--text {
+      margin-inline: 0;
+    }
+  }
+{% endstylesheet %}
