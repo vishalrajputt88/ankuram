@@ -493,10 +493,7 @@ a.pcp-banner-{{ _sid }},
 
                     {% if section.settings.show_social_proof %}
                       <div class="pcp-social-{{ _sid }}">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                          <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" fill="#2f4f3f" opacity="0.15"/>
-                          <path d="M8 12l3 3 5-5" stroke="#2f4f3f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        {{- 'card-bag-icon.svg' | inline_asset_content -}}
                         {{ section.settings.social_proof_text }}
                       </div>
                     {% endif %}
