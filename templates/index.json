@@ -226,6 +226,7 @@
       "type": "ankooram-banner",
       "name": "Ankooram Banner",
       "settings": {
+        "banner_image": "shopify://shop_images/banner_2.png",
         "desktop_width_percent": 100,
         "custom_width": 1340,
         "object_fit": "cover",
@@ -242,7 +243,8 @@
       "settings": {
         "heading": "The People's Choice Plants",
         "subheading": "we're on a mission to make greenery accessible and stylish. Discover our story and explore how we're transforming spaces with nature.",
-        "collection": "frontpage",
+        "banner_image": "shopify://shop_images/ankooram-left-banner.png",
+        "collection": "indoor-and-outdoor",
         "show_rating": true,
         "button_text": "Purchase Option",
         "show_social_proof": true,
