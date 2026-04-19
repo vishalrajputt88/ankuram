@@ -480,7 +480,7 @@ a.pcp-banner-{{ _sid }},
                           type="button"
                           class="pcp-btn-{{ _sid }} js-pcp-atc-{{ _sid }}"
                           data-variant-id="{{ first_available.id }}"
-                        >{{ section.settings.button_text | default: 'Purchase Option' }}</button>
+                        >{{ section.settings.button_text | default: 'Add To Cart' }}</button>
                       {% else %}
                         <button type="button" class="pcp-btn-{{ _sid }}" disabled>Sold Out</button>
                       {% endif %}
@@ -808,7 +808,7 @@ a.pcp-banner-{{ _sid }},
       "type": "text",
       "id": "button_text",
       "label": "Add to cart button text",
-      "default": "Purchase Option"
+      "default": "Add To Cart"
     },
     {
       "type": "header",
