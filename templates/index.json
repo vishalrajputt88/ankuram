@@ -166,35 +166,35 @@
           "type": "tab_collection",
           "settings": {
             "tab_label": "Indoor Plants",
-            "collection": "frontpage"
+            "collection": "indoor-plant"
           }
         },
         "tab_collection_pnJC6e": {
           "type": "tab_collection",
           "settings": {
             "tab_label": "Outdoor Plants",
-            "collection": "plant-collection"
+            "collection": "outdoor-plant"
           }
         },
         "tab_collection_3bk6pP": {
           "type": "tab_collection",
           "settings": {
             "tab_label": "Outdoor & Flowering",
-            "collection": "frontpage"
+            "collection": "outdoor-flowering"
           }
         },
         "tab_collection_WETp3n": {
           "type": "tab_collection",
           "settings": {
             "tab_label": "Medicinal Herb",
-            "collection": "plant-collection"
+            "collection": "medicinal-herbal"
           }
         },
         "tab_collection_TwWkEj": {
           "type": "tab_collection",
           "settings": {
             "tab_label": "Succulents & Cacti",
-            "collection": "frontpage"
+            "collection": "succulents-cacti"
           }
         }
       },
@@ -209,7 +209,7 @@
       "settings": {
         "heading": "Checkout Our Amazing Plants",
         "subheading": "we're on a mission to make greenery accessible and stylish . Discover our story and explore how we're transforming spaces with nature.",
-        "collection": "frontpage",
+        "collection": "indoor-and-outdoor",
         "products_per_row_desktop": 4,
         "products_per_row_mobile": "2",
         "show_rating": true,
