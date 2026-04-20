@@ -1,0 +1,997 @@
+{% assign custom_footer = section.id | replace: '_', '' | downcase %}
+
+{% assign col_count = 0 %}
+{% for block in section.blocks %}
+  {% if block.type == 'footer_column' %}
+    {% assign col_count = col_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% style %}
+#NewsletterForm--{{ custom_footer }} { max-width: 250px; }
+.footer-columns-mains-{{ custom_footer }} { display: grid; gap: 90px; 
+    grid-template-columns: 23% 73%; }
+  .footer-{{ custom_footer }} {
+    display: block;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    width: 100%;
+    padding: 60px 0 0;
+  }
+
+  .footer-container-{{ custom_footer }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ── Top Bar ── */
+  .footer-top-bar-{{ custom_footer }} {
+    display: grid;
+    gap: 90px;
+    grid-template-columns: 23% 73%;
+    padding-bottom: 30px;
+    border-bottom: 1px solid {{ section.settings.divider_color }};
+    margin-bottom: 40px;
+  }
+
+  .footer-logo-section-{{ custom_footer }} {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+  }
+
+  .footer-logo-{{ custom_footer }} {
+    max-width: {{ section.settings.logo_width }}px;
+    height: auto;
+  }
+
+  .footer-company-name-{{ custom_footer }} {
+    font-size: {{ section.settings.company_name_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.company_name_color }};
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .footer-description-{{ custom_footer }} {
+    flex: 1;
+    font-size: {{ section.settings.description_size }}px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+  }
+
+  /* ── Columns Grid — dynamic based on block count ── */
+  .footer-columns-{{ custom_footer }} {
+    display: grid;
+    {% if col_count == 0 or col_count == 1 %}
+      grid-template-columns: 1fr;
+    {% elsif col_count == 2 %}
+      grid-template-columns: repeat(2, 1fr);
+    {% elsif col_count == 3 %}
+      grid-template-columns: repeat(3, 1fr);
+    {% else %}
+      grid-template-columns: repeat(4, 1fr);
+    {% endif %}
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+
+  .footer-column-{{ custom_footer }} {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Column 1 — Newsletter ── */
+  .footer-column-heading-{{ custom_footer }} {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 20px;
+  }
+
+  .footer-subtext-{{ custom_footer }} {
+    font-size: {{ section.settings.subtext_size }}px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .footer-email-form-{{ custom_footer }} {
+    display: flex;
+    gap: 0;
+    margin-bottom: 25px;
+    position: relative;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-email-input-{{ custom_footer }} {
+    flex: 1;
+    padding: 12px 50px 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background-color: {{ section.settings.input_bg_color }} !important;
+    color: {{ section.settings.input_text_color }};
+    font-size: 14px;
+    outline: none;
+  }
+
+  .footer-email-input-{{ custom_footer }}::placeholder {
+    color: {{ section.settings.input_placeholder_color }};
+  }
+
+  .footer-email-submit-{{ custom_footer }} {
+
+   background-color: {{ section.settings.submit_button_color }};
+    border: none;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .footer-email-submit-{{ custom_footer }}:hover {
+    background-color: {{ section.settings.submit_button_hover_color }};
+  }
+
+  .footer-email-submit-{{ custom_footer }} svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: {{ section.settings.submit_icon_color }};
+    stroke-width: 2;
+  }
+
+  .footer-social-heading-{{ custom_footer }} {
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 15px;
+  }
+
+  .footer-social-icons-{{ custom_footer }} {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+
+  .footer-social-icon-{{ custom_footer }} {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .footer-social-icon-{{ custom_footer }}:hover {
+    background-color: {{ section.settings.social_icon_hover_bg }};
+    border-color: {{ section.settings.social_icon_hover_border }};
+  }
+
+  .footer-social-icon-{{ custom_footer }} svg {
+    width: 35px;
+    height: 35px;
+    fill: {{ section.settings.social_icon_color }};
+    stroke: none;
+  }
+
+  .footer-made-in-india-{{ custom_footer }} {
+    font-size: 11px;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-payment-icons-{{ custom_footer }} {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .footer-payment-icon-{{ custom_footer }} {
+    background-color: {{ section.settings.payment_icon_bg }};
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: {{ section.settings.payment_icon_text }};
+    font-weight: 600;
+  }
+
+  /* ── Nav links (columns 2,3,4…) ── */
+  .footer-nav-list-{{ custom_footer }} {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-nav-link-{{ custom_footer }} {
+    color: {{ section.settings.link_color }};
+    text-decoration: none;
+    font-size: {{ section.settings.link_size }}px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+    display: block;
+  }
+
+  .footer-nav-link-{{ custom_footer }}:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  .footer-nav-link-highlight-{{ custom_footer }} {
+    color: {{ section.settings.highlight_link_color }} !important;
+  }
+
+  .footer-nav-link-highlight-{{ custom_footer }}:hover {
+    color: {{ section.settings.highlight_link_hover_color }} !important;
+  }
+
+  /* ── Bottom bar ── */
+  .footer-bottom-bar-{{ custom_footer }} {
+    border-top: 1px solid {{ section.settings.divider_color }};
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  .footer-copyright-{{ custom_footer }} {
+    font-size: {{ section.settings.copyright_size }}px;
+    color: {{ section.settings.copyright_color }};
+    margin: 0;
+  }
+
+  .footer-success-message-{{ custom_footer }} {
+    color: {{ section.settings.success_color }};
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  .footer-error-message-{{ custom_footer }} {
+    color: {{ section.settings.error_color }};
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  /* ── Responsive ── */
+  @media screen and (max-width: 1024px) {
+    .footer-columns-{{ custom_footer }} {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 30px;
+    }
+
+   
+
+      .footer-top-bar-{{ custom_footer }} {
+   
+    grid-template-columns: 100%;
+    gap: 20px
+  
+  }
+
+    .footer-description-{{ custom_footer }} {
+      max-width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+  .footer-email-input-{{ custom_footer }} {
+max-width: 200px;
+  }
+
+    .footer-columns-mains-{{ custom_footer }} {  
+    grid-template-columns: 100%; }
+    .footer-{{ custom_footer }} {
+      padding: 40px 0 0;
+    }
+
+    .footer-columns-{{ custom_footer }} {
+      grid-template-columns: 1fr !important;
+      gap: 30px;
+    }
+
+    .footer-logo-section-{{ custom_footer }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .footer-company-name-{{ custom_footer }} {
+      white-space: normal;
+    }
+  }
+{% endstyle %}
+
+<footer-section-{{ custom_footer }} class="footer-{{ custom_footer }}" {{ section.shopify_attributes }}>
+  <div class="footer-container-{{ custom_footer }}">
+    {%- comment -%} ── TOP BAR: Logo + Description ── {%- endcomment -%}
+    {% if section.settings.show_top_bar %}
+      <div class="footer-top-bar-{{ custom_footer }}">
+        <div class="footer-logo-section-{{ custom_footer }}">
+          {% if section.settings.logo %}
+            <img
+              src="{{ section.settings.logo | image_url: width: 400 }}"
+              alt="{{ section.settings.company_name | escape }}"
+              class="footer-logo-{{ custom_footer }}"
+              width="{{ section.settings.logo.width }}"
+              height="{{ section.settings.logo.height }}"
+              loading="lazy"
+            >
+          {% endif %}
+          {% if section.settings.company_name != blank %}
+            <h2 class="footer-company-name-{{ custom_footer }}">{{ section.settings.company_name }}</h2>
+          {% endif %}
+        </div>
+        {% if section.settings.company_description != blank %}
+          <div class="footer-description-{{ custom_footer }}">{{ section.settings.company_description }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {%- comment -%} ── COLUMNS GRID — Loop through blocks ── {%- endcomment -%}
+    <div class="footer-columns-mains-{{ custom_footer }}">
+      {%- comment -%} ── COLUMN 1: Newsletter (always shown, from section settings) ── {%- endcomment -%}
+      <div class="footer-column-{{ custom_footer }}">
+        <h3 class="footer-column-heading-{{ custom_footer }}" style="font-weight: 500;">
+          {{ section.settings.newsletter_heading }}
+        </h3>
+
+        {% if section.settings.newsletter_subtext != blank %}
+          <p class="footer-subtext-{{ custom_footer }}">{{ section.settings.newsletter_subtext }}</p>
+        {% endif %}
+
+        {% form 'customer', id: 'ContactFooter-{{ custom_footer }}' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer-email-form-{{ custom_footer }}">
+            <input
+              type="email"
+              name="contact[email]"
+              id="NewsletterForm--{{ custom_footer }}"
+              class="footer-email-input-{{ custom_footer }}"
+              value="{{ form.email }}"
+              placeholder="{{ section.settings.email_placeholder }}"
+              aria-label="Email address"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              required
+              {% if form.errors %}
+                aria-invalid="true"
+              {% endif %}
+            >
+            <button type="submit" class="footer-email-submit-{{ custom_footer }}" name="commit" aria-label="Subscribe">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="{{ section.settings.submit_icon_color }}"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+          {% if form.posted_successfully? %}
+            <p class="footer-success-message-{{ custom_footer }}">{{ section.settings.success_message }}</p>
+          {% endif %}
+          {% if form.errors %}
+            <p class="footer-error-message-{{ custom_footer }}">{{ form.errors.messages.email }}</p>
+          {% endif %}
+        {% endform %}
+
+        {% if section.settings.show_social_media %}
+          <h4 class="footer-social-heading-{{ custom_footer }}">{{ section.settings.social_heading }}</h4>
+          <div class="footer-social-icons-{{ custom_footer }}">
+            {% if section.settings.facebook_url != blank %}
+              <a
+                href="{{ section.settings.facebook_url }}"
+                class="footer-social-icon-{{ custom_footer }}"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ 'facebook.svg' | inline_asset_content }}
+              </a>
+            {% endif %}
+            {% if section.settings.instagram_url != blank %}
+              <a
+                href="{{ section.settings.instagram_url }}"
+                class="footer-social-icon-{{ custom_footer }}"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ 'instagram.svg' | inline_asset_content }}
+              </a>
+            {% endif %}
+            {% if section.settings.linkedin_url != blank %}
+              <a
+                href="{{ section.settings.linkedin_url }}"
+                class="footer-social-icon-{{ custom_footer }}"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener"
+              >
+               {{ 'linkdin.svg' | inline_asset_content }}
+              </a>
+            {% endif %}
+            {% if section.settings.google_url != blank %}
+              <a
+                href="{{ section.settings.google_url }}"
+                class="footer-social-icon-{{ custom_footer }}"
+                aria-label="Google"
+                target="_blank"
+                rel="noopener"
+              >
+                 {{ 'google.svg' | inline_asset_content }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if section.settings.show_made_in_india %}
+          <p class="footer-made-in-india-{{ custom_footer }}">{{ section.settings.made_in_india_text }}</p>
+        {% endif %}
+
+        {% if section.settings.show_payment_icons %}
+          <div class="footer-payment-icons-{{ custom_footer }}">
+            {% if section.settings.show_eway %}
+              <span class="footer-payment-icon-{{ custom_footer }}">eWay</span>
+            {% endif %}
+            {% if section.settings.show_visa %}
+              <span class="footer-payment-icon-{{ custom_footer }}">Visa</span>
+            {% endif %}
+            {% if section.settings.show_paypal %}
+              <span class="footer-payment-icon-{{ custom_footer }}">PayPal</span>
+            {% endif %}
+            {% if section.settings.show_mastercard %}
+              <span class="footer-payment-icon-{{ custom_footer }}">Mastercard</span>
+            {% endif %}
+            {% if section.settings.show_google_pay %}
+              <span class="footer-payment-icon-{{ custom_footer }}">Google Pay</span>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="footer-columns-{{ custom_footer }}">
+        {%- comment -%} ── BLOCK COLUMNS: Loop through footer_column blocks ── {%- endcomment -%}
+        {% for block in section.blocks %}
+          {% if block.type == 'footer_column' %}
+            <div class="footer-column-{{ custom_footer }}" {{ block.shopify_attributes }}>
+              {%- comment -%} Column Heading {%- endcomment -%}
+              {% if block.settings.column_heading != blank %}
+                <h3 class="footer-column-heading-{{ custom_footer }}">{{ block.settings.column_heading }}</h3>
+              {% endif %}
+
+              {%- comment -%} Nav Links from link_list {%- endcomment -%}
+              {% if block.settings.column_menu != blank %}
+                <ul class="footer-nav-list-{{ custom_footer }}">
+                  {% for link in linklists[block.settings.column_menu].links %}
+                    <li>
+                      {%- comment -%}
+                        Check if this link title matches any of the highlight texts
+                        Support multiple highlight titles separated by comma
+                      {%- endcomment -%}
+                      {% assign highlight_titles = block.settings.highlight_links | split: ',' %}
+                      {% assign is_highlight = false %}
+                      {% for ht in highlight_titles %}
+                        {% assign ht_clean = ht | strip | downcase %}
+                        {% assign link_clean = link.title | strip | downcase %}
+                        {% if ht_clean == link_clean %}
+                          {% assign is_highlight = true %}
+                        {% endif %}
+                      {% endfor %}
+
+                      {% if is_highlight %}
+                        <a
+                          href="{{ link.url }}"
+                          class="footer-nav-link-{{ custom_footer }} footer-nav-link-highlight-{{ custom_footer }}"
+                        >
+                          {{ link.title }}
+                        </a>
+                      {% else %}
+                        <a href="{{ link.url }}" class="footer-nav-link-{{ custom_footer }}">
+                          {{ link.title }}
+                        </a>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {%- comment -%} end .footer-columns {%- endcomment -%}
+
+    {%- comment -%} ── BOTTOM BAR ── {%- endcomment -%}
+    <div class="footer-bottom-bar-{{ custom_footer }}">
+      <p class="footer-copyright-{{ custom_footer }}">{{ section.settings.copyright_text }}</p>
+    </div>
+  </div>
+</footer-section-{{ custom_footer }}>
+
+<script>
+  (function () {
+    class FooterSection extends HTMLElement {
+      connectedCallback() {
+        const form = this.querySelector('form');
+        if (form) {
+          form.addEventListener('submit', (e) => {
+            const email = form.querySelector('input[type="email"]');
+            if (!email || !email.validity.valid) {
+              e.preventDefault();
+            }
+          });
+        }
+      }
+    }
+    customElements.define('footer-section-{{ custom_footer }}', FooterSection);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Company Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_bar",
+      "label": "Show top bar",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company name",
+      "default": "Bhumi Agro Industries"
+    },
+    {
+      "type": "range",
+      "id": "company_name_size",
+      "label": "Company name size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "company_name_color",
+      "label": "Company name color",
+      "default": "#ff0000"
+    },
+    {
+      "type": "textarea",
+      "id": "company_description",
+      "label": "Company description",
+      "default": "We are in the business of manufacturing Micronutrients, Bio Fertilizers, plant growth promoters, and biofungicides, working across India with a simple yet powerful vision."
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Column"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Heading",
+      "default": "KEEP ME UPDATE"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_subtext",
+      "label": "Subtext",
+      "default": "Subscribe to get notified about product launches, special offers and company news."
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Subtext size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_media",
+      "label": "Show social media",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "Social heading",
+      "default": "SOCIAL MEDIA"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn URL"
+    },
+    {
+      "type": "url",
+      "id": "google_url",
+      "label": "Google URL"
+    },
+    {
+      "type": "header",
+      "content": "Made in India"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_made_in_india",
+      "label": "Show Made in India text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "made_in_india_text",
+      "label": "Text",
+      "default": "PROUDLY MAKE IN INDIA OWNED"
+    },
+    {
+      "type": "header",
+      "content": "Payment Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_eway",
+      "label": "Show eWay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_visa",
+      "label": "Show Visa",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_paypal",
+      "label": "Show PayPal",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mastercard",
+      "label": "Show Mastercard",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_google_pay",
+      "label": "Show Google Pay",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "Copyright © 2026 Bhumi Agriculture"
+    },
+    {
+      "type": "range",
+      "id": "copyright_size",
+      "label": "Copyright size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Links",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Links hover",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "label": "Link size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "highlight_link_color",
+      "label": "Highlighted link color",
+      "default": "#ff4444"
+    },
+    {
+      "type": "color",
+      "id": "highlight_link_hover_color",
+      "label": "Highlighted link hover",
+      "default": "#ff6666"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider",
+      "default": "#FFFFFF33"
+    },
+    {
+      "type": "color",
+      "id": "copyright_color",
+      "label": "Copyright text",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Email Input"
+    },
+    {
+      "type": "color",
+      "id": "input_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "input_placeholder_color",
+      "label": "Placeholder",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "submit_button_color",
+      "label": "Submit button",
+      "default": "#28a745"
+    },
+    {
+      "type": "color",
+      "id": "submit_button_hover_color",
+      "label": "Submit button hover",
+      "default": "#218838"
+    },
+    {
+      "type": "color",
+      "id": "submit_icon_color",
+      "label": "Submit icon",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "success_color",
+      "label": "Success message",
+      "default": "#28a745"
+    },
+    {
+      "type": "color",
+      "id": "error_color",
+      "label": "Error message",
+      "default": "#dc3545"
+    },
+    {
+      "type": "header",
+      "content": "Social Icons"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_color",
+      "label": "Icon color",
+      "default": "#ffffff"
+    },
+   
+    {
+      "type": "color",
+      "id": "social_icon_hover_bg",
+      "label": "Hover background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_hover_border",
+      "label": "Hover border",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Payment Icons"
+    },
+    {
+      "type": "color",
+      "id": "payment_icon_bg",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "payment_icon_text",
+      "label": "Text",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "footer_column",
+      "name": "📋 Nav Column",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_heading",
+          "label": "Column Heading",
+          "default": "Quick Links",
+          "info": "Bold uppercase heading shown above the links"
+        },
+        {
+          "type": "link_list",
+          "id": "column_menu",
+          "label": "Menu",
+          "info": "Select a Shopify menu — all its links will appear here"
+        },
+        {
+          "type": "text",
+          "id": "highlight_links",
+          "label": "Highlight link titles (comma separated)",
+          "default": "CHAT WITH US",
+          "info": "Exact link title(s) to show in red. E.g: CHAT WITH US, SALE"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Company Footer",
+      "blocks": [
+        {
+          "type": "footer_column",
+          "settings": {
+            "column_heading": "FEATURED CATEGORIES",
+            "highlight_links": ""
+          }
+        },
+        {
+          "type": "footer_column",
+          "settings": {
+            "column_heading": "SOLUTION",
+            "highlight_links": ""
+          }
+        },
+        {
+          "type": "footer_column",
+          "settings": {
+            "column_heading": "INFORMATION",
+            "highlight_links": "CHAT WITH US"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
