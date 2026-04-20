@@ -9,6 +9,43 @@
  */
 {
   "sections": {
+    "ankooram_product_main_3Fn3Ly": {
+      "type": "ankooram-product-main",
+      "blocks": {
+        "variant_selector_gjc7QH": {
+          "type": "variant_selector",
+          "settings": {
+            "display_type": "swatches"
+          }
+        },
+        "custom_field_RYX4n4": {
+          "type": "custom_field",
+          "settings": {
+            "metafield_namespace": "custom",
+            "metafield_key": "extra_info",
+            "field_type": "single_line",
+            "show_label": true,
+            "label": "Additional Info",
+            "fallback_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "variant_selector_gjc7QH",
+        "custom_field_RYX4n4"
+      ],
+      "name": "Ankooram - Product Main",
+      "settings": {
+        "retailer1_name": "Amazon",
+        "retailer1_url": "",
+        "retailer2_name": "BigBasket",
+        "retailer2_url": "",
+        "retailer3_name": "Swiggy Instamart",
+        "retailer3_url": "",
+        "retailer4_name": "ITC Store",
+        "retailer4_url": ""
+      }
+    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -258,6 +295,7 @@
           ]
         }
       },
+      "disabled": true,
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -444,6 +482,7 @@
     }
   },
   "order": [
+    "ankooram_product_main_3Fn3Ly",
     "main",
     "product_recommendations_qggXJq",
     "section_DP938y"
