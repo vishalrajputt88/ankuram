@@ -340,27 +340,6 @@
     "ankooram_product_information_tab_UnrtiG": {
       "type": "ankooram-product-information-tab",
       "blocks": {
-        "video_Gi7ygK": {
-          "type": "video",
-          "settings": {
-            "tab_label": "How to Use Video",
-            "video_metafield_namespace": "",
-            "video_metafield_key": "",
-            "video_content": "<p>Add instructions or notes about how to use this product.</p>"
-          }
-        },
-        "additional_info_HirwaL": {
-          "type": "additional_info",
-          "settings": {
-            "tab_label": "Additional Information",
-            "add_info_metafield_namespace": "custom",
-            "add_info_metafield_key": "additional_information",
-            "add_info_field_keys": "weight,size",
-            "add_info_field_labels": "Weight,Pack Size",
-            "add_info_field_types": "text,richtext",
-            "fallback_content": "<p>No additional information available.</p>"
-          }
-        },
         "faq_RDR7Li": {
           "type": "faq",
           "settings": {
@@ -382,14 +361,20 @@
             "tab_label": "Full Product Description",
             "content": "<p>Add your content here.</p>"
           }
+        },
+        "richtext_CtBLGB": {
+          "type": "richtext",
+          "settings": {
+            "tab_label": "Full Product Description",
+            "content": "{{ product.description }}"
+          }
         }
       },
       "block_order": [
-        "video_Gi7ygK",
-        "additional_info_HirwaL",
         "faq_RDR7Li",
         "richtext_3Bj74K",
-        "richtext_ecnbgq"
+        "richtext_ecnbgq",
+        "richtext_CtBLGB"
       ],
       "name": "Ankooram PIT",
       "settings": {
