@@ -12,101 +12,149 @@
     ✅ Wishlist button (localStorage, syncs with header wishlist badge)
     ✅ Pincode checker
     ✅ Dynamic custom fields (blocks)
-    ✅ 4 Retailer buy boxes
-    ✅ Hover zoom + Lightbox
+    ✅ Coupon Banner block (with copy button)
+    ✅ Guarantee Banner block (image picker)
+    ✅ Care Icons block (3 icon boxes)
 {% endcomment %}
 
 <style>
 
-/* discount banner style */
-  .coupon-banner-{{ custom_discount_banner }} {
+/* ── COUPON BANNER ─────────────────────────────────────────── */
+.rs-coupon-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  background-color: var(--coupon-bg, #fdf8ee);
+  border: 1.5px dashed var(--coupon-border, #c8a94a);
+}
+.rs-coupon-banner__left {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+.rs-coupon-banner__row1 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .92rem;
+  color: #333;
+}
+.rs-coupon-banner__row1 svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: #555;
+}
+.rs-coupon-banner__row1 strong {
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: .3px;
+}
+.rs-coupon-banner__row2 {
+  font-size: .8rem;
+  color: #777;
+  padding-left: 23px;
+}
+.rs-coupon-banner__copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity .2s, transform .15s;
+  white-space: nowrap;
+}
+.rs-coupon-banner__copy-btn svg {
+  width: 13px;
+  height: 13px;
+}
+.rs-coupon-banner__copy-btn:hover {
+  opacity: .82;
+  transform: translateY(-1px);
+}
+.rs-coupon-banner__copy-btn.copied {
+  background: #0E3A23;
+}
+
+/* ── GUARANTEE BANNER ─────────────────────────────────────── */
+.rs-guarantee-banner {
+  margin-bottom: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.rs-guarantee-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* ── CARE ICONS BLOCK ─────────────────────────────────────── */
+.rs-care-icons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+.rs-care-icon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 10px;
+  background: #f9f7f4;
+  border-radius: 12px;
+  border: 1px solid #ece5da;
+  text-align: center;
+}
+.rs-care-icon-box__icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rs-care-icon-box__icon img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+.rs-care-icon-box__icon svg {
+  width: 32px;
+  height: 32px;
+  color: #0E3A23;
+}
+.rs-care-icon-box__label {
+  font-size: .78rem;
+  font-weight: 600;
+  color: #2d2119;
+  line-height: 1.4;
+}
+
+/* discount banner style - legacy kept for compatibility */
+  .coupon-banner-{{ section.id }} {
     display: block;
-    width: {{ block.settings.desktop_width_percent }}%;
+    width: 100%;
     max-width: 100%;
-  }
-
-  .coupon-banner__container-{{ custom_discount_banner }} {
-    background-color: {{ block.settings.background_color }};
-    border: {{ block.settings.border_width }}px dashed {{ block.settings.border_color }};
-    border-radius: {{ block.settings.border_radius }}px;
-    padding: {{ block.settings.padding }}px {{ block.settings.padding | plus: 4 }}px;
-    max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .coupon-banner__left-{{ custom_discount_banner }} {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-    min-width: 0;
-  }
-
-  .coupon-banner__lock-icon-{{ custom_discount_banner }} {
-    width: 17px;
-    height: 17px;
-    flex-shrink: 0;
-    color: {{ block.settings.text_color }};
-  }
-
-  .coupon-banner__text-{{ custom_discount_banner }} {
-    font-size: {{ block.settings.price_font_size }}px;
-    color: {{ block.settings.text_color }};
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .coupon-banner__text-{{ custom_discount_banner }} strong {
-    font-weight: 700;
-    color: {{ block.settings.code_color }};
-    letter-spacing: 0.3px;
-  }
-
-  .coupon-banner__copy-button-{{ custom_discount_banner }} {
-    background-color: {{ block.settings.button_bg_color }};
-    color: {{ block.settings.button_text_color }};
-    border: none;
-    border-radius: {{ block.settings.button_border_radius }}px;
-    padding: 9px 16px;
-    font-size: {{ block.settings.button_font_size }}px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: opacity 0.2s ease;
-    letter-spacing: 0.3px;
-  }
-
-  .coupon-banner__copy-button-{{ custom_discount_banner }}:hover {
-    opacity: 0.85;
-  }
-
-  .coupon-banner__copy-icon-{{ custom_discount_banner }} {
-    width: 13px;
-    height: 13px;
-  }
-
-  @media screen and (max-width: 480px) {
-    .coupon-banner__container-{{ custom_discount_banner }} {
-      padding: 10px 12px;
-    }
-    .coupon-banner__text-{{ custom_discount_banner }} {
-      font-size: {{ block.settings.price_font_size | minus: 1 }}px;
-      white-space: normal;
-    }
-    .coupon-banner__copy-button-{{ custom_discount_banner }} {
-      padding: 8px 12px;
-      font-size: {{ block.settings.button_font_size | minus: 1 }}px;
-    }
   }
 
 .rs-product * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -228,7 +276,7 @@
 .rs-swatch {
   padding:8px 18px; border-radius:8px; border:1.5px solid #d4c9b8;
   font-size:.88rem; font-weight:600; color:#2d2119; cursor:pointer;
-  background:#fff; transition:all .2s; white-space:nowrap;     font-family: 'Poppins';
+  background:#fff; transition:all .2s; white-space:nowrap; font-family: 'Poppins';
 }
 .rs-swatch:hover { border-color:#0E3A23; color:#0E3A23; }
 .rs-swatch.active { border-color:#0E3A23; background:#0E3A23; color:#fff; }
@@ -324,9 +372,6 @@
 }
 .rs-retailer-box:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.18); }
 .rs-retailer-box img { width:100%; height:100%; object-fit:contain; display:block; }
-.rs-retailer-box__placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#1a1a1a; padding:10px; gap:6px; }
-.rs-retailer-box__placeholder-name { color:#fff; font-size:.7rem; font-weight:700; text-align:center; }
-.rs-retailer-box__placeholder-sub { color:#aaa; font-size:.6rem; text-align:center; }
 
 /* ZOOM LIGHTBOX */
 .rs-zoom-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:9999; align-items:center; justify-content:center; padding:20px; }
@@ -346,6 +391,9 @@
   .rs-info__price { font-size:18px; }
   .rs-cart-row { flex-direction:column; }
   .rs-btn-atc, .rs-btn-buynow, .rs-btn-wishlist { width:100%; }
+  .rs-care-icons { grid-template-columns: repeat(3,1fr); gap:8px; }
+  .rs-care-icon-box { padding:12px 6px; }
+  .rs-care-icon-box__label { font-size:.72rem; }
 }
 @media (max-width:480px) {
   .rs-product { padding:12px 14px 32px; }
@@ -357,7 +405,6 @@
 {%- assign product = product -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 
-{%- comment -%} Check karo product mein koi video hai ya nahi {%- endcomment -%}
 {%- assign has_video = false -%}
 {%- for media in product.media -%}
   {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
@@ -378,7 +425,7 @@
     <div class="rs-product__grid">
 
       <!-- ═══════════════════════════════════════════
-           GALLERY — Video PEHLE, phir images
+           GALLERY
       ════════════════════════════════════════════ -->
       <div class="rs-gallery">
         <div class="rs-gallery__main-wrap" id="rs-main-wrap-{{ section.id }}"
@@ -395,7 +442,6 @@
 
           <div class="rs-zoom-lens" id="rs-lens-{{ section.id }}"></div>
 
-          <!-- Main image — agar video hai to pehle hidden rahega -->
           <img
             src="{{ product.featured_image | image_url: width: 800 }}"
             alt="{{ product.title }}"
@@ -415,12 +461,10 @@
 
         </div>
 
-        <!-- Zoom result panel -->
         <div class="rs-zoom-result" id="rs-zoom-result-{{ section.id }}">
           <img src="" alt="" id="rs-zoom-result-img-{{ section.id }}">
         </div>
 
-        <!-- Thumbnails — VIDEOS, then images -->
         <div class="rs-gallery__thumbs-wrap">
           <button class="rs-gallery__arrow prev" onclick="rsThumbScroll('{{ section.id }}',-1)" aria-label="Scroll left">&#8249;</button>
           <div class="rs-gallery__thumbs" id="rs-thumbs-{{ section.id }}">
@@ -532,7 +576,6 @@
                         </select>
 
                       {% else %}
-                        {%- comment -%} Swatches {%- endcomment -%}
                         <div class="rs-variants__swatches">
                           {% for value in option.values %}
                             {%- assign is_available = false -%}
@@ -594,6 +637,128 @@
                   </div>
                 {% endif %}
               {% endif %}
+
+            {%- comment -%} ── GUARANTEE BANNER BLOCK ── {%- endcomment -%}
+            {% when 'guarantee_banner' %}
+              {% if block.settings.banner_image != blank %}
+                <div class="rs-guarantee-banner" {{ block.shopify_attributes }}>
+                  {% if block.settings.banner_link != blank %}
+                    <a href="{{ block.settings.banner_link }}" {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                  {% endif %}
+                  <img
+                    src="{{ block.settings.banner_image | image_url: width: 900 }}"
+                    alt="{{ block.settings.banner_alt | default: 'Guarantee' }}"
+                    width="900"
+                    loading="lazy"
+                  >
+                  {% if block.settings.banner_link != blank %}</a>{% endif %}
+                </div>
+              {% endif %}
+
+            {%- comment -%} ── COUPON BANNER BLOCK ── {%- endcomment -%}
+            {% when 'coupon_banner' %}
+              {% if block.settings.coupon_code != blank %}
+                <div
+                  class="rs-coupon-banner"
+                  {{ block.shopify_attributes }}
+                  style="
+                    --coupon-bg: {{ block.settings.background_color }};
+                    --coupon-border: {{ block.settings.border_color }};
+                  "
+                >
+                  <div class="rs-coupon-banner__left">
+                    <div class="rs-coupon-banner__row1">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      {% if block.settings.prefix_text != blank %}
+                        <span>{{ block.settings.prefix_text }}</span>
+                      {% endif %}
+                      <strong>{{ block.settings.coupon_code }}</strong>
+                      {% if block.settings.suffix_text != blank %}
+                        <span>{{ block.settings.suffix_text }}</span>
+                      {% endif %}
+                    </div>
+                    {% if block.settings.sub_text != blank %}
+                      <div class="rs-coupon-banner__row2">{{ block.settings.sub_text }}</div>
+                    {% endif %}
+                  </div>
+                  <button
+                    class="rs-coupon-banner__copy-btn"
+                    data-code="{{ block.settings.coupon_code }}"
+                    onclick="rsCopyCoupon(this)"
+                    aria-label="Copy coupon code {{ block.settings.coupon_code }}"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span class="rs-coupon-copy-label">{{ block.settings.button_text | default: 'Copy' }}</span>
+                  </button>
+                </div>
+              {% endif %}
+
+            {%- comment -%} ── CARE ICONS BLOCK ── {%- endcomment -%}
+            {% when 'care_icons' %}
+              <div class="rs-care-icons" {{ block.shopify_attributes }}>
+
+                {% for i in (1..3) %}
+                  {%- assign icon_image_key  = 'icon_image_'  | append: i -%}
+                  {%- assign icon_label_key  = 'icon_label_'  | append: i -%}
+                  {%- assign icon_type_key   = 'icon_type_'   | append: i -%}
+
+                  {%- assign icon_label = block.settings[icon_label_key] -%}
+                  {%- assign icon_image = block.settings[icon_image_key] -%}
+                  {%- assign icon_type  = block.settings[icon_type_key]  -%}
+
+                  {% if icon_label != blank %}
+                    <div class="rs-care-icon-box">
+                      <div class="rs-care-icon-box__icon">
+                        {% if icon_image != blank %}
+                          <img src="{{ icon_image | image_url: width: 80 }}" alt="{{ icon_label }}" width="40" height="40" loading="lazy">
+                        {% elsif icon_type == 'water' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C6 8 4 13 4 16a8 8 0 0 0 16 0c0-3-2-8-8-14z"/>
+                          </svg>
+                        {% elsif icon_type == 'sun' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                          </svg>
+                        {% elsif icon_type == 'beginner' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                          </svg>
+                        {% elsif icon_type == 'leaf' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 22 L10 14"/>
+                            <path d="M16 8 C16 8 22 2 22 2 C22 14 12 20 2 22 C4 14 8 10 16 8Z"/>
+                          </svg>
+                        {% elsif icon_type == 'temp' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
+                          </svg>
+                        {% elsif icon_type == 'pot' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 7h16l-2 10H6L4 7z"/>
+                            <path d="M8 7V5a4 4 0 0 1 8 0v2"/>
+                            <line x1="12" y1="12" x2="12" y2="14"/>
+                          </svg>
+                        {% else %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                          </svg>
+                        {% endif %}
+                      </div>
+                      <div class="rs-care-icon-box__label">{{ icon_label }}</div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+
+              </div>
 
           {% endcase %}
         {% endfor %}
@@ -672,41 +837,8 @@
         </div>
         <div class="rs-info__pincode-msg" id="rs-pincode-msg-{{ section.id }}"></div>
 
-        <coupon-banner-{{ custom_discount_banner }} class="coupon-banner-{{ custom_discount_banner }}" {{ block.shopify_attributes }}>
-  <div class="coupon-banner__container-{{ custom_discount_banner }}">
-
-    <div class="coupon-banner__left-{{ custom_discount_banner }}">
-      <!-- Lock Icon -->
-      <svg class="coupon-banner__lock-icon-{{ custom_discount_banner }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-      </svg>
-
-      <!-- Text: Use code WHATSUP For 5% discount -->
-      <div class="coupon-banner__text-{{ custom_discount_banner }}">
-        {{ block.settings.price_text }} <strong>{{ block.settings.coupon_code }}</strong> {{ block.settings.discount_text }}
-      </div>
-    </div>
-
-    <!-- Copy Button -->
-    <button
-      class="coupon-banner__copy-button-{{ custom_discount_banner }}"
-      data-code="{{ block.settings.coupon_code }}"
-      aria-label="Copy coupon code"
-    >
-      <svg class="coupon-banner__copy-icon-{{ custom_discount_banner }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-      </svg>
-      <span class="coupon-banner__button-text-{{ custom_discount_banner }}">{{ block.settings.button_text }}</span>
-    </button>
-
-  </div>
-</coupon-banner-{{ custom_discount_banner }}>
-
         <!-- DESCRIPTION -->
         <div class="rs-info__desc">{{ product.description }}</div>
-
 
       </div>
       <!-- END INFO -->
@@ -721,7 +853,7 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     PRODUCT DATA for JS (variants JSON)
+     PRODUCT DATA for JS
 ════════════════════════════════════════════════════════════ -->
 <script id="rs-product-data-{{ section.id }}" type="application/json">
   {
@@ -753,12 +885,10 @@
 (function () {
   var sid = '{{ section.id }}';
 
-  // ── Load product data ───────────────────────────────────────
   var _data     = JSON.parse(document.getElementById('rs-product-data-' + sid).textContent);
   var _variants = _data.variants;
   var _hasVideo = _data.has_video;
 
-  // Track selected options (up to 3 options)
   var _selectedOptions = [
     {{ current_variant.option1 | json }},
     {{ current_variant.option2 | json }},
@@ -766,27 +896,57 @@
   ];
   var _currentVariantId = {{ current_variant.id }};
 
-  /* ── PAGE LOAD: Agar video hai to pehla video thumb auto-trigger karo ── */
   document.addEventListener('DOMContentLoaded', function () {
     if (_hasVideo) {
-      var firstVideoThumb = document.querySelector(
-        '#rs-thumbs-' + sid + ' .rs-gallery__thumb--video'
-      );
-      if (firstVideoThumb) {
-        rsSetMedia(sid, firstVideoThumb);
-      }
+      var firstVideoThumb = document.querySelector('#rs-thumbs-' + sid + ' .rs-gallery__thumb--video');
+      if (firstVideoThumb) rsSetMedia(sid, firstVideoThumb);
     }
-    /* Init wishlist state on load */
     rsInitWishlistState(sid);
   });
 
-  /* ── MEDIA: Set image or video ────────────────────────────── */
+  /* ── COUPON COPY ─────────────────────────────────────────── */
+  window.rsCopyCoupon = function(btn) {
+    var code = btn.getAttribute('data-code');
+    var label = btn.querySelector('.rs-coupon-copy-label');
+    if (!code) return;
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code).then(function() {
+        rsShowCopied(btn, label);
+      }).catch(function() {
+        rsFallbackCopy(code, btn, label);
+      });
+    } else {
+      rsFallbackCopy(code, btn, label);
+    }
+  };
+
+  function rsFallbackCopy(text, btn, label) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); rsShowCopied(btn, label); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  function rsShowCopied(btn, label) {
+    btn.classList.add('copied');
+    if (label) label.textContent = 'Copied!';
+    setTimeout(function() {
+      btn.classList.remove('copied');
+      if (label) label.textContent = label.closest('[data-original-text]') ? label.closest('[data-original-text]').dataset.originalText : 'Copy';
+    }, 2000);
+  }
+
+  /* ── MEDIA ───────────────────────────────────────────────── */
   window.rsSetMedia = function (id, thumbEl) {
     var type      = thumbEl.getAttribute('data-type');
     var mainImg   = document.getElementById('rs-main-img-' + id);
     var mainVideo = document.getElementById('rs-main-video-' + id);
 
-    // Update active thumb
     document.querySelectorAll('#rs-thumbs-' + id + ' .rs-gallery__thumb')
       .forEach(function(t){ t.classList.remove('active'); });
     thumbEl.classList.add('active');
@@ -795,7 +955,6 @@
     if (type === 'video') {
       var videoUrl = thumbEl.getAttribute('data-video-url');
       var poster   = thumbEl.getAttribute('data-poster');
-
       mainImg.classList.add('hidden');
       mainVideo.classList.add('active');
       mainVideo.poster = poster || '';
@@ -803,11 +962,9 @@
       mainVideo.load();
       mainVideo.play().catch(function(){});
       document.getElementById('rs-zoom-result-' + id).style.display = 'none';
-
     } else {
       var src = thumbEl.getAttribute('data-full');
       if (!src) return;
-
       mainVideo.pause();
       mainVideo.src = '';
       mainVideo.classList.remove('active');
@@ -815,7 +972,6 @@
       mainImg.style.opacity = '0.4';
       mainImg.src = src;
       mainImg.onload = function(){ mainImg.style.opacity = '1'; };
-
       var zoomImg = document.getElementById('rs-zoom-img-' + id);
       if (zoomImg) zoomImg.src = src;
       var resultImg = document.getElementById('rs-zoom-result-img-' + id);
@@ -823,7 +979,6 @@
     }
   };
 
-  /* ── CAROUSEL SCROLL ─────────────────────────────────────── */
   window.rsThumbScroll = function (id, dir) {
     var strip = document.getElementById('rs-thumbs-' + id);
     if (strip) strip.scrollBy({ left: dir * 180, behavior: 'smooth' });
@@ -836,16 +991,11 @@
     var mainImg   = document.getElementById('rs-main-img-' + id);
     var mainVideo = document.getElementById('rs-main-video-' + id);
     if (mainVideo && mainVideo.classList.contains('active')) return;
-
     var result    = document.getElementById('rs-zoom-result-' + id);
     var resultImg = document.getElementById('rs-zoom-result-img-' + id);
     if (!mainImg || !result || !resultImg) return;
-
     var hiSrc = mainImg.src.replace(/width=\d+/, 'width=1600');
-    if (resultImg.dataset.src !== hiSrc) {
-      resultImg.dataset.src = hiSrc;
-      resultImg.src = hiSrc;
-    }
+    if (resultImg.dataset.src !== hiSrc) { resultImg.dataset.src = hiSrc; resultImg.src = hiSrc; }
     result.style.display = 'block';
     _hzActive[id] = true;
   };
@@ -854,7 +1004,7 @@
     var result = document.getElementById('rs-zoom-result-' + id);
     var lens   = document.getElementById('rs-lens-' + id);
     if (result) result.style.display = 'none';
-    if (lens)   { lens.style.left = '-9999px'; lens.style.top = '-9999px'; }
+    if (lens) { lens.style.left = '-9999px'; lens.style.top = '-9999px'; }
     _hzActive[id] = false;
   };
 
@@ -865,7 +1015,6 @@
     var result    = document.getElementById('rs-zoom-result-' + id);
     var resultImg = document.getElementById('rs-zoom-result-img-' + id);
     if (!wrap || !lens || !result || !resultImg) return;
-
     var rect  = wrap.getBoundingClientRect();
     var lensW = lens.offsetWidth  || 120;
     var lensH = lens.offsetHeight || 120;
@@ -873,10 +1022,8 @@
     var y = e.clientY - rect.top;
     var lx = Math.max(lensW/2, Math.min(x, rect.width  - lensW/2)) - lensW/2;
     var ly = Math.max(lensH/2, Math.min(y, rect.height - lensH/2)) - lensH/2;
-
     lens.style.left = lx + 'px';
     lens.style.top  = ly + 'px';
-
     var rw = result.offsetWidth  / lensW;
     var rh = result.offsetHeight / lensH;
     resultImg.style.width  = (rect.width  * rw) + 'px';
@@ -925,24 +1072,16 @@
     }
 
     var wEl = document.getElementById('rs-weight-' + id);
-    if (wEl) {
-      wEl.textContent = variant.weight > 0 ? 'Net Weight: ' + variant.weight + ' ' + variant.weight_unit : '';
-    }
+    if (wEl) wEl.textContent = variant.weight > 0 ? 'Net Weight: ' + variant.weight + ' ' + variant.weight_unit : '';
 
     var atcBtn    = document.getElementById('rs-atc-' + id);
     var buyBtn    = document.getElementById('rs-buynow-' + id);
     var available = variant.available;
-    if (atcBtn) {
-      atcBtn.disabled    = !available;
-      atcBtn.textContent = available ? 'Add to Cart' : 'Sold Out';
-    }
+    if (atcBtn) { atcBtn.disabled = !available; atcBtn.textContent = available ? 'Add to Cart' : 'Sold Out'; }
     if (buyBtn) buyBtn.disabled = !available;
 
-    /* Update wishlist button price */
     var wlBtn = document.getElementById('rs-wishlist-' + id);
-    if (wlBtn) {
-      wlBtn.dataset.productPrice = rsFormatMoney(variant.price);
-    }
+    if (wlBtn) wlBtn.dataset.productPrice = rsFormatMoney(variant.price);
 
     if (variant.featured_image) {
       var mainImg = document.getElementById('rs-main-img-' + id);
@@ -950,11 +1089,8 @@
         mainImg.style.opacity = '0.4';
         mainImg.src = variant.featured_image;
         mainImg.onload = function(){ mainImg.style.opacity = '1'; };
-
         document.querySelectorAll('#rs-thumbs-' + id + ' .rs-gallery__thumb[data-type="image"]')
-          .forEach(function(t){
-            t.classList.toggle('active', t.getAttribute('data-full') === variant.featured_image);
-          });
+          .forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-full') === variant.featured_image); });
       }
     }
 
@@ -990,47 +1126,33 @@
     inp.value = val;
   };
 
-  /* ══════════════════════════════════════════════════════
-     ADD TO CART (AJAX)
-     — fires cart:updated event so header badge updates
-  ══════════════════════════════════════════════════════ */
+  /* ── ADD TO CART ─────────────────────────────────────────── */
   window.rsAddToCart = function(id) {
     var qty    = parseInt(document.getElementById('rs-qty-' + id).value, 10) || 1;
     var msgEl  = document.getElementById('rs-cart-msg-' + id);
     var atcBtn = document.getElementById('rs-atc-' + id);
-
     atcBtn.disabled    = true;
     atcBtn.textContent = 'Adding…';
     msgEl.className    = 'rs-cart-msg';
 
     fetch('/cart/add.js', {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body:    JSON.stringify({ id: _currentVariantId, quantity: qty })
+      body:   JSON.stringify({ id: _currentVariantId, quantity: qty })
     })
-    .then(function(res){
-      if (!res.ok) throw new Error('Error');
-      return res.json();
-    })
+    .then(function(res){ if (!res.ok) throw new Error('Error'); return res.json(); })
     .then(function(){
       atcBtn.disabled    = false;
       atcBtn.textContent = 'Add to Cart';
       msgEl.textContent  = '✓ Added to cart!';
       msgEl.className    = 'rs-cart-msg success';
-
-      /* Fetch updated cart count and fire cart:updated for header badge */
       fetch('/cart.js')
         .then(function(r){ return r.json(); })
         .then(function(cart){
-          /* Legacy selectors */
           document.querySelectorAll('.cart-count, [data-cart-count], .cart__count')
             .forEach(function(el){ el.textContent = cart.item_count; });
-          /* Fire event that header listens to */
-          document.dispatchEvent(new CustomEvent('cart:updated', {
-            detail: { itemCount: cart.item_count }
-          }));
+          document.dispatchEvent(new CustomEvent('cart:updated', { detail: { itemCount: cart.item_count } }));
         });
-
       setTimeout(function(){ msgEl.className = 'rs-cart-msg'; }, 3000);
     })
     .catch(function(){
@@ -1050,17 +1172,12 @@
     btnEl.textContent = 'Please wait…';
 
     fetch('/cart/add.js', {
-      method:  'POST',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body:    JSON.stringify({ id: _currentVariantId, quantity: qty })
+      body:   JSON.stringify({ id: _currentVariantId, quantity: qty })
     })
-    .then(function(res){
-      if (!res.ok) throw new Error('Error');
-      return res.json();
-    })
-    .then(function(){
-      window.location.href = '/checkout';
-    })
+    .then(function(res){ if (!res.ok) throw new Error('Error'); return res.json(); })
+    .then(function(){ window.location.href = '/checkout'; })
     .catch(function(){
       btnEl.disabled    = false;
       btnEl.textContent = 'Buy Now';
@@ -1071,31 +1188,25 @@
     });
   };
 
-  /* ══════════════════════════════════════════════════════
-     WISHLIST — localStorage, syncs with header badge
-  ══════════════════════════════════════════════════════ */
+  /* ── WISHLIST ─────────────────────────────────────────────── */
   function rsGetWishlist() {
     try { return JSON.parse(localStorage.getItem('rs_wishlist') || '[]'); } catch(e) { return []; }
   }
   function rsSaveWishlist(list) {
     localStorage.setItem('rs_wishlist', JSON.stringify(list));
-    /* Notify header wishlist badge */
     window.dispatchEvent(new Event('wishlist:updated'));
   }
 
   function rsInitWishlistState(id) {
-    var btn    = document.getElementById('rs-wishlist-' + id);
-    var icon   = document.getElementById('rs-wishlist-icon-' + id);
-    var label  = document.getElementById('rs-wishlist-label-' + id);
+    var btn   = document.getElementById('rs-wishlist-' + id);
+    var icon  = document.getElementById('rs-wishlist-icon-' + id);
+    var label = document.getElementById('rs-wishlist-label-' + id);
     if (!btn) return;
-    var handle  = btn.dataset.productHandle;
-    var list    = rsGetWishlist();
-    var inList  = list.some(function(item){ return item.handle === handle; });
+    var handle = btn.dataset.productHandle;
+    var list   = rsGetWishlist();
+    var inList = list.some(function(item){ return item.handle === handle; });
     btn.classList.toggle('wishlisted', inList);
-    if (icon) {
-      var path = icon.querySelector('path');
-      if (path) path.setAttribute('fill', inList ? '#e53e3e' : 'none');
-    }
+    if (icon) { var path = icon.querySelector('path'); if (path) path.setAttribute('fill', inList ? '#e53e3e' : 'none'); }
     if (label) label.textContent = inList ? 'Wishlisted ♥' : 'Add to Wishlist';
   }
 
@@ -1104,25 +1215,17 @@
     var icon  = document.getElementById('rs-wishlist-icon-' + id);
     var label = document.getElementById('rs-wishlist-label-' + id);
     if (!btn) return;
-
     var handle = btn.dataset.productHandle;
     var list   = rsGetWishlist();
     var idx    = list.findIndex(function(item){ return item.handle === handle; });
 
     if (idx > -1) {
-      /* Remove from wishlist */
       list.splice(idx, 1);
       btn.classList.remove('wishlisted');
       if (icon) { var p = icon.querySelector('path'); if(p) p.setAttribute('fill','none'); }
       if (label) label.textContent = 'Add to Wishlist';
     } else {
-      /* Add to wishlist */
-      list.push({
-        handle: handle,
-        title:  btn.dataset.productTitle,
-        image:  btn.dataset.productImage,
-        price:  btn.dataset.productPrice
-      });
+      list.push({ handle: handle, title: btn.dataset.productTitle, image: btn.dataset.productImage, price: btn.dataset.productPrice });
       btn.classList.add('wishlisted');
       if (icon) { var p2 = icon.querySelector('path'); if(p2) p2.setAttribute('fill','#e53e3e'); }
       if (label) label.textContent = 'Wishlisted ♥';
@@ -1134,19 +1237,13 @@
   window.rsTogglePincode = function(id) {
     var wrap = document.getElementById('rs-pincode-wrap-' + id);
     wrap.classList.toggle('show');
-    if (wrap.classList.contains('show')) {
-      document.getElementById('rs-pincode-input-' + id).focus();
-    }
+    if (wrap.classList.contains('show')) document.getElementById('rs-pincode-input-' + id).focus();
   };
 
   window.rsPincodeCheck = function(id) {
     var val = document.getElementById('rs-pincode-input-' + id).value.trim();
     var msg = document.getElementById('rs-pincode-msg-' + id);
-    if (val.length !== 6) {
-      msg.style.color = '#e53935';
-      msg.textContent = 'Please enter a valid 6-digit pincode.';
-      return;
-    }
+    if (val.length !== 6) { msg.style.color = '#e53935'; msg.textContent = 'Please enter a valid 6-digit pincode.'; return; }
     msg.style.color = '#aaa';
     msg.textContent = 'Checking…';
     setTimeout(function(){
@@ -1160,7 +1257,7 @@
 
 {% schema %}
 {
-  "name": "RS - Product Main",
+  "name": "Ankooram - Product Main",
   "blocks": [
     {
       "type": "variant_selector",
@@ -1177,6 +1274,209 @@
           ],
           "default": "swatches",
           "info": "Swatches = clickable buttons. Dropdown = select menu."
+        }
+      ]
+    },
+    {
+      "type": "guarantee_banner",
+      "name": "Guarantee Banner",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner Image",
+          "info": "Upload your guarantee / trust badge banner image. Recommended width: 900px."
+        },
+        {
+          "type": "text",
+          "id": "banner_alt",
+          "label": "Image Alt Text",
+          "default": "Our Guarantee"
+        },
+        {
+          "type": "header",
+          "content": "Optional Link"
+        },
+        {
+          "type": "url",
+          "id": "banner_link",
+          "label": "Banner Link (optional)",
+          "info": "Leave blank if you don't want the banner to be clickable."
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "coupon_banner",
+      "name": "Coupon Banner",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Coupon Details"
+        },
+        {
+          "type": "text",
+          "id": "coupon_code",
+          "label": "Coupon Code",
+          "default": "WHATSUP",
+          "info": "This code will be copied when user clicks the button."
+        },
+        {
+          "type": "text",
+          "id": "prefix_text",
+          "label": "Text Before Code",
+          "default": "Use Code",
+          "info": "e.g. 'Use Code' or 'Get it for ₹699 — Use Code'"
+        },
+        {
+          "type": "text",
+          "id": "suffix_text",
+          "label": "Text After Code",
+          "default": "for 5% discount",
+          "info": "e.g. 'for 5% off' or 'at checkout'"
+        },
+        {
+          "type": "text",
+          "id": "sub_text",
+          "label": "Sub Text (optional)",
+          "default": "+ Extra 5% discount on UPI payments",
+          "info": "Smaller line below main text. Leave blank to hide."
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Label",
+          "default": "COPY"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#fdf8ee"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border Color",
+          "default": "#c8a94a"
+        }
+      ]
+    },
+    {
+      "type": "care_icons",
+      "name": "Care Icons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image_1",
+          "label": "Custom Icon Image 1",
+          "info": "Upload a custom icon (PNG/SVG recommended, square). If set, overrides the preset icon."
+        },
+        {
+          "type": "select",
+          "id": "icon_type_1",
+          "label": "Preset Icon 1",
+          "options": [
+            { "value": "water",    "label": "Water Drop" },
+            { "value": "sun",      "label": "Sun / Light" },
+            { "value": "beginner", "label": "Beginner / Shield" },
+            { "value": "leaf",     "label": "Leaf" },
+            { "value": "temp",     "label": "Temperature" },
+            { "value": "pot",      "label": "Pot" },
+            { "value": "info",     "label": "Info Circle" }
+          ],
+          "default": "water",
+          "info": "Used only if no custom image is uploaded above."
+        },
+        {
+          "type": "text",
+          "id": "icon_label_1",
+          "label": "Label 1",
+          "default": "Water twice a week"
+        },
+        {
+          "type": "header",
+          "content": "Icon 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image_2",
+          "label": "Custom Icon Image 2"
+        },
+        {
+          "type": "select",
+          "id": "icon_type_2",
+          "label": "Preset Icon 2",
+          "options": [
+            { "value": "water",    "label": "Water Drop" },
+            { "value": "sun",      "label": "Sun / Light" },
+            { "value": "beginner", "label": "Beginner / Shield" },
+            { "value": "leaf",     "label": "Leaf" },
+            { "value": "temp",     "label": "Temperature" },
+            { "value": "pot",      "label": "Pot" },
+            { "value": "info",     "label": "Info Circle" }
+          ],
+          "default": "sun"
+        },
+        {
+          "type": "text",
+          "id": "icon_label_2",
+          "label": "Label 2",
+          "default": "Needs bright indirect sunlight"
+        },
+        {
+          "type": "header",
+          "content": "Icon 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image_3",
+          "label": "Custom Icon Image 3"
+        },
+        {
+          "type": "select",
+          "id": "icon_type_3",
+          "label": "Preset Icon 3",
+          "options": [
+            { "value": "water",    "label": "Water Drop" },
+            { "value": "sun",      "label": "Sun / Light" },
+            { "value": "beginner", "label": "Beginner / Shield" },
+            { "value": "leaf",     "label": "Leaf" },
+            { "value": "temp",     "label": "Temperature" },
+            { "value": "pot",      "label": "Pot" },
+            { "value": "info",     "label": "Info Circle" }
+          ],
+          "default": "beginner"
+        },
+        {
+          "type": "text",
+          "id": "icon_label_3",
+          "label": "Label 3",
+          "default": "Beginner Friendly"
         }
       ]
     },
@@ -1242,9 +1542,7 @@
       ]
     }
   ],
-  "settings": [
-    
-  ],
+  "settings": [],
   "presets": [
     {
       "name": "Ankooram - Product Main",
@@ -1252,6 +1550,31 @@
         {
           "type": "variant_selector",
           "settings": { "display_type": "swatches" }
+        },
+        {
+          "type": "guarantee_banner",
+          "settings": {}
+        },
+        {
+          "type": "coupon_banner",
+          "settings": {
+            "coupon_code": "WHATSUP",
+            "prefix_text": "Use Code",
+            "suffix_text": "for 5% discount",
+            "sub_text": "+ Extra 5% discount on UPI payments",
+            "button_text": "COPY"
+          }
+        },
+        {
+          "type": "care_icons",
+          "settings": {
+            "icon_type_1": "water",
+            "icon_label_1": "Water twice a week",
+            "icon_type_2": "sun",
+            "icon_label_2": "Needs bright indirect sunlight",
+            "icon_type_3": "beginner",
+            "icon_label_3": "Beginner Friendly"
+          }
         },
         {
           "type": "custom_field",
