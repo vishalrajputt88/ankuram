@@ -228,69 +228,6 @@
         "view_all_text": "VIEW ALL BEST SELLING PRODUCTS"
       }
     },
-    "ankooram_product_grid_jiMRtk": {
-      "type": "ankooram-product-grid",
-      "blocks": {
-        "tab_collection_LcWdjN": {
-          "type": "tab_collection",
-          "settings": {
-            "tab_label": "Indoor Plants",
-            "collection": "indoor-plant"
-          }
-        },
-        "tab_collection_RajCfh": {
-          "type": "tab_collection",
-          "settings": {
-            "tab_label": "Outdoor Plants",
-            "collection": "outdoor-plant"
-          }
-        },
-        "tab_collection_Ry6kp9": {
-          "type": "tab_collection",
-          "settings": {
-            "tab_label": "Outdoor & Flowering",
-            "collection": "outdoor-flowering"
-          }
-        },
-        "tab_collection_LYcmb8": {
-          "type": "tab_collection",
-          "settings": {
-            "tab_label": "Medicinal Herb",
-            "collection": "medicinal-herbal"
-          }
-        },
-        "tab_collection_Uwzej7": {
-          "type": "tab_collection",
-          "settings": {
-            "tab_label": "Succulents & Cacti",
-            "collection": "succulents-cacti"
-          }
-        }
-      },
-      "block_order": [
-        "tab_collection_LcWdjN",
-        "tab_collection_RajCfh",
-        "tab_collection_Ry6kp9",
-        "tab_collection_LYcmb8",
-        "tab_collection_Uwzej7"
-      ],
-      "name": "Product Grid",
-      "settings": {
-        "heading": "Checkout Our Amazing Plants",
-        "subheading": "we're on a mission to make greenery accessible and stylish . Discover our story and explore how we're transforming spaces with nature.",
-        "collection": "indoor-and-outdoor",
-        "products_per_row_desktop": 4,
-        "products_per_row_mobile": "2",
-        "show_rating": true,
-        "button_text": "Add to Cart",
-        "show_social_proof": true,
-        "social_proof_text": "507+ bought in last week",
-        "show_metafield": false,
-        "metafield_reference": "",
-        "show_view_all": true,
-        "view_all_text": "VIEW ALL BEST SELLING PRODUCTS"
-      }
-    },
     "ankooram_banner_PrbcRa": {
       "type": "ankooram-banner",
       "name": "Ankooram Banner",
@@ -339,6 +276,69 @@
       "settings": {
         "heading": "Watch Reels & Buy Our New Arrivals",
         "button_text": "Add To Cart"
+      }
+    },
+    "ankooram_product_grid_jiMRtk": {
+      "type": "ankooram-product-grid",
+      "blocks": {
+        "tab_collection_LcWdjN": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Indoor Plants",
+            "collection": "indoor-plant"
+          }
+        },
+        "tab_collection_RajCfh": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Outdoor Plants",
+            "collection": "outdoor-plant"
+          }
+        },
+        "tab_collection_Ry6kp9": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Outdoor & Flowering",
+            "collection": "outdoor-flowering"
+          }
+        },
+        "tab_collection_LYcmb8": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Medicinal Herb",
+            "collection": "medicinal-herbal"
+          }
+        },
+        "tab_collection_Uwzej7": {
+          "type": "tab_collection",
+          "settings": {
+            "tab_label": "Succulents & Cacti",
+            "collection": "succulents-cacti"
+          }
+        }
+      },
+      "block_order": [
+        "tab_collection_LcWdjN",
+        "tab_collection_RajCfh",
+        "tab_collection_Ry6kp9",
+        "tab_collection_LYcmb8",
+        "tab_collection_Uwzej7"
+      ],
+      "name": "Product Grid",
+      "settings": {
+        "heading": "Shop By Vastu",
+        "subheading": "we're on a mission to make greenery accessible and stylish . Discover our story and explore how we're transforming spaces with nature.",
+        "collection": "indoor-and-outdoor",
+        "products_per_row_desktop": 4,
+        "products_per_row_mobile": "2",
+        "show_rating": true,
+        "button_text": "Add to Cart",
+        "show_social_proof": true,
+        "social_proof_text": "507+ bought in last week",
+        "show_metafield": false,
+        "metafield_reference": "",
+        "show_view_all": true,
+        "view_all_text": "VIEW ALL BEST SELLING PRODUCTS"
       }
     }
   },
