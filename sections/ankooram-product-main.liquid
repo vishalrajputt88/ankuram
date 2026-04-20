@@ -172,7 +172,8 @@
 .rs-product__grid { display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:start; }
 
 /* GALLERY */
-.rs-gallery { position:relative; }
+.rs-gallery { position:relative;     display: flex;
+    flex-direction: row-reverse; }
 
 .rs-gallery__main-wrap {
   position:relative; border-radius:16px; overflow:hidden;
@@ -196,7 +197,7 @@
 .rs-gallery__zoom svg { width:18px; height:18px; }
 .rs-gallery__thumbs-wrap { position:relative; display:flex; align-items:center; gap:0; }
 .rs-gallery__thumbs {
-  display:flex; gap:10px; overflow-x:auto; flex:1;
+  display:flex; gap:10px; overflow-x:auto; flex:1; flex-direction: column;
   scroll-behavior:smooth; scrollbar-width:none; -ms-overflow-style:none; padding:4px 2px;
 }
 .rs-gallery__thumbs::-webkit-scrollbar { display:none; }
