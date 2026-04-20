@@ -11,6 +11,96 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
+    "footer_section_XrFkCX": {
+      "type": "footer-section",
+      "blocks": {
+        "footer_column_Gedg7g": {
+          "type": "footer_column",
+          "settings": {
+            "column_heading": "FEATURED CATEGORIES",
+            "column_menu": "",
+            "highlight_links": "CHAT WITH US"
+          }
+        },
+        "footer_column_4yUX4F": {
+          "type": "footer_column",
+          "settings": {
+            "column_heading": "SOLUTION",
+            "column_menu": "",
+            "highlight_links": "CHAT WITH US"
+          }
+        },
+        "footer_column_BGH7dR": {
+          "type": "footer_column",
+          "settings": {
+            "column_heading": "INFORMATION",
+            "column_menu": "",
+            "highlight_links": "CHAT WITH US"
+          }
+        }
+      },
+      "block_order": [
+        "footer_column_Gedg7g",
+        "footer_column_4yUX4F",
+        "footer_column_BGH7dR"
+      ],
+      "name": "Ankooram Footer",
+      "settings": {
+        "show_top_bar": true,
+        "logo": "shopify://shop_images/simply-otp-login-banner.png",
+        "logo_width": 120,
+        "company_name": "",
+        "company_name_size": 20,
+        "company_name_color": "#ff0000",
+        "company_description": "We offer healthy, hand-picked plants paired with premium pots — perfect for homes, offices, and gifting across India.",
+        "description_size": 14,
+        "newsletter_heading": "KEEP ME UPDATE",
+        "newsletter_subtext": "Subscribe to get notified about product launches, special offers and company news.",
+        "subtext_size": 13,
+        "email_placeholder": "Email address",
+        "success_message": "Thanks for subscribing!",
+        "show_social_media": true,
+        "social_heading": "SOCIAL MEDIA",
+        "facebook_url": "",
+        "instagram_url": "",
+        "linkedin_url": "",
+        "google_url": "",
+        "show_made_in_india": true,
+        "made_in_india_text": "PROUDLY MAKE IN INDIA OWNED",
+        "show_payment_icons": true,
+        "show_eway": true,
+        "show_visa": true,
+        "show_paypal": true,
+        "show_mastercard": true,
+        "show_google_pay": true,
+        "copyright_text": "Copyright © 2026 Bhumi Agriculture",
+        "copyright_size": 12,
+        "background_color": "#1a1a1a",
+        "text_color": "#ffffff",
+        "heading_color": "#ffffff",
+        "heading_size": 14,
+        "link_color": "#cccccc",
+        "link_hover_color": "#ffffff",
+        "link_size": 13,
+        "highlight_link_color": "#ff4444",
+        "highlight_link_hover_color": "#ff6666",
+        "divider_color": "#FFFFFF33",
+        "copyright_color": "#999999",
+        "input_bg_color": "#ffffff",
+        "input_text_color": "#000000",
+        "input_placeholder_color": "#999999",
+        "submit_button_color": "#28a745",
+        "submit_button_hover_color": "#218838",
+        "submit_icon_color": "#ffffff",
+        "success_color": "#28a745",
+        "error_color": "#dc3545",
+        "social_icon_color": "#ffffff",
+        "social_icon_hover_bg": "#ffffff",
+        "social_icon_hover_border": "#ffffff",
+        "payment_icon_bg": "#ffffff",
+        "payment_icon_text": "#000000"
+      }
+    },
     "footer_m9NzUG": {
       "type": "footer",
       "blocks": {
@@ -139,6 +229,7 @@
         "group_H6VpwJ",
         "email_signup_crihX7"
       ],
+      "disabled": true,
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
@@ -193,6 +284,7 @@
         "footer_policy_list_VCdnpa",
         "social_links_Ew63Kq"
       ],
+      "disabled": true,
       "name": "t:names.utilities",
       "settings": {
         "section_width": "page-width",
@@ -205,6 +297,7 @@
     }
   },
   "order": [
+    "footer_section_XrFkCX",
     "footer_m9NzUG",
     "footer_utilities_jLGE8U"
   ]

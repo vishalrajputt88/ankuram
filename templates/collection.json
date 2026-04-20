@@ -69,6 +69,7 @@
         "text_tqQTNE",
         "text_twGGkJ"
       ],
+      "disabled": true,
       "name": "Collection heading",
       "settings": {
         "content_direction": "column",
@@ -181,10 +182,6 @@
               },
               "blocks": {}
             },
-            "judge_me_reviews_preview_badge_DzgpCR": {
-              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-              "settings": {}
-            },
             "price_EzJzMm": {
               "type": "price",
               "settings": {
@@ -211,7 +208,6 @@
           "block_order": [
             "card-gallery",
             "product_title_4nY4eT",
-            "judge_me_reviews_preview_badge_DzgpCR",
             "price_EzJzMm"
           ]
         }
