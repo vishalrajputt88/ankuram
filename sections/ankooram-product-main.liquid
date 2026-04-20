@@ -583,61 +583,6 @@
         <!-- DESCRIPTION -->
         <div class="rs-info__desc">{{ product.description }}</div>
 
-        <!-- RETAILER BOXES -->
-        <div class="rs-retailers">
-          <a href="{{ product.metafields.retailers.amazon_url.value | default: section.settings.retailer1_url | default: '#' }}"
-             class="rs-retailer-box" target="_blank" rel="noopener" aria-label="{{ section.settings.retailer1_name | default: 'Amazon' }}">
-            {% if section.settings.retailer1_image != blank %}
-              <img src="{{ section.settings.retailer1_image | image_url: width: 200 }}" alt="{{ section.settings.retailer1_name | default: 'Amazon' }}" loading="lazy">
-            {% else %}
-              <div class="rs-retailer-box__placeholder">
-                <img src="https://cdn.shopify.com/s/files/1/0817/1264/4332/files/amazon-icon.svg?v=1773152429" alt="amazon" width="50px" height="50px">
-                <div class="rs-retailer-box__placeholder-name">Amazon</div>
-                <div class="rs-retailer-box__placeholder-sub">Buy Now →</div>
-              </div>
-            {% endif %}
-          </a>
-
-          <a href="{{ product.metafields.retailers.bigbasket_url.value | default: section.settings.retailer2_url | default: '#' }}"
-             class="rs-retailer-box" target="_blank" rel="noopener" aria-label="{{ section.settings.retailer2_name | default: 'BigBasket' }}">
-            {% if section.settings.retailer2_image != blank %}
-              <img src="{{ section.settings.retailer2_image | image_url: width: 200 }}" alt="{{ section.settings.retailer2_name | default: 'BigBasket' }}" loading="lazy">
-            {% else %}
-              <div class="rs-retailer-box__placeholder">
-                <img src="https://cdn.shopify.com/s/files/1/0817/1264/4332/files/big-basket.svg?v=1773152509" alt="big basket" width="50px" height="50px">
-                <div class="rs-retailer-box__placeholder-name">Big Basket</div>
-                <div class="rs-retailer-box__placeholder-sub">Buy Now →</div>
-              </div>
-            {% endif %}
-          </a>
-
-          <a href="{{ product.metafields.retailers.swiggy_url.value | default: section.settings.retailer3_url | default: '#' }}"
-             class="rs-retailer-box" target="_blank" rel="noopener" aria-label="{{ section.settings.retailer3_name | default: 'Swiggy Instamart' }}">
-            {% if section.settings.retailer3_image != blank %}
-              <img src="{{ section.settings.retailer3_image | image_url: width: 200 }}" alt="{{ section.settings.retailer3_name | default: 'Swiggy Instamart' }}" loading="lazy">
-            {% else %}
-              <div class="rs-retailer-box__placeholder">
-                <img src="https://cdn.shopify.com/s/files/1/0817/1264/4332/files/swiggyinsta-logo-box_1.png?v=1773154178" alt="Swiggy instamart">
-                <div class="rs-retailer-box__placeholder-name">Swiggy Instamart</div>
-                <div class="rs-retailer-box__placeholder-sub">Buy Now →</div>
-              </div>
-            {% endif %}
-          </a>
-
-          <a href="{{ product.metafields.retailers.itcstore_url.value | default: section.settings.retailer4_url | default: '#' }}"
-             class="rs-retailer-box" target="_blank" rel="noopener" aria-label="{{ section.settings.retailer4_name | default: 'ITC Store' }}">
-            {% if section.settings.retailer4_image != blank %}
-              <img src="{{ section.settings.retailer4_image | image_url: width: 200 }}" alt="{{ section.settings.retailer4_name | default: 'ITC Store' }}" loading="lazy">
-            {% else %}
-              <div class="rs-retailer-box__placeholder">
-                <img src="https://cdn.shopify.com/s/files/1/0817/1264/4332/files/Layer_1_9.png?v=1773154309" alt="ITC store">
-                <div class="rs-retailer-box__placeholder-name">ITC Store</div>
-                <div class="rs-retailer-box__placeholder-sub">Buy Now →</div>
-              </div>
-            {% endif %}
-          </a>
-        </div>
-        <!-- END RETAILERS -->
 
       </div>
       <!-- END INFO -->
