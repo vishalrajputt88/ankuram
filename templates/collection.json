@@ -212,6 +212,7 @@
           ]
         }
       },
+      "disabled": true,
       "settings": {
         "layout_type": "grid",
         "product_card_size": "medium",
@@ -228,10 +229,82 @@
         "padding-block-start": 0,
         "padding-block-end": 32
       }
+    },
+    "ankuram_plp_collection_4dFYzW": {
+      "type": "ankuram-plp-collection",
+      "blocks": {
+        "trust_item_bbQBGM": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🌱",
+            "text": "Healthy Plants, Ready to Use"
+          }
+        },
+        "trust_item_LzitXd": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🚜",
+            "text": "Plant + Pot Combo (No Repotting Needed"
+          }
+        },
+        "trust_item_pEVD8d": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🏆",
+            "text": "Safe & Fast Delivery Across India"
+          }
+        },
+        "trust_item_Y6TNcU": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🚚",
+            "text": "Low Maintenance Plant Options"
+          }
+        },
+        "trust_item_wMHThP": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🔬",
+            "text": "Expert-Grown & Well-Nurtured Plants"
+          }
+        },
+        "trust_item_bgpcjV": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "📞",
+            "text": "Plant Care Support Available"
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_bbQBGM",
+        "trust_item_LzitXd",
+        "trust_item_pEVD8d",
+        "trust_item_Y6TNcU",
+        "trust_item_wMHThP",
+        "trust_item_bgpcjV"
+      ],
+      "name": "Ankooram PLP",
+      "settings": {
+        "products_per_page": 16,
+        "grid_columns": "4",
+        "show_breadcrumb": true,
+        "show_trust_strip": true,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "filter_label": "Filters",
+        "cart_btn_label": "Add to Cart",
+        "color_green": "#0e3a23",
+        "color_green_light": "#4caf50",
+        "color_green_pale": "#e8f5e9",
+        "color_red": "#c62828",
+        "color_gold": "#f9a825"
+      }
     }
   },
   "order": [
     "section",
-    "main"
+    "main",
+    "ankuram_plp_collection_4dFYzW"
   ]
 }
