@@ -386,7 +386,7 @@
         "warning_4": "EXPLOSIVE",
         "content_font_size": 14,
         "content_text_color": "#0e3a23",
-        "faq_accent_color": "#6b4fa0",
+        "faq_accent_color": "#0e3a23",
         "faq_border_color": "#0e3a23",
         "faq_question_color": "#2d2d2d",
         "faq_answer_color": "#555555"
