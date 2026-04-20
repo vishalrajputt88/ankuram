@@ -26,7 +26,7 @@
 /* BREADCRUMB */
 .rs-product__bread { font-size: 18px; color:#777; margin-bottom:24px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
 .rs-product__bread a { color:#777; text-decoration:none; }
-.rs-product__bread a:hover { color:#1a5c2a; }
+.rs-product__bread a:hover { color:#0E3A23; }
 .rs-product__bread span { color:#aaa; }
 
 /* GRID */
@@ -67,7 +67,7 @@
   position:relative;
 }
 .rs-gallery__thumb img { width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
-.rs-gallery__thumb.active { border-color:#1a5c2a; }
+.rs-gallery__thumb.active { border-color:#0E3A23; }
 .rs-gallery__thumb:hover { border-color:#81c784; }
 
 /* Video thumb play icon */
@@ -85,14 +85,14 @@
   align-items:center; justify-content:center; flex-shrink:0;
   font-size:30px; font-weight:bold; color:#444; transition:background .2s; line-height:1;
 }
-.rs-gallery__arrow:hover { background:#1a5c2a; color:#fff; }
+.rs-gallery__arrow:hover { background:#0E3A23; color:#fff; }
 .rs-gallery__arrow.prev { margin-right:8px; }
 .rs-gallery__arrow.next { margin-left:8px; }
 
 /* Hover Zoom Lens */
 .rs-zoom-lens {
   display:none; position:absolute; width:120px; height:120px;
-  border:2px solid #1a5c2a; background:rgba(26,92,42,.12);
+  border:2px solid #0E3A23; background:rgba(26,92,42,.12);
   border-radius:4px; pointer-events:none; z-index:3;
 }
 .rs-gallery__main-wrap:hover .rs-zoom-lens { display:block; }
@@ -115,7 +115,7 @@
 .rs-info__weight { font-size:.88rem; color:#777; margin-bottom:14px; }
 .rs-info__reviews { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
 .rs-stars { color:#f5a623; font-size:1rem; letter-spacing:1px; }
-.rs-info__review-count { font-size:.88rem; color:#1a5c2a; font-weight:600; text-decoration:underline; cursor:pointer; }
+.rs-info__review-count { font-size:.88rem; color:#0E3A23; font-weight:600; text-decoration:underline; cursor:pointer; }
 
 /* VARIANT SELECTOR */
 .rs-variants { margin-bottom:20px; }
@@ -129,7 +129,7 @@
   background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
   appearance:none; cursor:pointer; outline:none; transition:border-color .2s;
 }
-.rs-variants__select:focus { border-color:#1a5c2a; }
+.rs-variants__select:focus { border-color:#0E3A23; }
 
 /* Swatch style */
 .rs-variants__swatches { display:flex; flex-wrap:wrap; gap:10px; }
@@ -138,8 +138,8 @@
   font-size:.88rem; font-weight:600; color:#2d2119; cursor:pointer;
   background:#fff; transition:all .2s; white-space:nowrap;     font-family: 'Poppins';
 }
-.rs-swatch:hover { border-color:#1a5c2a; color:#1a5c2a; }
-.rs-swatch.active { border-color:#1a5c2a; background:#1a5c2a; color:#fff; }
+.rs-swatch:hover { border-color:#0E3A23; color:#0E3A23; }
+.rs-swatch.active { border-color:#0E3A23; background:#0E3A23; color:#fff; }
 .rs-swatch.sold-out { opacity:.45; text-decoration:line-through; cursor:not-allowed; pointer-events:none; }
 
 /* QUANTITY + CART */
@@ -164,17 +164,17 @@
 .rs-cart-row { display:flex; gap:12px; flex-wrap:wrap; }
 .rs-btn-atc {
   flex:1; min-width:160px; padding:13px 20px; border:none; border-radius:12px;
-  background:#1a5c2a; color:#fff; font-size:1rem; font-weight:700;
+  background:#0E3A23; color:#fff; font-size:1rem; font-weight:700;
   cursor:pointer; transition:background .2s, transform .15s; letter-spacing:.01em;
 }
 .rs-btn-atc:hover { background:#155122; transform:translateY(-1px); }
 .rs-btn-atc:disabled { background:#aaa; cursor:not-allowed; transform:none; }
 .rs-btn-buynow {
-  flex:1; min-width:160px; padding:13px 20px; border:2px solid #1a5c2a;
-  border-radius:12px; background:#fff; color:#1a5c2a; font-size:1rem;
+  flex:1; min-width:160px; padding:13px 20px; border:2px solid #0E3A23;
+  border-radius:12px; background:#fff; color:#0E3A23; font-size:1rem;
   font-weight:700; cursor:pointer; transition:all .2s; letter-spacing:.01em;
 }
-.rs-btn-buynow:hover { background:#1a5c2a; color:#fff; transform:translateY(-1px); }
+.rs-btn-buynow:hover { background:#0E3A23; color:#fff; transform:translateY(-1px); }
 .rs-btn-buynow:disabled { opacity:.5; cursor:not-allowed; transform:none; }
 
 /* WISHLIST BUTTON */
@@ -194,19 +194,19 @@
   font-size:.85rem; font-weight:600; padding:8px 14px; border-radius:8px;
   display:none; text-align:center;
 }
-.rs-cart-msg.success { display:block; background:#e8f5e9; color:#1a5c2a; }
+.rs-cart-msg.success { display:block; background:#e8f5e9; color:#0E3A23; }
 .rs-cart-msg.error   { display:block; background:#fce4e4; color:#c62828; }
 
 /* PINCODE */
 .rs-info__pincode { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:.88rem; }
 .rs-info__pincode svg { width:16px; height:16px; flex-shrink:0; }
-.rs-info__pincode-link { color:#1a5c2a; font-weight:600; text-decoration:underline; cursor:pointer; background:none; border:none; font-size:.88rem; }
+.rs-info__pincode-link { color:#0E3A23; font-weight:600; text-decoration:underline; cursor:pointer; background:none; border:none; font-size:.88rem; }
 .rs-info__pincode-input-wrap { display:none; align-items:center; gap:8px; margin-bottom:6px; }
 .rs-info__pincode-input-wrap.show { display:flex; }
 .rs-info__pincode-input { padding:8px 12px; border:1.5px solid #ccc; border-radius:8px; font-size:.88rem; width:140px; outline:none; }
-.rs-info__pincode-input:focus { border-color:#1a5c2a; }
-.rs-info__pincode-check-btn { padding:8px 16px; background:#1a5c2a; color:#fff; border:none; border-radius:8px; font-size:.82rem; font-weight:700; cursor:pointer; }
-.rs-info__pincode-msg { font-size:.82rem; color:#1a5c2a; margin-bottom:6px; }
+.rs-info__pincode-input:focus { border-color:#0E3A23; }
+.rs-info__pincode-check-btn { padding:8px 16px; background:#0E3A23; color:#fff; border:none; border-radius:8px; font-size:.82rem; font-weight:700; cursor:pointer; }
+.rs-info__pincode-msg { font-size:.82rem; color:#0E3A23; margin-bottom:6px; }
 
 /* CUSTOM TEXT FIELDS */
 .rs-custom-fields { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
@@ -218,7 +218,7 @@
 .rs-custom-field__richtext p { margin-bottom:6px; }
 .rs-custom-field__richtext p:last-child { margin-bottom:0; }
 .rs-custom-field__richtext strong { color:#1a1a1a; }
-.rs-custom-field__richtext a { color:#1a5c2a; }
+.rs-custom-field__richtext a { color:#0E3A23; }
 
 /* DESCRIPTION */
 .rs-info__desc { margin-bottom:24px; font-size:20px; margin-top:20px; line-height:1.5; color:#2d2119; }
@@ -560,7 +560,7 @@
 
         <!-- PINCODE -->
         <div class="rs-info__pincode">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#1a5c2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0E3A23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
           </svg>
           <button class="rs-info__pincode-link" onclick="rsTogglePincode('{{ section.id }}')">Enter Pincode</button>
@@ -1026,7 +1026,7 @@
     msg.style.color = '#aaa';
     msg.textContent = 'Checking…';
     setTimeout(function(){
-      msg.style.color = '#1a5c2a';
+      msg.style.color = '#0E3A23';
       msg.textContent = '✓ Delivery available to ' + val + ' in 3-5 business days.';
     }, 900);
   };
