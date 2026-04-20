@@ -544,7 +544,17 @@
 <reels-slider-{{ watch_buy_more }} class="reels-section-{{ watch_buy_more }}" {{ section.shopify_attributes }}>
   <div class="reels-container-{{ watch_buy_more }}">
     <div class="reels-header-{{ watch_buy_more }}">
-      <h2 class="reels-heading-{{ watch_buy_more }}">{{ section.settings.heading }}</h2>
+      {% if section.settings.heading != blank %}
+      <h2 class="pcp-heading-{{ _sid }}">
+        <span class="pcp-leaf-icon-{{ _sid }}">
+         <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_20.png?v=1776257732">
+        </span>
+        {{ section.settings.heading }}
+        <span class="pcp-leaf-icon-{{ _sid }}">
+          <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_21.png?v=1776257732">
+        </span>
+      </h2>
+    {% endif %}
       <div class="reels-arrows-{{ watch_buy_more }}">
         <button class="reels-arrow-{{ watch_buy_more }} reels-prev-{{ watch_buy_more }}" aria-label="Previous">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
