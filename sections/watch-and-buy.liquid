@@ -1,6 +1,25 @@
 {% assign watch_buy_more = section.id | replace: '_', '' | downcase %}
 
 {% style %}
+
+.pcp-heading-{{ watch_buy_more }} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 10px;
+  text-align: center;
+  font-family: inherit;
+  letter-spacing: -0.3px;
+}
+.pcp-leaf-icon-{{ watch_buy_more }} {
+  display: flex;
+  align-items: center;
+}
+
   .reels-section-{{ watch_buy_more }} {
     background-color: transparent;
     padding: 60px 20px;
@@ -544,7 +563,17 @@
 <reels-slider-{{ watch_buy_more }} class="reels-section-{{ watch_buy_more }}" {{ section.shopify_attributes }}>
   <div class="reels-container-{{ watch_buy_more }}">
     <div class="reels-header-{{ watch_buy_more }}">
-      <h2 class="reels-heading-{{ watch_buy_more }}">{{ section.settings.heading }}</h2>
+      {% if section.settings.heading != blank %}
+      <h2 class="pcp-heading-{{ watch_buy_more }}">
+        <span class="pcp-leaf-icon-{{ watch_buy_more }}">
+         <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_20.png?v=1776257732">
+        </span>
+        {{ section.settings.heading }}
+        <span class="pcp-leaf-icon-{{ watch_buy_more }}">
+          <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_21.png?v=1776257732">
+        </span>
+      </h2>
+    {% endif %}
       
       <div class="reels-arrows-{{ watch_buy_more }}">
         <button class="reels-arrow-{{ watch_buy_more }} reels-prev-{{ watch_buy_more }}" aria-label="Previous">
