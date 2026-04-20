@@ -28,23 +28,39 @@
             "label": "Additional Info",
             "fallback_text": ""
           }
+        },
+        "coupon_banner_kaUPDU": {
+          "type": "coupon_banner",
+          "settings": {
+            "coupon_code": "WHATSUP",
+            "prefix_text": "Use Code",
+            "suffix_text": "for 5% discount",
+            "sub_text": "+ Extra 5% discount on UPI payments",
+            "button_text": "COPY",
+            "background_color": "#fdf8ee",
+            "border_color": "#c8a94a"
+          }
+        },
+        "care_icons_UC4JDJ": {
+          "type": "care_icons",
+          "settings": {
+            "icon_type_1": "water",
+            "icon_label_1": "Water twice a week",
+            "icon_type_2": "sun",
+            "icon_label_2": "Needs bright indirect sunlight",
+            "icon_type_3": "beginner",
+            "icon_label_3": "Beginner Friendly"
+          }
         }
       },
       "block_order": [
         "variant_selector_gjc7QH",
-        "custom_field_RYX4n4"
+        "custom_field_RYX4n4",
+        "coupon_banner_kaUPDU",
+        "care_icons_UC4JDJ"
       ],
       "name": "Ankooram - Product Main",
-      "settings": {
-        "retailer1_name": "Amazon",
-        "retailer1_url": "",
-        "retailer2_name": "BigBasket",
-        "retailer2_url": "",
-        "retailer3_name": "Swiggy Instamart",
-        "retailer3_url": "",
-        "retailer4_name": "ITC Store",
-        "retailer4_url": ""
-      }
+      "settings": {}
     },
     "main": {
       "type": "product-information",
