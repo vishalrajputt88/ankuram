@@ -340,14 +340,6 @@
     "ankooram_product_information_tab_UnrtiG": {
       "type": "ankooram-product-information-tab",
       "blocks": {
-        "faq_RDR7Li": {
-          "type": "faq",
-          "settings": {
-            "tab_label": "FAQ's",
-            "faq_metafield_namespace": "custom",
-            "faq_metafield_key": "product_faqs"
-          }
-        },
         "richtext_3Bj74K": {
           "type": "richtext",
           "settings": {
@@ -355,11 +347,12 @@
             "content": "<p>Add your content here.</p>"
           }
         },
-        "richtext_ecnbgq": {
-          "type": "richtext",
+        "faq_RDR7Li": {
+          "type": "faq",
           "settings": {
-            "tab_label": "Full Product Description",
-            "content": "<p>Add your content here.</p>"
+            "tab_label": "FAQ's",
+            "faq_metafield_namespace": "custom",
+            "faq_metafield_key": "product_faqs"
           }
         },
         "richtext_CtBLGB": {
@@ -371,9 +364,8 @@
         }
       },
       "block_order": [
-        "faq_RDR7Li",
         "richtext_3Bj74K",
-        "richtext_ecnbgq",
+        "faq_RDR7Li",
         "richtext_CtBLGB"
       ],
       "name": "Ankooram PIT",
