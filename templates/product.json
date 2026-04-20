@@ -12,6 +12,15 @@
     "ankooram_product_main_3Fn3Ly": {
       "type": "ankooram-product-main",
       "blocks": {
+        "guarantee_banner_H3Wtbg": {
+          "type": "guarantee_banner",
+          "settings": {
+            "banner_image": "shopify://shop_images/small-pdp-banner.png",
+            "banner_alt": "Our Guarantee",
+            "banner_link": "",
+            "open_new_tab": false
+          }
+        },
         "variant_selector_gjc7QH": {
           "type": "variant_selector",
           "settings": {
@@ -54,6 +63,7 @@
         }
       },
       "block_order": [
+        "guarantee_banner_H3Wtbg",
         "variant_selector_gjc7QH",
         "custom_field_RYX4n4",
         "coupon_banner_kaUPDU",
