@@ -113,40 +113,7 @@
 
 {% stylesheet %}
 
-/* ===== PRODUCT CARD STYLES ===== */
 
-.product-card__content {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #e8e8e8;
-}
-
-/* Mobile: horizontal carousel (swipe) */
-@media screen and (max-width: 749px) {
-  .product-grid__list,
-  ul.product-grid__list {
-    display: flex !important;
-    overflow-x: auto !important;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 12px;
-    padding-bottom: 8px;
-    scrollbar-width: none;
-  }
-
-  .product-grid__list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .product-grid__item {
-    min-width: 170px !important;
-    max-width: 170px !important;
-    flex-shrink: 0;
-    scroll-snap-align: start;
-    width: auto !important;
-  }
-}
 
   .product-card__placeholder-image svg {
     height: 100%;
