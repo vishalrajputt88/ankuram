@@ -389,7 +389,6 @@
         <h1 class="rs-info__title">{{ product.title }}</h1>
 
         <h5 class="rs-info__price" id="rs-price-{{ section.id }}">
-          MRP
           {% if current_variant.compare_at_price > current_variant.price %}
             <s style="color:#aaa;font-weight:400;">{{ current_variant.compare_at_price | money }}</s>
           {% endif %}
