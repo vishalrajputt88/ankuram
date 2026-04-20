@@ -48,7 +48,7 @@
       "settings": {
         "show_top_bar": true,
         "logo": "shopify://shop_images/simply-otp-login-banner.png",
-        "logo_width": 120,
+        "logo_width": 220,
         "company_name": "",
         "company_name_size": 20,
         "company_name_color": "#ff0000",
@@ -80,7 +80,7 @@
         "heading_color": "#0e3a23",
         "heading_size": 14,
         "link_color": "#1d3686",
-        "link_hover_color": "#ffffff",
+        "link_hover_color": "#000000",
         "link_size": 13,
         "highlight_link_color": "#ff4444",
         "highlight_link_hover_color": "#ff6666",
