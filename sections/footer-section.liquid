@@ -10,7 +10,8 @@
 {% style %}
 #NewsletterForm--{{ custom_footer }} { max-width: 250px; }
 .footer-columns-mains-{{ custom_footer }} { display: grid; gap: 90px; 
-    grid-template-columns: 23% 73%; }
+    margin-bottom: 20px;
+    grid-template-columns: 23% 73%;  }
   .footer-{{ custom_footer }} {
     display: block;
     background-color: {{ section.settings.background_color }};
@@ -18,7 +19,6 @@
     width: 100%;
     padding: 60px 0 0;
     border-top: 1px solid {{ section.settings.divider_color }};
-    margin-bottom: 20px;
   }
 
   .footer-container-{{ custom_footer }} {
