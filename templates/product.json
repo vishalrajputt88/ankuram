@@ -53,10 +53,13 @@
         "care_icons_UC4JDJ": {
           "type": "care_icons",
           "settings": {
+            "icon_image_1": "shopify://shop_images/image_44.png",
             "icon_type_1": "water",
             "icon_label_1": "Water twice a week",
+            "icon_image_2": "shopify://shop_images/image_46.png",
             "icon_type_2": "sun",
             "icon_label_2": "Needs bright indirect sunlight",
+            "icon_image_3": "shopify://shop_images/image_47.png",
             "icon_type_3": "beginner",
             "icon_label_3": "Beginner Friendly"
           }
