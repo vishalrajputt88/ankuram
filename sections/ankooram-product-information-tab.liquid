@@ -1,0 +1,1016 @@
+{% assign product_info_tabs = section.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .product-info-{{ product_info_tabs }} {
+    display: block;
+    width: {{ section.settings.desktop_width_percent }}%;
+    max-width: 1280px;
+    background-color: #00718C0D;
+    padding: 20px 40px;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 100px;
+  }
+
+  .product-info-tabs-{{ product_info_tabs }} {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid {{ section.settings.tab_border_color }};
+    margin-bottom: 30px;
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+
+  .product-info-tab-{{ product_info_tabs }} {
+    background: none;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: {{ section.settings.tab_font_size }}px;
+    color: {{ section.settings.tab_text_color }};
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .product-info-tab-{{ product_info_tabs }}:hover {
+    color: {{ section.settings.tab_hover_color }};
+  }
+
+  .product-info-tab-{{ product_info_tabs }}.active {
+    color: {{ section.settings.tab_active_color }};
+    border-bottom-color: {{ section.settings.tab_active_color }};
+  }
+
+  .product-info-hero-{{ product_info_tabs }} {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: center;
+    position: relative;
+  }
+
+  .product-info-hero-illustration-{{ product_info_tabs }} {
+    flex: 1;
+    max-width: 500px;
+    position: relative;
+  }
+
+  .product-info-hero-illustration-{{ product_info_tabs }} svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .product-info-warning-overlay-{{ product_info_tabs }} {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: {{ section.settings.warning_bg_color }};
+    color: {{ section.settings.warning_text_color }};
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 250px;
+  }
+
+  .product-info-warning-overlay-{{ product_info_tabs }} ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .product-info-close-btn-{{ product_info_tabs }} {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.warning_text_color }};
+    font-size: 18px;
+    transition: background 0.3s ease;
+  }
+
+  .product-info-close-btn-{{ product_info_tabs }}:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .product-info-content-{{ product_info_tabs }} {
+    display: none;
+  }
+
+  .product-info-content-{{ product_info_tabs }}.active {
+    display: block;
+  }
+
+  .product-info-video-wrapper-{{ product_info_tabs }} {
+    margin-bottom: 30px;
+    max-width: 800px;
+  }
+
+  .product-info-video-wrapper-{{ product_info_tabs }} video,
+  .product-info-video-wrapper-{{ product_info_tabs }} iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+  }
+
+  .product-info-text-{{ product_info_tabs }} {
+    color: {{ section.settings.content_text_color }};
+    font-size: {{ section.settings.content_font_size }}px;
+    line-height: 1.8;
+  }
+
+  .product-info-text-{{ product_info_tabs }} p { margin-bottom: 20px; }
+  .product-info-text-{{ product_info_tabs }} ul { margin: 20px 0; padding-left: 20px; }
+  .product-info-text-{{ product_info_tabs }} li { margin-bottom: 2px; }
+   .product-info-text-{{ product_info_tabs }} br { display: none; }
+   .product-info-text-{{ product_info_tabs }} h4 { margin-bottom: 10px; }
+
+  /* ===================== */
+  /* FAQ ACCORDION STYLES  */
+  /* ===================== */
+
+  .pi-faq-wrap-{{ product_info_tabs }} {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 10px 0 20px;
+  }
+
+  .pi-faq-list-{{ product_info_tabs }} {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pi-faq-item-{{ product_info_tabs }} {
+    background: #ffffff;
+    border: 1.5px solid {{ section.settings.faq_border_color }};
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .pi-faq-item-{{ product_info_tabs }}:hover {
+    border-color: {{ section.settings.faq_accent_color }}66;
+    box-shadow: 0 4px 20px {{ section.settings.faq_accent_color }}18;
+  }
+
+  .pi-faq-item-{{ product_info_tabs }}.open {
+    border-color: {{ section.settings.faq_accent_color }}99;
+    box-shadow: 0 6px 24px {{ section.settings.faq_accent_color }}22;
+  }
+
+  .pi-faq-question-{{ product_info_tabs }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    cursor: pointer;
+    gap: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .pi-faq-question-text-{{ product_info_tabs }} {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pi-faq-num-{{ product_info_tabs }} {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: {{ section.settings.faq_accent_color }}18;
+    color: {{ section.settings.faq_accent_color }};
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  .pi-faq-item-{{ product_info_tabs }}.open .pi-faq-num-{{ product_info_tabs }} {
+    background: {{ section.settings.faq_accent_color }};
+    color: #ffffff;
+  }
+
+  .pi-faq-label-{{ product_info_tabs }} {
+    font-size: 15px;
+    font-weight: 600;
+    color: {{ section.settings.faq_question_color }};
+    line-height: 1.45;
+  }
+
+  .pi-faq-toggle-{{ product_info_tabs }} {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: {{ section.settings.faq_accent_color }}14;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s ease, transform 0.3s ease;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .pi-faq-item-{{ product_info_tabs }}.open .pi-faq-toggle-{{ product_info_tabs }} {
+    background: {{ section.settings.faq_accent_color }};
+    transform: rotate(45deg);
+  }
+
+  .pi-faq-toggle-{{ product_info_tabs }} svg {
+    width: 14px;
+    height: 14px;
+    stroke: {{ section.settings.faq_accent_color }};
+    transition: stroke 0.25s ease;
+  }
+
+  .pi-faq-item-{{ product_info_tabs }}.open .pi-faq-toggle-{{ product_info_tabs }} svg {
+    stroke: #ffffff;
+  }
+
+  .pi-faq-answer-{{ product_info_tabs }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .pi-faq-answer-inner-{{ product_info_tabs }} {
+    padding: 16px 24px 22px 68px;
+    font-size: {{ section.settings.content_font_size }}px;
+    color: {{ section.settings.faq_answer_color }};
+    line-height: 1.75;
+    border-top: 1px solid {{ section.settings.faq_border_color }};
+  }
+
+  .pi-faq-answer-inner-{{ product_info_tabs }} p { margin: 0 0 10px; }
+  .pi-faq-answer-inner-{{ product_info_tabs }} p:last-child { margin-bottom: 0; }
+  .pi-faq-answer-inner-{{ product_info_tabs }} ul,
+  .pi-faq-answer-inner-{{ product_info_tabs }} ol { margin: 8px 0; padding-left: 20px; }
+  .pi-faq-answer-inner-{{ product_info_tabs }} li { margin-bottom: 6px; }
+
+  .pi-faq-empty-{{ product_info_tabs }} {
+    text-align: center;
+    padding: 40px;
+    color: #aaaaaa;
+    font-size: 14px;
+  }
+
+  /* ================================ */
+  /* ADDITIONAL INFORMATION STYLES    */
+  /* ================================ */
+
+  .pi-addinfo-wrap-{{ product_info_tabs }} {
+   width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0px 0 0px;
+    border: 1.5px solid #d9d9d9;
+    border-radius: 11px;
+  }
+
+  .pi-addinfo-table-{{ product_info_tabs }} {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1.5px solid #E0E0E0;
+  }
+
+  .pi-addinfo-table-{{ product_info_tabs }} tr {
+    border-bottom: 1px solid #E0E0E0;
+  }
+
+  .pi-addinfo-table-{{ product_info_tabs }} tr:last-child {
+    border-bottom: none;
+  }
+
+  .pi-addinfo-table-{{ product_info_tabs }} td {
+    padding: 16px 24px;
+    font-size: {{ section.settings.content_font_size }}px;
+    line-height: 1.6;
+    vertical-align: top;
+  }
+
+  .pi-addinfo-td-label-{{ product_info_tabs }} {
+    font-weight: 600;
+    color: #333333;
+    width: 200px;
+    min-width: 140px;
+    border-right: 1px solid #E0E0E0;
+    background: #F9F9F9;
+    white-space: nowrap;
+  }
+
+  .pi-addinfo-td-value-{{ product_info_tabs }} {
+    color: {{ section.settings.content_text_color }};
+  }
+
+  .pi-addinfo-td-value-{{ product_info_tabs }} p { margin: 0 0 6px; }
+  .pi-addinfo-td-value-{{ product_info_tabs }} p:last-child { margin-bottom: 0; }
+  .pi-addinfo-td-value-{{ product_info_tabs }} ul,
+  .pi-addinfo-td-value-{{ product_info_tabs }} ol { margin: 4px 0; padding-left: 18px; }
+  .pi-addinfo-td-value-{{ product_info_tabs }} li { margin-bottom: 4px; }
+
+  @media screen and (max-width: 749px) {
+    .product-info-hero-{{ product_info_tabs }} { flex-direction: column; }
+    .product-info-tabs-{{ product_info_tabs }} { flex-wrap: nowrap; }
+    .product-info-tab-{{ product_info_tabs }} { font-size: 13px; padding: 12px 15px; }
+    .product-info-warning-overlay-{{ product_info_tabs }} { position: static; margin-top: 20px; max-width: 100%; }
+    .pi-faq-label-{{ product_info_tabs }} { font-size: 14px; }
+    .pi-faq-question-{{ product_info_tabs }} { padding: 16px 18px; }
+    .pi-faq-answer-inner-{{ product_info_tabs }} { padding: 14px 18px 18px 18px; }
+    .pi-faq-num-{{ product_info_tabs }} { display: none; }
+    .pi-addinfo-table-{{ product_info_tabs }} td { padding: 12px 16px; }
+    .pi-addinfo-td-label-{{ product_info_tabs }} { width: 110px; min-width: 90px; }
+  }
+{% endstyle %}
+
+<product-info-tabs-{{ product_info_tabs }} class="product-info-{{ product_info_tabs }}" {{ section.shopify_attributes }}>
+
+  {%- comment -%} ── TAB BUTTONS ── {%- endcomment -%}
+  <div class="product-info-tabs-{{ product_info_tabs }}">
+    {% assign first_visible_set = false %}
+    {% for block in section.blocks %}
+
+      {%- comment -%} Check if this block has any data to show {%- endcomment -%}
+      {% assign block_has_data = false %}
+
+      {% if block.type == 'video' %}
+        {% liquid
+          assign _vid = block.settings.video
+          assign _metavid = null
+          if block.settings.video_metafield_namespace != blank and block.settings.video_metafield_key != blank
+            assign _metavid = product.metafields[block.settings.video_metafield_namespace][block.settings.video_metafield_key]
+          endif
+          if _metavid != blank
+            assign _vid = _metavid
+          endif
+        %}
+        {% if _vid != blank or block.settings.video_content != blank %}
+          {% assign block_has_data = true %}
+        {% endif %}
+
+      {% elsif block.type == 'additional_info' %}
+        {% assign _add_items = product.metafields[block.settings.add_info_metafield_namespace][block.settings.add_info_metafield_key].value %}
+        {% if _add_items != blank %}
+          {% assign block_has_data = true %}
+        {% endif %}
+
+      {% elsif block.type == 'faq' %}
+        {% assign _faq_items = product.metafields[block.settings.faq_metafield_namespace][block.settings.faq_metafield_key].value %}
+        {% if _faq_items != blank %}
+          {% assign block_has_data = true %}
+        {% endif %}
+
+      {% elsif block.type == 'richtext' %}
+        {% if block.settings.content != blank %}
+          {% assign block_has_data = true %}
+        {% endif %}
+      {% endif %}
+
+      {% if block_has_data %}
+        {% unless first_visible_set %}
+          {% assign first_visible_id = block.id %}
+          {% assign first_visible_set = true %}
+        {% endunless %}
+        <button
+          class="product-info-tab-{{ product_info_tabs }}{% if block.id == first_visible_id %} active{% endif %}"
+          data-tab="{{ block.id }}"
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.tab_label }}
+        </button>
+      {% endif %}
+
+    {% endfor %}
+  </div>
+
+  {%- comment -%} ── TAB CONTENT PANELS ── {%- endcomment -%}
+  {% for block in section.blocks %}
+
+    {%- comment -%} Re-check data for content panel {%- endcomment -%}
+    {% assign panel_has_data = false %}
+
+    {% if block.type == 'video' %}
+      {% liquid
+        assign _vid2 = block.settings.video
+        assign _metavid2 = null
+        if block.settings.video_metafield_namespace != blank and block.settings.video_metafield_key != blank
+          assign _metavid2 = product.metafields[block.settings.video_metafield_namespace][block.settings.video_metafield_key]
+        endif
+        if _metavid2 != blank
+          assign _vid2 = _metavid2
+        endif
+      %}
+      {% if _vid2 != blank or block.settings.video_content != blank %}
+        {% assign panel_has_data = true %}
+      {% endif %}
+    {% elsif block.type == 'additional_info' %}
+      {% assign _add2 = product.metafields[block.settings.add_info_metafield_namespace][block.settings.add_info_metafield_key].value %}
+      {% if _add2 != blank %}{% assign panel_has_data = true %}{% endif %}
+    {% elsif block.type == 'faq' %}
+      {% assign _faq2 = product.metafields[block.settings.faq_metafield_namespace][block.settings.faq_metafield_key].value %}
+      {% if _faq2 != blank %}{% assign panel_has_data = true %}{% endif %}
+    {% elsif block.type == 'richtext' %}
+      {% if block.settings.content != blank %}{% assign panel_has_data = true %}{% endif %}
+    {% endif %}
+
+    {% if panel_has_data %}
+    <div
+      class="product-info-content-{{ product_info_tabs }}{% if block.id == first_visible_id %} active{% endif %}"
+      data-content="{{ block.id }}"
+      {{ block.shopify_attributes }}
+    >
+
+      {%- comment -%} ════ TYPE: video ════ {%- endcomment -%}
+      {% if block.type == 'video' %}
+
+        {% if section.settings.show_hero %}
+          <div class="product-info-hero-{{ product_info_tabs }}">
+            <div class="product-info-hero-illustration-{{ product_info_tabs }}">
+              <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <rect x="150" y="80" width="120" height="180" fill="#FFFFFF" stroke="#333333" stroke-width="2" rx="5"/>
+                <rect x="160" y="90" width="100" height="120" fill="#F5F5F5"/>
+                <circle cx="210" cy="130" r="25" fill="#000000"/>
+                <path d="M 185 130 L 210 105 L 235 130" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+                <path d="M 185 130 L 210 155 L 235 130" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+                <polygon points="195,220 210,210 225,220 220,235 200,235" fill="#FF6B6B"/>
+                <circle cx="190" cy="245" r="8" fill="#FFA500"/>
+                <path d="M 182 245 L 198 245 M 190 237 L 190 253" stroke="#000000" stroke-width="2"/>
+                <polygon points="215,235 225,225 235,235 230,250 220,250" fill="#FFD700"/>
+                <path d="M 220 240 L 230 240 M 225 235 L 225 245" stroke="#000000" stroke-width="2"/>
+                <ellipse cx="210" cy="300" rx="40" ry="15" fill="#4A90E2"/>
+                <rect x="190" y="285" width="40" height="15" fill="#4A90E2"/>
+                <ellipse cx="210" cy="285" rx="40" ry="15" fill="#5BA3F5"/>
+                <circle cx="100" cy="200" r="40" fill="#4A90E2"/>
+                <circle cx="100" cy="190" r="35" fill="#5BA3F5"/>
+                <rect x="85" y="170" width="30" height="40" fill="#5BA3F5"/>
+                <rect x="70" y="210" width="60" height="10" fill="#333333"/>
+                <rect x="75" y="220" width="20" height="30" fill="#333333"/>
+                <rect x="105" y="220" width="20" height="30" fill="#333333"/>
+                <polygon points="85,160 100,145 115,160" fill="#FFD700"/>
+                <rect x="95" y="145" width="10" height="15" fill="#FFD700"/>
+              </svg>
+              {% if section.settings.show_warning_overlay %}
+                <div class="product-info-warning-overlay-{{ product_info_tabs }}">
+                  <button class="product-info-close-btn-{{ product_info_tabs }}" aria-label="Close">×</button>
+                  <ul>
+                    <li>{{ section.settings.warning_1 }}</li>
+                    <li>{{ section.settings.warning_2 }}</li>
+                    <li>{{ section.settings.warning_3 }}</li>
+                    <li>{{ section.settings.warning_4 }}</li>
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% liquid
+          assign video_source = block.settings.video
+          assign metafield_video = null
+          if block.settings.video_metafield_namespace != blank and block.settings.video_metafield_key != blank
+            assign metafield_video = product.metafields[block.settings.video_metafield_namespace][block.settings.video_metafield_key]
+          endif
+          if metafield_video != blank
+            assign video_source = metafield_video
+          endif
+        %}
+
+        {% if video_source != blank %}
+          <div class="product-info-video-wrapper-{{ product_info_tabs }}">
+            {{ video_source | video_tag: controls: true, autoplay: false, loop: false, muted: false }}
+          </div>
+        {% endif %}
+
+        <div class="product-info-text-{{ product_info_tabs }}">
+          {{ block.settings.video_content }}
+        </div>
+
+      {%- comment -%} ════ TYPE: additional_info ════ {%- endcomment -%}
+      {% elsif block.type == 'additional_info' %}
+
+        {% liquid
+          assign add_info_items = product.metafields[block.settings.add_info_metafield_namespace][block.settings.add_info_metafield_key].value
+        %}
+
+        {% if add_info_items != blank %}
+          <div class="pi-addinfo-wrap-{{ product_info_tabs }}">
+            <table class="pi-addinfo-table-{{ product_info_tabs }}">
+              <tbody>
+                {% for item in add_info_items %}
+                  {% assign field_keys   = block.settings.add_info_field_keys   | split: ',' %}
+                  {% assign field_labels = block.settings.add_info_field_labels | split: ',' %}
+                  {% assign field_types  = block.settings.add_info_field_types  | split: ',' %}
+                  {% for key in field_keys %}
+                    {% assign key_clean   = key   | strip %}
+                    {% assign label_clean = field_labels[forloop.index0] | strip %}
+                    {% assign type_clean  = field_types[forloop.index0]  | strip %}
+                    {% assign field_val   = item[key_clean] %}
+                    {% if field_val != blank %}
+                      <tr>
+                        <td class="pi-addinfo-td-label-{{ product_info_tabs }}">
+                          {% if label_clean != blank %}{{ label_clean }}{% else %}{{ key_clean | replace: '_', ' ' | capitalize }}{% endif %}
+                        </td>
+                        <td class="pi-addinfo-td-value-{{ product_info_tabs }}">
+                          {% if type_clean == 'richtext' %}
+                            {{ field_val | metafield_tag }}
+                          {% else %}
+                            {{ field_val }}
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="product-info-text-{{ product_info_tabs }}">
+            {{ block.settings.fallback_content }}
+          </div>
+        {% endif %}
+
+      {%- comment -%} ════ TYPE: faq ════ {%- endcomment -%}
+      {% elsif block.type == 'faq' %}
+
+        {% liquid
+          assign faq_items = product.metafields[block.settings.faq_metafield_namespace][block.settings.faq_metafield_key].value
+        %}
+
+        <div class="pi-faq-wrap-{{ product_info_tabs }}">
+          <div class="pi-faq-list-{{ product_info_tabs }}">
+            {% if faq_items != blank %}
+              {% for faq in faq_items %}
+                <div
+                  class="pi-faq-item-{{ product_info_tabs }}"
+                  id="pi-faq-{{ product_info_tabs }}-{{ block.id | replace: '-', '' }}-{{ forloop.index }}"
+                >
+                  <div
+                    class="pi-faq-question-{{ product_info_tabs }}"
+                    onclick="togglePiFaqaccordian('{{ block.id | replace: '-', '' }}', {{ forloop.index }})"
+                  >
+                    <div class="pi-faq-question-text-{{ product_info_tabs }}">
+                      <span class="pi-faq-num-{{ product_info_tabs }}">{{ forloop.index }}</span>
+                      <span class="pi-faq-label-{{ product_info_tabs }}">{{ faq.question.value | default: faq.question }}</span>
+                    </div>
+                    <button class="pi-faq-toggle-{{ product_info_tabs }}" aria-label="Toggle answer" tabindex="-1">
+                      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="pi-faq-answer-{{ product_info_tabs }}"
+                    id="pi-faq-ans-{{ product_info_tabs }}-{{ block.id | replace: '-', '' }}-{{ forloop.index }}"
+                  >
+                    <div class="pi-faq-answer-inner-{{ product_info_tabs }}">
+                      {{ faq.answer | metafield_tag }}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="pi-faq-empty-{{ product_info_tabs }}">No FAQs available for this product.</div>
+            {% endif %}
+          </div>
+        </div>
+
+      {%- comment -%} ════ TYPE: richtext (generic content tab) ════ {%- endcomment -%}
+      {% elsif block.type == 'richtext' %}
+
+        <div class="product-info-text-{{ product_info_tabs }}">
+          {{ block.settings.content }}
+        </div>
+
+      {% endif %}
+
+    </div>
+    {% endif %}
+  {% endfor %}
+
+</product-info-tabs-{{ product_info_tabs }}>
+
+<script>
+(function() {
+  /* ─── Tab switching ─── */
+  class ProductInfoTabs extends HTMLElement {
+    connectedCallback() {
+      this.tabs     = this.querySelectorAll('.product-info-tab-{{ product_info_tabs }}');
+      this.contents = this.querySelectorAll('.product-info-content-{{ product_info_tabs }}');
+      this.closeBtn       = this.querySelector('.product-info-close-btn-{{ product_info_tabs }}');
+      this.warningOverlay = this.querySelector('.product-info-warning-overlay-{{ product_info_tabs }}');
+      this.setupTabs();
+      this.setupCloseButton();
+    }
+
+    setupTabs() {
+      this.tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetTab = tab.getAttribute('data-tab');
+          this.tabs.forEach(t => t.classList.remove('active'));
+          this.contents.forEach(c => c.classList.remove('active'));
+          tab.classList.add('active');
+          const targetContent = this.querySelector('[data-content="' + targetTab + '"]');
+          if (targetContent) targetContent.classList.add('active');
+        });
+      });
+    }
+
+    setupCloseButton() {
+      if (this.closeBtn && this.warningOverlay) {
+        this.closeBtn.addEventListener('click', () => {
+          this.warningOverlay.style.display = 'none';
+        });
+      }
+    }
+  }
+
+  customElements.define('product-info-tabs-{{ product_info_tabs }}', ProductInfoTabs);
+
+  /* ─── FAQ accordion ─── */
+  window['togglePiFaqaccordian'] = function(blockId, idx) {
+    var prefix  = '{{ product_info_tabs }}';
+    var itemId  = 'pi-faq-' + prefix + '-' + blockId + '-' + idx;
+    var ansId   = 'pi-faq-ans-' + prefix + '-' + blockId + '-' + idx;
+    var item    = document.getElementById(itemId);
+    var answer  = document.getElementById(ansId);
+    if (!item || !answer) return;
+
+    var isOpen = item.classList.contains('open');
+
+    /* close all in this block */
+    var allItems = document.querySelectorAll('[id^="pi-faq-' + prefix + '-' + blockId + '"]');
+    allItems.forEach(function(el) {
+      if (!el.id.includes('-ans-')) {
+        el.classList.remove('open');
+      }
+    });
+    document.querySelectorAll('[id^="pi-faq-ans-' + prefix + '-' + blockId + '"]').forEach(function(el) {
+      el.style.maxHeight = '0px';
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = '1000px';
+    }
+  };
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Product information tabs",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "video",
+      "name": "How to Use Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "How to Use Video"
+        },
+        {
+          "type": "header",
+          "content": "Video"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video file"
+        },
+        {
+          "type": "text",
+          "id": "video_metafield_namespace",
+          "label": "Video metafield namespace",
+          "info": "Example: custom"
+        },
+        {
+          "type": "text",
+          "id": "video_metafield_key",
+          "label": "Video metafield key",
+          "info": "Example: how_to_video"
+        },
+        {
+          "type": "paragraph",
+          "content": "If metafield values are provided, they override the video picker above."
+        },
+        {
+          "type": "header",
+          "content": "Text content"
+        },
+        {
+          "type": "richtext",
+          "id": "video_content",
+          "label": "Content below video",
+          "default": "<p>Add instructions or notes about how to use this product.</p>"
+        }
+      ]
+    },
+    {
+      "type": "additional_info",
+      "name": "Additional Information",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "Additional Information"
+        },
+        {
+          "type": "header",
+          "content": "Metafield source"
+        },
+        {
+          "type": "text",
+          "id": "add_info_metafield_namespace",
+          "label": "Metafield namespace",
+          "default": "custom",
+          "info": "Example: custom"
+        },
+        {
+          "type": "text",
+          "id": "add_info_metafield_key",
+          "label": "Metafield key (list)",
+          "default": "additional_information",
+          "info": "The metaobject list field key"
+        },
+        {
+          "type": "header",
+          "content": "Field mapping"
+        },
+        {
+          "type": "text",
+          "id": "add_info_field_keys",
+          "label": "Field keys (comma separated)",
+          "default": "weight,size",
+          "info": "Exact metaobject field keys, e.g. weight,size,shelf_life"
+        },
+        {
+          "type": "text",
+          "id": "add_info_field_labels",
+          "label": "Field labels (comma separated)",
+          "default": "Weight,Pack Size",
+          "info": "Display labels for each key, e.g. Weight,Pack Size,Shelf Life"
+        },
+        {
+          "type": "text",
+          "id": "add_info_field_types",
+          "label": "Field types (comma separated)",
+          "default": "text,richtext",
+          "info": "Use 'richtext' or 'text' for each field, e.g. text,richtext,text"
+        },
+        {
+          "type": "header",
+          "content": "Fallback"
+        },
+        {
+          "type": "richtext",
+          "id": "fallback_content",
+          "label": "Fallback content (if no metafield data)",
+          "default": "<p>No additional information available.</p>"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "FAQ's"
+        },
+        {
+          "type": "header",
+          "content": "Metafield source"
+        },
+        {
+          "type": "text",
+          "id": "faq_metafield_namespace",
+          "label": "FAQ metafield namespace",
+          "default": "custom",
+          "info": "Example: custom"
+        },
+        {
+          "type": "text",
+          "id": "faq_metafield_key",
+          "label": "FAQ metafield key",
+          "default": "product_faqs",
+          "info": "The metaobject list field key, e.g. product_faqs"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "name": "Custom Content Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_label",
+          "label": "Tab label",
+          "default": "More Info"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Add your content here.</p>"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Tab styles"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "tab_text_color",
+      "label": "Text color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "tab_hover_color",
+      "label": "Hover color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Active color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Border color",
+      "default": "#E6E6E6"
+    },
+    {
+      "type": "header",
+      "content": "Hero section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_hero",
+      "label": "Show hero illustration",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_warning_overlay",
+      "label": "Show warning overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "warning_bg_color",
+      "label": "Warning background",
+      "default": "#8B6F47"
+    },
+    {
+      "type": "color",
+      "id": "warning_text_color",
+      "label": "Warning text",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "warning_1",
+      "label": "Warning 1",
+      "default": "POISONOUS"
+    },
+    {
+      "type": "text",
+      "id": "warning_2",
+      "label": "Warning 2",
+      "default": "CORROSIVE"
+    },
+    {
+      "type": "text",
+      "id": "warning_3",
+      "label": "Warning 3",
+      "default": "FLAMMABLE"
+    },
+    {
+      "type": "text",
+      "id": "warning_4",
+      "label": "Warning 4",
+      "default": "EXPLOSIVE"
+    },
+    {
+      "type": "header",
+      "content": "Content styles"
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "label": "Font size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "content_text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "FAQ styles"
+    },
+    {
+      "type": "color",
+      "id": "faq_accent_color",
+      "label": "Accent color",
+      "default": "#6B4FA0"
+    },
+    {
+      "type": "color",
+      "id": "faq_border_color",
+      "label": "Border color",
+      "default": "#E8E2F0"
+    },
+    {
+      "type": "color",
+      "id": "faq_question_color",
+      "label": "Question text color",
+      "default": "#2d2d2d"
+    },
+    {
+      "type": "color",
+      "id": "faq_answer_color",
+      "label": "Answer text color",
+      "default": "#555555"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product information tabs",
+      "blocks": [
+        { "type": "video" },
+        { "type": "additional_info" },
+        { "type": "faq" },
+        { "type": "richtext", "settings": { "tab_label": "Reviews" } },
+        { "type": "richtext", "settings": { "tab_label": "Full Product Description" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
