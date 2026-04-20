@@ -18,7 +18,7 @@
           "type": "footer_column",
           "settings": {
             "column_heading": "FEATURED CATEGORIES",
-            "column_menu": "",
+            "column_menu": "main-menu",
             "highlight_links": "CHAT WITH US"
           }
         },
@@ -26,7 +26,7 @@
           "type": "footer_column",
           "settings": {
             "column_heading": "SOLUTION",
-            "column_menu": "",
+            "column_menu": "footer",
             "highlight_links": "CHAT WITH US"
           }
         },
@@ -34,7 +34,7 @@
           "type": "footer_column",
           "settings": {
             "column_heading": "INFORMATION",
-            "column_menu": "",
+            "column_menu": "customer-account-main-menu",
             "highlight_links": "CHAT WITH US"
           }
         }
