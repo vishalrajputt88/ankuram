@@ -1,6 +1,7 @@
 {% assign product_info_tabs = section.id | replace: '_', '' | downcase %}
 
 {% style %}
+button {     font-family: 'Poppins' !important; }
   .product-info-{{ product_info_tabs }} {
     display: block;
     width: {{ section.settings.desktop_width_percent }}%;
@@ -682,7 +683,7 @@
 
 {% schema %}
 {
-  "name": "Product information tabs",
+  "name": "Ankooram PIT",
   "max_blocks": 10,
   "blocks": [
     {
@@ -1002,7 +1003,7 @@
   ],
   "presets": [
     {
-      "name": "Product information tabs",
+      "name": "Ankooram PIT",
       "blocks": [
         { "type": "video" },
         { "type": "additional_info" },
