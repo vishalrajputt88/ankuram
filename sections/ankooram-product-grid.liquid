@@ -275,11 +275,10 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      font-size: 21px;
+      font-size: 13px;
       min-height: 20px;
     }
-    .product-card-rating-{{ custom_best_selling }} .star.filled { color: #FF9900;  }
-.product-card-rating-{{ custom_best_selling }} .ratting_text { font-size: 13px; }
+
     .jdgm-prev-badge[data-number-of-reviews="0"] { display: none !important; }
 
     .product-card-prices-{{ custom_best_selling }} { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -564,13 +563,13 @@
                        
                         <div class="product-card-rating-{{ custom_best_selling }}">
                             {% assign rating = product.metafields.custom.rating | default: 4 %}
-                            {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
 
                             <div class="rating">
                               {% for i in (1..5) %}
                                 <span class="star {% if i <= rating %}filled{% endif %}">★</span>
                               {% endfor %}
                             </div>
+                            {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
                             {% if review_count > 0 %}
                               <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
                             {% endif %}
