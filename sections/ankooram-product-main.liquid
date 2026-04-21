@@ -606,17 +606,14 @@
           {% if current_variant.weight > 0 %}Net Weight: {{ current_variant.weight | weight_with_unit }}{% endif %}
         </div>
 
-        <div class="rs-info__reviews">
-          <span class="rs-stars">
-            {% assign rating = product.metafields.reviews.rating.value | default: 5 %}
-            {% for i in (1..5) %}{% if i <= rating %}★{% else %}☆{% endif %}{% endfor %}
-          </span>
-          {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
-          {% if review_count > 0 %}
-            <span style="font-size:.88rem;color:#555;">({{ review_count }})</span>
-            <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
-          {% endif %}
-        </div>
+       <div class="rs-info__reviews">
+  <span class='jdgm-widget jdgm-preview-badge' 
+    data-id='{{ product.id }}'
+    data-product-title='{{ product.title | escape }}'
+    data-auto-install='false'>
+    {{ product.metafields.judgeme.preview_badge }}
+  </span>
+</div>
 
         <!-- ══ DYNAMIC BLOCKS LOOP ══ -->
         {% for block in section.blocks %}
