@@ -531,9 +531,13 @@
 </div>
 <div class="product-card-rating-{{ custom_best_selling }}">
                        <div class="rs-info__reviews">
-          <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
-            <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>
-          </div>
+          {% assign rating = product.metafields.custom.rating | default: 4 %}
+
+<div class="rating">
+  {% for i in (1..5) %}
+    <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+  {% endfor %}
+</div>
           {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
           {% if review_count > 0 %}
             <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
