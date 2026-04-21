@@ -1382,9 +1382,7 @@
     }, 900);
   };
 
-})();
-
-window.rsSizeCardClick = function(id, optionIndex, value) {
+  window.rsSizeCardClick = function(id, optionIndex, value) {
   _selectedOptions[optionIndex] = value;
   document.querySelectorAll('.rs-size-card[data-option-index="' + optionIndex + '"]')
     .forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-value') === value); });
@@ -1394,6 +1392,7 @@ window.rsSizeCardClick = function(id, optionIndex, value) {
   if (variant) rsUpdateVariantUI(id, variant);
 };
 
+})();
 </script>
 
 {% schema %}
