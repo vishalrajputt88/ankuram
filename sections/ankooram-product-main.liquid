@@ -614,6 +614,11 @@
             <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
           {% endif %}
 </div>
+ {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
+          {% if review_count > 0 %}
+            <span style="font-size:.88rem;color:#555;">({{ review_count }})</span>
+            <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
+          {% endif %}
 </div>
 
         <!-- ══ DYNAMIC BLOCKS LOOP ══ -->
