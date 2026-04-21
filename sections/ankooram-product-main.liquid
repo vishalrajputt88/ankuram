@@ -607,12 +607,9 @@
         </div>
 
        <div class="rs-info__reviews">
-  <span class='jdgm-widget jdgm-preview-badge' 
-    data-id='{{ product.id }}'
-    data-product-title='{{ product.title | escape }}'
-    data-auto-install='false'>
-    {{ product.metafields.judgeme.preview_badge }}
-  </span>
+  <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
+  <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>
+</div>
 </div>
 
         <!-- ══ DYNAMIC BLOCKS LOOP ══ -->
@@ -1404,6 +1401,61 @@
 
 })();
 </script>
+
+
+<script>
+(function() {
+  function rsInjectJdgmStars() {
+    var container = document.getElementById('rs-jdgm-stars-{{ section.id }}');
+    if (!container) return;
+
+    // Judge.me ke rendered widget se data uthao
+    var badge = document.querySelector('.jdgm-preview-badge, .jdgm-all-reviews-rating, [data-score]');
+    
+    var score = null;
+    var count = null;
+
+    if (badge) {
+      score = parseFloat(badge.getAttribute('data-score') || badge.getAttribute('data-average-rating'));
+      count = parseInt(badge.getAttribute('data-number-of-reviews') || badge.getAttribute('data-count'), 10);
+    }
+
+    // Agar Judge.me ka score mila toh stars banao
+    if (score && score > 0) {
+      var starsHtml = '';
+      for (var i = 1; i <= 5; i++) {
+        if (score >= i) {
+          starsHtml += '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+        } else if (score >= i - 0.5) {
+          starsHtml += '<svg width="16" height="16" viewBox="0 0 24 24"><defs><linearGradient id="h' + i + '"><stop offset="50%" stop-color="#f5a623"/><stop offset="50%" stop-color="#ddd"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#h' + i + ')"/></svg>';
+        } else {
+          starsHtml += '<svg width="16" height="16" viewBox="0 0 24 24" fill="#ddd"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+        }
+      }
+
+      var countText = count ? '(' + count + ')' : '';
+      container.innerHTML =
+        '<span style="display:inline-flex;align-items:center;gap:2px;">' + starsHtml + '</span>' +
+        '<span style="font-size:.88rem;color:#555;margin-left:4px;">' + countText + '</span>' +
+        (count ? '<a href="#jdgm-widget" style="font-size:.88rem;color:#0E3A23;font-weight:600;text-decoration:underline;margin-left:4px;">' + count + ' Reviews</a>' : '');
+    } else {
+      container.innerHTML = '';
+    }
+  }
+
+  // DOMContentLoaded ke baad try karo, phir Judge.me load hone ka wait karo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(rsInjectJdgmStars, 800);
+      setTimeout(rsInjectJdgmStars, 2000); // fallback
+    });
+  } else {
+    setTimeout(rsInjectJdgmStars, 800);
+    setTimeout(rsInjectJdgmStars, 2000);
+  }
+})();
+</script>
+
 
 {% schema %}
 {
