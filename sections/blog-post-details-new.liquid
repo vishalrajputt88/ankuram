@@ -1,0 +1,400 @@
+{%- doc -%}
+  Renders the blog post info text block.
+
+  @param {object} [article] - The article object
+  @param {string} [alignment] - The alignment of the text. Defaults to the block's alignment setting.
+  @param {string} [author] - The author name. Defaults to article.author, placeholder text for onboarding
+  @param {string} [date] - The published date. Defaults to article.published_at, placeholder text for onboarding
+{%- enddoc -%}
+
+{% assign block_settings = block.settings %}
+{% assign alignment = alignment | default: block_settings.alignment %}
+{% assign display_author = author | default: article.author %}
+{% assign display_date = date | default: article.published_at %}
+
+{%- if block_settings.show_date or block_settings.show_author -%}
+  <div
+    class="
+      blog-post-details
+      spacing-style
+      justify-{{ alignment }}
+      {% if block_settings.type_preset != '' %}{{ block_settings.type_preset }}{% endif%}
+    "
+    style="{% render 'spacing-style', settings: block_settings %}"
+  >
+    {%- if block_settings.show_date -%}
+      <span class="blog-post-details__date">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        {{- display_date | time_tag: format: 'date' -}}
+      </span>
+    {%- endif -%}
+
+    {%- if block_settings.show_date and block_settings.show_author -%}
+      <span class="blog-post-details__dot" aria-hidden="true">•</span>
+    {%- endif -%}
+
+    {%- if block_settings.show_author -%}
+      <span class="blog-post-details__author">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        {{ display_author }}
+      </span>
+    {%- endif -%}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  /* ================================================
+     AGRICULTURE THEME — BLOG DETAIL PAGE
+     Global page styles scoped through this snippet
+  ================================================ */
+
+  /* ── Page background & font ─────────────────── */
+  .template-article main,
+  .template-article .main-content,
+  body.template-article {
+    background-color: #f5f0e8;
+  }
+
+  /* ── Article wrapper ────────────────────────── */
+  .template-article article,
+  .template-article .article,
+  .template-article [data-testid="article"] {
+    background: #ffffff;
+    border: 1.5px solid #c5dfc0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(45, 90, 39, 0.08);
+    margin-block: 24px;
+  }
+
+  /* ── Article hero image ─────────────────────── */
+  .template-article .article__image,
+  .template-article .blog-post-card__image-container,
+  .template-article figure img,
+  .template-article .article img:first-of-type {
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+    display: block;
+  }
+
+  /* ── Article title ──────────────────────────── */
+  .template-article h1,
+  .template-article .article__title {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #3d2b1f;
+    font-size: clamp(22px, 4vw, 40px);
+    line-height: 1.25;
+    padding-inline: 0;
+    position: relative;
+  }
+
+  /* Wheat underline on title */
+  .template-article h1::after,
+  .template-article .article__title::after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 80px;
+    background: linear-gradient(90deg, #c8a84b, #3a7d44);
+    border-radius: 2px;
+    margin-top: 10px;
+  }
+
+  /* ── Article body content ───────────────────── */
+  .template-article .article__content,
+  .template-article .rte,
+  .template-article .article-body {
+    color: #3d2b1f;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .template-article .article__content h2,
+  .template-article .rte h2 {
+    font-family: Georgia, serif;
+    color: #2d5a27;
+    border-left: 4px solid #c8a84b;
+    padding-left: 12px;
+    margin-block: 28px 12px;
+  }
+
+  .template-article .article__content h3,
+  .template-article .rte h3 {
+    color: #3a7d44;
+    margin-block: 22px 8px;
+  }
+
+  .template-article .article__content p,
+  .template-article .rte p {
+    color: #4a3728;
+    margin-bottom: 16px;
+  }
+
+  /* Links in content */
+  .template-article .article__content a,
+  .template-article .rte a {
+    color: #3a7d44;
+    text-decoration: underline;
+    text-decoration-color: #c5dfc0;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  .template-article .article__content a:hover,
+  .template-article .rte a:hover {
+    color: #2d5a27;
+    text-decoration-color: #3a7d44;
+  }
+
+  /* Blockquote */
+  .template-article .article__content blockquote,
+  .template-article .rte blockquote {
+    border-left: 4px solid #3a7d44;
+    background: #eaf4ea;
+    margin: 24px 0;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    color: #2d5a27;
+    font-style: italic;
+  }
+
+  /* Images in content */
+  .template-article .article__content img,
+  .template-article .rte img {
+    border-radius: 10px;
+    border: 1.5px solid #c5dfc0;
+    max-width: 100%;
+  }
+
+  /* ── Date/Author pill (this snippet) ────────── */
+  .blog-post-details {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #eaf4ea;
+    border: 1.5px solid #c5dfc0;
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #2d5a27;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    flex-wrap: wrap;
+  }
+
+  .blog-post-details > span {
+    text-overflow: clip;
+    overflow: hidden;
+  }
+
+  .blog-post-details__date,
+  .blog-post-details__author {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #3d2b1f;
+    font-weight: 600;
+  }
+
+  .blog-post-details__date svg,
+  .blog-post-details__author svg {
+    color: #3a7d44;
+    flex-shrink: 0;
+  }
+
+  .blog-post-details__date time {
+    color: #2d5a27;
+  }
+
+  .blog-post-details__dot {
+    color: #c5dfc0;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  /* ── Tags / categories ──────────────────────── */
+  .template-article .article__tags a,
+  .template-article .tags a,
+  .template-article .tag {
+    display: inline-block;
+    background: #eaf4ea;
+    color: #2d5a27;
+    border: 1px solid #c5dfc0;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .template-article .article__tags a:hover,
+  .template-article .tags a:hover {
+    background: #c8e6c9;
+    border-color: #3a7d44;
+  }
+
+  /* ── Share / social row ─────────────────────── */
+  .template-article .article__share,
+  .template-article .share-buttons {
+    border-top: 1.5px solid #c5dfc0;
+    padding-top: 20px;
+    margin-top: 32px;
+  }
+
+  /* ── Back to blog link ──────────────────────── */
+  .template-article .article__back,
+  .template-article a[href*="blogs"] {
+    color: #3a7d44;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .template-article .article__back:hover,
+  .template-article a[href*="blogs"]:hover {
+    color: #2d5a27;
+    text-decoration: underline;
+  }
+
+  /* ── Comments section ───────────────────────── */
+  .template-article .article__comments,
+  .template-article #comments {
+    background: #eaf4ea;
+    border: 1.5px solid #c5dfc0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 40px;
+  }
+
+  .template-article .article__comments h2 {
+    color: #2d5a27;
+    font-family: Georgia, serif;
+    border-left: 4px solid #c8a84b;
+    padding-left: 10px;
+    margin-bottom: 16px;
+  }
+
+  /* ── Decorative top bar on page ─────────────── */
+  .template-article main::before,
+  .template-article .main-content::before {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      #2d5a27 0px,  #2d5a27 16px,
+      #3a7d44 16px, #3a7d44 28px,
+      #c8a84b 28px, #c8a84b 32px,
+      #5aab65 32px, #5aab65 44px
+    );
+  }
+
+  /* ── Mobile ─────────────────────────────────── */
+  @media screen and (max-width: 749px) {
+    .template-article article,
+    .template-article .article {
+      border-radius: 10px;
+      margin-block: 12px;
+    }
+
+    .template-article h1,
+    .template-article .article__title {
+      font-size: 22px;
+    }
+
+    .template-article .article__content,
+    .template-article .rte {
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .blog-post-details {
+      font-size: 11.5px;
+      padding: 5px 12px;
+      gap: 6px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.details",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "t:settings.show_date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "t:settings.show_author",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:settings.preset",
+      "options": [
+        { "value": "", "label": "t:options.default" },
+        { "value": "paragraph", "label": "t:options.paragraph" },
+        { "value": "h1", "label": "t:options.h1" },
+        { "value": "h2", "label": "t:options.h2" },
+        { "value": "h3", "label": "t:options.h3" },
+        { "value": "h4", "label": "t:options.h4" },
+        { "value": "h5", "label": "t:options.h5" },
+        { "value": "h6", "label": "t:options.h6" }
+      ],
+      "default": "",
+      "info": "t:info.edit_presets_in_theme_settings"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:settings.alignment",
+      "visible_if": "{{ block.settings.show_alignment != false }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_alignment",
+      "label": "t:settings.show_alignment",
+      "default": true,
+      "visible_if": "{{ false }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.details"
+    }
+  ]
+}
+{% endschema %}
