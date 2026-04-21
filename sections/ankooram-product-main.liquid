@@ -629,15 +629,7 @@
           {% if current_variant.weight > 0 %}Net Weight: {{ current_variant.weight | weight_with_unit }}{% endif %}
         </div>
 
-        <div class="rs-info__reviews">
-          <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
-            <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>
-          </div>
-          {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
-          {% if review_count > 0 %}
-            <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
-          {% endif %}
-        </div>
+       
 
         <!-- ══ DYNAMIC BLOCKS LOOP ══ -->
         {% for block in section.blocks %}
