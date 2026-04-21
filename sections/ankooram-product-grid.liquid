@@ -573,9 +573,11 @@
                               {% endfor %}
                             </div>
                             {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
-                            {% if review_count > 0 %}
+                            {% comment %} {% if review_count > 0 %}
                               <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
-                            {% endif %}
+                            {% endif %} {% endcomment %}
+
+                              <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
                         </div>
 
                         <div class="product-card-prices-{{ custom_best_selling }}">
@@ -773,9 +775,11 @@
                               {% endfor %}
                             </div>
                             {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
-                            {% if review_count > 0 %}
+                            {% comment %} {% if review_count > 0 %}
                               <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
-                            {% endif %}
+                            {% endif %} {% endcomment %}
+
+                              <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
                           </div>
                         </div>
                   {% endif %}
