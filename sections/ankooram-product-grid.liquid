@@ -526,19 +526,15 @@
                         {% endif %}
 
                         <a href="{{ product.url }}" class="product-card-title-{{ custom_best_selling }}">{{ product.title }}</a>
-                        <div class="rs-info__reviews">
-  <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}"></div>
-</div>
+                     
 <div class="product-card-rating-{{ custom_best_selling }}">
-                       <div class="rs-info__reviews">
-          <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
-            <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>
-          </div>
-          {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
-          {% if review_count > 0 %}
-            <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
-          {% endif %}
-        </div></div>
+  <span
+    class="jdgm-prev-badge"
+    data-id="{{ product.id }}"
+    data-number-of-reviews="{{ product.metafields.judgeme.reviews_count | default: 0 }}"
+    data-average-rating="{{ product.metafields.judgeme.avg_rating | default: 0 }}"
+  ></span>
+</div>
 
                         <div class="product-card-prices-{{ custom_best_selling }}">
                          <span class="product-card-compare-price-{{ custom_best_selling }}" data-compare-display {% unless first_available.compare_at_price > first_available.price %}style="display:none"{% endunless %}>
@@ -1060,6 +1056,17 @@
       setTimeout(rsInjectJdgmStars, 2000);
     }
   })();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    if (window.jdgm) {
+      window.jdgm.loadFromServer && window.jdgm.loadFromServer();
+      window.jdgm.init && window.jdgm.init();
+    }
+  }, 500);
+});
 </script>
 
 {% schema %}
