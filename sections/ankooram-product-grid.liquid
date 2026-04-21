@@ -531,7 +531,7 @@
 </div>
 <div class="product-card-rating-{{ custom_best_selling }}">
                        <div class="rs-info__reviews">
-          <div class="rs-info__reviews" id="rs-jdgm-stars-list">
+          <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
             <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>
           </div>
           {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
@@ -997,7 +997,7 @@
 <script>
   (function () {
     function rsInjectJdgmStars() {
-      var container = document.getElementById('rs-jdgm-stars-list');
+      var container = document.getElementById('rs-jdgm-stars-{{ section.id }}');
       if (!container) return;
 
       // Judge.me ke rendered widget se data uthao
