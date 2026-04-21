@@ -18,459 +18,458 @@
 {% endcomment %}
 
 <style>
-
-/* ── COUPON BANNER ─────────────────────────────────────────── */
-.rs-coupon-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  background-color: var(--coupon-bg, #fdf8ee);
-  border: 1.5px dashed var(--coupon-border, #c8a94a);
-}
-.rs-coupon-banner__left {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 3px;
-  flex: 1;
-  min-width: 0;
-}
-.rs-coupon-banner__row1 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .92rem;
-  color: #333;
-}
-.rs-coupon-banner__row1 svg {
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-  color: #555;
-}
-.rs-coupon-banner__row1 strong {
-  font-weight: 700;
-  color: #1a1a1a;
-  letter-spacing: .3px;
-}
-.rs-coupon-banner__row2 {
-  font-size: .8rem;
-  color: #777;
-  padding-left: 23px;
-}
-.rs-coupon-banner__copy-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  background: #1a1a1a;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: .8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: opacity .2s, transform .15s;
-  white-space: nowrap;
-}
-.rs-coupon-banner__copy-btn svg {
-  width: 13px;
-  height: 13px;
-}
-.rs-coupon-banner__copy-btn:hover {
-  opacity: .82;
-  transform: translateY(-1px);
-}
-.rs-coupon-banner__copy-btn.copied {
-  background: #0E3A23;
-}
-
-/* ── GUARANTEE BANNER ─────────────────────────────────────── */
-.rs-guarantee-banner {
-  margin-bottom: 16px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.rs-guarantee-banner img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-}
-
-/* ── CARE ICONS BLOCK ─────────────────────────────────────── */
-.rs-care-icons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 20px;
-  margin-top: 8px;
-}
-.rs-care-icon-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px 10px;
-  background: #f9f7f4;
-  border-radius: 12px;
-  border: 1px solid #ece5da;
-  text-align: center;
-}
-.rs-care-icon-box__icon {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.rs-care-icon-box__icon img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  display: block;
-}
-.rs-care-icon-box__icon svg {
-  width: 32px;
-  height: 32px;
-  color: #0E3A23;
-}
-.rs-care-icon-box__label {
-  font-size: .78rem;
-  font-weight: 600;
-  color: #2d2119;
-  line-height: 1.4;
-}
-
-/* discount banner style - legacy kept for compatibility */
-  .coupon-banner-{{ section.id }} {
-    display: block;
-    width: 100%;
-    max-width: 100%;
+  /* ── COUPON BANNER ─────────────────────────────────────────── */
+  .rs-coupon-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    background-color: var(--coupon-bg, #fdf8ee);
+    border: 1.5px dashed var(--coupon-border, #c8a94a);
+  }
+  .rs-coupon-banner__left {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+  }
+  .rs-coupon-banner__row1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .92rem;
+    color: #333;
+  }
+  .rs-coupon-banner__row1 svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    color: #555;
+  }
+  .rs-coupon-banner__row1 strong {
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: .3px;
+  }
+  .rs-coupon-banner__row2 {
+    font-size: .8rem;
+    color: #777;
+    padding-left: 23px;
+  }
+  .rs-coupon-banner__copy-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: .8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity .2s, transform .15s;
+    white-space: nowrap;
+  }
+  .rs-coupon-banner__copy-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+  .rs-coupon-banner__copy-btn:hover {
+    opacity: .82;
+    transform: translateY(-1px);
+  }
+  .rs-coupon-banner__copy-btn.copied {
+    background: #0E3A23;
   }
 
-.rs-product {
-  padding: 20px 40px 60px;
-}
-.rs-product__inner { max-width: 1425px; margin: 0 auto; }
+  /* ── GUARANTEE BANNER ─────────────────────────────────────── */
+  .rs-guarantee-banner {
+    margin-bottom: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .rs-guarantee-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
 
-/* BREADCRUMB */
-.rs-product__bread { font-size: 18px; color:#000; margin-bottom:24px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
-.rs-product__bread a { color:#000; text-decoration:none; }
-.rs-product__bread a:hover { color:#0E3A23; }
-.rs-product__bread span { color:#aaa; }
-
-/* GRID */
-.rs-product__grid { display:grid; grid-template-columns:1fr 500px; gap:52px; align-items:start; }
-
-/* GALLERY */
-.rs-gallery { position:relative;     display: flex;
-    flex-direction: row-reverse; gap: 20px; }
-
-.rs-gallery__main-wrap {
-  position:relative; border-radius:16px; overflow:hidden;
-  background:#fff; aspect-ratio:1/1; margin-bottom:14px;
-  box-shadow:0 2px 16px rgba(0,0,0,.08); cursor:crosshair;
-}
-.rs-gallery__main-img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity .25s; }
-.rs-gallery__main-video {
-  width:100%; height:100%; object-fit:cover; display:none;
-  border-radius:16px;
-}
-.rs-gallery__main-video.active { display:block; }
-.rs-gallery__main-img.hidden { display:none; }
-
-.rs-gallery__zoom {
-  position:absolute; top:12px; left:12px; width:34px; height:34px;
-  background:rgba(255,255,255,.88); border-radius:6px; border:none;
-  cursor:pointer; display:flex; align-items:center; justify-content:center;
-  box-shadow:0 2px 6px rgba(0,0,0,.12); z-index:2;
-}
-.rs-gallery__zoom svg { width:18px; height:18px; }
-.rs-gallery__thumbs-wrap { position:relative;      position: relative;
+  /* ── CARE ICONS BLOCK ─────────────────────────────────────── */
+  .rs-care-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+    margin-top: 8px;
+  }
+  .rs-care-icon-box {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center; }
-.rs-gallery__thumbs {
-  display:flex; gap:10px; overflow-x:auto; flex:1; flex-direction: column;
-  scroll-behavior:smooth; scrollbar-width:none; -ms-overflow-style:none; padding:4px 2px;
-}
-.rs-gallery__thumbs::-webkit-scrollbar { display:none; }
-.rs-gallery__thumb {
-  flex:0 0 90px; height:90px;
-    aspect-ratio: 1 / 1;
-     border-radius:10px; overflow:hidden;
-  cursor:pointer; border:2px solid transparent; background:#fff;
-  transition:border-color .2s; box-shadow:0 1px 6px rgba(0,0,0,.08);
-  position:relative;
-}
-.rs-gallery__thumb img { width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
-.rs-gallery__thumb.active { border-color:#0E3A23; }
-.rs-gallery__thumb:hover { border-color:#81c784; }
-
-/* Video thumb play icon */
-.rs-gallery__thumb--video::after {
-  content:'▶';
-  position:absolute; inset:0; display:flex; align-items:center;
-  justify-content:center; font-size:22px; color:#fff;
-  background:rgba(0,0,0,.35); border-radius:8px;
-  display:flex;
-}
-
-.rs-gallery__arrow {
-  width:30px; height:30px; background:#fff; border:none; border-radius:50%;
-  box-shadow:0 2px 8px rgba(0,0,0,.15); cursor:pointer; display:flex;
-  align-items:center; justify-content:center; flex-shrink:0;
-  font-size:30px; font-weight:bold; color:#444; transition:background .2s; line-height:1;     rotate: 90deg;
-}
-.rs-gallery__arrow:hover { background:#0E3A23; color:#fff; }
-.rs-gallery__arrow.prev { margin-right:8px; }
-.rs-gallery__arrow.next { margin-left:8px; }
-
-/* Hover Zoom Lens */
-.rs-zoom-lens {
-  display:none; position:absolute; width:120px; height:120px;
-  border:2px solid #0E3A23; background:rgba(26,92,42,.12);
-  border-radius:4px; pointer-events:none; z-index:3;
-}
-.rs-gallery__main-wrap:hover .rs-zoom-lens { display:block; }
-
-/* Zoom Result Panel */
-.rs-zoom-result {
-  display:none; position:absolute; left:calc(100% + 16px); top:0;
-  width:420px; height:420px; border:1.5px solid #e0d8cc; border-radius:14px;
-  overflow:hidden; background:#fff; box-shadow:0 8px 32px rgba(0,0,0,.18);
-  z-index:100; pointer-events:none;
-}
-@media (max-width:1100px) {
-  .rs-zoom-result { left:0; top:calc(100% + 12px); width:100%; height:320px; }
-}
-.rs-zoom-result img { position:absolute; max-width:none; width:auto; height:auto; pointer-events:none; }
-
-/* INFO */
-.rs-info__title { font-size:40px; color:#0e3a23; margin-bottom:10px; line-height:1.2; }
-.rs-info__price { font-size:24px; font-weight:700; color:#1a1a1a; margin-bottom:6px; margin-top: 0px; }
-.rs-info__weight { font-size:.88rem; color:#777; margin-bottom:14px; }
-.rs-info__reviews { display:flex; align-items:center; gap:8px;  }
-.rs-stars { color:#f5a623; font-size:1rem; letter-spacing:1px; }
-.rs-info__review-count { font-size:.88rem; color:#0E3A23; font-weight:600; text-decoration:underline; cursor:pointer; }
-
-/* VARIANT SELECTOR */
-.rs-variants { margin-bottom:20px; }
-.rs-variants__label { font-size:.82rem; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
-.rs-variants__label span { color:#2d2119; font-weight:600; text-transform:none; letter-spacing:0; margin-left:4px; }
-
-/* Dropdown style */
-.rs-variants__select {
-  width:100%; padding:10px 14px; border:1.5px solid #d4c9b8;
-  border-radius:10px; font-size:.95rem; color:#2d2119;
-  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
-  appearance:none; cursor:pointer; outline:none; transition:border-color .2s;
-}
-.rs-variants__select:focus { border-color:#0E3A23; }
-
-/* Swatch style */
-.rs-variants__swatches { display:flex; flex-wrap:wrap; gap:10px; }
-.rs-swatch {
-  padding:8px 18px; border-radius:8px; border:1.5px solid #d4c9b8;
-  font-size:.88rem; font-weight:600; color:#2d2119; cursor:pointer;
-  background:#fff; transition:all .2s; white-space:nowrap; font-family: 'Poppins';
-}
-.rs-swatch:hover { border-color:#0E3A23; color:#0E3A23; }
-.rs-swatch.active { border-color:#0E3A23; background:#0E3A23; color:#fff; }
-.rs-swatch.sold-out { opacity:.45; text-decoration:line-through; cursor:not-allowed; pointer-events:none; }
-
-/* QUANTITY + CART */
-.rs-purchase { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
-.rs-qty-row { display:flex; align-items:center; gap:12px; }
-.rs-qty__label { font-size:.82rem; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.05em; }
-.rs-qty__wrap { display:flex; align-items:center; border:1.5px solid #d4c9b8; border-radius:10px; overflow:hidden; background:#fff; }
-.rs-qty__btn {
-  width:40px; height:42px; border:none; background:none; font-size:1.3rem;
-  color:#2d2119; cursor:pointer; display:flex; align-items:center;
-  justify-content:center; transition:background .15s;
-}
-.rs-qty__btn:hover { background:#f0ebe3; }
-.rs-qty__input {
-  width:50px; height:42px; border:none; text-align:center;
-  font-size:1rem; font-weight:700; color:#2d2119; outline:none;
-  background:none; -moz-appearance:textfield;
-}
-.rs-qty__input::-webkit-outer-spin-button,
-.rs-qty__input::-webkit-inner-spin-button { -webkit-appearance:none; }
-
-.rs-cart-row { display:flex; gap:12px; flex-wrap:wrap; }
-.rs-btn-atc {
-  flex:1; min-width:160px; padding:13px 20px; border:none; border-radius:12px;
-  background:#0E3A23; color:#fff; font-size:1rem; font-weight:700;
-  cursor:pointer; transition:background .2s, transform .15s; letter-spacing:.01em;
-}
-.rs-btn-atc:hover { background:#155122; transform:translateY(-1px); }
-.rs-btn-atc:disabled { background:#aaa; cursor:not-allowed; transform:none; }
-.rs-btn-buynow {
-  flex:1; min-width:160px; padding:13px 20px; border:2px solid #0E3A23;
-  border-radius:12px; background:#fff; color:#0E3A23; font-size:1rem;
-  font-weight:700; cursor:pointer; transition:all .2s; letter-spacing:.01em;
-}
-.rs-btn-buynow:hover { background:#0E3A23; color:#fff; transform:translateY(-1px); }
-.rs-btn-buynow:disabled { opacity:.5; cursor:not-allowed; transform:none; }
-
-/* WISHLIST BUTTON */
-.rs-btn-wishlist {
-  display:none; align-items:center; justify-content:center; gap:8px;
-  padding:13px 20px; border:2px solid #e0d8d0; border-radius:12px;
-  background:#fff; color:#555; font-size:1rem; font-weight:600;
-  cursor:pointer; transition:all .2s; white-space:nowrap;
-}
-.rs-btn-wishlist svg { width:20px; height:20px; flex-shrink:0; transition:fill .2s, stroke .2s; }
-.rs-btn-wishlist:hover { border-color:#e53e3e; color:#e53e3e; }
-.rs-btn-wishlist.wishlisted { border-color:#e53e3e; color:#e53e3e; background:#fff5f5; }
-.rs-btn-wishlist.wishlisted svg { fill:#e53e3e; stroke:#e53e3e; }
-
-/* Cart feedback */
-.rs-cart-msg {
-  font-size:.85rem; font-weight:600; padding:8px 14px; border-radius:8px;
-  display:none; text-align:center;
-}
-.rs-cart-msg.success { display:block; background:#e8f5e9; color:#0E3A23; }
-.rs-cart-msg.error   { display:block; background:#fce4e4; color:#c62828; }
-
-/* PINCODE */
-.rs-info__pincode { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:.88rem; }
-.rs-info__pincode svg { width:16px; height:16px; flex-shrink:0; }
-.rs-info__pincode-link { color:#0E3A23; font-weight:600; text-decoration:underline; cursor:pointer; background:none; border:none; font-size:.88rem; }
-.rs-info__pincode-input-wrap { display:none; align-items:center; gap:8px; margin-bottom:6px; }
-.rs-info__pincode-input-wrap.show { display:flex; }
-.rs-info__pincode-input { padding:8px 12px; border:1.5px solid #ccc; border-radius:8px; font-size:.88rem; width:140px; outline:none; }
-.rs-info__pincode-input:focus { border-color:#0E3A23; }
-.rs-info__pincode-check-btn { padding:8px 16px; background:#0E3A23; color:#fff; border:none; border-radius:8px; font-size:.82rem; font-weight:700; cursor:pointer; }
-.rs-info__pincode-msg { font-size:.82rem; color:#0E3A23; margin-bottom:6px; }
-
-/* CUSTOM TEXT FIELDS */
-.rs-custom-fields { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
-.rs-custom-field { display:flex; flex-direction:column; gap:4px; }
-.rs-custom-field__label { font-size:.78rem; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.05em; }
-.rs-custom-field__value { font-size:.92rem; color:#333; line-height:1.6; padding:9px 13px; background:#fff; border-radius:8px; border:1px solid #e8e0d4; }
-.rs-custom-field__multiline { font-size:.92rem; color:#333; line-height:1.7; padding:10px 13px; background:#fff; border-radius:8px; border:1px solid #e8e0d4; white-space:pre-line; }
-.rs-custom-field__richtext { font-size:.92rem; color:#333; line-height:1.7; padding:10px 13px; border-radius:8px; }
-.rs-custom-field__richtext p { margin-bottom:6px; }
-.rs-custom-field__richtext p:last-child { margin-bottom:0; }
-.rs-custom-field__richtext strong { color:#1a1a1a; }
-.rs-custom-field__richtext a { color:#0E3A23; }
-
-/* DESCRIPTION */
-.rs-info__desc { margin-bottom:24px; font-size:20px; margin-top:20px; line-height:1.5; color:#2d2119; }
-
-/* RETAILER BOXES */
-.rs-retailers { display:flex; gap:28px; margin-top:8px; flex-wrap:wrap; }
-.rs-retailer-box {
-  display:block; border-radius:10px; overflow:hidden; text-decoration:none;
-  background:#2b211a; transition:transform .2s, box-shadow .2s;
-  max-width:90px; position:relative;
-}
-.rs-retailer-box:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.18); }
-.rs-retailer-box img { width:100%; height:100%; object-fit:contain; display:block; }
-
-/* ZOOM LIGHTBOX */
-.rs-zoom-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:9999; align-items:center; justify-content:center; padding:20px; }
-.rs-zoom-overlay.open { display:flex; }
-.rs-zoom-overlay img { max-width:90vw; max-height:90vh; border-radius:12px; object-fit:contain; }
-.rs-zoom-close { position:absolute; top:20px; right:20px; background:#fff; border:none; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer; font-weight:bold; }
-
-/* RESPONSIVE */
-@media (max-width:860px) {
-  .rs-gallery__arrow { rotate: none; }
-  .rs-gallery__thumbs {     flex-direction: row; }
-  .rs-gallery {     flex-direction: column; }
-  .rs-gallery__thumbs-wrap { max-width:300px; flex-direction: row; }
-  .rs-product { padding:16px 20px 40px; }
-  .rs-product__grid { grid-template-columns:1fr; gap:28px; }
-  .rs-gallery__main-wrap { max-width:480px; }
-  .rs-retailers { gap:8px; }
-  .rs-info__desc { font-size:14px; margin: 20px; }
-  .rs-info__title { font-size:22px; }
-  .rs-info__price { font-size:18px; }
-  .rs-cart-row { flex-direction:column; }
-  .rs-btn-atc, .rs-btn-buynow, .rs-btn-wishlist { width:100%; }
-  .rs-care-icons { grid-template-columns: repeat(3,1fr); gap:8px; }
-  .rs-care-icon-box { padding:12px 6px; }
-  .rs-care-icon-box__label { font-size:.72rem; }
-}
-@media (max-width:480px) {
-  .rs-product { padding:12px 14px 32px; }
-  .rs-info__title { font-size:1.4rem; }
-  .rs-gallery__thumb { flex:0 0 64px; height:64px; }
-}
-
-
-/* ── SIZE IMAGE SWATCHES ───────────────────────────────────── */
-.rs-size-swatches {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-.rs-size-card {
-  border: 1.5px solid #d4c9b8;
-  border-radius: 12px;
-  padding: 10px 8px 12px;
-  cursor: pointer;
-  transition: border-color .2s, background .2s;
-  background: #fff;
-  text-align: center;
-  position: relative;
-  font-family: inherit;
-  overflow: hidden;
-}
-.rs-size-card:hover { border-color: #81c784; }
-.rs-size-card.active { border: 2px solid #0E3A23; background: #f6faf7; }
-.rs-size-card.sold-out { opacity: .45; cursor: not-allowed; pointer-events: none; }
-.rs-size-card__check {
-  display: none;
-  position: absolute; top: 7px; left: 7px;
-  width: 18px; height: 18px;
-  background: #0E3A23; border-radius: 50%;
-  align-items: center; justify-content: center;
-}
-.rs-size-card__check svg { width: 10px; height: 10px; }
-.rs-size-card.active .rs-size-card__check { display: flex; }
-.rs-size-card__soldout {
-  position: absolute; top: 6px; right: 6px;
-  font-size: 9px; font-weight: 600;
-  background: #fee2e2; color: #991b1b;
-  padding: 2px 6px; border-radius: 4px;
-}
-.rs-size-card__img-wrap {
-  width: 100%; aspect-ratio: 1/1;
-  display: flex; align-items: flex-end; justify-content: center;
-  background: #f4f8f5; border-radius: 8px;
-  padding: 6px; margin-bottom: 8px; overflow: hidden;
-}
-.rs-size-card__img-wrap img { object-fit: contain; display: block; transition: transform .2s; }
-.rs-size-card:hover .rs-size-card__img-wrap img { transform: scale(1.06); }
-.rs-size-card__name { font-size: 10px;
+    gap: 8px;
+    padding: 16px 10px;
+    background: #f9f7f4;
+    border-radius: 12px;
+    border: 1px solid #ece5da;
+    text-align: center;
+  }
+  .rs-care-icon-box__icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rs-care-icon-box__icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    display: block;
+  }
+  .rs-care-icon-box__icon svg {
+    width: 32px;
+    height: 32px;
+    color: #0E3A23;
+  }
+  .rs-care-icon-box__label {
+    font-size: .78rem;
     font-weight: 600;
-    color: #fff;
-    padding: 2px 4px;
-    margin-bottom: 3px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: #19442e;
-    border-radius: 0px 6px 0px 6px; }
-.rs-size-card__price { font-size: 13px; font-weight: 700; color: #0E3A23; }
-.rs-size-card__compare { font-size: 11px; color: #aaa; text-decoration: line-through; margin-right: 3px; font-weight: 400; }
-@media (max-width: 480px) {
-  .rs-size-swatches { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-}
+    color: #2d2119;
+    line-height: 1.4;
+  }
+
+  /* discount banner style - legacy kept for compatibility */
+    .coupon-banner-{{ section.id }} {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+  .rs-product {
+    padding: 20px 40px 60px;
+  }
+  .rs-product__inner { max-width: 1425px; margin: 0 auto; }
+
+  /* BREADCRUMB */
+  .rs-product__bread { font-size: 18px; color:#000; margin-bottom:24px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .rs-product__bread a { color:#000; text-decoration:none; }
+  .rs-product__bread a:hover { color:#0E3A23; }
+  .rs-product__bread span { color:#aaa; }
+
+  /* GRID */
+  .rs-product__grid { display:grid; grid-template-columns:1fr 500px; gap:52px; align-items:start; }
+
+  /* GALLERY */
+  .rs-gallery { position:relative;     display: flex;
+      flex-direction: row-reverse; gap: 20px; }
+
+  .rs-gallery__main-wrap {
+    position:relative; border-radius:16px; overflow:hidden;
+    background:#fff; aspect-ratio:1/1; margin-bottom:14px;
+    box-shadow:0 2px 16px rgba(0,0,0,.08); cursor:crosshair;
+  }
+  .rs-gallery__main-img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity .25s; }
+  .rs-gallery__main-video {
+    width:100%; height:100%; object-fit:cover; display:none;
+    border-radius:16px;
+  }
+  .rs-gallery__main-video.active { display:block; }
+  .rs-gallery__main-img.hidden { display:none; }
+
+  .rs-gallery__zoom {
+    position:absolute; top:12px; left:12px; width:34px; height:34px;
+    background:rgba(255,255,255,.88); border-radius:6px; border:none;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 2px 6px rgba(0,0,0,.12); z-index:2;
+  }
+  .rs-gallery__zoom svg { width:18px; height:18px; }
+  .rs-gallery__thumbs-wrap { position:relative;      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+  .rs-gallery__thumbs {
+    display:flex; gap:10px; overflow-x:auto; flex:1; flex-direction: column;
+    scroll-behavior:smooth; scrollbar-width:none; -ms-overflow-style:none; padding:4px 2px;
+  }
+  .rs-gallery__thumbs::-webkit-scrollbar { display:none; }
+  .rs-gallery__thumb {
+    flex:0 0 90px; height:90px;
+      aspect-ratio: 1 / 1;
+       border-radius:10px; overflow:hidden;
+    cursor:pointer; border:2px solid transparent; background:#fff;
+    transition:border-color .2s; box-shadow:0 1px 6px rgba(0,0,0,.08);
+    position:relative;
+  }
+  .rs-gallery__thumb img { width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
+  .rs-gallery__thumb.active { border-color:#0E3A23; }
+  .rs-gallery__thumb:hover { border-color:#81c784; }
+
+  /* Video thumb play icon */
+  .rs-gallery__thumb--video::after {
+    content:'▶';
+    position:absolute; inset:0; display:flex; align-items:center;
+    justify-content:center; font-size:22px; color:#fff;
+    background:rgba(0,0,0,.35); border-radius:8px;
+    display:flex;
+  }
+
+  .rs-gallery__arrow {
+    width:30px; height:30px; background:#fff; border:none; border-radius:50%;
+    box-shadow:0 2px 8px rgba(0,0,0,.15); cursor:pointer; display:flex;
+    align-items:center; justify-content:center; flex-shrink:0;
+    font-size:30px; font-weight:bold; color:#444; transition:background .2s; line-height:1;     rotate: 90deg;
+  }
+  .rs-gallery__arrow:hover { background:#0E3A23; color:#fff; }
+  .rs-gallery__arrow.prev { margin-right:8px; }
+  .rs-gallery__arrow.next { margin-left:8px; }
+
+  /* Hover Zoom Lens */
+  .rs-zoom-lens {
+    display:none; position:absolute; width:120px; height:120px;
+    border:2px solid #0E3A23; background:rgba(26,92,42,.12);
+    border-radius:4px; pointer-events:none; z-index:3;
+  }
+  .rs-gallery__main-wrap:hover .rs-zoom-lens { display:block; }
+
+  /* Zoom Result Panel */
+  .rs-zoom-result {
+    display:none; position:absolute; left:calc(100% + 16px); top:0;
+    width:420px; height:420px; border:1.5px solid #e0d8cc; border-radius:14px;
+    overflow:hidden; background:#fff; box-shadow:0 8px 32px rgba(0,0,0,.18);
+    z-index:100; pointer-events:none;
+  }
+  @media (max-width:1100px) {
+    .rs-zoom-result { left:0; top:calc(100% + 12px); width:100%; height:320px; }
+  }
+  .rs-zoom-result img { position:absolute; max-width:none; width:auto; height:auto; pointer-events:none; }
+
+  /* INFO */
+  .rs-info__title { font-size:40px; color:#0e3a23; margin-bottom:10px; line-height:1.2; }
+  .rs-info__price { font-size:24px; font-weight:700; color:#1a1a1a; margin-bottom:6px; margin-top: 0px; }
+  .rs-info__weight { font-size:.88rem; color:#777; margin-bottom:14px; }
+  .rs-info__reviews { display:flex; align-items:center; gap:8px;  }
+  .rs-stars { color:#f5a623; font-size:1rem; letter-spacing:1px; }
+  .rs-info__review-count { font-size:.88rem; color:#0E3A23; font-weight:600; text-decoration:underline; cursor:pointer; }
+
+  /* VARIANT SELECTOR */
+  .rs-variants { margin-bottom:20px; }
+  .rs-variants__label { font-size:.82rem; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+  .rs-variants__label span { color:#2d2119; font-weight:600; text-transform:none; letter-spacing:0; margin-left:4px; }
+
+  /* Dropdown style */
+  .rs-variants__select {
+    width:100%; padding:10px 14px; border:1.5px solid #d4c9b8;
+    border-radius:10px; font-size:.95rem; color:#2d2119;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;
+    appearance:none; cursor:pointer; outline:none; transition:border-color .2s;
+  }
+  .rs-variants__select:focus { border-color:#0E3A23; }
+
+  /* Swatch style */
+  .rs-variants__swatches { display:flex; flex-wrap:wrap; gap:10px; }
+  .rs-swatch {
+    padding:8px 18px; border-radius:8px; border:1.5px solid #d4c9b8;
+    font-size:.88rem; font-weight:600; color:#2d2119; cursor:pointer;
+    background:#fff; transition:all .2s; white-space:nowrap; font-family: 'Poppins';
+  }
+  .rs-swatch:hover { border-color:#0E3A23; color:#0E3A23; }
+  .rs-swatch.active { border-color:#0E3A23; background:#0E3A23; color:#fff; }
+  .rs-swatch.sold-out { opacity:.45; text-decoration:line-through; cursor:not-allowed; pointer-events:none; }
+
+  /* QUANTITY + CART */
+  .rs-purchase { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+  .rs-qty-row { display:flex; align-items:center; gap:12px; }
+  .rs-qty__label { font-size:.82rem; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.05em; }
+  .rs-qty__wrap { display:flex; align-items:center; border:1.5px solid #d4c9b8; border-radius:10px; overflow:hidden; background:#fff; }
+  .rs-qty__btn {
+    width:40px; height:42px; border:none; background:none; font-size:1.3rem;
+    color:#2d2119; cursor:pointer; display:flex; align-items:center;
+    justify-content:center; transition:background .15s;
+  }
+  .rs-qty__btn:hover { background:#f0ebe3; }
+  .rs-qty__input {
+    width:50px; height:42px; border:none; text-align:center;
+    font-size:1rem; font-weight:700; color:#2d2119; outline:none;
+    background:none; -moz-appearance:textfield;
+  }
+  .rs-qty__input::-webkit-outer-spin-button,
+  .rs-qty__input::-webkit-inner-spin-button { -webkit-appearance:none; }
+
+  .rs-cart-row { display:flex; gap:12px; flex-wrap:wrap; }
+  .rs-btn-atc {
+    flex:1; min-width:160px; padding:13px 20px; border:none; border-radius:12px;
+    background:#0E3A23; color:#fff; font-size:1rem; font-weight:700;
+    cursor:pointer; transition:background .2s, transform .15s; letter-spacing:.01em;
+  }
+  .rs-btn-atc:hover { background:#155122; transform:translateY(-1px); }
+  .rs-btn-atc:disabled { background:#aaa; cursor:not-allowed; transform:none; }
+  .rs-btn-buynow {
+    flex:1; min-width:160px; padding:13px 20px; border:2px solid #0E3A23;
+    border-radius:12px; background:#fff; color:#0E3A23; font-size:1rem;
+    font-weight:700; cursor:pointer; transition:all .2s; letter-spacing:.01em;
+  }
+  .rs-btn-buynow:hover { background:#0E3A23; color:#fff; transform:translateY(-1px); }
+  .rs-btn-buynow:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+  /* WISHLIST BUTTON */
+  .rs-btn-wishlist {
+    display:none; align-items:center; justify-content:center; gap:8px;
+    padding:13px 20px; border:2px solid #e0d8d0; border-radius:12px;
+    background:#fff; color:#555; font-size:1rem; font-weight:600;
+    cursor:pointer; transition:all .2s; white-space:nowrap;
+  }
+  .rs-btn-wishlist svg { width:20px; height:20px; flex-shrink:0; transition:fill .2s, stroke .2s; }
+  .rs-btn-wishlist:hover { border-color:#e53e3e; color:#e53e3e; }
+  .rs-btn-wishlist.wishlisted { border-color:#e53e3e; color:#e53e3e; background:#fff5f5; }
+  .rs-btn-wishlist.wishlisted svg { fill:#e53e3e; stroke:#e53e3e; }
+
+  /* Cart feedback */
+  .rs-cart-msg {
+    font-size:.85rem; font-weight:600; padding:8px 14px; border-radius:8px;
+    display:none; text-align:center;
+  }
+  .rs-cart-msg.success { display:block; background:#e8f5e9; color:#0E3A23; }
+  .rs-cart-msg.error   { display:block; background:#fce4e4; color:#c62828; }
+
+  /* PINCODE */
+  .rs-info__pincode { display:flex; align-items:center; gap:8px; margin-bottom:8px; font-size:.88rem; }
+  .rs-info__pincode svg { width:16px; height:16px; flex-shrink:0; }
+  .rs-info__pincode-link { color:#0E3A23; font-weight:600; text-decoration:underline; cursor:pointer; background:none; border:none; font-size:.88rem; }
+  .rs-info__pincode-input-wrap { display:none; align-items:center; gap:8px; margin-bottom:6px; }
+  .rs-info__pincode-input-wrap.show { display:flex; }
+  .rs-info__pincode-input { padding:8px 12px; border:1.5px solid #ccc; border-radius:8px; font-size:.88rem; width:140px; outline:none; }
+  .rs-info__pincode-input:focus { border-color:#0E3A23; }
+  .rs-info__pincode-check-btn { padding:8px 16px; background:#0E3A23; color:#fff; border:none; border-radius:8px; font-size:.82rem; font-weight:700; cursor:pointer; }
+  .rs-info__pincode-msg { font-size:.82rem; color:#0E3A23; margin-bottom:6px; }
+
+  /* CUSTOM TEXT FIELDS */
+  .rs-custom-fields { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+  .rs-custom-field { display:flex; flex-direction:column; gap:4px; }
+  .rs-custom-field__label { font-size:.78rem; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:.05em; }
+  .rs-custom-field__value { font-size:.92rem; color:#333; line-height:1.6; padding:9px 13px; background:#fff; border-radius:8px; border:1px solid #e8e0d4; }
+  .rs-custom-field__multiline { font-size:.92rem; color:#333; line-height:1.7; padding:10px 13px; background:#fff; border-radius:8px; border:1px solid #e8e0d4; white-space:pre-line; }
+  .rs-custom-field__richtext { font-size:.92rem; color:#333; line-height:1.7; padding:10px 13px; border-radius:8px; }
+  .rs-custom-field__richtext p { margin-bottom:6px; }
+  .rs-custom-field__richtext p:last-child { margin-bottom:0; }
+  .rs-custom-field__richtext strong { color:#1a1a1a; }
+  .rs-custom-field__richtext a { color:#0E3A23; }
+
+  /* DESCRIPTION */
+  .rs-info__desc { margin-bottom:24px; font-size:20px; margin-top:20px; line-height:1.5; color:#2d2119; }
+
+  /* RETAILER BOXES */
+  .rs-retailers { display:flex; gap:28px; margin-top:8px; flex-wrap:wrap; }
+  .rs-retailer-box {
+    display:block; border-radius:10px; overflow:hidden; text-decoration:none;
+    background:#2b211a; transition:transform .2s, box-shadow .2s;
+    max-width:90px; position:relative;
+  }
+  .rs-retailer-box:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(0,0,0,.18); }
+  .rs-retailer-box img { width:100%; height:100%; object-fit:contain; display:block; }
+
+  /* ZOOM LIGHTBOX */
+  .rs-zoom-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85); z-index:9999; align-items:center; justify-content:center; padding:20px; }
+  .rs-zoom-overlay.open { display:flex; }
+  .rs-zoom-overlay img { max-width:90vw; max-height:90vh; border-radius:12px; object-fit:contain; }
+  .rs-zoom-close { position:absolute; top:20px; right:20px; background:#fff; border:none; border-radius:50%; width:38px; height:38px; font-size:1.2rem; cursor:pointer; font-weight:bold; }
+
+  /* RESPONSIVE */
+  @media (max-width:860px) {
+    .rs-gallery__arrow { rotate: none; }
+    .rs-gallery__thumbs {     flex-direction: row; }
+    .rs-gallery {     flex-direction: column; }
+    .rs-gallery__thumbs-wrap { max-width:300px; flex-direction: row; }
+    .rs-product { padding:16px 20px 40px; }
+    .rs-product__grid { grid-template-columns:1fr; gap:28px; }
+    .rs-gallery__main-wrap { max-width:480px; }
+    .rs-retailers { gap:8px; }
+    .rs-info__desc { font-size:14px; margin: 20px; }
+    .rs-info__title { font-size:22px; }
+    .rs-info__price { font-size:18px; }
+    .rs-cart-row { flex-direction:column; }
+    .rs-btn-atc, .rs-btn-buynow, .rs-btn-wishlist { width:100%; }
+    .rs-care-icons { grid-template-columns: repeat(3,1fr); gap:8px; }
+    .rs-care-icon-box { padding:12px 6px; }
+    .rs-care-icon-box__label { font-size:.72rem; }
+  }
+  @media (max-width:480px) {
+    .rs-product { padding:12px 14px 32px; }
+    .rs-info__title { font-size:1.4rem; }
+    .rs-gallery__thumb { flex:0 0 64px; height:64px; }
+  }
+
+
+  /* ── SIZE IMAGE SWATCHES ───────────────────────────────────── */
+  .rs-size-swatches {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .rs-size-card {
+    border: 1.5px solid #d4c9b8;
+    border-radius: 12px;
+    padding: 10px 8px 12px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    background: #fff;
+    text-align: center;
+    position: relative;
+    font-family: inherit;
+    overflow: hidden;
+  }
+  .rs-size-card:hover { border-color: #81c784; }
+  .rs-size-card.active { border: 2px solid #0E3A23; background: #f6faf7; }
+  .rs-size-card.sold-out { opacity: .45; cursor: not-allowed; pointer-events: none; }
+  .rs-size-card__check {
+    display: none;
+    position: absolute; top: 7px; left: 7px;
+    width: 18px; height: 18px;
+    background: #0E3A23; border-radius: 50%;
+    align-items: center; justify-content: center;
+  }
+  .rs-size-card__check svg { width: 10px; height: 10px; }
+  .rs-size-card.active .rs-size-card__check { display: flex; }
+  .rs-size-card__soldout {
+    position: absolute; top: 6px; right: 6px;
+    font-size: 9px; font-weight: 600;
+    background: #fee2e2; color: #991b1b;
+    padding: 2px 6px; border-radius: 4px;
+  }
+  .rs-size-card__img-wrap {
+    width: 100%; aspect-ratio: 1/1;
+    display: flex; align-items: flex-end; justify-content: center;
+    background: #f4f8f5; border-radius: 8px;
+    padding: 6px; margin-bottom: 8px; overflow: hidden;
+  }
+  .rs-size-card__img-wrap img { object-fit: contain; display: block; transition: transform .2s; }
+  .rs-size-card:hover .rs-size-card__img-wrap img { transform: scale(1.06); }
+  .rs-size-card__name { font-size: 10px;
+      font-weight: 600;
+      color: #fff;
+      padding: 2px 4px;
+      margin-bottom: 3px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: #19442e;
+      border-radius: 0px 6px 0px 6px; }
+  .rs-size-card__price { font-size: 13px; font-weight: 700; color: #0E3A23; }
+  .rs-size-card__compare { font-size: 11px; color: #aaa; text-decoration: line-through; margin-right: 3px; font-weight: 400; }
+  @media (max-width: 480px) {
+    .rs-size-swatches { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  }
 </style>
 
 {%- assign product = product -%}
@@ -485,25 +484,29 @@
 
 <div class="rs-product" id="rs-product-{{ section.id }}">
   <div class="rs-product__inner">
-
     <nav class="rs-product__bread" aria-label="Breadcrumb">
       <a href="{{ routes.root_url }}">Home</a>
       <span>›</span>
-      {% if collection %}<a href="{{ collection.url }}">{{ collection.title }}</a><span>›</span>{% endif %}
+      {% if collection -%}
+        <a href="{{ collection.url }}">{{ collection.title }}</a><span>›</span>
+      {%- endif %}
       <span>{{ product.title }}</span>
     </nav>
 
     <div class="rs-product__grid">
-
-      <!-- ═══════════════════════════════════════════
-           GALLERY
-      ════════════════════════════════════════════ -->
+      <!--
+        ═══════════════════════════════════════════
+             GALLERY
+        ════════════════════════════════════════════
+      -->
       <div class="rs-gallery">
-        <div class="rs-gallery__main-wrap" id="rs-main-wrap-{{ section.id }}"
-             onmouseenter="rsHoverZoomEnter('{{ section.id }}')"
-             onmousemove="rsHoverZoomMove(event,'{{ section.id }}')"
-             onmouseleave="rsHoverZoomLeave('{{ section.id }}')">
-
+        <div
+          class="rs-gallery__main-wrap"
+          id="rs-main-wrap-{{ section.id }}"
+          onmouseenter="rsHoverZoomEnter('{{ section.id }}')"
+          onmousemove="rsHoverZoomMove(event,'{{ section.id }}')"
+          onmouseleave="rsHoverZoomLeave('{{ section.id }}')"
+        >
           <button class="rs-gallery__zoom" onclick="rsOpenZoom('{{ section.id }}')" aria-label="Zoom">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -529,7 +532,6 @@
             loop
             preload="metadata"
           ></video>
-
         </div>
 
         <div class="rs-zoom-result" id="rs-zoom-result-{{ section.id }}">
@@ -537,9 +539,14 @@
         </div>
 
         <div class="rs-gallery__thumbs-wrap">
-          <button class="rs-gallery__arrow prev" onclick="rsThumbScroll('{{ section.id }}',-1)" aria-label="Scroll left">&#8249;</button>
+          <button
+            class="rs-gallery__arrow prev"
+            onclick="rsThumbScroll('{{ section.id }}',-1)"
+            aria-label="Scroll left"
+          >
+            &#8249;
+          </button>
           <div class="rs-gallery__thumbs" id="rs-thumbs-{{ section.id }}">
-
             {%- assign first_thumb_set = false -%}
             {% for media in product.media %}
               {% if media.media_type == 'video' or media.media_type == 'external_video' %}
@@ -555,11 +562,16 @@
                   data-video-url="{{ video_url }}"
                   data-poster="{{ media.preview_image | image_url: width: 160 }}"
                   onclick="rsSetMedia('{{ section.id }}', this)"
-                  role="button" tabindex="0"
+                  role="button"
+                  tabindex="0"
                   aria-label="Play video {{ forloop.index }}"
                   onkeydown="if(event.key==='Enter'||event.key===' ')rsSetMedia('{{ section.id }}',this)"
                 >
-                  <img src="{{ media.preview_image | image_url: width: 160 }}" alt="Video {{ forloop.index }}" loading="lazy">
+                  <img
+                    src="{{ media.preview_image | image_url: width: 160 }}"
+                    alt="Video {{ forloop.index }}"
+                    loading="lazy"
+                  >
                 </div>
                 {%- assign first_thumb_set = true -%}
               {% endif %}
@@ -572,27 +584,38 @@
                   data-type="image"
                   data-full="{{ media | image_url: width: 800 }}"
                   onclick="rsSetMedia('{{ section.id }}', this)"
-                  role="button" tabindex="0"
+                  role="button"
+                  tabindex="0"
                   aria-label="View image {{ forloop.index }}"
                   onkeydown="if(event.key==='Enter'||event.key===' ')rsSetMedia('{{ section.id }}',this)"
                 >
-                  <img src="{{ media | image_url: width: 160 }}" alt="{{ product.title }} {{ forloop.index }}" loading="{% unless first_thumb_set %}eager{% else %}lazy{% endunless %}">
+                  <img
+                    src="{{ media | image_url: width: 160 }}"
+                    alt="{{ product.title }} {{ forloop.index }}"
+                    loading="{% unless first_thumb_set %}eager{% else %}lazy{% endunless %}"
+                  >
                 </div>
                 {%- assign first_thumb_set = true -%}
               {% endif %}
             {% endfor %}
-
           </div>
-          <button class="rs-gallery__arrow next" onclick="rsThumbScroll('{{ section.id }}',1)" aria-label="Scroll right">&#8250;</button>
+          <button
+            class="rs-gallery__arrow next"
+            onclick="rsThumbScroll('{{ section.id }}',1)"
+            aria-label="Scroll right"
+          >
+            &#8250;
+          </button>
         </div>
       </div>
       <!-- END GALLERY -->
 
-      <!-- ═══════════════════════════════════════════
-           INFO PANEL
-      ════════════════════════════════════════════ -->
+      <!--
+        ═══════════════════════════════════════════
+             INFO PANEL
+        ════════════════════════════════════════════
+      -->
       <div class="rs-info">
-
         <h1 class="rs-info__title">{{ product.title }}</h1>
 
         <h5 class="rs-info__price" id="rs-price-{{ section.id }}">
@@ -606,146 +629,165 @@
           {% if current_variant.weight > 0 %}Net Weight: {{ current_variant.weight | weight_with_unit }}{% endif %}
         </div>
 
-       <div class="rs-info__reviews">
-  <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
-  <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>  
-</div>
- {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
+        <div class="rs-info__reviews">
+          <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
+            <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>
+          </div>
+          {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
           {% if review_count > 0 %}
             <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
           {% endif %}
-</div>
+        </div>
 
         <!-- ══ DYNAMIC BLOCKS LOOP ══ -->
         {% for block in section.blocks %}
           {% case block.type %}
+              {%- comment -%} ── VARIANT SELECTOR BLOCK ── {%- endcomment -%}
+            {% when 'variant_selector' %}
+              {% unless product.has_only_default_variant %}
+                <div class="rs-variants" {{ block.shopify_attributes }}>
+                  {% for option in product.options_with_values %}
+                    <div class="rs-variants__option-group" data-option-index="{{ forloop.index0 }}">
+                      <div class="rs-variants__label">
+                        {{ option.name }}:
+                        <span id="rs-opt-val-{{ section.id }}-{{ forloop.index0 }}">{{ option.selected_value }}</span>
+                      </div>
 
-            {%- comment -%} ── VARIANT SELECTOR BLOCK ── {%- endcomment -%}
-           {% when 'variant_selector' %}
-  {% unless product.has_only_default_variant %}
-    <div class="rs-variants" {{ block.shopify_attributes }}>
-      {% for option in product.options_with_values %}
-        <div class="rs-variants__option-group" data-option-index="{{ forloop.index0 }}">
-          <div class="rs-variants__label">
-            {{ option.name }}:
-            <span id="rs-opt-val-{{ section.id }}-{{ forloop.index0 }}">{{ option.selected_value }}</span>
-          </div>
+                      {%- assign size_option = option.name | downcase -%}
+                      {%- if size_option == 'size' or size_option == 'plant size' -%}
+                        {{- '<!-- SIZE IMAGE SWATCHES -->' -}}
+                        {%- assign size_images = '' -%}
+                        {%- assign small_img = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/small.png?v=1776770645' -%}
+                        {%- assign medium_img = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/medium.png?v=1776770646' -%}
+                        {%- assign large_img = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/large.png?v=1776770646' -%}
+                        {%- assign xlarge_img = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/extra-large-plant.png?v=1776770646' -%}
 
-          {%- assign size_option = option.name | downcase -%}
-          {%- if size_option == 'size' or size_option == 'plant size' -%}
+                        <div class="rs-size-swatches">
+                          {% for value in option.values %}
+                            {%- assign is_available = false -%}
+                            {% for variant in product.variants %}
+                              {% if variant.available %}
+                                {%- assign opt_val = variant.options[forloop.parentloop.parentloop.index0] -%}
+                                {% if opt_val == value %}{%- assign is_available = true -%}{% endif %}
+                              {% endif %}
+                            {% endfor %}
 
-            {{- '<!-- SIZE IMAGE SWATCHES -->' -}}
-            {%- assign size_images = '' -%}
-            {%- assign small_img   = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/small.png?v=1776770645' -%}
-            {%- assign medium_img  = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/medium.png?v=1776770646' -%}
-            {%- assign large_img   = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/large.png?v=1776770646' -%}
-            {%- assign xlarge_img  = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/extra-large-plant.png?v=1776770646' -%}
+                            {%- assign val_lower = value | downcase -%}
+                            {%- if val_lower contains 'extra' or val_lower contains 'xl' -%}
+                              {%- assign thumb_img = xlarge_img -%}
+                              {%- assign thumb_h = '100px' -%}
+                            {%- elsif val_lower contains 'large' -%}
+                              {%- assign thumb_img = large_img -%}
+                              {%- assign thumb_h = '88px' -%}
+                            {%- elsif val_lower contains 'medium' or val_lower contains 'med' -%}
+                              {%- assign thumb_img = medium_img -%}
+                              {%- assign thumb_h = '76px' -%}
+                            {%- else -%}
+                              {%- assign thumb_img = small_img -%}
+                              {%- assign thumb_h = '64px' -%}
+                            {%- endif -%}
 
-            <div class="rs-size-swatches">
-              {% for value in option.values %}
-                {%- assign is_available = false -%}
-                {% for variant in product.variants %}
-                  {% if variant.available %}
-                    {%- assign opt_val = variant.options[forloop.parentloop.parentloop.index0] -%}
-                    {% if opt_val == value %}{%- assign is_available = true -%}{% endif %}
-                  {% endif %}
-                {% endfor %}
+                            {%- assign variant_price = '' -%}
+                            {%- assign variant_price = '' -%}
+                            {%- assign variant_compare = '' -%}
+                            {%- assign _opt_idx = forloop.parentloop.index0 -%}
+                            {% for v in product.variants %}
+                              {% if v.options[_opt_idx] == value %}
+                                {%- assign variant_price = v.price | money -%}
+                                {%- assign variant_compare = v.compare_at_price | money -%}
+                                {% break %}
+                              {% endif %}
+                            {% endfor %}
 
-                {%- assign val_lower = value | downcase -%}
-                {%- if val_lower contains 'extra' or val_lower contains 'xl' -%}
-                  {%- assign thumb_img = xlarge_img -%}
-                  {%- assign thumb_h = '100px' -%}
-                {%- elsif val_lower contains 'large' -%}
-                  {%- assign thumb_img = large_img -%}
-                  {%- assign thumb_h = '88px' -%}
-                {%- elsif val_lower contains 'medium' or val_lower contains 'med' -%}
-                  {%- assign thumb_img = medium_img -%}
-                  {%- assign thumb_h = '76px' -%}
-                {%- else -%}
-                  {%- assign thumb_img = small_img -%}
-                  {%- assign thumb_h = '64px' -%}
-                {%- endif -%}
+                            <div
+                              class="rs-size-card {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
+                              data-option-index="{{ forloop.parentloop.index0 }}"
+                              data-value="{{ value }}"
+                              onclick="rsSizeCardClick('{{ section.id }}', {{ forloop.parentloop.index0 }}, '{{ value }}')"
+                              role="button"
+                              tabindex="0"
+                              aria-label="{{ value }}{% unless is_available %} - Sold out{% endunless %}"
+                            >
+                              <div class="rs-size-card__check">
+                                <svg viewBox="0 0 10 8" fill="none">
+                                  <polyline points="1,4 4,7 9,1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </div>
+                              {% unless is_available %}
+                                <div class="rs-size-card__soldout">Sold Out</div>
+                              {% endunless %}
+                              <div class="rs-size-card__img-wrap">
+                                <img
+                                  src="{{ thumb_img }}"
+                                  alt="{{ value }}"
+                                  style="height:{{ thumb_h }};width:auto;"
+                                  loading="lazy"
+                                >
+                              </div>
+                              <div class="rs-size-card__name">{{ value }}</div>
+                              {% if variant_price != blank %}
+                                <div class="rs-size-card__price">
+                                  {% if variant_compare != '₹0.00' and variant_compare != variant_price %}
+                                    <span class="rs-size-card__compare">{{ variant_compare }}</span>
+                                  {% endif %}
+                                  {{ variant_price }}
+                                </div>
+                              {% endif %}
+                            </div>
+                          {% endfor %}
+                        </div>
 
-                {%- assign variant_price = '' -%}
-                {%- assign variant_price = '' -%}
-{%- assign variant_compare = '' -%}
-{%- assign _opt_idx = forloop.parentloop.index0 -%}
-{% for v in product.variants %}
-  {% if v.options[_opt_idx] == value %}
-    {%- assign variant_price   = v.price | money -%}
-    {%- assign variant_compare = v.compare_at_price | money -%}
-    {% break %}
-  {% endif %}
-{% endfor %}
-
-                <div
-                  class="rs-size-card {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
-                  data-option-index="{{ forloop.parentloop.index0 }}"
-                  data-value="{{ value }}"
-                  onclick="rsSizeCardClick('{{ section.id }}', {{ forloop.parentloop.index0 }}, '{{ value }}')"
-                  role="button" tabindex="0"
-                  aria-label="{{ value }}{% unless is_available %} - Sold out{% endunless %}"
-                >
-                  <div class="rs-size-card__check">
-                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  </div>
-                  {% unless is_available %}
-                    <div class="rs-size-card__soldout">Sold Out</div>
-                  {% endunless %}
-                  <div class="rs-size-card__img-wrap">
-                    <img src="{{ thumb_img }}" alt="{{ value }}" style="height:{{ thumb_h }};width:auto;" loading="lazy">
-                  </div>
-                  <div class="rs-size-card__name">{{ value }}</div>
-                  {% if variant_price != blank %}
-                    <div class="rs-size-card__price">
-                      {% if variant_compare != '₹0.00' and variant_compare != variant_price %}
-                        <span class="rs-size-card__compare">{{ variant_compare }}</span>
-                      {% endif %}
-                      {{ variant_price }}
+                      {%- else -%}
+                        {{- '<!-- REGULAR SWATCHES / DROPDOWN -->' -}}
+                        {% if block.settings.display_type == 'dropdown' %}
+                          <select
+                            class="rs-variants__select"
+                            data-option-index="{{ forloop.index0 }}"
+                            onchange="rsVariantSelectChange('{{ section.id }}', {{ forloop.index0 }}, this.value)"
+                          >
+                            {% for value in option.values %}
+                              <option
+                                value="{{ value }}"
+                                {% if value == option.selected_value %}
+                                  selected
+                                {% endif %}
+                              >
+                                {{ value }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        {% else %}
+                          <div class="rs-variants__swatches">
+                            {% for value in option.values %}
+                              {%- assign is_available = false -%}
+                              {% for variant in product.variants %}
+                                {% if variant.available %}
+                                  {% assign opt_val = variant.options[forloop.parentloop.parentloop.index0] %}
+                                  {% if opt_val == value %}{%- assign is_available = true -%}{% endif %}
+                                {% endif %}
+                              {% endfor %}
+                              <button
+                                class="rs-swatch {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
+                                data-option-index="{{ forloop.parentloop.index0 }}"
+                                data-value="{{ value }}"
+                                onclick="rsSwatchClick('{{ section.id }}', {{ forloop.parentloop.index0 }}, '{{ value }}')"
+                              >
+                                {{ value }}
+                              </button>
+                            {% endfor %}
+                          </div>
+                        {% endif %}
+                      {%- endif -%}
                     </div>
-                  {% endif %}
-                </div>
-              {% endfor %}
-            </div>
-
-          {%- else -%}
-            {{- '<!-- REGULAR SWATCHES / DROPDOWN -->' -}}
-            {% if block.settings.display_type == 'dropdown' %}
-              <select class="rs-variants__select" data-option-index="{{ forloop.index0 }}"
-                onchange="rsVariantSelectChange('{{ section.id }}', {{ forloop.index0 }}, this.value)">
-                {% for value in option.values %}
-                  <option value="{{ value }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
-                {% endfor %}
-              </select>
-            {% else %}
-              <div class="rs-variants__swatches">
-                {% for value in option.values %}
-                  {%- assign is_available = false -%}
-                  {% for variant in product.variants %}
-                    {% if variant.available %}
-                      {% assign opt_val = variant.options[forloop.parentloop.parentloop.index0] %}
-                      {% if opt_val == value %}{%- assign is_available = true -%}{% endif %}
-                    {% endif %}
+                    <br style="margin:6px 0;">
                   {% endfor %}
-                  <button
-                    class="rs-swatch {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
-                    data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}"
-                    onclick="rsSwatchClick('{{ section.id }}', {{ forloop.parentloop.index0 }}, '{{ value }}')"
-                  >{{ value }}</button>
-                {% endfor %}
-              </div>
-            {% endif %}
-          {%- endif -%}
-        </div>
-        <br style="margin:6px 0;">
-      {% endfor %}
-    </div>
-  {% endunless %}
+                </div>
+              {% endunless %}
 
-            {%- comment -%} ── CUSTOM TEXT FIELD BLOCK ── {%- endcomment -%}
+              {%- comment -%} ── CUSTOM TEXT FIELD BLOCK ── {%- endcomment -%}
             {% when 'custom_field' %}
-              {%- assign ns    = block.settings.metafield_namespace -%}
-              {%- assign mkey  = block.settings.metafield_key -%}
+              {%- assign ns = block.settings.metafield_namespace -%}
+              {%- assign mkey = block.settings.metafield_key -%}
               {%- assign ftype = block.settings.field_type -%}
 
               {% if ftype == 'rich_text' %}
@@ -777,12 +819,17 @@
                 {% endif %}
               {% endif %}
 
-            {%- comment -%} ── GUARANTEE BANNER BLOCK ── {%- endcomment -%}
+              {%- comment -%} ── GUARANTEE BANNER BLOCK ── {%- endcomment -%}
             {% when 'guarantee_banner' %}
               {% if block.settings.banner_image != blank %}
                 <div class="rs-guarantee-banner" {{ block.shopify_attributes }}>
                   {% if block.settings.banner_link != blank %}
-                    <a href="{{ block.settings.banner_link }}" {% if block.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                    <a
+                      href="{{ block.settings.banner_link }}"
+                      {% if block.settings.open_new_tab %}
+                        target="_blank" rel="noopener"
+                      {% endif %}
+                    >
                   {% endif %}
                   <img
                     src="{{ block.settings.banner_image | image_url: width: 900 }}"
@@ -794,7 +841,7 @@
                 </div>
               {% endif %}
 
-            {%- comment -%} ── COUPON BANNER BLOCK ── {%- endcomment -%}
+              {%- comment -%} ── COUPON BANNER BLOCK ── {%- endcomment -%}
             {% when 'coupon_banner' %}
               {% if block.settings.coupon_code != blank %}
                 <div
@@ -807,7 +854,15 @@
                 >
                   <div class="rs-coupon-banner__left">
                     <div class="rs-coupon-banner__row1">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                       </svg>
@@ -829,7 +884,15 @@
                     onclick="rsCopyCoupon(this)"
                     aria-label="Copy coupon code {{ block.settings.coupon_code }}"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
                       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
@@ -838,134 +901,226 @@
                 </div>
               {% endif %}
 
+              <!-- ══ QUANTITY + ADD TO CART + BUY NOW + WISHLIST ══ -->
+              <div class="rs-purchase">
+                <div class="rs-qty-row">
+                  <span class="rs-qty__label">Qty</span>
+                  <div class="rs-qty__wrap">
+                    <button class="rs-qty__btn" onclick="rsQtyChange('{{ section.id }}', -1)" aria-label="Decrease">
+                      −
+                    </button>
+                    <input
+                      type="number"
+                      class="rs-qty__input"
+                      id="rs-qty-{{ section.id }}"
+                      value="1"
+                      min="1"
+                      max="99"
+                      aria-label="Quantity"
+                    >
+                    <button class="rs-qty__btn" onclick="rsQtyChange('{{ section.id }}', 1)" aria-label="Increase">
+                      +
+                    </button>
+                  </div>
+                </div>
 
-        <!-- ══ QUANTITY + ADD TO CART + BUY NOW + WISHLIST ══ -->
-        <div class="rs-purchase">
-          <div class="rs-qty-row">
-            <span class="rs-qty__label">Qty</span>
-            <div class="rs-qty__wrap">
-              <button class="rs-qty__btn" onclick="rsQtyChange('{{ section.id }}', -1)" aria-label="Decrease">−</button>
-              <input type="number" class="rs-qty__input" id="rs-qty-{{ section.id }}" value="1" min="1" max="99" aria-label="Quantity">
-              <button class="rs-qty__btn" onclick="rsQtyChange('{{ section.id }}', 1)" aria-label="Increase">+</button>
-            </div>
-          </div>
+                <div class="rs-cart-row">
+                  <button
+                    class="rs-btn-atc"
+                    id="rs-atc-{{ section.id }}"
+                    onclick="rsAddToCart('{{ section.id }}')"
+                    {% unless current_variant.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                    {% if current_variant.available %}Add to Cart{% else %}Sold Out{% endif %}
+                  </button>
+                  <button
+                    class="rs-btn-buynow"
+                    id="rs-buynow-{{ section.id }}"
+                    onclick="rsBuyNow('{{ section.id }}')"
+                    {% unless current_variant.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                    Buy Now
+                  </button>
+                </div>
 
-          <div class="rs-cart-row">
-            <button
-              class="rs-btn-atc"
-              id="rs-atc-{{ section.id }}"
-              onclick="rsAddToCart('{{ section.id }}')"
-              {% unless current_variant.available %}disabled{% endunless %}
-            >
-              {% if current_variant.available %}Add to Cart{% else %}Sold Out{% endif %}
-            </button>
-            <button
-              class="rs-btn-buynow"
-              id="rs-buynow-{{ section.id }}"
-              onclick="rsBuyNow('{{ section.id }}')"
-              {% unless current_variant.available %}disabled{% endunless %}
-            >
-              Buy Now
-            </button>
-          </div>
+                <!-- WISHLIST BUTTON -->
+                <button
+                  class="rs-btn-wishlist"
+                  id="rs-wishlist-{{ section.id }}"
+                  onclick="rsToggleWishlist('{{ section.id }}')"
+                  data-product-handle="{{ product.handle }}"
+                  data-product-title="{{ product.title | escape }}"
+                  data-product-image="{{ product.featured_image | image_url: width: 300 }}"
+                  data-product-price="{{ current_variant.price | money }}"
+                  aria-label="Add to wishlist"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    id="rs-wishlist-icon-{{ section.id }}"
+                  >
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                  <span id="rs-wishlist-label-{{ section.id }}">Add to Wishlist</span>
+                </button>
 
-          <!-- WISHLIST BUTTON -->
-          <button
-            class="rs-btn-wishlist"
-            id="rs-wishlist-{{ section.id }}"
-            onclick="rsToggleWishlist('{{ section.id }}')"
-            data-product-handle="{{ product.handle }}"
-            data-product-title="{{ product.title | escape }}"
-            data-product-image="{{ product.featured_image | image_url: width: 300 }}"
-            data-product-price="{{ current_variant.price | money }}"
-            aria-label="Add to wishlist"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="rs-wishlist-icon-{{ section.id }}">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-            <span id="rs-wishlist-label-{{ section.id }}">Add to Wishlist</span>
-          </button>
+                <div class="rs-cart-msg" id="rs-cart-msg-{{ section.id }}"></div>
+              </div>
+              <!-- END PURCHASE -->
 
-          <div class="rs-cart-msg" id="rs-cart-msg-{{ section.id }}"></div>
-        </div>
-        <!-- END PURCHASE -->
+              <!-- PINCODE -->
+              <div class="rs-info__pincode">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#0E3A23"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                <button class="rs-info__pincode-link" onclick="rsTogglePincode('{{ section.id }}')">
+                  Enter Pincode
+                </button>
+                <span style="font-size:.85rem;color:#555;">to see delivery details</span>
+              </div>
+              <div class="rs-info__pincode-input-wrap" id="rs-pincode-wrap-{{ section.id }}">
+                <input
+                  type="text"
+                  class="rs-info__pincode-input"
+                  placeholder="Enter 6-digit pincode"
+                  maxlength="6"
+                  id="rs-pincode-input-{{ section.id }}"
+                  oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+                  onkeydown="if(event.key==='Enter')rsPincodeCheck('{{ section.id }}')"
+                >
+                <button class="rs-info__pincode-check-btn" onclick="rsPincodeCheck('{{ section.id }}')">Check</button>
+              </div>
+              <div class="rs-info__pincode-msg" id="rs-pincode-msg-{{ section.id }}"></div>
 
-        <!-- PINCODE -->
-        <div class="rs-info__pincode">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0E3A23" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-          <button class="rs-info__pincode-link" onclick="rsTogglePincode('{{ section.id }}')">Enter Pincode</button>
-          <span style="font-size:.85rem;color:#555;">to see delivery details</span>
-        </div>
-        <div class="rs-info__pincode-input-wrap" id="rs-pincode-wrap-{{ section.id }}">
-          <input
-            type="text"
-            class="rs-info__pincode-input"
-            placeholder="Enter 6-digit pincode"
-            maxlength="6"
-            id="rs-pincode-input-{{ section.id }}"
-            oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-            onkeydown="if(event.key==='Enter')rsPincodeCheck('{{ section.id }}')"
-          >
-          <button class="rs-info__pincode-check-btn" onclick="rsPincodeCheck('{{ section.id }}')">Check</button>
-        </div>
-        <div class="rs-info__pincode-msg" id="rs-pincode-msg-{{ section.id }}"></div>
+              <!-- DESCRIPTION -->
+              {% comment %}  <div class="rs-info__desc">{{ product.description }}</div> {% endcomment %}
 
-        <!-- DESCRIPTION -->
-      {% comment %}  <div class="rs-info__desc">{{ product.description }}</div> {% endcomment %} 
-
-        
-            {%- comment -%} ── CARE ICONS BLOCK ── {%- endcomment -%}
+              {%- comment -%} ── CARE ICONS BLOCK ── {%- endcomment -%}
             {% when 'care_icons' %}
               <div class="rs-care-icons" {{ block.shopify_attributes }}>
-
                 {% for i in (1..3) %}
-                  {%- assign icon_image_key  = 'icon_image_'  | append: i -%}
-                  {%- assign icon_label_key  = 'icon_label_'  | append: i -%}
-                  {%- assign icon_type_key   = 'icon_type_'   | append: i -%}
+                  {%- assign icon_image_key = 'icon_image_' | append: i -%}
+                  {%- assign icon_label_key = 'icon_label_' | append: i -%}
+                  {%- assign icon_type_key = 'icon_type_' | append: i -%}
 
                   {%- assign icon_label = block.settings[icon_label_key] -%}
                   {%- assign icon_image = block.settings[icon_image_key] -%}
-                  {%- assign icon_type  = block.settings[icon_type_key]  -%}
+                  {%- assign icon_type = block.settings[icon_type_key] -%}
 
                   {% if icon_label != blank %}
                     <div class="rs-care-icon-box">
                       <div class="rs-care-icon-box__icon">
                         {% if icon_image != blank %}
-                          <img src="{{ icon_image | image_url: width: 80 }}" alt="{{ icon_label }}" width="40" height="40" loading="lazy">
+                          <img
+                            src="{{ icon_image | image_url: width: 80 }}"
+                            alt="{{ icon_label }}"
+                            width="40"
+                            height="40"
+                            loading="lazy"
+                          >
                         {% elsif icon_type == 'water' %}
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
                             <path d="M12 2C6 8 4 13 4 16a8 8 0 0 0 16 0c0-3-2-8-8-14z"/>
                           </svg>
                         {% elsif icon_type == 'sun' %}
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
                             <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
                             <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
                             <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
                           </svg>
                         {% elsif icon_type == 'beginner' %}
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                           </svg>
                         {% elsif icon_type == 'leaf' %}
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
                             <path d="M2 22 L10 14"/>
                             <path d="M16 8 C16 8 22 2 22 2 C22 14 12 20 2 22 C4 14 8 10 16 8Z"/>
                           </svg>
                         {% elsif icon_type == 'temp' %}
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
                             <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/>
                           </svg>
                         {% elsif icon_type == 'pot' %}
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
                             <path d="M4 7h16l-2 10H6L4 7z"/>
                             <path d="M8 7V5a4 4 0 0 1 8 0v2"/>
                             <line x1="12" y1="12" x2="12" y2="14"/>
                           </svg>
                         {% else %}
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
                             <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                           </svg>
                         {% endif %}
@@ -974,13 +1129,10 @@
                     </div>
                   {% endif %}
                 {% endfor %}
-
               </div>
-
           {% endcase %}
         {% endfor %}
         <!-- END BLOCKS -->
-
       </div>
       <!-- END INFO -->
     </div>
@@ -993,9 +1145,11 @@
   <img src="" alt="Zoom" id="rs-zoom-img-{{ section.id }}">
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     PRODUCT DATA for JS
-════════════════════════════════════════════════════════════ -->
+<!--
+  ═══════════════════════════════════════════════════════════
+       PRODUCT DATA for JS
+  ════════════════════════════════════════════════════════════
+-->
 <script id="rs-product-data-{{ section.id }}" type="application/json">
   {
     "variants": [
@@ -1023,442 +1177,389 @@
 </script>
 
 <script>
-(function () {
-  var sid = '{{ section.id }}';
+  (function () {
+    var sid = '{{ section.id }}';
 
-  var _data     = JSON.parse(document.getElementById('rs-product-data-' + sid).textContent);
-  var _variants = _data.variants;
-  var _hasVideo = _data.has_video;
+    var _data     = JSON.parse(document.getElementById('rs-product-data-' + sid).textContent);
+    var _variants = _data.variants;
+    var _hasVideo = _data.has_video;
 
-  var _selectedOptions = [
-    {{ current_variant.option1 | json }},
-    {{ current_variant.option2 | json }},
-    {{ current_variant.option3 | json }}
-  ];
-  var _currentVariantId = {{ current_variant.id }};
+    var _selectedOptions = [
+      {{ current_variant.option1 | json }},
+      {{ current_variant.option2 | json }},
+      {{ current_variant.option3 | json }}
+    ];
+    var _currentVariantId = {{ current_variant.id }};
 
-  document.addEventListener('DOMContentLoaded', function () {
-    if (_hasVideo) {
-      var firstVideoThumb = document.querySelector('#rs-thumbs-' + sid + ' .rs-gallery__thumb--video');
-      if (firstVideoThumb) rsSetMedia(sid, firstVideoThumb);
-    }
-    rsInitWishlistState(sid);
-  });
-
-  /* ── COUPON COPY ─────────────────────────────────────────── */
-  window.rsCopyCoupon = function(btn) {
-    var code = btn.getAttribute('data-code');
-    var label = btn.querySelector('.rs-coupon-copy-label');
-    if (!code) return;
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(code).then(function() {
-        rsShowCopied(btn, label);
-      }).catch(function() {
-        rsFallbackCopy(code, btn, label);
-      });
-    } else {
-      rsFallbackCopy(code, btn, label);
-    }
-  };
-
-  function rsFallbackCopy(text, btn, label) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.focus();
-    ta.select();
-    try { document.execCommand('copy'); rsShowCopied(btn, label); } catch(e) {}
-    document.body.removeChild(ta);
-  }
-
-  function rsShowCopied(btn, label) {
-    btn.classList.add('copied');
-    if (label) label.textContent = 'Copied!';
-    setTimeout(function() {
-      btn.classList.remove('copied');
-      if (label) label.textContent = label.closest('[data-original-text]') ? label.closest('[data-original-text]').dataset.originalText : 'Copy';
-    }, 2000);
-  }
-
-  /* ── MEDIA ───────────────────────────────────────────────── */
-  window.rsSetMedia = function (id, thumbEl) {
-    var type      = thumbEl.getAttribute('data-type');
-    var mainImg   = document.getElementById('rs-main-img-' + id);
-    var mainVideo = document.getElementById('rs-main-video-' + id);
-
-    document.querySelectorAll('#rs-thumbs-' + id + ' .rs-gallery__thumb')
-      .forEach(function(t){ t.classList.remove('active'); });
-    thumbEl.classList.add('active');
-    thumbEl.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'nearest' });
-
-    if (type === 'video') {
-      var videoUrl = thumbEl.getAttribute('data-video-url');
-      var poster   = thumbEl.getAttribute('data-poster');
-      mainImg.classList.add('hidden');
-      mainVideo.classList.add('active');
-      mainVideo.poster = poster || '';
-      mainVideo.src    = videoUrl;
-      mainVideo.load();
-      mainVideo.play().catch(function(){});
-      document.getElementById('rs-zoom-result-' + id).style.display = 'none';
-    } else {
-      var src = thumbEl.getAttribute('data-full');
-      if (!src) return;
-      mainVideo.pause();
-      mainVideo.src = '';
-      mainVideo.classList.remove('active');
-      mainImg.classList.remove('hidden');
-      mainImg.style.opacity = '0.4';
-      mainImg.src = src;
-      mainImg.onload = function(){ mainImg.style.opacity = '1'; };
-      var zoomImg = document.getElementById('rs-zoom-img-' + id);
-      if (zoomImg) zoomImg.src = src;
-      var resultImg = document.getElementById('rs-zoom-result-img-' + id);
-      if (resultImg) { resultImg.src = ''; resultImg.dataset.src = ''; }
-    }
-  };
-
-  window.rsThumbScroll = function (id, dir) {
-    var strip = document.getElementById('rs-thumbs-' + id);
-    if (strip) strip.scrollBy({ left: dir * 180, behavior: 'smooth' });
-  };
-
-  /* ── HOVER ZOOM ──────────────────────────────────────────── */
-  var _hzActive = {};
-
-  window.rsHoverZoomEnter = function (id) {
-    var mainImg   = document.getElementById('rs-main-img-' + id);
-    var mainVideo = document.getElementById('rs-main-video-' + id);
-    if (mainVideo && mainVideo.classList.contains('active')) return;
-    var result    = document.getElementById('rs-zoom-result-' + id);
-    var resultImg = document.getElementById('rs-zoom-result-img-' + id);
-    if (!mainImg || !result || !resultImg) return;
-    var hiSrc = mainImg.src.replace(/width=\d+/, 'width=1600');
-    if (resultImg.dataset.src !== hiSrc) { resultImg.dataset.src = hiSrc; resultImg.src = hiSrc; }
-    result.style.display = 'block';
-    _hzActive[id] = true;
-  };
-
-  window.rsHoverZoomLeave = function (id) {
-    var result = document.getElementById('rs-zoom-result-' + id);
-    var lens   = document.getElementById('rs-lens-' + id);
-    if (result) result.style.display = 'none';
-    if (lens) { lens.style.left = '-9999px'; lens.style.top = '-9999px'; }
-    _hzActive[id] = false;
-  };
-
-  window.rsHoverZoomMove = function (e, id) {
-    if (!_hzActive[id]) return;
-    var wrap      = document.getElementById('rs-main-wrap-' + id);
-    var lens      = document.getElementById('rs-lens-' + id);
-    var result    = document.getElementById('rs-zoom-result-' + id);
-    var resultImg = document.getElementById('rs-zoom-result-img-' + id);
-    if (!wrap || !lens || !result || !resultImg) return;
-    var rect  = wrap.getBoundingClientRect();
-    var lensW = lens.offsetWidth  || 120;
-    var lensH = lens.offsetHeight || 120;
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
-    var lx = Math.max(lensW/2, Math.min(x, rect.width  - lensW/2)) - lensW/2;
-    var ly = Math.max(lensH/2, Math.min(y, rect.height - lensH/2)) - lensH/2;
-    lens.style.left = lx + 'px';
-    lens.style.top  = ly + 'px';
-    var rw = result.offsetWidth  / lensW;
-    var rh = result.offsetHeight / lensH;
-    resultImg.style.width  = (rect.width  * rw) + 'px';
-    resultImg.style.height = (rect.height * rh) + 'px';
-    resultImg.style.left   = -(lx * rw) + 'px';
-    resultImg.style.top    = -(ly * rh) + 'px';
-  };
-
-  /* ── ZOOM LIGHTBOX ───────────────────────────────────────── */
-  window.rsOpenZoom = function (id) {
-    var mainImg = document.getElementById('rs-main-img-' + id);
-    if (mainImg.classList.contains('hidden')) return;
-    document.getElementById('rs-zoom-img-' + id).src = mainImg.src;
-    document.getElementById('rs-zoom-' + id).classList.add('open');
-    document.body.style.overflow = 'hidden';
-  };
-  window.rsCloseZoom = function (id) {
-    document.getElementById('rs-zoom-' + id).classList.remove('open');
-    document.body.style.overflow = '';
-  };
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') rsCloseZoom(sid); });
-
-  /* ── VARIANT LOGIC ───────────────────────────────────────── */
-  function rsFormatMoney(cents) {
-    return '₹' + (cents / 100).toFixed(2).replace(/\.00$/, '');
-  }
-
-  function rsFindVariant(options) {
-    return _variants.find(function(v){
-      return v.options.every(function(o, i){ return o === options[i]; });
-    }) || null;
-  }
-
-  function rsUpdateVariantUI(id, variant) {
-    if (!variant) return;
-    _currentVariantId = variant.id;
-
-    var priceEl = document.getElementById('rs-price-' + id);
-    if (priceEl) {
-      var html = 'MRP ';
-      if (variant.compare_at_price > variant.price) {
-        html += '<s style="color:#aaa;font-weight:400;">' + rsFormatMoney(variant.compare_at_price) + '</s> ';
+    document.addEventListener('DOMContentLoaded', function () {
+      if (_hasVideo) {
+        var firstVideoThumb = document.querySelector('#rs-thumbs-' + sid + ' .rs-gallery__thumb--video');
+        if (firstVideoThumb) rsSetMedia(sid, firstVideoThumb);
       }
-      html += '<span>' + rsFormatMoney(variant.price) + '</span>';
-      priceEl.innerHTML = html;
-    }
+      rsInitWishlistState(sid);
+    });
 
-    var wEl = document.getElementById('rs-weight-' + id);
-    if (wEl) wEl.textContent = variant.weight > 0 ? 'Net Weight: ' + variant.weight + ' ' + variant.weight_unit : '';
-
-    var atcBtn    = document.getElementById('rs-atc-' + id);
-    var buyBtn    = document.getElementById('rs-buynow-' + id);
-    var available = variant.available;
-    if (atcBtn) { atcBtn.disabled = !available; atcBtn.textContent = available ? 'Add to Cart' : 'Sold Out'; }
-    if (buyBtn) buyBtn.disabled = !available;
-
-    var wlBtn = document.getElementById('rs-wishlist-' + id);
-    if (wlBtn) wlBtn.dataset.productPrice = rsFormatMoney(variant.price);
-
-    if (variant.featured_image) {
-      var mainImg = document.getElementById('rs-main-img-' + id);
-      if (mainImg && mainImg.src !== variant.featured_image) {
-        mainImg.style.opacity = '0.4';
-        mainImg.src = variant.featured_image;
-        mainImg.onload = function(){ mainImg.style.opacity = '1'; };
-        document.querySelectorAll('#rs-thumbs-' + id + ' .rs-gallery__thumb[data-type="image"]')
-          .forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-full') === variant.featured_image); });
-      }
-    }
-
-    var url = new URL(window.location.href);
-    url.searchParams.set('variant', variant.id);
-    window.history.replaceState({}, '', url.toString());
-  }
-
-  window.rsVariantSelectChange = function(id, optionIndex, value) {
-    _selectedOptions[optionIndex] = value;
-    var labelVal = document.getElementById('rs-opt-val-' + id + '-' + optionIndex);
-    if (labelVal) labelVal.textContent = value;
-    var variant = rsFindVariant(_selectedOptions);
-    if (variant) rsUpdateVariantUI(id, variant);
-  };
-
-  window.rsSwatchClick = function(id, optionIndex, value) {
-    _selectedOptions[optionIndex] = value;
-    document.querySelectorAll('[data-option-index="' + optionIndex + '"].rs-swatch')
-      .forEach(function(s){ s.classList.toggle('active', s.getAttribute('data-value') === value); });
-    var labelVal = document.getElementById('rs-opt-val-' + id + '-' + optionIndex);
-    if (labelVal) labelVal.textContent = value;
-    var variant = rsFindVariant(_selectedOptions);
-    if (variant) rsUpdateVariantUI(id, variant);
-  };
-
-  /* ── QUANTITY ─────────────────────────────────────────────── */
-  window.rsQtyChange = function(id, delta) {
-    var inp = document.getElementById('rs-qty-' + id);
-    if (!inp) return;
-    var val = parseInt(inp.value, 10) || 1;
-    val = Math.max(1, Math.min(99, val + delta));
-    inp.value = val;
-  };
-
-  /* ── ADD TO CART ─────────────────────────────────────────── */
-  window.rsAddToCart = function(id) {
-    var qty    = parseInt(document.getElementById('rs-qty-' + id).value, 10) || 1;
-    var msgEl  = document.getElementById('rs-cart-msg-' + id);
-    var atcBtn = document.getElementById('rs-atc-' + id);
-    atcBtn.disabled    = true;
-    atcBtn.textContent = 'Adding…';
-    msgEl.className    = 'rs-cart-msg';
-
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body:   JSON.stringify({ id: _currentVariantId, quantity: qty })
-    })
-    .then(function(res){ if (!res.ok) throw new Error('Error'); return res.json(); })
-    .then(function(){
-      atcBtn.disabled    = false;
-      atcBtn.textContent = 'Add to Cart';
-      msgEl.textContent  = '✓ Added to cart!';
-      msgEl.className    = 'rs-cart-msg success';
-      fetch('/cart.js')
-        .then(function(r){ return r.json(); })
-        .then(function(cart){
-          document.querySelectorAll('.cart-count, [data-cart-count], .cart__count')
-            .forEach(function(el){ el.textContent = cart.item_count; });
-          document.dispatchEvent(new CustomEvent('cart:updated', { detail: { itemCount: cart.item_count } }));
+    /* ── COUPON COPY ─────────────────────────────────────────── */
+    window.rsCopyCoupon = function(btn) {
+      var code = btn.getAttribute('data-code');
+      var label = btn.querySelector('.rs-coupon-copy-label');
+      if (!code) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code).then(function() {
+          rsShowCopied(btn, label);
+        }).catch(function() {
+          rsFallbackCopy(code, btn, label);
         });
-      setTimeout(function(){ msgEl.className = 'rs-cart-msg'; }, 3000);
-    })
-    .catch(function(){
-      atcBtn.disabled    = false;
-      atcBtn.textContent = 'Add to Cart';
-      msgEl.textContent  = '✗ Could not add to cart. Try again.';
-      msgEl.className    = 'rs-cart-msg error';
-      setTimeout(function(){ msgEl.className = 'rs-cart-msg'; }, 3000);
-    });
-  };
+      } else {
+        rsFallbackCopy(code, btn, label);
+      }
+    };
 
-  /* ── BUY NOW ─────────────────────────────────────────────── */
-  window.rsBuyNow = function(id) {
-    var qty   = parseInt(document.getElementById('rs-qty-' + id).value, 10) || 1;
-    var btnEl = document.getElementById('rs-buynow-' + id);
-    btnEl.disabled    = true;
-    btnEl.textContent = 'Please wait…';
-
-    fetch('/cart/add.js', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body:   JSON.stringify({ id: _currentVariantId, quantity: qty })
-    })
-    .then(function(res){ if (!res.ok) throw new Error('Error'); return res.json(); })
-    .then(function(){ window.location.href = '/checkout'; })
-    .catch(function(){
-      btnEl.disabled    = false;
-      btnEl.textContent = 'Buy Now';
-      var msgEl = document.getElementById('rs-cart-msg-' + id);
-      msgEl.textContent = '✗ Something went wrong. Try again.';
-      msgEl.className   = 'rs-cart-msg error';
-      setTimeout(function(){ msgEl.className = 'rs-cart-msg'; }, 3000);
-    });
-  };
-
-  /* ── WISHLIST ─────────────────────────────────────────────── */
-  function rsGetWishlist() {
-    try { return JSON.parse(localStorage.getItem('rs_wishlist') || '[]'); } catch(e) { return []; }
-  }
-  function rsSaveWishlist(list) {
-    localStorage.setItem('rs_wishlist', JSON.stringify(list));
-    window.dispatchEvent(new Event('wishlist:updated'));
-  }
-
-  function rsInitWishlistState(id) {
-    var btn   = document.getElementById('rs-wishlist-' + id);
-    var icon  = document.getElementById('rs-wishlist-icon-' + id);
-    var label = document.getElementById('rs-wishlist-label-' + id);
-    if (!btn) return;
-    var handle = btn.dataset.productHandle;
-    var list   = rsGetWishlist();
-    var inList = list.some(function(item){ return item.handle === handle; });
-    btn.classList.toggle('wishlisted', inList);
-    if (icon) { var path = icon.querySelector('path'); if (path) path.setAttribute('fill', inList ? '#e53e3e' : 'none'); }
-    if (label) label.textContent = inList ? 'Wishlisted ♥' : 'Add to Wishlist';
-  }
-
-  window.rsToggleWishlist = function(id) {
-    var btn   = document.getElementById('rs-wishlist-' + id);
-    var icon  = document.getElementById('rs-wishlist-icon-' + id);
-    var label = document.getElementById('rs-wishlist-label-' + id);
-    if (!btn) return;
-    var handle = btn.dataset.productHandle;
-    var list   = rsGetWishlist();
-    var idx    = list.findIndex(function(item){ return item.handle === handle; });
-
-    if (idx > -1) {
-      list.splice(idx, 1);
-      btn.classList.remove('wishlisted');
-      if (icon) { var p = icon.querySelector('path'); if(p) p.setAttribute('fill','none'); }
-      if (label) label.textContent = 'Add to Wishlist';
-    } else {
-      list.push({ handle: handle, title: btn.dataset.productTitle, image: btn.dataset.productImage, price: btn.dataset.productPrice });
-      btn.classList.add('wishlisted');
-      if (icon) { var p2 = icon.querySelector('path'); if(p2) p2.setAttribute('fill','#e53e3e'); }
-      if (label) label.textContent = 'Wishlisted ♥';
-    }
-    rsSaveWishlist(list);
-  };
-
-  /* ── PINCODE ─────────────────────────────────────────────── */
-  window.rsTogglePincode = function(id) {
-    var wrap = document.getElementById('rs-pincode-wrap-' + id);
-    wrap.classList.toggle('show');
-    if (wrap.classList.contains('show')) document.getElementById('rs-pincode-input-' + id).focus();
-  };
-
-  window.rsPincodeCheck = function(id) {
-    var val = document.getElementById('rs-pincode-input-' + id).value.trim();
-    var msg = document.getElementById('rs-pincode-msg-' + id);
-    if (val.length !== 6) { msg.style.color = '#e53935'; msg.textContent = 'Please enter a valid 6-digit pincode.'; return; }
-    msg.style.color = '#aaa';
-    msg.textContent = 'Checking…';
-    setTimeout(function(){
-      msg.style.color = '#0E3A23';
-      msg.textContent = '✓ Delivery available to ' + val + ' in 3-5 business days.';
-    }, 900);
-  };
-
-  window.rsSizeCardClick = function(id, optionIndex, value) {
-  _selectedOptions[optionIndex] = value;
-  document.querySelectorAll('.rs-size-card[data-option-index="' + optionIndex + '"]')
-    .forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-value') === value); });
-  var labelVal = document.getElementById('rs-opt-val-' + id + '-' + optionIndex);
-  if (labelVal) labelVal.textContent = value;
-  var variant = rsFindVariant(_selectedOptions);
-  if (variant) rsUpdateVariantUI(id, variant);
-};
-
-})();
-</script>
-
-
-<script>
-(function() {
-  function rsInjectJdgmStars() {
-    var container = document.getElementById('rs-jdgm-stars-{{ section.id }}');
-    if (!container) return;
-
-    // Judge.me ke rendered widget se data uthao
-    var badge = document.querySelector('.jdgm-preview-badge, .jdgm-all-reviews-rating, [data-score]');
-    
-    var score = null;
-    var count = null;
-
-    if (badge) {
-      score = parseFloat(badge.getAttribute('data-score') || badge.getAttribute('data-average-rating'));
-      count = parseInt(badge.getAttribute('data-number-of-reviews') || badge.getAttribute('data-count'), 10);
+    function rsFallbackCopy(text, btn, label) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); rsShowCopied(btn, label); } catch(e) {}
+      document.body.removeChild(ta);
     }
 
-    // Agar Judge.me ka score mila toh stars banao
-    if (score && score > 0) {
-      var starsHtml = '';
-      for (var i = 1; i <= 5; i++) {
-        if (score >= i) {
-          starsHtml += '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
-        } else if (score >= i - 0.5) {
-          starsHtml += '<svg width="16" height="16" viewBox="0 0 24 24"><defs><linearGradient id="h' + i + '"><stop offset="50%" stop-color="#f5a623"/><stop offset="50%" stop-color="#ddd"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#h' + i + ')"/></svg>';
-        } else {
-          starsHtml += '<svg width="16" height="16" viewBox="0 0 24 24" fill="#ddd"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+    function rsShowCopied(btn, label) {
+      btn.classList.add('copied');
+      if (label) label.textContent = 'Copied!';
+      setTimeout(function() {
+        btn.classList.remove('copied');
+        if (label) label.textContent = label.closest('[data-original-text]') ? label.closest('[data-original-text]').dataset.originalText : 'Copy';
+      }, 2000);
+    }
+
+    /* ── MEDIA ───────────────────────────────────────────────── */
+    window.rsSetMedia = function (id, thumbEl) {
+      var type      = thumbEl.getAttribute('data-type');
+      var mainImg   = document.getElementById('rs-main-img-' + id);
+      var mainVideo = document.getElementById('rs-main-video-' + id);
+
+      document.querySelectorAll('#rs-thumbs-' + id + ' .rs-gallery__thumb')
+        .forEach(function(t){ t.classList.remove('active'); });
+      thumbEl.classList.add('active');
+      thumbEl.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'nearest' });
+
+      if (type === 'video') {
+        var videoUrl = thumbEl.getAttribute('data-video-url');
+        var poster   = thumbEl.getAttribute('data-poster');
+        mainImg.classList.add('hidden');
+        mainVideo.classList.add('active');
+        mainVideo.poster = poster || '';
+        mainVideo.src    = videoUrl;
+        mainVideo.load();
+        mainVideo.play().catch(function(){});
+        document.getElementById('rs-zoom-result-' + id).style.display = 'none';
+      } else {
+        var src = thumbEl.getAttribute('data-full');
+        if (!src) return;
+        mainVideo.pause();
+        mainVideo.src = '';
+        mainVideo.classList.remove('active');
+        mainImg.classList.remove('hidden');
+        mainImg.style.opacity = '0.4';
+        mainImg.src = src;
+        mainImg.onload = function(){ mainImg.style.opacity = '1'; };
+        var zoomImg = document.getElementById('rs-zoom-img-' + id);
+        if (zoomImg) zoomImg.src = src;
+        var resultImg = document.getElementById('rs-zoom-result-img-' + id);
+        if (resultImg) { resultImg.src = ''; resultImg.dataset.src = ''; }
+      }
+    };
+
+    window.rsThumbScroll = function (id, dir) {
+      var strip = document.getElementById('rs-thumbs-' + id);
+      if (strip) strip.scrollBy({ left: dir * 180, behavior: 'smooth' });
+    };
+
+    /* ── HOVER ZOOM ──────────────────────────────────────────── */
+    var _hzActive = {};
+
+    window.rsHoverZoomEnter = function (id) {
+      var mainImg   = document.getElementById('rs-main-img-' + id);
+      var mainVideo = document.getElementById('rs-main-video-' + id);
+      if (mainVideo && mainVideo.classList.contains('active')) return;
+      var result    = document.getElementById('rs-zoom-result-' + id);
+      var resultImg = document.getElementById('rs-zoom-result-img-' + id);
+      if (!mainImg || !result || !resultImg) return;
+      var hiSrc = mainImg.src.replace(/width=\d+/, 'width=1600');
+      if (resultImg.dataset.src !== hiSrc) { resultImg.dataset.src = hiSrc; resultImg.src = hiSrc; }
+      result.style.display = 'block';
+      _hzActive[id] = true;
+    };
+
+    window.rsHoverZoomLeave = function (id) {
+      var result = document.getElementById('rs-zoom-result-' + id);
+      var lens   = document.getElementById('rs-lens-' + id);
+      if (result) result.style.display = 'none';
+      if (lens) { lens.style.left = '-9999px'; lens.style.top = '-9999px'; }
+      _hzActive[id] = false;
+    };
+
+    window.rsHoverZoomMove = function (e, id) {
+      if (!_hzActive[id]) return;
+      var wrap      = document.getElementById('rs-main-wrap-' + id);
+      var lens      = document.getElementById('rs-lens-' + id);
+      var result    = document.getElementById('rs-zoom-result-' + id);
+      var resultImg = document.getElementById('rs-zoom-result-img-' + id);
+      if (!wrap || !lens || !result || !resultImg) return;
+      var rect  = wrap.getBoundingClientRect();
+      var lensW = lens.offsetWidth  || 120;
+      var lensH = lens.offsetHeight || 120;
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      var lx = Math.max(lensW/2, Math.min(x, rect.width  - lensW/2)) - lensW/2;
+      var ly = Math.max(lensH/2, Math.min(y, rect.height - lensH/2)) - lensH/2;
+      lens.style.left = lx + 'px';
+      lens.style.top  = ly + 'px';
+      var rw = result.offsetWidth  / lensW;
+      var rh = result.offsetHeight / lensH;
+      resultImg.style.width  = (rect.width  * rw) + 'px';
+      resultImg.style.height = (rect.height * rh) + 'px';
+      resultImg.style.left   = -(lx * rw) + 'px';
+      resultImg.style.top    = -(ly * rh) + 'px';
+    };
+
+    /* ── ZOOM LIGHTBOX ───────────────────────────────────────── */
+    window.rsOpenZoom = function (id) {
+      var mainImg = document.getElementById('rs-main-img-' + id);
+      if (mainImg.classList.contains('hidden')) return;
+      document.getElementById('rs-zoom-img-' + id).src = mainImg.src;
+      document.getElementById('rs-zoom-' + id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+    window.rsCloseZoom = function (id) {
+      document.getElementById('rs-zoom-' + id).classList.remove('open');
+      document.body.style.overflow = '';
+    };
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') rsCloseZoom(sid); });
+
+    /* ── VARIANT LOGIC ───────────────────────────────────────── */
+    function rsFormatMoney(cents) {
+      return '₹' + (cents / 100).toFixed(2).replace(/\.00$/, '');
+    }
+
+    function rsFindVariant(options) {
+      return _variants.find(function(v){
+        return v.options.every(function(o, i){ return o === options[i]; });
+      }) || null;
+    }
+
+    function rsUpdateVariantUI(id, variant) {
+      if (!variant) return;
+      _currentVariantId = variant.id;
+
+      var priceEl = document.getElementById('rs-price-' + id);
+      if (priceEl) {
+        var html = 'MRP ';
+        if (variant.compare_at_price > variant.price) {
+          html += '<s style="color:#aaa;font-weight:400;">' + rsFormatMoney(variant.compare_at_price) + '</s> ';
+        }
+        html += '<span>' + rsFormatMoney(variant.price) + '</span>';
+        priceEl.innerHTML = html;
+      }
+
+      var wEl = document.getElementById('rs-weight-' + id);
+      if (wEl) wEl.textContent = variant.weight > 0 ? 'Net Weight: ' + variant.weight + ' ' + variant.weight_unit : '';
+
+      var atcBtn    = document.getElementById('rs-atc-' + id);
+      var buyBtn    = document.getElementById('rs-buynow-' + id);
+      var available = variant.available;
+      if (atcBtn) { atcBtn.disabled = !available; atcBtn.textContent = available ? 'Add to Cart' : 'Sold Out'; }
+      if (buyBtn) buyBtn.disabled = !available;
+
+      var wlBtn = document.getElementById('rs-wishlist-' + id);
+      if (wlBtn) wlBtn.dataset.productPrice = rsFormatMoney(variant.price);
+
+      if (variant.featured_image) {
+        var mainImg = document.getElementById('rs-main-img-' + id);
+        if (mainImg && mainImg.src !== variant.featured_image) {
+          mainImg.style.opacity = '0.4';
+          mainImg.src = variant.featured_image;
+          mainImg.onload = function(){ mainImg.style.opacity = '1'; };
+          document.querySelectorAll('#rs-thumbs-' + id + ' .rs-gallery__thumb[data-type="image"]')
+            .forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-full') === variant.featured_image); });
         }
       }
 
-      var countText = count ? '(' + count + ')' : '';
-      container.innerHTML =
-        '<span style="display:inline-flex;align-items:center;gap:2px;">' + starsHtml + '</span>' +
-        '<span style="font-size:.88rem;color:#555;margin-left:4px;">' + countText + '</span>' +
-        (count ? '<a href="#jdgm-widget" style="font-size:.88rem;color:#0E3A23;font-weight:600;text-decoration:underline;margin-left:4px;">' + count + ' Reviews</a>' : '');
-    } else {
-      container.innerHTML = '';
+      var url = new URL(window.location.href);
+      url.searchParams.set('variant', variant.id);
+      window.history.replaceState({}, '', url.toString());
     }
-  }
 
-  // DOMContentLoaded ke baad try karo, phir Judge.me load hone ka wait karo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(rsInjectJdgmStars, 800);
-      setTimeout(rsInjectJdgmStars, 2000); // fallback
-    });
-  } else {
-    setTimeout(rsInjectJdgmStars, 800);
-    setTimeout(rsInjectJdgmStars, 2000);
-  }
-})();
+    window.rsVariantSelectChange = function(id, optionIndex, value) {
+      _selectedOptions[optionIndex] = value;
+      var labelVal = document.getElementById('rs-opt-val-' + id + '-' + optionIndex);
+      if (labelVal) labelVal.textContent = value;
+      var variant = rsFindVariant(_selectedOptions);
+      if (variant) rsUpdateVariantUI(id, variant);
+    };
+
+    window.rsSwatchClick = function(id, optionIndex, value) {
+      _selectedOptions[optionIndex] = value;
+      document.querySelectorAll('[data-option-index="' + optionIndex + '"].rs-swatch')
+        .forEach(function(s){ s.classList.toggle('active', s.getAttribute('data-value') === value); });
+      var labelVal = document.getElementById('rs-opt-val-' + id + '-' + optionIndex);
+      if (labelVal) labelVal.textContent = value;
+      var variant = rsFindVariant(_selectedOptions);
+      if (variant) rsUpdateVariantUI(id, variant);
+    };
+
+    /* ── QUANTITY ─────────────────────────────────────────────── */
+    window.rsQtyChange = function(id, delta) {
+      var inp = document.getElementById('rs-qty-' + id);
+      if (!inp) return;
+      var val = parseInt(inp.value, 10) || 1;
+      val = Math.max(1, Math.min(99, val + delta));
+      inp.value = val;
+    };
+
+    /* ── ADD TO CART ─────────────────────────────────────────── */
+    window.rsAddToCart = function(id) {
+      var qty    = parseInt(document.getElementById('rs-qty-' + id).value, 10) || 1;
+      var msgEl  = document.getElementById('rs-cart-msg-' + id);
+      var atcBtn = document.getElementById('rs-atc-' + id);
+      atcBtn.disabled    = true;
+      atcBtn.textContent = 'Adding…';
+      msgEl.className    = 'rs-cart-msg';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        body:   JSON.stringify({ id: _currentVariantId, quantity: qty })
+      })
+      .then(function(res){ if (!res.ok) throw new Error('Error'); return res.json(); })
+      .then(function(){
+        atcBtn.disabled    = false;
+        atcBtn.textContent = 'Add to Cart';
+        msgEl.textContent  = '✓ Added to cart!';
+        msgEl.className    = 'rs-cart-msg success';
+        fetch('/cart.js')
+          .then(function(r){ return r.json(); })
+          .then(function(cart){
+            document.querySelectorAll('.cart-count, [data-cart-count], .cart__count')
+              .forEach(function(el){ el.textContent = cart.item_count; });
+            document.dispatchEvent(new CustomEvent('cart:updated', { detail: { itemCount: cart.item_count } }));
+          });
+        setTimeout(function(){ msgEl.className = 'rs-cart-msg'; }, 3000);
+      })
+      .catch(function(){
+        atcBtn.disabled    = false;
+        atcBtn.textContent = 'Add to Cart';
+        msgEl.textContent  = '✗ Could not add to cart. Try again.';
+        msgEl.className    = 'rs-cart-msg error';
+        setTimeout(function(){ msgEl.className = 'rs-cart-msg'; }, 3000);
+      });
+    };
+
+    /* ── BUY NOW ─────────────────────────────────────────────── */
+    window.rsBuyNow = function(id) {
+      var qty   = parseInt(document.getElementById('rs-qty-' + id).value, 10) || 1;
+      var btnEl = document.getElementById('rs-buynow-' + id);
+      btnEl.disabled    = true;
+      btnEl.textContent = 'Please wait…';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        body:   JSON.stringify({ id: _currentVariantId, quantity: qty })
+      })
+      .then(function(res){ if (!res.ok) throw new Error('Error'); return res.json(); })
+      .then(function(){ window.location.href = '/checkout'; })
+      .catch(function(){
+        btnEl.disabled    = false;
+        btnEl.textContent = 'Buy Now';
+        var msgEl = document.getElementById('rs-cart-msg-' + id);
+        msgEl.textContent = '✗ Something went wrong. Try again.';
+        msgEl.className   = 'rs-cart-msg error';
+        setTimeout(function(){ msgEl.className = 'rs-cart-msg'; }, 3000);
+      });
+    };
+
+    /* ── WISHLIST ─────────────────────────────────────────────── */
+    function rsGetWishlist() {
+      try { return JSON.parse(localStorage.getItem('rs_wishlist') || '[]'); } catch(e) { return []; }
+    }
+    function rsSaveWishlist(list) {
+      localStorage.setItem('rs_wishlist', JSON.stringify(list));
+      window.dispatchEvent(new Event('wishlist:updated'));
+    }
+
+    function rsInitWishlistState(id) {
+      var btn   = document.getElementById('rs-wishlist-' + id);
+      var icon  = document.getElementById('rs-wishlist-icon-' + id);
+      var label = document.getElementById('rs-wishlist-label-' + id);
+      if (!btn) return;
+      var handle = btn.dataset.productHandle;
+      var list   = rsGetWishlist();
+      var inList = list.some(function(item){ return item.handle === handle; });
+      btn.classList.toggle('wishlisted', inList);
+      if (icon) { var path = icon.querySelector('path'); if (path) path.setAttribute('fill', inList ? '#e53e3e' : 'none'); }
+      if (label) label.textContent = inList ? 'Wishlisted ♥' : 'Add to Wishlist';
+    }
+
+    window.rsToggleWishlist = function(id) {
+      var btn   = document.getElementById('rs-wishlist-' + id);
+      var icon  = document.getElementById('rs-wishlist-icon-' + id);
+      var label = document.getElementById('rs-wishlist-label-' + id);
+      if (!btn) return;
+      var handle = btn.dataset.productHandle;
+      var list   = rsGetWishlist();
+      var idx    = list.findIndex(function(item){ return item.handle === handle; });
+
+      if (idx > -1) {
+        list.splice(idx, 1);
+        btn.classList.remove('wishlisted');
+        if (icon) { var p = icon.querySelector('path'); if(p) p.setAttribute('fill','none'); }
+        if (label) label.textContent = 'Add to Wishlist';
+      } else {
+        list.push({ handle: handle, title: btn.dataset.productTitle, image: btn.dataset.productImage, price: btn.dataset.productPrice });
+        btn.classList.add('wishlisted');
+        if (icon) { var p2 = icon.querySelector('path'); if(p2) p2.setAttribute('fill','#e53e3e'); }
+        if (label) label.textContent = 'Wishlisted ♥';
+      }
+      rsSaveWishlist(list);
+    };
+
+    /* ── PINCODE ─────────────────────────────────────────────── */
+    window.rsTogglePincode = function(id) {
+      var wrap = document.getElementById('rs-pincode-wrap-' + id);
+      wrap.classList.toggle('show');
+      if (wrap.classList.contains('show')) document.getElementById('rs-pincode-input-' + id).focus();
+    };
+
+    window.rsPincodeCheck = function(id) {
+      var val = document.getElementById('rs-pincode-input-' + id).value.trim();
+      var msg = document.getElementById('rs-pincode-msg-' + id);
+      if (val.length !== 6) { msg.style.color = '#e53935'; msg.textContent = 'Please enter a valid 6-digit pincode.'; return; }
+      msg.style.color = '#aaa';
+      msg.textContent = 'Checking…';
+      setTimeout(function(){
+        msg.style.color = '#0E3A23';
+        msg.textContent = '✓ Delivery available to ' + val + ' in 3-5 business days.';
+      }, 900);
+    };
+
+    window.rsSizeCardClick = function(id, optionIndex, value) {
+    _selectedOptions[optionIndex] = value;
+    document.querySelectorAll('.rs-size-card[data-option-index="' + optionIndex + '"]')
+      .forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-value') === value); });
+    var labelVal = document.getElementById('rs-opt-val-' + id + '-' + optionIndex);
+    if (labelVal) labelVal.textContent = value;
+    var variant = rsFindVariant(_selectedOptions);
+    if (variant) rsUpdateVariantUI(id, variant);
+  };
+
+  })();
 </script>
+
 
 
 {% schema %}
@@ -1475,8 +1576,8 @@
           "id": "display_type",
           "label": "Display Style",
           "options": [
-            { "value": "swatches",  "label": "Button Swatches" },
-            { "value": "dropdown",  "label": "Dropdown" }
+            { "value": "swatches", "label": "Button Swatches" },
+            { "value": "dropdown", "label": "Dropdown" }
           ],
           "default": "swatches",
           "info": "Swatches = clickable buttons. Dropdown = select menu."
@@ -1607,13 +1708,13 @@
           "id": "icon_type_1",
           "label": "Preset Icon 1",
           "options": [
-            { "value": "water",    "label": "Water Drop" },
-            { "value": "sun",      "label": "Sun / Light" },
+            { "value": "water", "label": "Water Drop" },
+            { "value": "sun", "label": "Sun / Light" },
             { "value": "beginner", "label": "Beginner / Shield" },
-            { "value": "leaf",     "label": "Leaf" },
-            { "value": "temp",     "label": "Temperature" },
-            { "value": "pot",      "label": "Pot" },
-            { "value": "info",     "label": "Info Circle" }
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "temp", "label": "Temperature" },
+            { "value": "pot", "label": "Pot" },
+            { "value": "info", "label": "Info Circle" }
           ],
           "default": "water",
           "info": "Used only if no custom image is uploaded above."
@@ -1638,13 +1739,13 @@
           "id": "icon_type_2",
           "label": "Preset Icon 2",
           "options": [
-            { "value": "water",    "label": "Water Drop" },
-            { "value": "sun",      "label": "Sun / Light" },
+            { "value": "water", "label": "Water Drop" },
+            { "value": "sun", "label": "Sun / Light" },
             { "value": "beginner", "label": "Beginner / Shield" },
-            { "value": "leaf",     "label": "Leaf" },
-            { "value": "temp",     "label": "Temperature" },
-            { "value": "pot",      "label": "Pot" },
-            { "value": "info",     "label": "Info Circle" }
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "temp", "label": "Temperature" },
+            { "value": "pot", "label": "Pot" },
+            { "value": "info", "label": "Info Circle" }
           ],
           "default": "sun"
         },
@@ -1668,13 +1769,13 @@
           "id": "icon_type_3",
           "label": "Preset Icon 3",
           "options": [
-            { "value": "water",    "label": "Water Drop" },
-            { "value": "sun",      "label": "Sun / Light" },
+            { "value": "water", "label": "Water Drop" },
+            { "value": "sun", "label": "Sun / Light" },
             { "value": "beginner", "label": "Beginner / Shield" },
-            { "value": "leaf",     "label": "Leaf" },
-            { "value": "temp",     "label": "Temperature" },
-            { "value": "pot",      "label": "Pot" },
-            { "value": "info",     "label": "Info Circle" }
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "temp", "label": "Temperature" },
+            { "value": "pot", "label": "Pot" },
+            { "value": "info", "label": "Info Circle" }
           ],
           "default": "beginner"
         },
@@ -1718,8 +1819,8 @@
           "label": "Field Type",
           "options": [
             { "value": "single_line", "label": "Single Line Text" },
-            { "value": "multi_line",  "label": "Multi Line Text" },
-            { "value": "rich_text",   "label": "Rich Text" }
+            { "value": "multi_line", "label": "Multi Line Text" },
+            { "value": "rich_text", "label": "Rich Text" }
           ],
           "default": "single_line"
         },

@@ -530,17 +530,15 @@
   <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}"></div>
 </div>
 <div class="product-card-rating-{{ custom_best_selling }}">
-                       {%- for i in (1..5) -%}
-  {%- assign i_f = i | times: 1.0 -%}
-  {%- assign half_point = i_f | minus: 0.5 -%}
-  {%- if avg >= i_f -%}
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="#f5a623" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-  {%- elsif avg >= half_point -%}
-    <svg width="13" height="13" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="half{{ i }}{{ custom_best_selling }}"><stop offset="50%" stop-color="#f5a623"/><stop offset="50%" stop-color="#ddd"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#half{{ i }}{{ custom_best_selling }})"/></svg>
-  {%- else -%}
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="#ddd" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-  {%- endif -%}
-{%- endfor -%} </div>
+                       <div class="rs-info__reviews">
+          <div class="rs-info__reviews" id="rs-jdgm-stars-{{ section.id }}">
+            <span style="color:#aaa;font-size:.85rem;">Loading reviews…</span>
+          </div>
+          {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
+          {% if review_count > 0 %}
+            <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
+          {% endif %}
+        </div></div>
 
                         <div class="product-card-prices-{{ custom_best_selling }}">
                          <span class="product-card-compare-price-{{ custom_best_selling }}" data-compare-display {% unless first_available.compare_at_price > first_available.price %}style="display:none"{% endunless %}>
