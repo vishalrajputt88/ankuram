@@ -565,7 +565,6 @@
                           <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}"></div>
                         </div>
                         <div class="product-card-rating-{{ custom_best_selling }}">
-                          <div class="rs-info__reviews">
                             {% assign rating = product.metafields.custom.rating | default: 4 %}
 
                             <div class="rating">
@@ -577,7 +576,6 @@
                             {% if review_count > 0 %}
                               <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
                             {% endif %}
-                          </div>
                         </div>
 
                         <div class="product-card-prices-{{ custom_best_selling }}">
