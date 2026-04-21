@@ -606,17 +606,27 @@
           {% if current_variant.weight > 0 %}Net Weight: {{ current_variant.weight | weight_with_unit }}{% endif %}
         </div>
 
-        <div class="rs-info__reviews">
-          <span class="rs-stars">
-            {% assign rating = product.metafields.reviews.rating.value | default: 5 %}
-            {% for i in (1..5) %}{% if i <= rating %}★{% else %}☆{% endif %}{% endfor %}
-          </span>
-          {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
-          {% if review_count > 0 %}
-            <span style="font-size:.88rem;color:#555;">({{ review_count }})</span>
-            <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
-          {% endif %}
-        </div>
+      <div class="rs-info__reviews">
+  {%- assign jm_avg = product.metafields.judgeme.avg_rating | times: 1.0 -%}
+  {%- assign jm_count = product.metafields.judgeme.reviews_count | plus: 0 -%}
+  {% if jm_count > 0 %}
+    <span style="display:inline-flex;align-items:center;gap:1px;">
+      {%- for i in (1..5) -%}
+        {%- assign i_f = i | times: 1.0 -%}
+        {%- assign half_point = i_f | minus: 0.5 -%}
+        {%- if jm_avg >= i_f -%}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        {%- elsif jm_avg >= half_point -%}
+          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hprod{{ i }}"><stop offset="50%" stop-color="#f5a623"/><stop offset="50%" stop-color="#ddd"/></linearGradient></defs><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="url(#hprod{{ i }})"/></svg>
+        {%- else -%}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#ddd" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        {%- endif -%}
+      {%- endfor -%}
+    </span>
+    <span style="font-size:.88rem;color:#555;">({{ jm_count }})</span>
+    <a class="rs-info__review-count" href="#reviews">{{ jm_count }} Reviews</a>
+  {% endif %}
+</div>
 
         <!-- ══ DYNAMIC BLOCKS LOOP ══ -->
         {% for block in section.blocks %}
