@@ -669,13 +669,16 @@
                 {%- endif -%}
 
                 {%- assign variant_price = '' -%}
-                {%- assign variant_compare = '' -%}
-                {% for v in product.variants %}
-                  {% if v.options[forloop.parentloop.index0] == value %}
-                    {%- assign variant_price   = v.price | money -%}
-                    {%- assign variant_compare = v.compare_at_price | money -%}
-                  {% endif %}
-                {% endfor %}
+                {%- assign variant_price = '' -%}
+{%- assign variant_compare = '' -%}
+{%- assign _opt_idx = forloop.parentloop.index0 -%}
+{% for v in product.variants %}
+  {% if v.options[_opt_idx] == value %}
+    {%- assign variant_price   = v.price | money -%}
+    {%- assign variant_compare = v.compare_at_price | money -%}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
                 <div
                   class="rs-size-card {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
