@@ -526,7 +526,7 @@
                         {% endif %}
 
                         <a href="{{ product.url }}" class="product-card-title-{{ custom_best_selling }}">{{ product.title }}</a>
-
+<div>
                        {%- for i in (1..5) -%}
   {%- assign i_f = i | times: 1.0 -%}
   {%- assign half_point = i_f | minus: 0.5 -%}
@@ -537,7 +537,7 @@
   {%- else -%}
     <svg width="13" height="13" viewBox="0 0 24 24" fill="#ddd" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
   {%- endif -%}
-{%- endfor -%}
+{%- endfor -%} </div>
 
                         <div class="product-card-prices-{{ custom_best_selling }}">
                          <span class="product-card-compare-price-{{ custom_best_selling }}" data-compare-display {% unless first_available.compare_at_price > first_available.price %}style="display:none"{% endunless %}>
