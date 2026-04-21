@@ -526,6 +526,9 @@
                         {% endif %}
 
                         <a href="{{ product.url }}" class="product-card-title-{{ custom_best_selling }}">{{ product.title }}</a>
+                        <div class="rs-info__reviews">
+  <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}"></div>
+</div>
 <div class="product-card-rating-{{ custom_best_selling }}">
                        {%- for i in (1..5) -%}
   {%- assign i_f = i | times: 1.0 -%}
