@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "main": {
       "type": "main-blog",
@@ -44,6 +45,18 @@
             "alignment": "left"
           },
           "blocks": {
+            "image": {
+              "type": "_blog-post-image",
+              "static": true,
+              "settings": {
+                "height": "large",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 4
+              },
+              "blocks": {}
+            },
             "heading": {
               "type": "_heading",
               "name": "t:names.title",
@@ -83,15 +96,20 @@
               },
               "blocks": {}
             },
-            "image": {
-              "type": "_blog-post-image",
+            "content": {
+              "type": "_blog-post-description",
               "static": true,
               "settings": {
-                "height": "large",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 4
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 16,
+                "padding-block-end": 0
               },
               "blocks": {}
             }
@@ -102,14 +120,61 @@
       "block_order": [
         "title"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 48
       }
+    },
+    "blog_grid_section_new_WmGwRh": {
+      "type": "blog-grid-section-new",
+      "blocks": {
+        "filter_tab_cAPJjX": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "RIGHT NUTRITION",
+            "tag_filter": "nutrition"
+          }
+        },
+        "filter_tab_44HyjY": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "RIGHT LIFESTYLE",
+            "tag_filter": "lifestyle"
+          }
+        },
+        "filter_tab_EmtNUc": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "RIGHT MINDSET",
+            "tag_filter": "mindset"
+          }
+        },
+        "filter_tab_m4UF9M": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "RIGHT HEALTH",
+            "tag_filter": "health"
+          }
+        }
+      },
+      "block_order": [
+        "filter_tab_cAPJjX",
+        "filter_tab_44HyjY",
+        "filter_tab_EmtNUc",
+        "filter_tab_m4UF9M"
+      ],
+      "name": "ankooram blogs grid",
+      "settings": {
+        "heading": "Right Shift Health Blogs",
+        "blog_handle": "news",
+        "max_posts": 12
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "blog_grid_section_new_WmGwRh"
   ]
 }
