@@ -423,21 +423,23 @@ a.pcp-banner-{{ _sid }},
 
                     <a href="{{ product.url }}" class="pcp-title-{{ _sid }}">{{ product.title }}</a>
 
-                    {% if section.settings.show_rating %}
-                      <div class="pcp-rating-{{ _sid }}">
-                        <span
-                          class="jdgm-prev-badge"
-                          data-id="{{ product.id }}"
-                          data-number-of-reviews="{{ product.metafields.judgeme.reviews_count }}"
-                          data-average-rating="{{ product.metafields.judgeme.avg_rating }}"
-                        >
-                          <span class="jdgm-prev-badge__stars" data-score="{{ product.metafields.judgeme.avg_rating }}"></span>
-                          <span class="jdgm-prev-badge__text">
-                            {{ product.metafields.judgeme.reviews_count }} review{% if product.metafields.judgeme.reviews_count != 1 %}s{% endif %}
-                          </span>
-                        </span>
-                      </div>
-                    {% endif %}
+                    
+
+                    <div class="pcp-rating-{{ _sid }}">
+                            {% assign rating = product.metafields.custom.rating | default: 4 %}
+
+                            <div class="rating">
+                              {% for i in (1..5) %}
+                                <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+                              {% endfor %}
+                            </div>
+                            {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
+                            {% comment %} {% if review_count > 0 %}
+                              <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
+                            {% endif %} {% endcomment %}
+
+                              <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
+                        </div>
 
                     <div class="pcp-prices-{{ _sid }}">
                       <span class="pcp-price-{{ _sid }}" data-price-display>{{ first_available.price | money }}</span>
