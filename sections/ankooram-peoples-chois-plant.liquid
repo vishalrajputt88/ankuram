@@ -286,6 +286,16 @@ a.pcp-banner-{{ _sid }},
 .pcp-nav-btn-{{ _sid }}:disabled { opacity: 0.32; cursor: not-allowed; pointer-events: none; }
 .pcp-nav-btn-{{ _sid }} svg path { transition: stroke 0.2s; }
 
+.product-card-rating-{{ _sid }} {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 21px;
+      min-height: 20px;
+    }
+    .product-card-rating-{{ _sid }} .star { color: #FF9900;  }
+.product-card-rating-{{ _sid }} .ratting_text { font-size: 13px; }
+
 /* ─── MOBILE ─── */
 @media (max-width: 749px) {
   .pcp-layout-{{ _sid }} {
@@ -423,21 +433,25 @@ a.pcp-banner-{{ _sid }},
 
                     <a href="{{ product.url }}" class="pcp-title-{{ _sid }}">{{ product.title }}</a>
 
-                    {% if section.settings.show_rating %}
-                      <div class="pcp-rating-{{ _sid }}">
+                     {% if section.settings.show_rating %}
+                    <div class="product-card-rating-{{ _sid }}">
+                      <span
+                        class="jdgm-prev-badge"
+                        data-id="{{ product.id }}"
+                        data-number-of-reviews="{{ product.metafields.judgeme.reviews_count }}"
+                        data-average-rating="{{ product.metafields.judgeme.avg_rating }}"
+                      >
                         <span
-                          class="jdgm-prev-badge"
-                          data-id="{{ product.id }}"
-                          data-number-of-reviews="{{ product.metafields.judgeme.reviews_count }}"
-                          data-average-rating="{{ product.metafields.judgeme.avg_rating }}"
-                        >
-                          <span class="jdgm-prev-badge__stars" data-score="{{ product.metafields.judgeme.avg_rating }}"></span>
-                          <span class="jdgm-prev-badge__text">
-                            {{ product.metafields.judgeme.reviews_count }} review{% if product.metafields.judgeme.reviews_count != 1 %}s{% endif %}
-                          </span>
+                          class="jdgm-prev-badge__stars"
+                          data-score="{{ product.metafields.judgeme.avg_rating }}"
+                        ></span>
+                        <span class="jdgm-prev-badge__text">
+                          {{ product.metafields.judgeme.reviews_count }} review
+                          {%- if product.metafields.judgeme.reviews_count != 1 %}s{% endif %}
                         </span>
-                      </div>
-                    {% endif %}
+                      </span>
+                    </div>
+                  {% endif %}
 
                     <div class="pcp-prices-{{ _sid }}">
                       <span class="pcp-price-{{ _sid }}" data-price-display>{{ first_available.price | money }}</span>
