@@ -410,6 +410,57 @@
   .rs-info__title { font-size:1.4rem; }
   .rs-gallery__thumb { flex:0 0 64px; height:64px; }
 }
+
+
+/* ── SIZE IMAGE SWATCHES ───────────────────────────────────── */
+.rs-size-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.rs-size-card {
+  border: 1.5px solid #d4c9b8;
+  border-radius: 12px;
+  padding: 10px 8px 12px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  background: #fff;
+  text-align: center;
+  position: relative;
+  font-family: inherit;
+}
+.rs-size-card:hover { border-color: #81c784; }
+.rs-size-card.active { border: 2px solid #0E3A23; background: #f6faf7; }
+.rs-size-card.sold-out { opacity: .45; cursor: not-allowed; pointer-events: none; }
+.rs-size-card__check {
+  display: none;
+  position: absolute; top: 7px; left: 7px;
+  width: 18px; height: 18px;
+  background: #0E3A23; border-radius: 50%;
+  align-items: center; justify-content: center;
+}
+.rs-size-card__check svg { width: 10px; height: 10px; }
+.rs-size-card.active .rs-size-card__check { display: flex; }
+.rs-size-card__soldout {
+  position: absolute; top: 6px; right: 6px;
+  font-size: 9px; font-weight: 600;
+  background: #fee2e2; color: #991b1b;
+  padding: 2px 6px; border-radius: 4px;
+}
+.rs-size-card__img-wrap {
+  width: 100%; aspect-ratio: 1/1;
+  display: flex; align-items: flex-end; justify-content: center;
+  background: #f4f8f5; border-radius: 8px;
+  padding: 6px; margin-bottom: 8px; overflow: hidden;
+}
+.rs-size-card__img-wrap img { object-fit: contain; display: block; transition: transform .2s; }
+.rs-size-card:hover .rs-size-card__img-wrap img { transform: scale(1.06); }
+.rs-size-card__name { font-size: 12px; font-weight: 600; color: #2d2119; margin-bottom: 3px; }
+.rs-size-card__price { font-size: 13px; font-weight: 700; color: #0E3A23; }
+.rs-size-card__compare { font-size: 11px; color: #aaa; text-decoration: line-through; margin-right: 3px; font-weight: 400; }
+@media (max-width: 480px) {
+  .rs-size-swatches { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+}
 </style>
 
 {%- assign product = product -%}
@@ -562,56 +613,123 @@
           {% case block.type %}
 
             {%- comment -%} ── VARIANT SELECTOR BLOCK ── {%- endcomment -%}
-            {% when 'variant_selector' %}
-              {% unless product.has_only_default_variant %}
-                <div class="rs-variants" {{ block.shopify_attributes }}>
-                  {% for option in product.options_with_values %}
-                    <div class="rs-variants__option-group" data-option-index="{{ forloop.index0 }}">
-                      <div class="rs-variants__label">
-                        {{ option.name }}
-                        <span id="rs-opt-val-{{ section.id }}-{{ forloop.index0 }}">{{ option.selected_value }}</span>
-                      </div>
+           {% when 'variant_selector' %}
+  {% unless product.has_only_default_variant %}
+    <div class="rs-variants" {{ block.shopify_attributes }}>
+      {% for option in product.options_with_values %}
+        <div class="rs-variants__option-group" data-option-index="{{ forloop.index0 }}">
+          <div class="rs-variants__label">
+            {{ option.name }}:
+            <span id="rs-opt-val-{{ section.id }}-{{ forloop.index0 }}">{{ option.selected_value }}</span>
+          </div>
 
-                      {% if block.settings.display_type == 'dropdown' %}
-                        <select
-                          class="rs-variants__select"
-                          data-option-index="{{ forloop.index0 }}"
-                          onchange="rsVariantSelectChange('{{ section.id }}', {{ forloop.index0 }}, this.value)"
-                        >
-                          {% for value in option.values %}
-                            <option value="{{ value }}" {% if value == option.selected_value %}selected{% endif %}>
-                              {{ value }}
-                            </option>
-                          {% endfor %}
-                        </select>
+          {%- assign size_option = option.name | downcase -%}
+          {%- if size_option == 'size' or size_option == 'plant size' -%}
 
-                      {% else %}
-                        <div class="rs-variants__swatches">
-                          {% for value in option.values %}
-                            {%- assign is_available = false -%}
-                            {% for variant in product.variants %}
-                              {% if variant.available %}
-                                {% assign opt_val = variant.options[forloop.parentloop.parentloop.index0] %}
-                                {% if opt_val == value %}{%- assign is_available = true -%}{% endif %}
-                              {% endif %}
-                            {% endfor %}
-                            <button
-                              class="rs-swatch {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
-                              data-option-index="{{ forloop.parentloop.index0 }}"
-                              data-value="{{ value }}"
-                              onclick="rsSwatchClick('{{ section.id }}', {{ forloop.parentloop.index0 }}, '{{ value }}')"
-                              {% unless is_available %}title="Sold out"{% endunless %}
-                            >
-                              {{ value }}
-                            </button>
-                          {% endfor %}
-                        </div>
+            {{- '<!-- SIZE IMAGE SWATCHES -->' -}}
+            {%- assign size_images = '' -%}
+            {%- assign small_img   = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/small.png?v=1776770645' -%}
+            {%- assign medium_img  = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/medium.png?v=1776770646' -%}
+            {%- assign large_img   = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/large.png?v=1776770646' -%}
+            {%- assign xlarge_img  = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/extra-large-plant.png?v=1776770646' -%}
+
+            <div class="rs-size-swatches">
+              {% for value in option.values %}
+                {%- assign is_available = false -%}
+                {% for variant in product.variants %}
+                  {% if variant.available %}
+                    {%- assign opt_val = variant.options[forloop.parentloop.parentloop.index0] -%}
+                    {% if opt_val == value %}{%- assign is_available = true -%}{% endif %}
+                  {% endif %}
+                {% endfor %}
+
+                {%- assign val_lower = value | downcase -%}
+                {%- if val_lower contains 'extra' or val_lower contains 'xl' -%}
+                  {%- assign thumb_img = xlarge_img -%}
+                  {%- assign thumb_h = '100px' -%}
+                {%- elsif val_lower contains 'large' -%}
+                  {%- assign thumb_img = large_img -%}
+                  {%- assign thumb_h = '88px' -%}
+                {%- elsif val_lower contains 'medium' or val_lower contains 'med' -%}
+                  {%- assign thumb_img = medium_img -%}
+                  {%- assign thumb_h = '76px' -%}
+                {%- else -%}
+                  {%- assign thumb_img = small_img -%}
+                  {%- assign thumb_h = '64px' -%}
+                {%- endif -%}
+
+                {%- assign variant_price = '' -%}
+                {%- assign variant_compare = '' -%}
+                {% for v in product.variants %}
+                  {% if v.options[forloop.parentloop.index0] == value %}
+                    {%- assign variant_price   = v.price | money -%}
+                    {%- assign variant_compare = v.compare_at_price | money -%}
+                  {% endif %}
+                {% endfor %}
+
+                <div
+                  class="rs-size-card {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
+                  data-option-index="{{ forloop.parentloop.index0 }}"
+                  data-value="{{ value }}"
+                  onclick="rsSizeCardClick('{{ section.id }}', {{ forloop.parentloop.index0 }}, '{{ value }}')"
+                  role="button" tabindex="0"
+                  aria-label="{{ value }}{% unless is_available %} - Sold out{% endunless %}"
+                >
+                  <div class="rs-size-card__check">
+                    <svg viewBox="0 0 10 8" fill="none"><polyline points="1,4 4,7 9,1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </div>
+                  {% unless is_available %}
+                    <div class="rs-size-card__soldout">Sold Out</div>
+                  {% endunless %}
+                  <div class="rs-size-card__img-wrap">
+                    <img src="{{ thumb_img }}" alt="{{ value }}" style="height:{{ thumb_h }};width:auto;" loading="lazy">
+                  </div>
+                  <div class="rs-size-card__name">{{ value }}</div>
+                  {% if variant_price != blank %}
+                    <div class="rs-size-card__price">
+                      {% if variant_compare != '₹0.00' and variant_compare != variant_price %}
+                        <span class="rs-size-card__compare">{{ variant_compare }}</span>
                       {% endif %}
+                      {{ variant_price }}
                     </div>
-                    <br style="margin:6px 0;">
-                  {% endfor %}
+                  {% endif %}
                 </div>
-              {% endunless %}
+              {% endfor %}
+            </div>
+
+          {%- else -%}
+            {{- '<!-- REGULAR SWATCHES / DROPDOWN -->' -}}
+            {% if block.settings.display_type == 'dropdown' %}
+              <select class="rs-variants__select" data-option-index="{{ forloop.index0 }}"
+                onchange="rsVariantSelectChange('{{ section.id }}', {{ forloop.index0 }}, this.value)">
+                {% for value in option.values %}
+                  <option value="{{ value }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
+                {% endfor %}
+              </select>
+            {% else %}
+              <div class="rs-variants__swatches">
+                {% for value in option.values %}
+                  {%- assign is_available = false -%}
+                  {% for variant in product.variants %}
+                    {% if variant.available %}
+                      {% assign opt_val = variant.options[forloop.parentloop.parentloop.index0] %}
+                      {% if opt_val == value %}{%- assign is_available = true -%}{% endif %}
+                    {% endif %}
+                  {% endfor %}
+                  <button
+                    class="rs-swatch {% if value == option.selected_value %}active{% endif %} {% unless is_available %}sold-out{% endunless %}"
+                    data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}"
+                    onclick="rsSwatchClick('{{ section.id }}', {{ forloop.parentloop.index0 }}, '{{ value }}')"
+                  >{{ value }}</button>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {%- endif -%}
+        </div>
+        <br style="margin:6px 0;">
+      {% endfor %}
+    </div>
+  {% endunless %}
 
             {%- comment -%} ── CUSTOM TEXT FIELD BLOCK ── {%- endcomment -%}
             {% when 'custom_field' %}
@@ -1265,6 +1383,17 @@
   };
 
 })();
+
+window.rsSizeCardClick = function(id, optionIndex, value) {
+  _selectedOptions[optionIndex] = value;
+  document.querySelectorAll('.rs-size-card[data-option-index="' + optionIndex + '"]')
+    .forEach(function(c){ c.classList.toggle('active', c.getAttribute('data-value') === value); });
+  var labelVal = document.getElementById('rs-opt-val-' + id + '-' + optionIndex);
+  if (labelVal) labelVal.textContent = value;
+  var variant = rsFindVariant(_selectedOptions);
+  if (variant) rsUpdateVariantUI(id, variant);
+};
+
 </script>
 
 {% schema %}
