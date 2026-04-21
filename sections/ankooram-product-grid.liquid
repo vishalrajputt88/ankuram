@@ -764,23 +764,21 @@
                   </a>
 
                   {% if section.settings.show_rating %}
-                    <div class="product-card-rating-{{ custom_best_selling }}">
-                      <span
-                        class="jdgm-prev-badge"
-                        data-id="{{ product.id }}"
-                        data-number-of-reviews="{{ product.metafields.judgeme.reviews_count }}"
-                        data-average-rating="{{ product.metafields.judgeme.avg_rating }}"
-                      >
-                        <span
-                          class="jdgm-prev-badge__stars"
-                          data-score="{{ product.metafields.judgeme.avg_rating }}"
-                        ></span>
-                        <span class="jdgm-prev-badge__text">
-                          {{ product.metafields.judgeme.reviews_count }} review
-                          {%- if product.metafields.judgeme.reviews_count != 1 %}s{% endif %}
-                        </span>
-                      </span>
-                    </div>
+                     <div class="product-card-rating-{{ custom_best_selling }}">
+                          <div class="rs-info__reviews">
+                            {% assign rating = product.metafields.custom.rating | default: 4 %}
+
+                            <div class="rating">
+                              {% for i in (1..5) %}
+                                <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+                              {% endfor %}
+                            </div>
+                            {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
+                            {% if review_count > 0 %}
+                              <a class="rs-info__review-count" href="#reviews">{{ review_count }} Reviews</a>
+                            {% endif %}
+                          </div>
+                        </div>
                   {% endif %}
 
                   <div class="product-card-prices-{{ custom_best_selling }}">
