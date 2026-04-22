@@ -237,7 +237,7 @@
         "bg_image": "{{ collection.image }}",
         "heading": "{{ collection.title }}",
         "subheading": "Green Living",
-        "description": "",
+        "description": "{{ collection.description }}",
         "text_align": "center",
         "overlay_color": "#000000",
         "overlay_opacity": 0.4
