@@ -184,10 +184,56 @@
         "padding-block-start": 0,
         "padding-block-end": 48
       }
+    },
+    "blog_grid_section_new_QEHTK3": {
+      "type": "blog-grid-section-new",
+      "blocks": {
+        "filter_tab_fTrCBQ": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "Indoor Plants",
+            "tag_filter": "nutrition"
+          }
+        },
+        "filter_tab_yWzHM8": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "Plant Care Tips",
+            "tag_filter": "lifestyle"
+          }
+        },
+        "filter_tab_YNhci4": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "Gardening Guide",
+            "tag_filter": "mindset"
+          }
+        },
+        "filter_tab_VMUd3U": {
+          "type": "filter_tab",
+          "settings": {
+            "tab_label": "Plant Decor & Styling",
+            "tag_filter": "health"
+          }
+        }
+      },
+      "block_order": [
+        "filter_tab_fTrCBQ",
+        "filter_tab_yWzHM8",
+        "filter_tab_YNhci4",
+        "filter_tab_VMUd3U"
+      ],
+      "name": "Right Talk Blog Grid",
+      "settings": {
+        "heading": "Plant Care Tips, Indoor Gardening & Green Living | Ankooram",
+        "blog_handle": "news",
+        "max_posts": 12
+      }
     }
   },
   "order": [
     "ankooram_slider_99XnJb",
-    "main"
+    "main",
+    "blog_grid_section_new_QEHTK3"
   ]
 }
