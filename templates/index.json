@@ -264,6 +264,7 @@
           "type": "reel",
           "settings": {
             "reel_image": "shopify://shop_images/254112_tiny.jpg",
+            "reel_video": "shopify://files/videos/254112.mp4",
             "reel_product": "aglaonema-ice",
             "reel_discount": "30% Off"
           }
@@ -271,7 +272,8 @@
         "reel_bKadfr": {
           "type": "reel",
           "settings": {
-            "reel_image": "shopify://shop_images/1.webp",
+            "reel_image": "shopify://shop_images/29.png",
+            "reel_video": "shopify://files/videos/ankooram-reel-video.mp4",
             "reel_product": "aglaonema-ice",
             "reel_discount": "30% Off"
           }
@@ -279,7 +281,8 @@
         "reel_iMtNfN": {
           "type": "reel",
           "settings": {
-            "reel_image": "shopify://shop_images/images_1.jpg",
+            "reel_image": "shopify://shop_images/dkcc2lNAp8Y6hMI3d_clBlnBcJ_sZ_CjbPhVH8BS1BRc1pY6JDzdud8qPgH30PzWdhfPwA7dIN0eK3fhfoTmI6IgjsNd3A1rtFVB53kNfuMpa7nubqqWsSQiqeQUMmQpbIfJrPlejxKFPfWaBF0G5YfX-en-BsdYPTLJdZoRnqgZnPQ7rmmxUAX.jpg",
+            "reel_video": "shopify://files/videos/ankooram-reel-video.mp4",
             "reel_product": "aglaonema-ice",
             "reel_discount": "30% Off"
           }
@@ -288,6 +291,16 @@
           "type": "reel",
           "settings": {
             "reel_image": "shopify://shop_images/beautiful-office-dark-green-plants-decorative-plants-home-15280625.jpg",
+            "reel_video": "shopify://files/videos/15280625-uhd_1440_2560_60fps.mp4",
+            "reel_product": "aglaonema-ice",
+            "reel_discount": "30% Off"
+          }
+        },
+        "reel_LdNQqy": {
+          "type": "reel",
+          "settings": {
+            "reel_image": "shopify://shop_images/254112_tiny.jpg",
+            "reel_video": "shopify://files/videos/254112.mp4",
             "reel_product": "aglaonema-ice",
             "reel_discount": "30% Off"
           }
@@ -297,7 +310,8 @@
         "reel_xhUgt4",
         "reel_bKadfr",
         "reel_iMtNfN",
-        "reel_CQENxV"
+        "reel_CQENxV",
+        "reel_LdNQqy"
       ],
       "name": "Watch & Buy Reels",
       "settings": {
