@@ -19,12 +19,24 @@
 .rtc-inner { max-width: 1200px; margin: 0 auto; }
 
 .rtc-heading {
-  text-align: center;
-  font-size: 32px;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 10px;
+    text-align: center;
+    font-family: inherit;
+    letter-spacing: -0.3px;
 }
+
+  .pcp-leaf-icon {
+    display: flex;
+    align-items: center;
+  }
+
 
 /* ── TABS ── */
 .rtc-tabs {
@@ -177,6 +189,16 @@
 
     {% if section.settings.heading != blank %}
       <h2 class="rtc-heading">{{ section.settings.heading }}</h2>
+
+        <h2 class="rtc-heading">
+        <span class="pcp-leaf-icon">
+          <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_20.png?v=1776257732">
+        </span>
+        {{ section.settings.heading }}
+        <span class="pcp-leaf-icon">
+          <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_21.png?v=1776257732">
+        </span>
+      </h2>
     {% endif %}
 
     <!-- Filter Tabs -->
