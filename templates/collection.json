@@ -234,7 +234,7 @@
       "type": "collection-banner",
       "name": "Collection Banner",
       "settings": {
-        "bg_image": "{{ collection.image }}",
+        "bg_image": "{{ collection.metafields.custom.banner_image.value }}",
         "heading": "{{ collection.title }}",
         "subheading": "Green Living",
         "description": "{{ collection.description }}",
