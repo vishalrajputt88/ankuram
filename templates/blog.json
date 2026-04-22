@@ -178,6 +178,7 @@
       "block_order": [
         "title"
       ],
+      "disabled": true,
       "settings": {
         "color_scheme": "",
         "padding-block-start": 0,
