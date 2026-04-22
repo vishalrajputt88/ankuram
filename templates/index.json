@@ -257,89 +257,48 @@
         "social_proof_text": "507+ bought in last week"
       }
     },
-    "1776843449421e2d1d": {
-      "type": "_blocks",
-      "blocks": {
-        "judge_me_reviews_videos_carousel_gkRHkp": {
-          "type": "shopify://apps/judge-me-reviews/blocks/videos_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "show_sample_reviews": true,
-            "reviews_selection": "all",
-            "products": [
-              "aechmea-fasciata-plant"
-            ],
-            "star_rating": "all",
-            "review_type": "photo_and_video",
-            "max_reviews": 20,
-            "show_reviewer_name": true,
-            "stars_size": "medium",
-            "text_size": "medium",
-            "arrows_position": "bottom",
-            "max_width": 1100,
-            "corner_styling": "soft",
-            "header_text_color": "#000000",
-            "card_color": "#7D7D7D",
-            "stars_color": "",
-            "text_color": "#FFFFFF",
-            "arrows_color": "#000000",
-            "show_drop_shadow": false,
-            "show_border": false,
-            "border_color": "#108474",
-            "autoplay_media": true,
-            "transition_speed": 5,
-            "carousel_style": "highlight",
-            "header_text": "Real customer stories",
-            "show_average_rating": true
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_videos_carousel_gkRHkp"
-      ],
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "watch_and_buy_9ahyKR": {
       "type": "watch-and-buy",
       "blocks": {
         "reel_xhUgt4": {
           "type": "reel",
           "settings": {
-            "reel_image": "shopify://shop_images/zz_plant_data.png",
+            "reel_image": "shopify://shop_images/254112_tiny.jpg",
+            "reel_product": "aglaonema-ice",
+            "reel_discount": "30% Off"
+          }
+        },
+        "reel_bKadfr": {
+          "type": "reel",
+          "settings": {
+            "reel_image": "shopify://shop_images/1.webp",
+            "reel_product": "aglaonema-ice",
+            "reel_discount": "30% Off"
+          }
+        },
+        "reel_iMtNfN": {
+          "type": "reel",
+          "settings": {
+            "reel_image": "shopify://shop_images/images_1.jpg",
+            "reel_product": "aglaonema-ice",
+            "reel_discount": "30% Off"
+          }
+        },
+        "reel_CQENxV": {
+          "type": "reel",
+          "settings": {
+            "reel_image": "shopify://shop_images/beautiful-office-dark-green-plants-decorative-plants-home-15280625.jpg",
             "reel_product": "aglaonema-ice",
             "reel_discount": "30% Off"
           }
         }
       },
       "block_order": [
-        "reel_xhUgt4"
+        "reel_xhUgt4",
+        "reel_bKadfr",
+        "reel_iMtNfN",
+        "reel_CQENxV"
       ],
-      "disabled": true,
       "name": "Watch & Buy Reels",
       "settings": {
         "heading": "Watch Reels & Buy Our New Arrivals",
@@ -416,7 +375,6 @@
     "ankooram_product_grid_BBfDUh",
     "ankooram_banner_PrbcRa",
     "ankooram_peoples_chois_plant_8i8btm",
-    "1776843449421e2d1d",
     "watch_and_buy_9ahyKR",
     "ankooram_product_grid_jiMRtk"
   ]
