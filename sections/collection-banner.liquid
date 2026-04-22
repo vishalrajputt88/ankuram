@@ -16,9 +16,11 @@
         <p class="subheading">{{ section.settings.subheading }}</p>
       {% endif %}
 
-      {% if section.settings.description != blank %}
-        <p class="description">{{ section.settings.description }}</p>
-      {% endif %}
+     {% if section.settings.description != blank %}
+  <div class="description">
+    {{ section.settings.description }}
+  </div>
+{% endif %}
     </div>
 
   </div>
@@ -120,10 +122,10 @@
       "default": "Green Living"
     },
     {
-      "type": "textarea",
+      "type": "richtext",
       "id": "description",
       "label": "Description",
-      "default": "We offer a wide range of indoor plants designed to enhance your living spaces with freshness and natural beauty. Our plants help purify the air, reduce stress, and create a calm environment for homes and offices. Carefully selected for easy maintenance and long-lasting growth, our indoor plants are perfect for modern lifestyles and interior décor."
+      
     },
     {
       "type": "select",
