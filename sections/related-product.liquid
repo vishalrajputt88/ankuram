@@ -1,6 +1,24 @@
 {% assign custom_related_products = section.id | replace: '_', '' | downcase %}
 
 {% style %}
+
+ /* ── JUDGE.ME RATING WRAPPER ── */
+    .product-card-rating-{{ custom_related_products }} {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 21px;
+      min-height: 20px;
+    }
+    .product-card-rating-{{ custom_related_products }} .rating {
+      display: flex;
+      align-items: center;
+      gap: 0px;
+      font-size: 21px;
+      min-height: 20px;
+    }
+    .product-card-rating-{{ custom_related_products }} .star { color: #FF9900;  }
+.product-card-rating-{{ custom_related_products }} .ratting_text { font-size: 13px; } 
   .product-grid-{{ custom_related_products }} {
     display: block;
     width: 100%;
@@ -112,16 +130,12 @@
   }
 
   .product-card-title-{{ custom_related_products }} {
-   font-size: 18px;
-      font-weight: 600;
-      color: #333;
-      text-decoration: none;
-      display: block;
-      margin: 0;
-      white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 250px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    text-decoration: none;
+    display: block;
+    margin: 0;
   }
 
   .product-card-title-{{ custom_related_products }}:hover {
@@ -392,7 +406,21 @@
                       {% endif %}
                       <a href="{{ rp.url }}" class="product-card-title-{{ custom_related_products }}">{{ rp.title }}</a>
                       {% if section.settings.show_rating %}
-                        <div class="product-card-rating-{{ custom_related_products }}"><span>★★★★★</span></div>
+                         <div class="product-card-rating-{{ custom_related_products }}">
+                            {% assign rating = product.metafields.custom.rating | default: 4 %}
+
+                            <div class="rating">
+                              {% for i in (1..5) %}
+                                <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+                              {% endfor %}
+                            </div>
+                            {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
+                            {% comment %} {% if review_count > 0 %}
+                              <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
+                            {% endif %} {% endcomment %}
+
+                              <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
+                        </div>
                       {% endif %}
                       <div class="product-card-prices-{{ custom_related_products }}">
                         <span class="product-card-price-{{ custom_related_products }}">₹{{ rp.price | divided_by: 100.0 }}</span>
