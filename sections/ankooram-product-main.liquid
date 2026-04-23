@@ -1043,9 +1043,9 @@
                             {%- elsif val_l contains 'large' -%}
                               {%- assign thumb_img = large_img -%}{%- assign thumb_h = '58px' -%}
                             {%- elsif val_l contains 'medium' or val_l contains 'med' -%}
-                              {%- assign thumb_img = medium_img -%}{%- assign thumb_h = '46px' -%}
+                              {%- assign thumb_img = medium_img -%}{%- assign thumb_h = '50px' -%}
                             {%- else -%}
-                              {%- assign thumb_img = small_img -%}{%- assign thumb_h = '34px' -%}
+                              {%- assign thumb_img = small_img -%}{%- assign thumb_h = '45px' -%}
                             {%- endif -%}
                             {%- assign v_price = '' -%}{%- assign v_compare = '' -%}
                             {% for v in product.variants %}
