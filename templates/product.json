@@ -78,6 +78,41 @@
             "del_days_max": 9
           }
         },
+        "accordion_XpizMz": {
+          "type": "accordion",
+          "settings": {
+            "title_1": "Product Description",
+            "ns_1": "custom",
+            "key_1": "custom.product_description",
+            "ftype_1": "rich_text",
+            "fallback_1": "",
+            "title_2": "Product Details",
+            "ns_2": "custom",
+            "key_2": "product_details",
+            "ftype_2": "rich_text",
+            "fallback_2": "",
+            "title_3": "Care Instructions",
+            "ns_3": "custom",
+            "key_3": "care_instructions",
+            "ftype_3": "multi_line",
+            "fallback_3": "",
+            "title_4": "Return and Refund",
+            "ns_4": "custom",
+            "key_4": "return_policy",
+            "ftype_4": "multi_line",
+            "fallback_4": "",
+            "title_5": "",
+            "ns_5": "custom",
+            "key_5": "",
+            "ftype_5": "multi_line",
+            "fallback_5": "",
+            "title_6": "",
+            "ns_6": "custom",
+            "key_6": "",
+            "ftype_6": "multi_line",
+            "fallback_6": ""
+          }
+        },
         "care_icons_UC4JDJ": {
           "type": "care_icons",
           "settings": {
@@ -101,6 +136,7 @@
         "coupon_banner_kaUPDU",
         "add_to_cart_4HXPLE",
         "delivery_timeline_nwJgtp",
+        "accordion_XpizMz",
         "care_icons_UC4JDJ"
       ],
       "name": "Ankooram - Product Main",
