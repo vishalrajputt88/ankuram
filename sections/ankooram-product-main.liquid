@@ -27,6 +27,8 @@
 
 <style>
 
+  
+{% comment %} features icons {% endcomment %}
   .rs-features-icons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -793,6 +795,25 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   .rs-delivery-timeline__steps::before { display: none; }
 }
 
+  /* MOBILE SETTINGS for devider */
+    @media (max-width: 768px) {
+
+      #rs-product-{{ section.id }} .rs-divider {
+        width: {{ block.settings.width_mobile }}%;
+        height: {{ block.settings.height_mobile }}px;
+      }
+
+      #rs-product-{{ section.id }} .rs-divider-text {
+        font-size: {{ block.settings.text_size_mobile }}px;
+      }
+
+      #rs-product-{{ section.id }} .rs-divider-wrapper {
+        padding-top: {{ block.settings.padding_top_mobile }}px;
+        padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+      }
+
+    }
+
 @media (max-width: 480px) {
   .rs-wrap { padding: 10px 12px 30px; }
   .rs-gallery__thumb { flex: 0 0 62px; width: 62px; height: 62px; }
@@ -1423,6 +1444,46 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                   {% if block.settings.banner_link != blank %}</a>{% endif %}
                 </div>
               {% endif %}
+
+
+              {% comment %} divider block {% endcomment %}
+               {% when 'divider' %}
+
+  <div class="rs-divider-wrapper"
+    style="
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+      background: {{ block.settings.bg_color }};
+      text-align: {{ block.settings.alignment }};
+    "
+  >
+
+    {% if block.settings.show_text and block.settings.text != blank %}
+      <div class="rs-divider-text"
+        style="
+          color: {{ block.settings.text_color }};
+          font-size: {{ block.settings.text_size }}px;
+          margin-bottom: {{ block.settings.text_spacing }}px;
+        "
+      >
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+    <div class="rs-divider"
+      style="
+        width: {{ block.settings.width }}%;
+        height: {{ block.settings.height }}px;
+        margin: 0 auto;
+        border-radius: {{ block.settings.radius }}px;
+        border-top: {{ block.settings.border_style }} {{ block.settings.border_size }}px {{ block.settings.color }};
+        background: {{ block.settings.color }};
+      "
+    ></div>
+
+  </div>
+
+  
 
             {%- comment -%} ── CARE ICONS BLOCK ── {%- endcomment -%}
             {% when 'care_icons' %}
