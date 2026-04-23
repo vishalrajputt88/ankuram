@@ -196,13 +196,6 @@
     cursor: not-allowed;
   }
 
-  .product-card-bulk-text-{{ custom_related_products }} {
-    font-size: 10px;
-    color: #E3010F;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 0px;
-  }
 
   .product-grid-view-all-{{ custom_related_products }} {
     text-align: center;
@@ -411,7 +404,6 @@
                       {% else %}
                         <button type="button" class="product-card-button-{{ custom_related_products }}" disabled>Sold Out</button>
                       {% endif %}
-                      <div class="product-card-bulk-text-{{ custom_related_products }}">Discount on Bulk Purchase</div>
                     </div>
                   </div>
                 {% endif %}
@@ -474,7 +466,6 @@
                             {% else %}
                               <button type="button" class="product-card-button-{{ custom_related_products }}" disabled>Sold Out</button>
                             {% endif %}
-                            <div class="product-card-bulk-text-{{ custom_related_products }}">Discount on Bulk Purchase</div>
                           </div>
                         </div>
                       </div>
