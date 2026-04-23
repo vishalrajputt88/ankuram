@@ -130,12 +130,16 @@
   }
 
   .product-card-title-{{ custom_related_products }} {
-    font-size: 18px;
-    font-weight: 600;
-    color: #000000;
-    text-decoration: none;
-    display: block;
-    margin: 0;
+   font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+      display: block;
+      margin: 0;
+      white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
   }
 
   .product-card-title-{{ custom_related_products }}:hover {
