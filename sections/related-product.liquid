@@ -1,27 +1,33 @@
-{% assign custom_best_selling = section.id | replace: '_', '' | downcase %}
+{% assign custom_related_products = section.id | replace: '_', '' | downcase %}
 
 {% style %}
-  .product-grid-{{ custom_best_selling }} {
+  .product-grid-{{ custom_related_products }} {
     display: block;
     width: 100%;
     padding: 40px 0;
   }
 
-  .product-grid-container-{{ custom_best_selling }} {
+  .product-grid-container-{{ custom_related_products }} {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  .product-grid-heading-{{ custom_best_selling }} {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 32px;
+  .product-grid-heading-{{ custom_related_products }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-size: 36px;
     font-weight: 700;
-    color: #000000;
+    color: #000;
+    margin: 0 0 10px;
+    text-align: center;
+    font-family: inherit;
+    letter-spacing: -0.3px;
   }
 
-  .product-grid-items-{{ custom_best_selling }} {
+  .product-grid-items-{{ custom_related_products }} {
     display: grid;
     grid-template-columns: repeat({{ section.settings.products_per_row_desktop }}, 1fr);
     gap: 24px;
@@ -29,15 +35,15 @@
   }
 
   @media screen and (max-width: 749px) {
-    .product-card-{{ custom_best_selling }} {
+    .product-card-{{ custom_related_products }} {
       padding: 10px !important;
     }
-    .product-grid-items-{{ custom_best_selling }} {
+    .product-grid-items-{{ custom_related_products }} {
       display: none !important;
     }
   }
 
-  .product-card-{{ custom_best_selling }} {
+  .product-card-{{ custom_related_products }} {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -46,7 +52,7 @@
     padding: 12px 17px;
   }
 
-  .product-card-media-{{ custom_best_selling }} {
+  .product-card-media-{{ custom_related_products }} {
     position: relative;
     overflow: hidden;
     margin-bottom: 12px;
@@ -54,7 +60,7 @@
     background-color: #f5f5f5;
   }
 
-  .product-card-image-{{ custom_best_selling }} {
+  .product-card-image-{{ custom_related_products }} {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -62,12 +68,12 @@
     transition: opacity 0.3s ease;
   }
 
-  .product-card-image-primary-{{ custom_best_selling }} {
+  .product-card-image-primary-{{ custom_related_products }} {
     position: relative;
     z-index: 2;
   }
 
-  .product-card-image-secondary-{{ custom_best_selling }} {
+  .product-card-image-secondary-{{ custom_related_products }} {
     position: absolute;
     top: 0;
     left: 0;
@@ -75,15 +81,15 @@
     opacity: 0;
   }
 
-  .product-card-media-{{ custom_best_selling }}:hover .product-card-image-primary-{{ custom_best_selling }} {
+  .product-card-media-{{ custom_related_products }}:hover .product-card-image-primary-{{ custom_related_products }} {
     opacity: 0;
   }
 
-  .product-card-media-{{ custom_best_selling }}:hover .product-card-image-secondary-{{ custom_best_selling }} {
+  .product-card-media-{{ custom_related_products }}:hover .product-card-image-secondary-{{ custom_related_products }} {
     opacity: 1;
   }
 
-  .product-card-badge-{{ custom_best_selling }} {
+  .product-card-badge-{{ custom_related_products }} {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -96,14 +102,14 @@
     z-index: 3;
   }
 
-  .product-card-info-{{ custom_best_selling }} {
+  .product-card-info-{{ custom_related_products }} {
     display: flex;
     flex-direction: column;
     gap: 2px;
     flex-grow: 1;
   }
 
-  .product-card-title-{{ custom_best_selling }} {
+  .product-card-title-{{ custom_related_products }} {
     font-size: 12px;
     font-weight: 600;
     color: #000000;
@@ -112,11 +118,11 @@
     margin: 0;
   }
 
-  .product-card-title-{{ custom_best_selling }}:hover {
+  .product-card-title-{{ custom_related_products }}:hover {
     color: #333333;
   }
 
-  .product-card-meta-{{ custom_best_selling }} {
+  .product-card-meta-{{ custom_related_products }} {
     font-size: 12px;
     color: #666666;
     background-color: transparent;
@@ -126,7 +132,7 @@
     width: fit-content;
   }
 
-  .product-card-rating-{{ custom_best_selling }} {
+  .product-card-rating-{{ custom_related_products }} {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -134,33 +140,33 @@
     color: #FFD700;
   }
 
-  .product-card-prices-{{ custom_best_selling }} {
+  .product-card-prices-{{ custom_related_products }} {
     display: flex;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
   }
 
-  .product-card-price-{{ custom_best_selling }} {
+  .product-card-price-{{ custom_related_products }} {
     font-size: 14px;
     font-weight: 600;
     color: #000000;
   }
 
-  .product-card-compare-price-{{ custom_best_selling }} {
+  .product-card-compare-price-{{ custom_related_products }} {
     font-size: 12px;
     color: #666666;
     text-decoration: line-through;
   }
 
-  .product-card-form-{{ custom_best_selling }} {
+  .product-card-form-{{ custom_related_products }} {
     margin-top: 12px;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
   }
 
-  .product-card-button-{{ custom_best_selling }} {
+  .product-card-button-{{ custom_related_products }} {
     width: 100%;
     padding: 6.5px 24px;
     background-color: #F4FCF8;
@@ -177,17 +183,17 @@
     appearance: button;
   }
 
-  .product-card-button-{{ custom_best_selling }}:hover:not(:disabled) {
+  .product-card-button-{{ custom_related_products }}:hover:not(:disabled) {
     background-color: #00963F;
     color: #fff;
   }
 
-  .product-card-button-{{ custom_best_selling }}:disabled {
+  .product-card-button-{{ custom_related_products }}:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
   }
 
-  .product-card-bulk-text-{{ custom_best_selling }} {
+  .product-card-bulk-text-{{ custom_related_products }} {
     font-size: 10px;
     color: #E3010F;
     font-weight: 600;
@@ -195,12 +201,12 @@
     margin-top: 0px;
   }
 
-  .product-grid-view-all-{{ custom_best_selling }} {
+  .product-grid-view-all-{{ custom_related_products }} {
     text-align: center;
     margin-top: 40px;
   }
 
-  .product-grid-view-all-button-{{ custom_best_selling }} {
+  .product-grid-view-all-button-{{ custom_related_products }} {
     display: inline-block;
     padding: 13px 36px;
     background-color: #00963F;
@@ -214,11 +220,11 @@
     transition: background-color 0.3s ease;
   }
 
-  .product-grid-view-all-button-{{ custom_best_selling }}:hover {
+  .product-grid-view-all-button-{{ custom_related_products }}:hover {
     background-color: #333333;
   }
 
-  .product-grid-empty-{{ custom_best_selling }} {
+  .product-grid-empty-{{ custom_related_products }} {
     text-align: center;
     padding: 60px 20px;
     color: #666666;
@@ -226,38 +232,38 @@
   }
 
   @media (max-width: 767px) {
-    .product-grid-view-all-button-{{ custom_best_selling }} {
+    .product-grid-view-all-button-{{ custom_related_products }} {
       font-size: 14px;
     }
   }
 
   /* ===== MOBILE CAROUSEL ===== */
-  .carousel-mobile-{{ custom_best_selling }} {
+  .carousel-mobile-{{ custom_related_products }} {
     display: none;
     position: relative;
   }
 
   @media screen and (max-width: 749px) {
-    .carousel-mobile-{{ custom_best_selling }} {
+    .carousel-mobile-{{ custom_related_products }} {
       display: block;
     }
 
-    .carousel-track-outer-{{ custom_best_selling }} {
+    .carousel-track-outer-{{ custom_related_products }} {
       overflow: hidden;
     }
 
-    .carousel-track-{{ custom_best_selling }} {
+    .carousel-track-{{ custom_related_products }} {
       display: flex;
       gap: 12px;
       transition: transform 0.35s ease;
     }
 
-    .carousel-slide-{{ custom_best_selling }} {
+    .carousel-slide-{{ custom_related_products }} {
       flex: 0 0 {% if section.settings.products_per_row_mobile == '1' %}calc(100%){% else %}calc(50% - 6px){% endif %};
       min-width: 0;
     }
 
-    .carousel-arrow-{{ custom_best_selling }} {
+    .carousel-arrow-{{ custom_related_products }} {
       position: absolute;
       top: 38%;
       transform: translateY(-50%);
@@ -275,37 +281,37 @@
       padding: 0;
       transition: background 0.2s;
     }
-    .carousel-arrow-{{ custom_best_selling }}:hover {
+    .carousel-arrow-{{ custom_related_products }}:hover {
       background: #00963F;
     }
-    .carousel-arrow-{{ custom_best_selling }}:hover svg path {
+    .carousel-arrow-{{ custom_related_products }}:hover svg path {
       stroke: #fff;
     }
-    .carousel-arrow-{{ custom_best_selling }} svg {
+    .carousel-arrow-{{ custom_related_products }} svg {
       width: 14px;
       height: 14px;
     }
-    .carousel-arrow-{{ custom_best_selling }} svg path {
+    .carousel-arrow-{{ custom_related_products }} svg path {
       stroke: #333;
       stroke-width: 2.5;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .carousel-arrow-{{ custom_best_selling }}:disabled {
+    .carousel-arrow-{{ custom_related_products }}:disabled {
       opacity: 0.25;
       pointer-events: none;
     }
-    .carousel-prev-{{ custom_best_selling }} { left: -14px; }
-    .carousel-next-{{ custom_best_selling }} { right: -14px; }
+    .carousel-prev-{{ custom_related_products }} { left: -14px; }
+    .carousel-next-{{ custom_related_products }} { right: -14px; }
 
-    .carousel-dots-{{ custom_best_selling }} {
+    .carousel-dots-{{ custom_related_products }} {
       display: flex;
       justify-content: center;
       gap: 6px;
       margin-top: 14px;
     }
-    .carousel-dot-{{ custom_best_selling }} {
+    .carousel-dot-{{ custom_related_products }} {
       width: 8px;
       height: 8px;
       border-radius: 50%;
@@ -315,7 +321,7 @@
       cursor: pointer;
       transition: background 0.25s, width 0.25s, border-radius 0.25s;
     }
-    .carousel-dot-{{ custom_best_selling }}.active {
+    .carousel-dot-{{ custom_related_products }}.active {
       background: #00963F;
       width: 20px;
       border-radius: 4px;
@@ -323,8 +329,8 @@
   }
 
   @media screen and (min-width: 750px) {
-    .carousel-mobile-{{ custom_best_selling }},
-    .carousel-dots-{{ custom_best_selling }} {
+    .carousel-mobile-{{ custom_related_products }},
+    .carousel-dots-{{ custom_related_products }} {
       display: none !important;
     }
   }
@@ -335,17 +341,29 @@
 {% assign rp_shown_count = 0 %}
 {% assign rp_limit = 12 %}
 
-<product-grid-{{ custom_best_selling }} class="product-grid-{{ custom_best_selling }}" {{ section.shopify_attributes }}>
-  <div class="product-grid-container-{{ custom_best_selling }}">
+<product-grid-{{ custom_related_products }} class="product-grid-{{ custom_related_products }}" {{ section.shopify_attributes }}>
+  <div class="product-grid-container-{{ custom_related_products }}">
 
     {% if section.settings.heading != blank %}
-      <h2 class="product-grid-heading-{{ custom_best_selling }}">{{ section.settings.heading }}</h2>
+      <h2 class="product-grid-heading-{{ custom_related_products }}">{{ section.settings.heading }}</h2>
+
+        <h2 class="product-grid-heading-{{ custom_related_products }}">
+        <span class="pcp-leaf-icon-{{ custom_related_products }}">
+          <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_20.png?v=1776257732">
+        </span>
+        {{ section.settings.heading }}
+        <span class="pcp-leaf-icon-{{custom_related_products }}">
+          <img src="https://cdn.shopify.com/s/files/1/0824/5680/5618/files/image_21.png?v=1776257732">
+        </span>
+      </h2>
+
+
     {% endif %}
 
     {% if product %}
 
       {% comment %} ===== DESKTOP GRID ===== {% endcomment %}
-      <div class="product-grid-items-{{ custom_best_selling }}">
+      <div class="product-grid-items-{{ custom_related_products }}">
         {% assign d_shown = '' %}
         {% assign d_count = 0 %}
         {% for col in product.collections %}
@@ -355,43 +373,43 @@
                 {% if d_count < rp_limit %}
                   {% assign d_shown = d_shown | append: rp.id | append: ',' %}
                   {% assign d_count = d_count | plus: 1 %}
-                  <div class="product-card-{{ custom_best_selling }}">
-                    <div class="product-card-media-{{ custom_best_selling }}">
+                  <div class="product-card-{{ custom_related_products }}">
+                    <div class="product-card-media-{{ custom_related_products }}">
                       <a href="{{ rp.url }}">
                         {% if rp.featured_image %}
-                          <img src="{{ rp.featured_image | image_url: width: 600 }}" alt="{{ rp.featured_image.alt | escape }}" width="600" height="600" loading="lazy" class="product-card-image-{{ custom_best_selling }} product-card-image-primary-{{ custom_best_selling }}">
+                          <img src="{{ rp.featured_image | image_url: width: 600 }}" alt="{{ rp.featured_image.alt | escape }}" width="600" height="600" loading="lazy" class="product-card-image-{{ custom_related_products }} product-card-image-primary-{{ custom_related_products }}">
                         {% else %}
-                          <div class="product-card-image-{{ custom_best_selling }} product-card-image-primary-{{ custom_best_selling }}">{{ 'product-1' | placeholder_svg_tag }}</div>
+                          <div class="product-card-image-{{ custom_related_products }} product-card-image-primary-{{ custom_related_products }}">{{ 'product-1' | placeholder_svg_tag }}</div>
                         {% endif %}
                         {% if rp.images[1] %}
-                          <img src="{{ rp.images[1] | image_url: width: 600 }}" alt="{{ rp.images[1].alt | escape }}" width="600" height="600" loading="lazy" class="product-card-image-{{ custom_best_selling }} product-card-image-secondary-{{ custom_best_selling }}">
+                          <img src="{{ rp.images[1] | image_url: width: 600 }}" alt="{{ rp.images[1].alt | escape }}" width="600" height="600" loading="lazy" class="product-card-image-{{ custom_related_products }} product-card-image-secondary-{{ custom_related_products }}">
                         {% endif %}
                       </a>
                       {% if rp.compare_at_price > rp.price %}
                         {% assign disc = rp.compare_at_price | minus: rp.price | times: 100 | divided_by: rp.compare_at_price %}
-                        <div class="product-card-badge-{{ custom_best_selling }}">-{{ disc }}%</div>
+                        <div class="product-card-badge-{{ custom_related_products }}">-{{ disc }}%</div>
                       {% endif %}
                     </div>
-                    <div class="product-card-info-{{ custom_best_selling }}">
+                    <div class="product-card-info-{{ custom_related_products }}">
                       {% if section.settings.show_metafield and section.settings.metafield_reference != blank %}
-                        <div class="product-card-meta-{{ custom_best_selling }}">{{ section.settings.metafield_reference }}</div>
+                        <div class="product-card-meta-{{ custom_related_products }}">{{ section.settings.metafield_reference }}</div>
                       {% endif %}
-                      <a href="{{ rp.url }}" class="product-card-title-{{ custom_best_selling }}">{{ rp.title }}</a>
+                      <a href="{{ rp.url }}" class="product-card-title-{{ custom_related_products }}">{{ rp.title }}</a>
                       {% if section.settings.show_rating %}
-                        <div class="product-card-rating-{{ custom_best_selling }}"><span>★★★★★</span></div>
+                        <div class="product-card-rating-{{ custom_related_products }}"><span>★★★★★</span></div>
                       {% endif %}
-                      <div class="product-card-prices-{{ custom_best_selling }}">
-                        <span class="product-card-price-{{ custom_best_selling }}">₹{{ rp.price | divided_by: 100.0 }}</span>
+                      <div class="product-card-prices-{{ custom_related_products }}">
+                        <span class="product-card-price-{{ custom_related_products }}">₹{{ rp.price | divided_by: 100.0 }}</span>
                         {% if rp.compare_at_price > rp.price %}
-                          <span class="product-card-compare-price-{{ custom_best_selling }}">₹{{ rp.compare_at_price | divided_by: 100.0 }}</span>
+                          <span class="product-card-compare-price-{{ custom_related_products }}">₹{{ rp.compare_at_price | divided_by: 100.0 }}</span>
                         {% endif %}
                       </div>
                       {% if rp.available %}
-                        <button type="button" class="product-card-button-{{ custom_best_selling }} js-ajax-add-to-cart" data-variant-id="{{ rp.selected_or_first_available_variant.id }}">{{ section.settings.button_text }}</button>
+                        <button type="button" class="product-card-button-{{ custom_related_products }} js-ajax-add-to-cart" data-variant-id="{{ rp.selected_or_first_available_variant.id }}">{{ section.settings.button_text }}</button>
                       {% else %}
-                        <button type="button" class="product-card-button-{{ custom_best_selling }}" disabled>Sold Out</button>
+                        <button type="button" class="product-card-button-{{ custom_related_products }}" disabled>Sold Out</button>
                       {% endif %}
-                      <div class="product-card-bulk-text-{{ custom_best_selling }}">Discount on Bulk Purchase</div>
+                      <div class="product-card-bulk-text-{{ custom_related_products }}">Discount on Bulk Purchase</div>
                     </div>
                   </div>
                 {% endif %}
@@ -404,12 +422,12 @@
       {% comment %} ===== MOBILE CAROUSEL ===== {% endcomment %}
       {% assign m_shown = '' %}
       {% assign m_count = 0 %}
-      <div class="carousel-mobile-{{ custom_best_selling }}">
-        <button class="carousel-arrow-{{ custom_best_selling }} carousel-prev-{{ custom_best_selling }}" id="prev-{{ custom_best_selling }}" disabled aria-label="Previous">
+      <div class="carousel-mobile-{{ custom_related_products }}">
+        <button class="carousel-arrow-{{ custom_related_products }} carousel-prev-{{ custom_related_products }}" id="prev-{{ custom_related_products }}" disabled aria-label="Previous">
           <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
-        <div class="carousel-track-outer-{{ custom_best_selling }}">
-          <div class="carousel-track-{{ custom_best_selling }}" id="track-{{ custom_best_selling }}">
+        <div class="carousel-track-outer-{{ custom_related_products }}">
+          <div class="carousel-track-{{ custom_related_products }}" id="track-{{ custom_related_products }}">
             {% for col in product.collections %}
               {% for rp in col.products %}
                 {% unless rp.id == product.id %}
@@ -417,44 +435,44 @@
                     {% if m_count < rp_limit %}
                       {% assign m_shown = m_shown | append: rp.id | append: ',' %}
                       {% assign m_count = m_count | plus: 1 %}
-                      <div class="carousel-slide-{{ custom_best_selling }}">
-                        <div class="product-card-{{ custom_best_selling }}">
-                          <div class="product-card-media-{{ custom_best_selling }}">
+                      <div class="carousel-slide-{{ custom_related_products }}">
+                        <div class="product-card-{{ custom_related_products }}">
+                          <div class="product-card-media-{{ custom_related_products }}">
                             <a href="{{ rp.url }}">
                               {% if rp.featured_image %}
-                                <img src="{{ rp.featured_image | image_url: width: 400 }}" alt="{{ rp.featured_image.alt | escape }}" width="400" height="400" loading="lazy" class="product-card-image-{{ custom_best_selling }} product-card-image-primary-{{ custom_best_selling }}">
+                                <img src="{{ rp.featured_image | image_url: width: 400 }}" alt="{{ rp.featured_image.alt | escape }}" width="400" height="400" loading="lazy" class="product-card-image-{{ custom_related_products }} product-card-image-primary-{{ custom_related_products }}">
                               {% else %}
-                                <div class="product-card-image-{{ custom_best_selling }} product-card-image-primary-{{ custom_best_selling }}">{{ 'product-1' | placeholder_svg_tag }}</div>
+                                <div class="product-card-image-{{ custom_related_products }} product-card-image-primary-{{ custom_related_products }}">{{ 'product-1' | placeholder_svg_tag }}</div>
                               {% endif %}
                               {% if rp.images[1] %}
-                                <img src="{{ rp.images[1] | image_url: width: 400 }}" alt="{{ rp.images[1].alt | escape }}" width="400" height="400" loading="lazy" class="product-card-image-{{ custom_best_selling }} product-card-image-secondary-{{ custom_best_selling }}">
+                                <img src="{{ rp.images[1] | image_url: width: 400 }}" alt="{{ rp.images[1].alt | escape }}" width="400" height="400" loading="lazy" class="product-card-image-{{ custom_related_products }} product-card-image-secondary-{{ custom_related_products }}">
                               {% endif %}
                             </a>
                             {% if rp.compare_at_price > rp.price %}
                               {% assign disc = rp.compare_at_price | minus: rp.price | times: 100 | divided_by: rp.compare_at_price %}
-                              <div class="product-card-badge-{{ custom_best_selling }}">-{{ disc }}%</div>
+                              <div class="product-card-badge-{{ custom_related_products }}">-{{ disc }}%</div>
                             {% endif %}
                           </div>
-                          <div class="product-card-info-{{ custom_best_selling }}">
+                          <div class="product-card-info-{{ custom_related_products }}">
                             {% if section.settings.show_metafield and section.settings.metafield_reference != blank %}
-                              <div class="product-card-meta-{{ custom_best_selling }}">{{ section.settings.metafield_reference }}</div>
+                              <div class="product-card-meta-{{ custom_related_products }}">{{ section.settings.metafield_reference }}</div>
                             {% endif %}
-                            <a href="{{ rp.url }}" class="product-card-title-{{ custom_best_selling }}">{{ rp.title }}</a>
+                            <a href="{{ rp.url }}" class="product-card-title-{{ custom_related_products }}">{{ rp.title }}</a>
                             {% if section.settings.show_rating %}
-                              <div class="product-card-rating-{{ custom_best_selling }}"><span>★★★★★</span></div>
+                              <div class="product-card-rating-{{ custom_related_products }}"><span>★★★★★</span></div>
                             {% endif %}
-                            <div class="product-card-prices-{{ custom_best_selling }}">
-                              <span class="product-card-price-{{ custom_best_selling }}">₹{{ rp.price | divided_by: 100.0 }}</span>
+                            <div class="product-card-prices-{{ custom_related_products }}">
+                              <span class="product-card-price-{{ custom_related_products }}">₹{{ rp.price | divided_by: 100.0 }}</span>
                               {% if rp.compare_at_price > rp.price %}
-                                <span class="product-card-compare-price-{{ custom_best_selling }}">₹{{ rp.compare_at_price | divided_by: 100.0 }}</span>
+                                <span class="product-card-compare-price-{{ custom_related_products }}">₹{{ rp.compare_at_price | divided_by: 100.0 }}</span>
                               {% endif %}
                             </div>
                             {% if rp.available %}
-                              <button type="button" class="product-card-button-{{ custom_best_selling }} js-ajax-add-to-cart" data-variant-id="{{ rp.selected_or_first_available_variant.id }}">{{ section.settings.button_text }}</button>
+                              <button type="button" class="product-card-button-{{ custom_related_products }} js-ajax-add-to-cart" data-variant-id="{{ rp.selected_or_first_available_variant.id }}">{{ section.settings.button_text }}</button>
                             {% else %}
-                              <button type="button" class="product-card-button-{{ custom_best_selling }}" disabled>Sold Out</button>
+                              <button type="button" class="product-card-button-{{ custom_related_products }}" disabled>Sold Out</button>
                             {% endif %}
-                            <div class="product-card-bulk-text-{{ custom_best_selling }}">Discount on Bulk Purchase</div>
+                            <div class="product-card-bulk-text-{{ custom_related_products }}">Discount on Bulk Purchase</div>
                           </div>
                         </div>
                       </div>
@@ -465,26 +483,26 @@
             {% endfor %}
           </div>
         </div>
-        <button class="carousel-arrow-{{ custom_best_selling }} carousel-next-{{ custom_best_selling }}" id="next-{{ custom_best_selling }}" aria-label="Next">
+        <button class="carousel-arrow-{{ custom_related_products }} carousel-next-{{ custom_related_products }}" id="next-{{ custom_related_products }}" aria-label="Next">
           <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
-      <div class="carousel-dots-{{ custom_best_selling }}" id="dots-{{ custom_best_selling }}"></div>
+      <div class="carousel-dots-{{ custom_related_products }}" id="dots-{{ custom_related_products }}"></div>
 
       {% if section.settings.show_view_all %}
-        <div class="product-grid-view-all-{{ custom_best_selling }}">
-          <a href="{{ product.collections.first.url }}" class="product-grid-view-all-button-{{ custom_best_selling }}">{{ section.settings.view_all_text }}</a>
+        <div class="product-grid-view-all-{{ custom_related_products }}">
+          <a href="{{ product.collections.first.url }}" class="product-grid-view-all-button-{{ custom_related_products }}">{{ section.settings.view_all_text }}</a>
         </div>
       {% endif %}
 
     {% else %}
-      <div class="product-grid-empty-{{ custom_best_selling }}">
+      <div class="product-grid-empty-{{ custom_related_products }}">
         This section shows related products on product pages.
       </div>
     {% endif %}
 
   </div>
-</product-grid-{{ custom_best_selling }}>
+</product-grid-{{ custom_related_products }}>
 
 <script>
   (function() {
@@ -564,10 +582,10 @@
       }
 
       setupCarousel() {
-        var track    = document.getElementById('track-{{ custom_best_selling }}');
-        var prevBtn  = document.getElementById('prev-{{ custom_best_selling }}');
-        var nextBtn  = document.getElementById('next-{{ custom_best_selling }}');
-        var dotsWrap = document.getElementById('dots-{{ custom_best_selling }}');
+        var track    = document.getElementById('track-{{ custom_related_products }}');
+        var prevBtn  = document.getElementById('prev-{{ custom_related_products }}');
+        var nextBtn  = document.getElementById('next-{{ custom_related_products }}');
+        var dotsWrap = document.getElementById('dots-{{ custom_related_products }}');
         if (!track || !prevBtn || !nextBtn || !dotsWrap) return;
 
         var perView  = parseInt('{{ section.settings.products_per_row_mobile }}') || 2;
@@ -580,7 +598,7 @@
         var dots = [];
         for (var i = 0; i <= maxIndex; i++) {
           var d = document.createElement('button');
-          d.className = 'carousel-dot-{{ custom_best_selling }}' + (i === 0 ? ' active' : '');
+          d.className = 'carousel-dot-{{ custom_related_products }}' + (i === 0 ? ' active' : '');
           d.setAttribute('data-index', i);
           d.addEventListener('click', function() { goTo(parseInt(this.getAttribute('data-index'))); });
           dotsWrap.appendChild(d);
@@ -603,7 +621,7 @@
       }
     }
 
-    customElements.define('product-grid-{{ custom_best_selling }}', ProductGrid);
+    customElements.define('product-grid-{{ custom_related_products }}', ProductGrid);
   })();
 </script>
 
