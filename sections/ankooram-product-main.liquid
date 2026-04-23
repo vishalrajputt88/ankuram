@@ -411,8 +411,14 @@
   background: var(--green); padding: 2px 6px;
   border-radius: 0 6px 0 6px;
 }
-.rs-size-card__price { font-size: 13px; font-weight: 700; color: var(--green); }
-.rs-size-card__compare { font-size: 11px; color: #aaa; text-decoration: line-through; margin-right: 2px; }
+.rs-size-card__price { font-size: 10px;
+    font-weight: 700;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: center; }
+.rs-size-card__compare { font-size: 9px; color: #aaa; text-decoration: line-through; margin-right: 2px; }
 
 /* REGULAR SWATCHES */
 .rs-swatch-row { display: flex; flex-wrap: wrap; gap: 8px; }
