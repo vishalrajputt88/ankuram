@@ -1033,13 +1033,13 @@
                             {% endfor %}
                             {%- assign val_l = value | downcase -%}
                             {%- if val_l contains 'extra' or val_l contains 'xl' -%}
-                              {%- assign thumb_img = xlarge_img -%}{%- assign thumb_h = '100px' -%}
+                              {%- assign thumb_img = xlarge_img -%}{%- assign thumb_h = '70px' -%}
                             {%- elsif val_l contains 'large' -%}
-                              {%- assign thumb_img = large_img -%}{%- assign thumb_h = '88px' -%}
+                              {%- assign thumb_img = large_img -%}{%- assign thumb_h = '58px' -%}
                             {%- elsif val_l contains 'medium' or val_l contains 'med' -%}
-                              {%- assign thumb_img = medium_img -%}{%- assign thumb_h = '76px' -%}
+                              {%- assign thumb_img = medium_img -%}{%- assign thumb_h = '46px' -%}
                             {%- else -%}
-                              {%- assign thumb_img = small_img -%}{%- assign thumb_h = '64px' -%}
+                              {%- assign thumb_img = small_img -%}{%- assign thumb_h = '34px' -%}
                             {%- endif -%}
                             {%- assign v_price = '' -%}{%- assign v_compare = '' -%}
                             {% for v in product.variants %}
@@ -1061,7 +1061,7 @@
                               </div>
                               {% unless is_avail_s %}<div class="rs-size-card__soldout">Sold Out</div>{% endunless %}
                               <div class="rs-size-card__img-wrap">
-                                <img src="{{ thumb_img }}" alt="{{ value }}" style="height:{{ thumb_h }};width:auto;" loading="lazy">
+                                <img src="{{ thumb_img }}" alt="{{ value }}" style="height:{{ thumb_h }}; width:auto;" loading="lazy">
                               </div>
                               <div class="rs-size-card__name">{{ value }}</div>
                               {% if v_price != blank %}
