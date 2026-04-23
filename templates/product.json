@@ -83,7 +83,7 @@
           "settings": {
             "title_1": "Product Description",
             "ns_1": "custom",
-            "key_1": "custom.product_description",
+            "key_1": "product_description",
             "ftype_1": "rich_text",
             "fallback_1": "",
             "title_2": "Product Details",
