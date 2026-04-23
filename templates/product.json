@@ -50,6 +50,25 @@
             "border_color": "#c8a94a"
           }
         },
+        "add_to_cart_4HXPLE": {
+          "type": "add_to_cart",
+          "settings": {
+            "show_qty": true,
+            "atc_label": "ADD TO CART",
+            "atc_sub_text": "Free Size Exchange Available",
+            "show_buy_now": true,
+            "buy_now_label": "Buy Now"
+          }
+        },
+        "delivery_timeline_nwJgtp": {
+          "type": "delivery_timeline",
+          "settings": {
+            "ship_days_min": 4,
+            "ship_days_max": 5,
+            "del_days_min": 7,
+            "del_days_max": 9
+          }
+        },
         "care_icons_UC4JDJ": {
           "type": "care_icons",
           "settings": {
@@ -70,6 +89,8 @@
         "variant_selector_gjc7QH",
         "custom_field_RYX4n4",
         "coupon_banner_kaUPDU",
+        "add_to_cart_4HXPLE",
+        "delivery_timeline_nwJgtp",
         "care_icons_UC4JDJ"
       ],
       "name": "Ankooram - Product Main",
@@ -404,7 +425,9 @@
         "show_metafield": false,
         "metafield_reference": "",
         "show_view_all": true,
-        "view_all_text": "VIEW ALL RELATED PRODUCTS"
+        "view_all_text": "VIEW ALL RELATED PRODUCTS",
+        "show_social_proof": true,
+        "social_proof_text": "507+ bought in last week"
       }
     },
     "1776691325f8b5b808": {
