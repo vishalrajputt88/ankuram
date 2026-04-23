@@ -207,7 +207,19 @@
     .product-card-button-{{ custom_related_products }}:hover:not(:disabled) { background-color: #0E3A23; color: #fff; }
     .product-card-button-{{ custom_related_products }}:disabled { background-color: #ccc; cursor: not-allowed; border-color: #ccc; color: #666; }
 
-
+.product-card-social-{{ custom_related_products }} {
+     display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      justify-content: center;
+      color: #000;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .product-card-social-{{ custom_related_products }} svg {
+      flex-shrink: 0;
+    }
   .product-grid-view-all-{{ custom_related_products }} {
     text-align: center;
     margin-top: 40px;
@@ -251,6 +263,8 @@
   }
 
   @media screen and (max-width: 749px) {
+
+      .product-card-social-{{ custom_related_products }} { font-size: 10px; } 
     .carousel-mobile-{{ custom_related_products }} {
       display: block;
     }
@@ -491,6 +505,13 @@
                             {% else %}
                               <button type="button" class="product-card-button-{{ custom_related_products }}" disabled>Sold Out</button>
                             {% endif %}
+
+                               {% if section.settings.show_social_proof %}
+                          <div class="product-card-social-{{ custom_related_products }}">
+                            {{- 'card-bag-icon.svg' | inline_asset_content -}}
+                            {{ section.settings.social_proof_text }}
+                          </div>
+                        {% endif %}
                           </div>
                         </div>
                       </div>
@@ -716,6 +737,22 @@
       "id": "view_all_text",
       "label": "Button text",
       "default": "VIEW ALL RELATED PRODUCTS"
+    },
+    {
+      "type": "header",
+      "content": "Social proof"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_proof",
+      "label": "Show social proof text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "social_proof_text",
+      "label": "Social proof text",
+      "default": "507+ bought in last week"
     }
   ],
   "presets": [
