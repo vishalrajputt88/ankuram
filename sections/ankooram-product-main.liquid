@@ -1039,9 +1039,9 @@
                             {% endfor %}
                             {%- assign val_l = value | downcase -%}
                             {%- if val_l contains 'extra' or val_l contains 'xl' -%}
-                              {%- assign thumb_img = xlarge_img -%}{%- assign thumb_h = '62px' -%}
+                              {%- assign thumb_img = xlarge_img -%}{%- assign thumb_h = '65px' -%}
                             {%- elsif val_l contains 'large' -%}
-                              {%- assign thumb_img = large_img -%}{%- assign thumb_h = '58px' -%}
+                              {%- assign thumb_img = large_img -%}{%- assign thumb_h = '60px' -%}
                             {%- elsif val_l contains 'medium' or val_l contains 'med' -%}
                               {%- assign thumb_img = medium_img -%}{%- assign thumb_h = '50px' -%}
                             {%- else -%}
