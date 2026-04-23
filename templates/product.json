@@ -21,6 +21,19 @@
             "cashback_text": "10% Cashback* on your order"
           }
         },
+        "features_icons_gdaRdr": {
+          "type": "features_icons",
+          "settings": {
+            "text_1": "Air Purifying Plant",
+            "icon_1": "shopify://shop_images/small.png",
+            "text_2": "Low Maintenance",
+            "icon_2": "shopify://shop_images/extra-large-plant.png",
+            "text_3": "Indoor Friendly",
+            "icon_3": "shopify://shop_images/large.png",
+            "text_4": "Aesthetic Decor",
+            "icon_4": "shopify://shop_images/large.png"
+          }
+        },
         "variant_selector_gjc7QH": {
           "type": "variant_selector",
           "settings": {
@@ -29,6 +42,7 @@
         },
         "guarantee_banner_H3Wtbg": {
           "type": "guarantee_banner",
+          "disabled": true,
           "settings": {
             "banner_image": "shopify://shop_images/small-pdp-banner.png",
             "banner_alt": "Our Guarantee",
@@ -130,6 +144,7 @@
       },
       "block_order": [
         "price_block_YYE9f4",
+        "features_icons_gdaRdr",
         "variant_selector_gjc7QH",
         "guarantee_banner_H3Wtbg",
         "custom_field_RYX4n4",
