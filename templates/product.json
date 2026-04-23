@@ -12,6 +12,15 @@
     "ankooram_product_main_3Fn3Ly": {
       "type": "ankooram-product-main",
       "blocks": {
+        "price_block_YYE9f4": {
+          "type": "price_block",
+          "settings": {
+            "show_emi": false,
+            "emi_text": "10% Cashback* ₹833/month at 0% EMI by snapmint",
+            "show_cashback": false,
+            "cashback_text": "10% Cashback* on your order"
+          }
+        },
         "guarantee_banner_H3Wtbg": {
           "type": "guarantee_banner",
           "settings": {
@@ -85,6 +94,7 @@
         }
       },
       "block_order": [
+        "price_block_YYE9f4",
         "guarantee_banner_H3Wtbg",
         "variant_selector_gjc7QH",
         "custom_field_RYX4n4",
