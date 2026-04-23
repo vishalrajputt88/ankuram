@@ -34,6 +34,31 @@
             "icon_4": "shopify://shop_images/large.png"
           }
         },
+        "divider_nC6GFk": {
+          "type": "divider",
+          "settings": {
+            "padding_top": 0,
+            "padding_bottom": 20,
+            "padding_top_mobile": 10,
+            "padding_bottom_mobile": 10,
+            "bg_color": "#ffffff",
+            "width": 60,
+            "width_mobile": 80,
+            "height": 1,
+            "height_mobile": 1,
+            "color": "#000000",
+            "radius": 2,
+            "border_style": "solid",
+            "border_size": 2,
+            "show_text": false,
+            "text": "Section Title",
+            "text_color": "#333333",
+            "text_size": 16,
+            "text_size_mobile": 14,
+            "text_spacing": 10,
+            "alignment": "center"
+          }
+        },
         "variant_selector_gjc7QH": {
           "type": "variant_selector",
           "settings": {
@@ -145,6 +170,7 @@
       "block_order": [
         "price_block_YYE9f4",
         "features_icons_gdaRdr",
+        "divider_nC6GFk",
         "variant_selector_gjc7QH",
         "guarantee_banner_H3Wtbg",
         "custom_field_RYX4n4",
