@@ -951,6 +951,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
           <div id="rs-jdgm-stars-{{ section.id }}">
             <span style="color:#aaa;font-size:.82rem;">Loading reviews…</span>
           </div>
+          {% assign review_count = product.metafields.reviews.rating_count.value | default: 0 %}
           <a class="rs-info__review-count ratting_text" href="#reviews">{{ review_count }} Reviews</a>
         </div>
 
