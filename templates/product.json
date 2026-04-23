@@ -21,6 +21,12 @@
             "cashback_text": "10% Cashback* on your order"
           }
         },
+        "variant_selector_gjc7QH": {
+          "type": "variant_selector",
+          "settings": {
+            "display_type": "swatches"
+          }
+        },
         "guarantee_banner_H3Wtbg": {
           "type": "guarantee_banner",
           "settings": {
@@ -28,12 +34,6 @@
             "banner_alt": "Our Guarantee",
             "banner_link": "",
             "open_new_tab": false
-          }
-        },
-        "variant_selector_gjc7QH": {
-          "type": "variant_selector",
-          "settings": {
-            "display_type": "swatches"
           }
         },
         "custom_field_RYX4n4": {
@@ -95,8 +95,8 @@
       },
       "block_order": [
         "price_block_YYE9f4",
-        "guarantee_banner_H3Wtbg",
         "variant_selector_gjc7QH",
+        "guarantee_banner_H3Wtbg",
         "custom_field_RYX4n4",
         "coupon_banner_kaUPDU",
         "add_to_cart_4HXPLE",
