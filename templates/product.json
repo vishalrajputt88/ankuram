@@ -476,6 +476,7 @@
         "faq_RDR7Li",
         "richtext_CtBLGB"
       ],
+      "disabled": true,
       "name": "Ankooram PIT",
       "settings": {
         "desktop_width_percent": 100,
@@ -566,7 +567,7 @@
     "ankooram_product_main_3Fn3Ly",
     "main",
     "ankooram_product_information_tab_UnrtiG",
-    "related_product_NKChHK",
-    "1776691325f8b5b808"
+    "1776691325f8b5b808",
+    "related_product_NKChHK"
   ]
 }
