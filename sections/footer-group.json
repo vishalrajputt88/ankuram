@@ -90,7 +90,7 @@
         "input_text_color": "#ffffff",
         "input_placeholder_color": "#ffffff",
         "submit_button_color": "#ffffff",
-        "submit_button_hover_color": "#031d0f",
+        "submit_button_hover_color": "#ffffff",
         "submit_icon_color": "#0e3a23",
         "success_color": "#28a745",
         "error_color": "#dc3545",

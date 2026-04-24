@@ -272,6 +272,53 @@
         "banner_link": ""
       }
     },
+    "video_carousel_6HAFQa": {
+      "type": "video-carousel",
+      "blocks": {
+        "video_LEXdBC": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/15280625-uhd_1440_2560_60fps.mp4",
+            "video_url": ""
+          }
+        },
+        "video_9mcMV4": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/ankooram-reel-video.mp4",
+            "video_url": ""
+          }
+        },
+        "video_XAXMaL": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/15280625-uhd_1440_2560_60fps_31bada3e-5e76-44c6-adcc-5b328f704890.mp4",
+            "video_url": ""
+          }
+        },
+        "video_LWiRmX": {
+          "type": "video",
+          "settings": {
+            "video_file": "shopify://files/videos/254112.mp4",
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_LEXdBC",
+        "video_9mcMV4",
+        "video_XAXMaL",
+        "video_LWiRmX"
+      ],
+      "name": "Video Carousel",
+      "settings": {
+        "profile_image": "shopify://shop_images/blue-pot-with-plant-and-pot-have-a-branding-ankooram.png",
+        "heading": "ankooram",
+        "subtext": "Follow us",
+        "button_text": "VIEW MORE",
+        "button_link": ""
+      }
+    },
     "watch_and_buy_9ahyKR": {
       "type": "watch-and-buy",
       "blocks": {
@@ -405,6 +452,7 @@
     "ankooram_banner_PrbcRa",
     "ankooram_peoples_chois_plant_8i8btm",
     "ankooram_banner_TmzY7M",
+    "video_carousel_6HAFQa",
     "watch_and_buy_9ahyKR",
     "ankooram_product_grid_jiMRtk"
   ]
