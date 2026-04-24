@@ -279,28 +279,49 @@
           "type": "video",
           "settings": {
             "video_file": "shopify://files/videos/15280625-uhd_1440_2560_60fps.mp4",
-            "video_url": "shopify://products/aechmea-fasciata-plant"
+            "video_url": "shopify://products/aechmea-fasciata-plant",
+            "username": "@username",
+            "caption": "Daily wellness designed to support health that endures.",
+            "product_image": "shopify://shop_images/just-change-pot-color-into-the-brown.png",
+            "product_title": "Product Name",
+            "product_price": "$61.00",
+            "product_link": ""
           }
         },
         "video_9mcMV4": {
           "type": "video",
           "settings": {
             "video_file": "shopify://files/videos/ankooram-reel-video.mp4",
-            "video_url": ""
+            "video_url": "",
+            "username": "@username",
+            "caption": "Daily wellness designed to support health that endures.",
+            "product_title": "Product Name",
+            "product_price": "$61.00",
+            "product_link": ""
           }
         },
         "video_XAXMaL": {
           "type": "video",
           "settings": {
             "video_file": "shopify://files/videos/15280625-uhd_1440_2560_60fps_31bada3e-5e76-44c6-adcc-5b328f704890.mp4",
-            "video_url": ""
+            "video_url": "",
+            "username": "@username",
+            "caption": "Daily wellness designed to support health that endures.",
+            "product_title": "Product Name",
+            "product_price": "$61.00",
+            "product_link": ""
           }
         },
         "video_LWiRmX": {
           "type": "video",
           "settings": {
             "video_file": "shopify://files/videos/254112.mp4",
-            "video_url": ""
+            "video_url": "",
+            "username": "@username",
+            "caption": "Daily wellness designed to support health that endures.",
+            "product_title": "Product Name",
+            "product_price": "$61.00",
+            "product_link": ""
           }
         }
       },
