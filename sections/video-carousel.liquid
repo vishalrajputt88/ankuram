@@ -1,0 +1,397 @@
+<section class="video-carousel-section">
+
+  <!-- 🔝 TOP HEADER -->
+  <div class="vc-header">
+    <div class="vc-left">
+      
+      {% if section.settings.profile_image != blank %}
+        <img src="{{ section.settings.profile_image | image_url }}" class="vc-avatar">
+      {% endif %}
+
+      <div class="vc-text">
+        <h2>{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.subtext }}</p>
+      </div>
+
+    </div>
+
+    {% if section.settings.button_text != blank %}
+      <a href="{{ section.settings.button_link }}" class="vc-button">
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- 🎥 VIDEO CAROUSEL -->
+  <div class="video-carousel">
+    <div class="video-track">
+      {% for block in section.blocks %}
+        <div class="video-item">
+
+         {% if block.settings.video_file != blank %}
+  {{
+    block.settings.video_file 
+    | video_tag: autoplay: true, loop: true, muted: true, playsinline: true
+  }}
+
+          {% elsif block.settings.video_url != blank %}
+            <video src="{{ block.settings.video_url }}" autoplay muted loop playsinline></video>
+          {% endif %}
+
+          <!-- ▶ PLAY BUTTON (ADDED) -->
+          <div class="vc-play-btn">▶</div>
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+<!-- 🔥 MODAL (ADDED) -->
+<div class="vc-modal" id="vcModal">
+  <div class="vc-modal-wrap">
+
+    <!-- ❌ CLOSE -->
+    <span class="vc-close">&times;</span>
+
+    <!-- ⬅ LEFT VIDEO -->
+    <div class="vc-modal-left">
+      <video id="vcModalVideo" autoplay muted loop playsinline></video>
+    </div>
+
+    <!-- ➡ RIGHT CONTENT -->
+    <div class="vc-modal-right">
+      
+      <div class="vc-user">
+        {% if section.settings.profile_image != blank %}
+          <img src="{{ section.settings.profile_image | image_url }}">
+        {% endif %}
+        <h3>@username</h3>
+        <p>Daily wellness designed to support health that endures.</p>
+      </div>
+
+      <h4>Related product</h4>
+
+      <div class="vc-product">
+        <img src="https://cdn.shopify.com/s/files/1/0000/0000/files/product.png" alt="">
+        <div>
+          <p><strong>Product Name</strong></p>
+          <p>$61.00</p>
+          <a href="#">View product</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<style>
+.video-carousel-section {
+  padding: 40px;
+  background: #f7f8f7;
+}
+
+/* HEADER */
+.vc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.vc-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.vc-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.vc-text h2 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.vc-text p {
+  margin: 0;
+  color: #666;
+}
+
+/* BUTTON */
+.vc-button {
+  padding: 12px 24px;
+  background: #fff;
+  text-decoration: none;
+  color: #000;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+/* VIDEO */
+.video-carousel {
+  overflow: hidden;
+}
+
+.video-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll 20s linear infinite;
+}
+
+.video-item {
+  min-width: 25%;
+  position: relative; /* (ADDED for button) */
+}
+
+.video-item video {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius:5px;
+}
+
+/* ▶ PLAY BUTTON (ADDED) */
+.vc-play-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  {% comment %} background: rgba(0,0,0,0.6); {% endcomment %}
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* MODAL (ADDED) */
+/* FULL MODAL */
+.vc-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+}
+
+/* WRAPPER */
+.vc-modal-wrap {
+  display: flex;
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  background: #fff;
+}
+
+/* LEFT VIDEO */
+.vc-modal-left {
+  width: 60%;
+  background: #000;
+}
+
+.vc-modal-left video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* RIGHT PANEL */
+.vc-modal-right {
+  width: 40%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* USER */
+.vc-user {
+  text-align: center;
+}
+
+.vc-user img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.vc-user h3 {
+  margin:20px 0;
+}
+
+.vc-user p {
+  color: #666;
+  font-size: 14px;
+   margin:20px 0;
+}
+
+/* PRODUCT */
+.vc-product {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  border: 1px solid #eee;
+  padding: 15px;
+}
+
+.vc-product img {
+  width: 60px;
+}
+
+.vc-product a {
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+/* CLOSE */
+.vc-close {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* SCROLL */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+.video-carousel-section{
+    padding:40px 10px;
+}
+  .video-track {
+    gap: 15px;
+    animation: scroll 12s linear infinite; /* same animation use */
+  }
+
+  .video-item {
+    min-width: 100%; /* 👈 only 1 video */
+  }
+
+  .video-item video {
+    height: 400px;
+  }
+
+  /* override animation distance */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+{% comment %} @media (max-width: 768px) {
+  .video-item {
+    min-width: 100%;
+  }
+.video-carousel-section{
+    padding:40px 10px;
+}
+  .vc-header {
+    {% comment %} flex-direction: column; {% endcomment %}
+    align-items: flex-start;
+    gap: 15px;
+  }
+} {% endcomment %}
+</style>
+
+<!-- 🔥 JS (ADDED) -->
+<script>
+document.querySelectorAll('.vc-play-btn').forEach((btn) => {
+  btn.addEventListener('click', function() {
+    const video = this.parentElement.querySelector('video');
+    const modal = document.getElementById('vcModal');
+    const modalVideo = document.getElementById('vcModalVideo');
+
+    modal.style.display = "flex";
+
+    // ✅ FORCE MUTED
+    modalVideo.src = video.currentSrc || video.src;
+    modalVideo.muted = true;
+    modalVideo.volume = 0;
+    modalVideo.play();
+  });
+});
+
+document.querySelector('.vc-close').addEventListener('click', function() {
+  const modal = document.getElementById('vcModal');
+  const modalVideo = document.getElementById('vcModalVideo');
+
+  modal.style.display = "none";
+  modalVideo.pause();
+});
+</script>
+{% schema %}
+{
+  "name": "Video Carousel",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "profile_image",
+      "label": "Profile Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "ETERNAL"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Sub Text",
+      "default": "Follow us"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "VIEW MORE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video_file",
+          "label": "Upload Video"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Or Video URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Carousel"
+    }
+  ]
+}
+{% endschema %}
