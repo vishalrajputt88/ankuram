@@ -26,19 +26,27 @@
   <div class="video-carousel">
     <div class="video-track">
       {% for block in section.blocks %}
-        <div class="video-item">
+        <div class="video-item"
+          data-username="{{ block.settings.username }}"
+          data-caption="{{ block.settings.caption }}"
+          data-product-title="{{ block.settings.product_title }}"
+          data-product-price="{{ block.settings.product_price }}"
+          data-product-link="{{ block.settings.product_link }}"
+          {% if block.settings.product_image != blank %}
+            data-product-image="{{ block.settings.product_image | image_url: width: 200 }}"
+          {% endif %}
+        >
 
-         {% if block.settings.video_file != blank %}
-  {{
-    block.settings.video_file 
-    | video_tag: autoplay: true, loop: true, muted: true, playsinline: true
-  }}
-
+          {% if block.settings.video_file != blank %}
+            {{
+              block.settings.video_file 
+              | video_tag: autoplay: true, loop: true, muted: true, playsinline: true
+            }}
           {% elsif block.settings.video_url != blank %}
             <video src="{{ block.settings.video_url }}" autoplay muted loop playsinline></video>
           {% endif %}
 
-          <!-- ▶ PLAY BUTTON (ADDED) -->
+          <!-- ▶ PLAY BUTTON -->
           <div class="vc-play-btn">▶</div>
 
         </div>
@@ -48,7 +56,7 @@
 
 </section>
 
-<!-- 🔥 MODAL (ADDED) -->
+<!-- 🔥 MODAL -->
 <div class="vc-modal" id="vcModal">
   <div class="vc-modal-wrap">
 
@@ -67,18 +75,18 @@
         {% if section.settings.profile_image != blank %}
           <img src="{{ section.settings.profile_image | image_url }}">
         {% endif %}
-        <h3>@username</h3>
-        <p>Daily wellness designed to support health that endures.</p>
+        <h3 id="vcModalUsername">@username</h3>
+        <p id="vcModalCaption">Daily wellness designed to support health that endures.</p>
       </div>
 
       <h4>Related product</h4>
 
       <div class="vc-product">
-        <img src="https://cdn.shopify.com/s/files/1/0000/0000/files/product.png" alt="">
+        <img id="vcModalProductImage" src="" alt="">
         <div>
-          <p><strong>Product Name</strong></p>
-          <p>$61.00</p>
-          <a href="#">View product</a>
+          <p><strong id="vcModalProductTitle">Product Name</strong></p>
+          <p id="vcModalProductPrice">$0.00</p>
+          <a id="vcModalProductLink" href="#">View product</a>
         </div>
       </div>
 
@@ -150,7 +158,7 @@
 
 .video-item {
   min-width: 25%;
-  position: relative; /* (ADDED for button) */
+  position: relative;
 }
 
 .video-item video {
@@ -160,12 +168,11 @@
   border-radius:5px;
 }
 
-/* ▶ PLAY BUTTON (ADDED) */
+/* ▶ PLAY BUTTON */
 .vc-play-btn {
   position: absolute;
   bottom: 15px;
   left: 15px;
-  {% comment %} background: rgba(0,0,0,0.6); {% endcomment %}
   color: #fff;
   font-size: 18px;
   padding: 10px 14px;
@@ -173,8 +180,7 @@
   cursor: pointer;
 }
 
-/* MODAL (ADDED) */
-/* FULL MODAL */
+/* MODAL */
 .vc-modal {
   display: none;
   position: fixed;
@@ -183,7 +189,6 @@
   background: rgba(0,0,0,0.7);
 }
 
-/* WRAPPER */
 .vc-modal-wrap {
   display: flex;
   width: 90%;
@@ -192,7 +197,6 @@
   background: #fff;
 }
 
-/* LEFT VIDEO */
 .vc-modal-left {
   width: 60%;
   background: #000;
@@ -204,7 +208,6 @@
   object-fit: cover;
 }
 
-/* RIGHT PANEL */
 .vc-modal-right {
   width: 40%;
   padding: 40px;
@@ -213,7 +216,6 @@
   justify-content: flex-start;
 }
 
-/* USER */
 .vc-user {
   text-align: center;
 }
@@ -235,7 +237,6 @@
    margin:20px 0;
 }
 
-/* PRODUCT */
 .vc-product {
   display: flex;
   gap: 15px;
@@ -253,7 +254,6 @@
   text-decoration: underline;
 }
 
-/* CLOSE */
 .vc-close {
   position: absolute;
   right: 30px;
@@ -262,33 +262,28 @@
   cursor: pointer;
 }
 
-/* SCROLL */
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-
-
-/* MOBILE */
 @media (max-width: 768px) {
 .video-carousel-section{
     padding:40px 10px;
 }
   .video-track {
     gap: 15px;
-    animation: scroll 12s linear infinite; /* same animation use */
+    animation: scroll 12s linear infinite;
   }
 
   .video-item {
-    min-width: 100%; /* 👈 only 1 video */
+    min-width: 100%;
   }
 
   .video-item video {
     height: 400px;
   }
 
-  /* override animation distance */
   @keyframes scroll {
     0% {
       transform: translateX(0);
@@ -298,32 +293,41 @@
     }
   }
 }
-{% comment %} @media (max-width: 768px) {
-  .video-item {
-    min-width: 100%;
-  }
-.video-carousel-section{
-    padding:40px 10px;
-}
-  .vc-header {
-    {% comment %} flex-direction: column; {% endcomment %}
-    align-items: flex-start;
-    gap: 15px;
-  }
-} {% endcomment %}
 </style>
 
-<!-- 🔥 JS (ADDED) -->
+<!-- 🔥 JS -->
 <script>
 document.querySelectorAll('.vc-play-btn').forEach((btn) => {
   btn.addEventListener('click', function() {
-    const video = this.parentElement.querySelector('video');
+    const item = this.parentElement;
+    const video = item.querySelector('video');
     const modal = document.getElementById('vcModal');
     const modalVideo = document.getElementById('vcModalVideo');
 
-    modal.style.display = "flex";
+    // Populate modal with block data
+    const username = item.dataset.username || '@username';
+    const caption = item.dataset.caption || '';
+    const productTitle = item.dataset.productTitle || 'Product Name';
+    const productPrice = item.dataset.productPrice || '';
+    const productLink = item.dataset.productLink || '#';
+    const productImage = item.dataset.productImage || '';
 
-    // ✅ FORCE MUTED
+    document.getElementById('vcModalUsername').textContent = username;
+    document.getElementById('vcModalCaption').textContent = caption;
+    document.getElementById('vcModalProductTitle').textContent = productTitle;
+    document.getElementById('vcModalProductPrice').textContent = productPrice;
+    document.getElementById('vcModalProductLink').href = productLink;
+    
+    const imgEl = document.getElementById('vcModalProductImage');
+    if (productImage) {
+      imgEl.src = productImage;
+      imgEl.style.display = 'block';
+    } else {
+      imgEl.style.display = 'none';
+    }
+
+    // Play video in modal
+    modal.style.display = "flex";
     modalVideo.src = video.currentSrc || video.src;
     modalVideo.muted = true;
     modalVideo.volume = 0;
@@ -334,11 +338,11 @@ document.querySelectorAll('.vc-play-btn').forEach((btn) => {
 document.querySelector('.vc-close').addEventListener('click', function() {
   const modal = document.getElementById('vcModal');
   const modalVideo = document.getElementById('vcModalVideo');
-
   modal.style.display = "none";
   modalVideo.pause();
 });
 </script>
+
 {% schema %}
 {
   "name": "Video Carousel",
@@ -386,6 +390,40 @@ document.querySelector('.vc-close').addEventListener('click', function() {
           "type": "url",
           "id": "video_url",
           "label": "Or Video URL"
+        },
+        {
+          "type": "text",
+          "id": "username",
+          "label": "Instagram Username",
+          "default": "@username"
+        },
+        {
+          "type": "textarea",
+          "id": "caption",
+          "label": "Caption / Description",
+          "default": "Daily wellness designed to support health that endures."
+        },
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "product_title",
+          "label": "Product Title",
+          "default": "Product Name"
+        },
+        {
+          "type": "text",
+          "id": "product_price",
+          "label": "Product Price",
+          "default": "$61.00"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link"
         }
       ]
     }
