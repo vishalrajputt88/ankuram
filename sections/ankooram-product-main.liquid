@@ -22,11 +22,12 @@
     ✅ Hover zoom lens + zoom panel
     ✅ Click-to-lightbox zoom
 
-  STICKY LEFT GALLERY — sticks while right panel scrolls with page
+  STICKY RIGHT PANEL — scrolls with page, sticks when viewport reached
 {% endcomment %}
 
 <style>
 
+  
 {% comment %} features icons {% endcomment %}
   .rs-features-icons {
   display: grid;
@@ -73,7 +74,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 #rs-product-{{ section.id }} *::before,
 #rs-product-{{ section.id }} *::after { box-sizing: border-box; }
 
-/* FIX: Prevent horizontal overflow globally within this section */
 #rs-product-{{ section.id }} {
   --green:      #0E3A23;
   --green-mid:  #155122;
@@ -91,8 +91,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   --radius:     12px;
   --shadow:     0 2px 16px rgba(0,0,0,.08);
   font-family: 'Segoe UI', system-ui, sans-serif;
-  overflow-x: hidden; /* FIX: no horizontal scroll */
-  max-width: 100%;
 }
 
 /* ═══════════════════════════════════════════
@@ -102,10 +100,8 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   max-width: 1440px;
   margin: 0 auto;
   padding: 20px 40px 60px;
-  overflow-x: hidden; /* FIX: no horizontal scroll */
 }
-
-.rs-accordion .rs-accordion__item:first-child { border-bottom: none; }
+.rs-accordion .rs-accordion__item:first-child { border-bottom: none; } 
 
 .rs-breadcrumb {
   display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
@@ -120,23 +116,19 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   grid-template-columns: 1fr 500px;
   gap: 52px;
   align-items: start;
-  min-width: 0; /* FIX: prevent grid blowout */
 }
 
-/* FIX: Left column (gallery) — sticky, scrolls with page naturally */
-.rs-gallery-col {
+/* Sticky right panel */
+{% comment %} .rs-info-sticky {
   position: sticky;
   top: 80px;
-  align-self: start;
-  min-width: 0;
-}
-
-/* FIX: Right column (info) — normal flow, no sticky, no overflow */
-.rs-info-sticky {
-  min-width: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-right: 4px;
+} {% endcomment %}
+.rs-info-sticky::-webkit-scrollbar { display: none; }
 
 /* ═══════════════════════════════════════════
    GALLERY
@@ -146,12 +138,10 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   flex-direction: row-reverse;
   gap: 16px;
   position: relative;
-  min-width: 0; /* FIX */
 }
 
 .rs-gallery__main-wrap {
   flex: 1;
-  min-width: 0; /* FIX */
   position: relative;
   border-radius: 16px;
   overflow: hidden;
@@ -226,7 +216,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   align-items: center;
   gap: 6px;
   width: 90px;
-  flex-shrink: 0;
 }
 .rs-gallery__arrow {
   width: 30px; height: 30px;
@@ -790,38 +779,15 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 }
 
 /* ═══════════════════════════════════════════
-   RESPONSIVE — TABLET
+   RESPONSIVE
 ═══════════════════════════════════════════ */
 @media (max-width: 900px) {
   .rs-wrap { padding: 14px 18px 40px; }
-
-  /* FIX: Single column on tablet/mobile — gallery not sticky */
-  .rs-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  /* FIX: Gallery col — NOT sticky on mobile */
-  .rs-gallery-col {
-    position: static;
-  }
-
+  .rs-grid { grid-template-columns: 1fr; gap: 24px; }
   .rs-info-sticky { position: static; max-height: none; }
-
-  /* FIX: Horizontal thumb strip on mobile */
   .rs-gallery { flex-direction: column; }
-  .rs-gallery__thumbs-wrap {
-    flex-direction: row;
-    width: 100%;
-    overflow: hidden;
-  }
-  .rs-gallery__thumbs {
-    flex-direction: row;
-    max-height: none;
-    overflow-x: auto;
-    overflow-y: hidden;
-    flex: 1;
-  }
+  .rs-gallery__thumbs-wrap { flex-direction: row; width: 100%; }
+  .rs-gallery__thumbs { flex-direction: row; max-height: none; overflow-x: auto; }
   .rs-gallery__arrow { rotate: 90deg; }
   .rs-gallery__main-wrap { max-width: 100%; }
   .rs-zoom-result { display: none !important; }
@@ -831,22 +797,24 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   .rs-delivery-timeline__steps::before { display: none; }
 }
 
-/* MOBILE SETTINGS for divider */
-@media (max-width: 768px) {
-  #rs-product-{{ section.id }} .rs-divider {
-    width: {{ block.settings.width_mobile }}%;
-    height: {{ block.settings.height_mobile }}px;
-  }
+  /* MOBILE SETTINGS for devider */
+    @media (max-width: 768px) {
 
-  #rs-product-{{ section.id }} .rs-divider-text {
-    font-size: {{ block.settings.text_size_mobile }}px;
-  }
+      #rs-product-{{ section.id }} .rs-divider {
+        width: {{ block.settings.width_mobile }}%;
+        height: {{ block.settings.height_mobile }}px;
+      }
 
-  #rs-product-{{ section.id }} .rs-divider-wrapper {
-    padding-top: {{ block.settings.padding_top_mobile }}px;
-    padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
-  }
-}
+      #rs-product-{{ section.id }} .rs-divider-text {
+        font-size: {{ block.settings.text_size_mobile }}px;
+      }
+
+      #rs-product-{{ section.id }} .rs-divider-wrapper {
+        padding-top: {{ block.settings.padding_top_mobile }}px;
+        padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+      }
+
+    }
 
 @media (max-width: 480px) {
   .rs-wrap { padding: 10px 12px 30px; }
@@ -881,103 +849,101 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 
       {%- comment -%}
         ══════════════════════════════
-             GALLERY (sticky left col)
+             GALLERY
         ══════════════════════════════
       {%- endcomment -%}
-      <div class="rs-gallery-col">
-        <div class="rs-gallery" id="rs-gallery-{{ section.id }}">
+      <div class="rs-gallery" id="rs-gallery-{{ section.id }}">
 
-          <div class="rs-gallery__main-wrap"
-            id="rs-main-wrap-{{ section.id }}"
-            onmouseenter="rsHoverZoomEnter('{{ section.id }}')"
-            onmousemove="rsHoverZoomMove(event,'{{ section.id }}')"
-            onmouseleave="rsHoverZoomLeave('{{ section.id }}')"
+        <div class="rs-gallery__main-wrap"
+          id="rs-main-wrap-{{ section.id }}"
+          onmouseenter="rsHoverZoomEnter('{{ section.id }}')"
+          onmousemove="rsHoverZoomMove(event,'{{ section.id }}')"
+          onmouseleave="rsHoverZoomLeave('{{ section.id }}')"
+        >
+          <button class="rs-gallery__zoom-btn" onclick="rsOpenZoom('{{ section.id }}')" aria-label="Zoom">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+          </button>
+
+          <div class="rs-zoom-lens" id="rs-lens-{{ section.id }}"></div>
+
+          <img
+            src="{{ product.featured_image | image_url: width: 800 }}"
+            alt="{{ product.title }}"
+            class="rs-gallery__main-img{% if has_video %} hidden{% endif %}"
+            id="rs-main-img-{{ section.id }}"
+            width="800"
           >
-            <button class="rs-gallery__zoom-btn" onclick="rsOpenZoom('{{ section.id }}')" aria-label="Zoom">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                <line x1="11" y1="8" x2="11" y2="14"/>
-                <line x1="8" y1="11" x2="14" y2="11"/>
-              </svg>
-            </button>
 
-            <div class="rs-zoom-lens" id="rs-lens-{{ section.id }}"></div>
+          <video
+            class="rs-gallery__main-video{% if has_video %} active{% endif %}"
+            id="rs-main-video-{{ section.id }}"
+            playsinline muted loop preload="metadata"
+          ></video>
+        </div>
 
-            <img
-              src="{{ product.featured_image | image_url: width: 800 }}"
-              alt="{{ product.title }}"
-              class="rs-gallery__main-img{% if has_video %} hidden{% endif %}"
-              id="rs-main-img-{{ section.id }}"
-              width="800"
-            >
+        <div class="rs-zoom-result" id="rs-zoom-result-{{ section.id }}">
+          <img src="" alt="" id="rs-zoom-result-img-{{ section.id }}">
+        </div>
 
-            <video
-              class="rs-gallery__main-video{% if has_video %} active{% endif %}"
-              id="rs-main-video-{{ section.id }}"
-              playsinline muted loop preload="metadata"
-            ></video>
-          </div>
-
-          <div class="rs-zoom-result" id="rs-zoom-result-{{ section.id }}">
-            <img src="" alt="" id="rs-zoom-result-img-{{ section.id }}">
-          </div>
-
-          <div class="rs-gallery__thumbs-wrap">
-            <button class="rs-gallery__arrow prev" onclick="rsThumbScroll('{{ section.id }}',-1)" aria-label="Scroll">&#8249;</button>
-            <div class="rs-gallery__thumbs" id="rs-thumbs-{{ section.id }}">
-              {%- assign first_thumb_set = false -%}
-              {%- for media in product.media -%}
-                {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
-                  {%- if media.media_type == 'video' -%}
-                    {%- assign video_src = media.sources | first -%}
-                    {%- assign video_url = video_src.url -%}
-                  {%- else -%}
-                    {%- assign video_url = media.external_url -%}
-                  {%- endif -%}
-                  <div
-                    class="rs-gallery__thumb rs-gallery__thumb--video {% unless first_thumb_set %}active{% endunless %}"
-                    data-type="video"
-                    data-video-url="{{ video_url }}"
-                    data-poster="{{ media.preview_image | image_url: width: 160 }}"
-                    onclick="rsSetMedia('{{ section.id }}', this)"
-                    role="button" tabindex="0"
-                    onkeydown="if(event.key==='Enter'||event.key===' ')rsSetMedia('{{ section.id }}',this)"
-                  >
-                    <img src="{{ media.preview_image | image_url: width: 160 }}" alt="Video" loading="lazy">
-                  </div>
-                  {%- assign first_thumb_set = true -%}
+        <div class="rs-gallery__thumbs-wrap">
+          <button class="rs-gallery__arrow prev" onclick="rsThumbScroll('{{ section.id }}',-1)" aria-label="Scroll">&#8249;</button>
+          <div class="rs-gallery__thumbs" id="rs-thumbs-{{ section.id }}">
+            {%- assign first_thumb_set = false -%}
+            {%- for media in product.media -%}
+              {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                {%- if media.media_type == 'video' -%}
+                  {%- assign video_src = media.sources | first -%}
+                  {%- assign video_url = video_src.url -%}
+                {%- else -%}
+                  {%- assign video_url = media.external_url -%}
                 {%- endif -%}
-              {%- endfor -%}
-              {%- for media in product.media -%}
-                {%- if media.media_type == 'image' -%}
-                  <div
-                    class="rs-gallery__thumb {% unless first_thumb_set %}active{% endunless %}"
-                    data-type="image"
-                    data-full="{{ media | image_url: width: 800 }}"
-                    onclick="rsSetMedia('{{ section.id }}', this)"
-                    role="button" tabindex="0"
-                    onkeydown="if(event.key==='Enter'||event.key===' ')rsSetMedia('{{ section.id }}',this)"
+                <div
+                  class="rs-gallery__thumb rs-gallery__thumb--video {% unless first_thumb_set %}active{% endunless %}"
+                  data-type="video"
+                  data-video-url="{{ video_url }}"
+                  data-poster="{{ media.preview_image | image_url: width: 160 }}"
+                  onclick="rsSetMedia('{{ section.id }}', this)"
+                  role="button" tabindex="0"
+                  onkeydown="if(event.key==='Enter'||event.key===' ')rsSetMedia('{{ section.id }}',this)"
+                >
+                  <img src="{{ media.preview_image | image_url: width: 160 }}" alt="Video" loading="lazy">
+                </div>
+                {%- assign first_thumb_set = true -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- for media in product.media -%}
+              {%- if media.media_type == 'image' -%}
+                <div
+                  class="rs-gallery__thumb {% unless first_thumb_set %}active{% endunless %}"
+                  data-type="image"
+                  data-full="{{ media | image_url: width: 800 }}"
+                  onclick="rsSetMedia('{{ section.id }}', this)"
+                  role="button" tabindex="0"
+                  onkeydown="if(event.key==='Enter'||event.key===' ')rsSetMedia('{{ section.id }}',this)"
+                >
+                  <img
+                    src="{{ media | image_url: width: 160 }}"
+                    alt="{{ product.title }}"
+                    loading="{% unless first_thumb_set %}eager{% else %}lazy{% endunless %}"
                   >
-                    <img
-                      src="{{ media | image_url: width: 160 }}"
-                      alt="{{ product.title }}"
-                      loading="{% unless first_thumb_set %}eager{% else %}lazy{% endunless %}"
-                    >
-                  </div>
-                  {%- assign first_thumb_set = true -%}
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
-            <button class="rs-gallery__arrow next" onclick="rsThumbScroll('{{ section.id }}',1)" aria-label="Scroll">&#8250;</button>
+                </div>
+                {%- assign first_thumb_set = true -%}
+              {%- endif -%}
+            {%- endfor -%}
           </div>
+          <button class="rs-gallery__arrow next" onclick="rsThumbScroll('{{ section.id }}',1)" aria-label="Scroll">&#8250;</button>
         </div>
       </div>
-      {%- comment -%} END GALLERY COL {%- endcomment -%}
+      {%- comment -%} END GALLERY {%- endcomment -%}
 
       {%- comment -%}
         ══════════════════════════════
-             INFO PANEL (scrolls normally)
+             INFO PANEL (sticky)
         ══════════════════════════════
       {%- endcomment -%}
       <div class="rs-info-sticky" id="rs-info-{{ section.id }}">
@@ -1060,7 +1026,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                   </button>
                 </div>
               {% endif %}
-
 {% comment %} features_icons block {% endcomment %}
               {% when 'features_icons' %}
   <div class="rs-features-icons" {{ block.shopify_attributes }}>
@@ -1484,39 +1449,45 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 </div>
               {% endif %}
 
-            {% comment %} divider block {% endcomment %}
-            {% when 'divider' %}
-              <div class="rs-divider-wrapper"
-                style="
-                  padding-top: {{ block.settings.padding_top }}px;
-                  padding-bottom: {{ block.settings.padding_bottom }}px;
-                  background: {{ block.settings.bg_color }};
-                  text-align: {{ block.settings.alignment }};
-                "
-              >
-                {% if block.settings.show_text and block.settings.text != blank %}
-                  <div class="rs-divider-text"
-                    style="
-                      color: {{ block.settings.text_color }};
-                      font-size: {{ block.settings.text_size }}px;
-                      margin-bottom: {{ block.settings.text_spacing }}px;
-                    "
-                  >
-                    {{ block.settings.text }}
-                  </div>
-                {% endif %}
 
-                <div class="rs-divider"
-                  style="
-                    width: {{ block.settings.width }}%;
-                    height: {{ block.settings.height }}px;
-                    margin: 0 auto;
-                    border-radius: {{ block.settings.radius }}px;
-                    border-top: {{ block.settings.border_style }} {{ block.settings.border_size }}px {{ block.settings.color }};
-                    background: {{ block.settings.color }};
-                  "
-                ></div>
-              </div>
+              {% comment %} divider block {% endcomment %}
+               {% when 'divider' %}
+
+  <div class="rs-divider-wrapper"
+    style="
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+      background: {{ block.settings.bg_color }};
+      text-align: {{ block.settings.alignment }};
+    "
+  >
+
+    {% if block.settings.show_text and block.settings.text != blank %}
+      <div class="rs-divider-text"
+        style="
+          color: {{ block.settings.text_color }};
+          font-size: {{ block.settings.text_size }}px;
+          margin-bottom: {{ block.settings.text_spacing }}px;
+        "
+      >
+        {{ block.settings.text }}
+      </div>
+    {% endif %}
+
+    <div class="rs-divider"
+      style="
+        width: {{ block.settings.width }}%;
+        height: {{ block.settings.height }}px;
+        margin: 0 auto;
+        border-radius: {{ block.settings.radius }}px;
+        border-top: {{ block.settings.border_style }} {{ block.settings.border_size }}px {{ block.settings.color }};
+        background: {{ block.settings.color }};
+      "
+    ></div>
+
+  </div>
+
+  
 
             {%- comment -%} ── CARE ICONS BLOCK ── {%- endcomment -%}
             {% when 'care_icons' %}
