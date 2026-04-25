@@ -287,6 +287,11 @@
 /* RESPONSIVE */
 @media (max-width: 1024px) { #plp-{{ sid }} .pgrid { grid-template-columns: repeat(3,1fr) !important; } }
 @media (max-width: 768px) {
+  #plp-{{ sid }} .btn-atc { position: absolute;
+    bottom: 0px;
+    right: 0;
+    width: 100%;
+    min-width: 135px; }
   #plp-{{ sid }} .plp-layout { grid-template-columns: 1fr; }
   #plp-{{ sid }} .plp-sb { position: static; display: none; }
   #plp-{{ sid }} .plp-sb.mob-open { display: block; }
