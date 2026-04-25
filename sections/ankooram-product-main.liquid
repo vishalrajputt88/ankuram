@@ -128,6 +128,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   -ms-overflow-style: none;
   padding-right: 4px;
 } {% endcomment %}
+.rs-info-sticky::-webkit-scrollbar { display: none; }
 
 /* ═══════════════════════════════════════════
    GALLERY
@@ -783,6 +784,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 @media (max-width: 900px) {
   .rs-wrap { padding: 14px 18px 40px; }
   .rs-grid { grid-template-columns: 1fr; gap: 24px; }
+  .rs-info-sticky { position: static; max-height: none; }
   .rs-gallery { flex-direction: column; }
   .rs-gallery__thumbs-wrap { flex-direction: row; width: 100%; max-width: 300px; }
   .rs-gallery__thumbs { flex-direction: row; max-height: none; overflow-x: auto; }
