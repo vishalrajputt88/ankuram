@@ -2,27 +2,10 @@
   Ankooram - Product Page Section (v2 — Complete Rebuild)
   File: sections/rs-product-main.liquid
 
-  BLOCKS (all in blocks, nothing in section settings):
-    ✅ variant_selector   — color circles + size image-cards + regular swatches
-    ✅ price_block        — price + MRP + discount badge + incl. taxes + EMI line
-    ✅ coupon_banner      — design from screenshot (copy button)
-    ✅ add_to_cart        — yellow ATC + subtext + qty selector
-    ✅ how_to_use         — expandable card with video thumbnail link
-    ✅ limited_offer      — countdown timer + free gift line
-    ✅ delivery_timeline  — 3-step order→ship→deliver timeline
-    ✅ accordion_block    — Description / Product Details / Care / Returns
-    ✅ guarantee_banner   — image picker banner
-    ✅ care_icons         — 3 icon boxes
-    ✅ custom_field       — metafield text/richtext
-    ✅ wishlist_button    — Add to Wishlist (localStorage)
-
-  GALLERY:
-    ✅ VIDEO plays FIRST (auto-detect)
-    ✅ Thumbnail carousel (vertical on desktop, horizontal on mobile)
-    ✅ Hover zoom lens + zoom panel
-    ✅ Click-to-lightbox zoom
-
-  STICKY LEFT GALLERY — sticks while right panel scrolls with page
+  FIXES:
+    ✅ Add to Cart — updates cart bubble/drawer instantly without page refresh
+    ✅ Right panel — scrolls naturally with body (no internal scroll trap)
+    ✅ Left gallery — sticky while right panel scrolls with page
 {% endcomment %}
 
 <style>
@@ -76,7 +59,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 #rs-product-{{ section.id }} *::before,
 #rs-product-{{ section.id }} *::after { box-sizing: border-box; }
 
-/* FIX: Prevent horizontal overflow globally within this section */
 #rs-product-{{ section.id }} {
   --green:      #0E3A23;
   --green-mid:  #155122;
@@ -94,7 +76,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   --radius:     12px;
   --shadow:     0 2px 16px rgba(0,0,0,.08);
   font-family: 'Segoe UI', system-ui, sans-serif;
-  overflow-x: hidden; /* FIX: no horizontal scroll */
+  overflow-x: hidden;
   max-width: 100%;
 }
 
@@ -105,7 +87,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   max-width: 1440px;
   margin: 0 auto;
   padding: 20px 40px 60px;
-  overflow-x: hidden; /* FIX: no horizontal scroll */
+  overflow-x: hidden;
 }
 
 .rs-accordion .rs-accordion__item:first-child { border-bottom: none; }
@@ -123,10 +105,10 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   grid-template-columns: 1fr 500px;
   gap: 52px;
   align-items: start;
-  min-width: 0; /* FIX: prevent grid blowout */
+  min-width: 0;
 }
 
-/* FIX: Left column (gallery) — sticky, scrolls with page naturally */
+/* FIX: Left column (gallery) — sticky */
 .rs-gallery-col {
   position: sticky;
   top: 80px;
@@ -134,11 +116,12 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   min-width: 0;
 }
 
-/* FIX: Right column (info) — normal flow, no sticky, no overflow */
+/* FIX: Right column — normal flow, NO sticky, NO overflow-y, NO max-height */
 .rs-info-sticky {
   min-width: 0;
   width: 100%;
-  overflow-x: hidden;
+  overflow: visible;
+  /* No position sticky, no max-height, no overflow-y — scrolls with page naturally */
 }
 
 /* ═══════════════════════════════════════════
@@ -149,12 +132,12 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   flex-direction: row-reverse;
   gap: 16px;
   position: relative;
-  min-width: 0; /* FIX */
+  min-width: 0;
 }
 
 .rs-gallery__main-wrap {
   flex: 1;
-  min-width: 0; /* FIX */
+  min-width: 0;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
@@ -344,7 +327,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 }
 
 /* ═══════════════════════════════════════════
-   COUPON BANNER (from screenshot)
+   COUPON BANNER
 ═══════════════════════════════════════════ */
 .rs-coupon-wrap {
   background: var(--gold-bg);
@@ -410,10 +393,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   border-color: var(--green);
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--green);
 }
-.rs-color-swatch.sold-out { opacity: .4;
-    cursor: no-drop;
-    pointer-events: bounding-box;
-    z-index: 9999; }
+.rs-color-swatch.sold-out { opacity: .4; cursor: no-drop; pointer-events: bounding-box; z-index: 9999; }
 .rs-color-swatch__tooltip {
   position: absolute; bottom: calc(100% + 6px); left: 50%;
   transform: translateX(-50%);
@@ -468,13 +448,10 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   border-radius: 0 6px 0 6px;
   display: none;
 }
-.rs-size-card__price { font-size: 10px;
-    font-weight: 700;
-    color: var(--green);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    justify-content: center; }
+.rs-size-card__price {
+  font-size: 10px; font-weight: 700; color: var(--green);
+  display: flex; align-items: center; gap: 4px; justify-content: center;
+}
 .rs-size-card__compare { font-size: 9px; color: #aaa; text-decoration: line-through; margin-right: 2px; }
 
 /* REGULAR SWATCHES */
@@ -502,7 +479,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 .rs-variants__select:focus { border-color: var(--green); }
 
 /* ═══════════════════════════════════════════
-   QUANTITY + ADD TO CART (yellow button design)
+   QUANTITY + ADD TO CART
 ═══════════════════════════════════════════ */
 .rs-purchase-block { margin-bottom: 16px; }
 
@@ -530,7 +507,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 .rs-qty__input::-webkit-outer-spin-button,
 .rs-qty__input::-webkit-inner-spin-button { -webkit-appearance: none; }
 
-/* ATC Button — yellow from screenshot */
+/* ATC Button */
 .rs-btn-atc {
   width: 100%; padding: 15px 20px;
   background: var(--yellow); color: #1a1a1a;
@@ -548,7 +525,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 }
 .rs-btn-atc__sub svg { width: 12px; height: 12px; }
 
-/* BUY NOW — green outline */
+/* BUY NOW */
 .rs-btn-buynow {
   width: 100%; padding: 13px 20px;
   border: 2px solid var(--green); border-radius: var(--radius);
@@ -584,7 +561,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 .rs-btn-wishlist.wishlisted svg { fill: var(--red); stroke: var(--red); }
 
 /* ═══════════════════════════════════════════
-   HOW TO USE BLOCK (from screenshot)
+   HOW TO USE BLOCK
 ═══════════════════════════════════════════ */
 .rs-how-to-use {
   background: #eef4ff;
@@ -608,7 +585,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 .rs-how-to-use__arrow { font-size: 1rem; color: #4a7ad8; transform: rotate(45deg); }
 
 /* ═══════════════════════════════════════════
-   LIMITED OFFER BLOCK (from screenshot)
+   LIMITED OFFER BLOCK
 ═══════════════════════════════════════════ */
 .rs-limited-offer {
   border-radius: var(--radius);
@@ -646,7 +623,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 .rs-limited-offer__gift-text span { font-weight: 400; color: var(--txt-mid); }
 
 /* ═══════════════════════════════════════════
-   DELIVERY TIMELINE (from screenshot)
+   DELIVERY TIMELINE
 ═══════════════════════════════════════════ */
 .rs-delivery-timeline {
   background: #fff;
@@ -710,9 +687,9 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 .rs-pincode__msg { font-size: .82rem; color: var(--green); margin-top: 6px; }
 
 /* ═══════════════════════════════════════════
-   ACCORDION (Description / Details / Care / Returns)
+   ACCORDION
 ═══════════════════════════════════════════ */
-.rs-accordion {  margin-bottom: 15px; }
+.rs-accordion { margin-bottom: 15px; }
 .rs-accordion__item { border: 1px solid var(--border); }
 .rs-accordion__trigger {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
@@ -798,20 +775,19 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 @media (max-width: 900px) {
   .rs-wrap { padding: 14px 18px 40px; }
 
-  /* FIX: Single column on tablet/mobile — gallery not sticky */
   .rs-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
 
-  /* FIX: Gallery col — NOT sticky on mobile */
+  /* Gallery not sticky on mobile */
   .rs-gallery-col {
     position: static;
   }
 
-  .rs-info-sticky { position: static; max-height: none; }
+  .rs-info-sticky { position: static; }
 
-  /* FIX: Horizontal thumb strip on mobile */
+  /* Horizontal thumb strip on mobile */
   .rs-gallery { flex-direction: column; }
   .rs-gallery__thumbs-wrap {
     flex-direction: row;
@@ -834,17 +810,14 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   .rs-delivery-timeline__steps::before { display: none; }
 }
 
-/* MOBILE SETTINGS for divider */
 @media (max-width: 768px) {
   #rs-product-{{ section.id }} .rs-divider {
     width: {{ block.settings.width_mobile }}%;
     height: {{ block.settings.height_mobile }}px;
   }
-
   #rs-product-{{ section.id }} .rs-divider-text {
     font-size: {{ block.settings.text_size_mobile }}px;
   }
-
   #rs-product-{{ section.id }} .rs-divider-wrapper {
     padding-top: {{ block.settings.padding_top_mobile }}px;
     padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
@@ -882,11 +855,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 
     <div class="rs-grid">
 
-      {%- comment -%}
-        ══════════════════════════════
-             GALLERY (sticky left col)
-        ══════════════════════════════
-      {%- endcomment -%}
+      {%- comment -%} GALLERY (sticky left col) {%- endcomment -%}
       <div class="rs-gallery-col">
         <div class="rs-gallery" id="rs-gallery-{{ section.id }}">
 
@@ -978,11 +947,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
       </div>
       {%- comment -%} END GALLERY COL {%- endcomment -%}
 
-      {%- comment -%}
-        ══════════════════════════════
-             INFO PANEL (scrolls normally)
-        ══════════════════════════════
-      {%- endcomment -%}
+      {%- comment -%} INFO PANEL (scrolls normally with page) {%- endcomment -%}
       <div class="rs-info-sticky" id="rs-info-{{ section.id }}">
         <h1 class="rs-info__title">{{ product.title }}</h1>
 
@@ -998,7 +963,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
         {% for block in section.blocks %}
           {% case block.type %}
 
-            {%- comment -%} ── PRICE BLOCK ── {%- endcomment -%}
             {% when 'price_block' %}
               <div class="rs-price-block" id="rs-price-outer-{{ section.id }}" {{ block.shopify_attributes }}>
                 <div class="rs-price-block__row1">
@@ -1031,12 +995,10 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 {% endif %}
               </div>
 
-            {%- comment -%} ── COUPON BANNER BLOCK ── {%- endcomment -%}
             {% when 'coupon_banner' %}
               {% if block.settings.coupon_code != blank %}
                 <div class="rs-coupon-wrap" {{ block.shopify_attributes }}
-                  style="--coupon-bg:{{ block.settings.background_color }};--coupon-border:{{ block.settings.border_color }};
-                  background:{{ block.settings.background_color }};border-color:{{ block.settings.border_color }};"
+                  style="background:{{ block.settings.background_color }};border-color:{{ block.settings.border_color }};"
                 >
                   <div class="rs-coupon-wrap__left">
                     <div class="rs-coupon-wrap__get">
@@ -1064,42 +1026,28 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 </div>
               {% endif %}
 
-{% comment %} features_icons block {% endcomment %}
-              {% when 'features_icons' %}
-  <div class="rs-features-icons" {{ block.shopify_attributes }}>
-    {% for i in (1..4) %}
+            {% when 'features_icons' %}
+              <div class="rs-features-icons" {{ block.shopify_attributes }}>
+                {% for i in (1..4) %}
+                  {% assign text_key = 'text_' | append: i %}
+                  {% assign icon_key = 'icon_' | append: i %}
+                  {% assign text = block.settings[text_key] %}
+                  {% assign icon = block.settings[icon_key] %}
+                  {% if text != blank %}
+                    <div class="rs-feature-item">
+                      <div class="rs-feature-icon">
+                        {% if icon != blank %}
+                          <img src="{{ icon | image_url: width: 80 }}" alt="{{ text }}">
+                        {% else %}
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/></svg>
+                        {% endif %}
+                      </div>
+                      <div class="rs-feature-text">{{ text }}</div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
 
-      {% assign text_key = 'text_' | append: i %}
-      {% assign icon_key = 'icon_' | append: i %}
-
-      {% assign text = block.settings[text_key] %}
-      {% assign icon = block.settings[icon_key] %}
-
-      {% if text != blank %}
-        <div class="rs-feature-item">
-          
-          <div class="rs-feature-icon">
-            {% if icon != blank %}
-              <img src="{{ icon | image_url: width: 80 }}" alt="{{ text }}">
-            {% else %}
-              <!-- fallback icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <circle cx="12" cy="12" r="10"/>
-              </svg>
-            {% endif %}
-          </div>
-
-          <div class="rs-feature-text">
-            {{ text }}
-          </div>
-
-        </div>
-      {% endif %}
-
-    {% endfor %}
-  </div>
-
-            {%- comment -%} ── VARIANT SELECTOR BLOCK ── {%- endcomment -%}
             {% when 'variant_selector' %}
               {% unless product.has_only_default_variant %}
                 <div class="rs-variants" {{ block.shopify_attributes }}>
@@ -1113,7 +1061,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                       {%- assign opt_lower = option.name | downcase -%}
 
                       {%- if opt_lower == 'color' or opt_lower == 'colour' -%}
-                        {%- comment -%} COLOR CIRCLES {%- endcomment -%}
                         <div class="rs-color-swatches">
                           {% for value in option.values %}
                             {%- assign is_avail = false -%}
@@ -1160,7 +1107,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                         </div>
 
                       {%- elsif opt_lower == 'size' or opt_lower == 'plant size' -%}
-                        {%- comment -%} SIZE IMAGE CARDS {%- endcomment -%}
                         {%- assign small_img  = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/small.png?v=1776770645' -%}
                         {%- assign medium_img = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/medium.png?v=1776770646' -%}
                         {%- assign large_img  = 'https://cdn.shopify.com/s/files/1/0673/9063/6163/files/large.png?v=1776770646' -%}
@@ -1220,7 +1166,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                         </div>
 
                       {%- else -%}
-                        {%- comment -%} REGULAR SWATCHES / DROPDOWN {%- endcomment -%}
                         {% if block.settings.display_type == 'dropdown' %}
                           <select class="rs-variants__select"
                             data-option-index="{{ forloop.index0 }}"
@@ -1254,7 +1199,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 </div>
               {% endunless %}
 
-            {%- comment -%} ── ADD TO CART BLOCK ── {%- endcomment -%}
             {% when 'add_to_cart' %}
               <div class="rs-purchase-block" {{ block.shopify_attributes }}>
                 {% if block.settings.show_qty %}
@@ -1297,7 +1241,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 <div class="rs-cart-msg" id="rs-cart-msg-{{ section.id }}"></div>
               </div>
 
-            {%- comment -%} ── WISHLIST BUTTON BLOCK ── {%- endcomment -%}
             {% when 'wishlist_button' %}
               <button
                 class="rs-btn-wishlist"
@@ -1315,7 +1258,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 <span id="rs-wl-label-{{ section.id }}">{{ block.settings.label | default: 'Add to Wishlist' }}</span>
               </button>
 
-            {%- comment -%} ── HOW TO USE BLOCK ── {%- endcomment -%}
             {% when 'how_to_use' %}
               {% if block.settings.link != blank or block.settings.video_url != blank %}
                 <a
@@ -1340,7 +1282,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 </a>
               {% endif %}
 
-            {%- comment -%} ── LIMITED OFFER BLOCK ── {%- endcomment -%}
             {% when 'limited_offer' %}
               <div class="rs-limited-offer" {{ block.shopify_attributes }}>
                 <div class="rs-limited-offer__timer-bar">
@@ -1362,9 +1303,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                     {% if block.settings.gift_image != blank %}
                       <img class="rs-limited-offer__gift-img" src="{{ block.settings.gift_image | image_url: width: 120 }}" alt="Gift" loading="lazy">
                     {% endif %}
-                    <div class="rs-limited-offer__gift-text">
-                      {{ block.settings.gift_text }}
-                    </div>
+                    <div class="rs-limited-offer__gift-text">{{ block.settings.gift_text }}</div>
                   </div>
                 {% endif %}
               </div>
@@ -1400,7 +1339,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 })();
               </script>
 
-            {%- comment -%} ── DELIVERY TIMELINE BLOCK ── {%- endcomment -%}
             {% when 'delivery_timeline' %}
               <div class="rs-delivery-timeline" {{ block.shopify_attributes }}>
                 <div class="rs-delivery-timeline__steps">
@@ -1449,13 +1387,12 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                   var pl = document.getElementById('rs-del-placed-'+sid);
                   var sh = document.getElementById('rs-del-shipped-'+sid);
                   var dv = document.getElementById('rs-del-delivery-'+sid);
-                  if (pl) pl.textContent = 'Apr ' + today.getDate() + (today.getMonth() === 3 ? '' : '');
+                  if (pl) pl.textContent = fmtDate(today);
                   if (sh) sh.textContent = fmtDate(addDays(today, ship1)) + '–' + addDays(today, ship2).getDate();
                   if (dv) dv.textContent = fmtDate(addDays(today, del1)) + '–' + addDays(today, del2).getDate();
                 })();
               </script>
 
-            {%- comment -%} ── PINCODE BLOCK ── {%- endcomment -%}
             {% when 'pincode' %}
               <div class="rs-pincode-wrap" {{ block.shopify_attributes }}>
                 <div class="rs-pincode__trigger">
@@ -1475,7 +1412,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 <div class="rs-pincode__msg" id="rs-pincode-msg-{{ section.id }}"></div>
               </div>
 
-            {%- comment -%} ── GUARANTEE BANNER BLOCK ── {%- endcomment -%}
             {% when 'guarantee_banner' %}
               {% if block.settings.banner_image != blank %}
                 <div class="rs-guarantee-banner" {{ block.shopify_attributes }}>
@@ -1487,7 +1423,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 </div>
               {% endif %}
 
-            {% comment %} divider block {% endcomment %}
             {% when 'divider' %}
               <div class="rs-divider-wrapper"
                 style="
@@ -1499,16 +1434,9 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
               >
                 {% if block.settings.show_text and block.settings.text != blank %}
                   <div class="rs-divider-text"
-                    style="
-                      color: {{ block.settings.text_color }};
-                      font-size: {{ block.settings.text_size }}px;
-                      margin-bottom: {{ block.settings.text_spacing }}px;
-                    "
-                  >
-                    {{ block.settings.text }}
-                  </div>
+                    style="color:{{ block.settings.text_color }};font-size:{{ block.settings.text_size }}px;margin-bottom:{{ block.settings.text_spacing }}px;"
+                  >{{ block.settings.text }}</div>
                 {% endif %}
-
                 <div class="rs-divider"
                   style="
                     width: {{ block.settings.width }}%;
@@ -1521,113 +1449,81 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                 ></div>
               </div>
 
-            {%- comment -%} ── CARE ICONS BLOCK ── {%- endcomment -%}
             {% when 'care_icons' %}
-  <div class="rs-care-icons" {{ block.shopify_attributes }}>
-    {% for i in (1..3) %}
+              <div class="rs-care-icons" {{ block.shopify_attributes }}>
+                {% for i in (1..3) %}
+                  {% assign lbl_key = 'icon_label_' | append: i %}
+                  {% assign img_key = 'icon_image_' | append: i %}
+                  {% assign type_key = 'icon_type_' | append: i %}
+                  {% assign lbl = block.settings[lbl_key] %}
+                  {% assign ico_img = block.settings[img_key] %}
+                  {% assign ico_type = block.settings[type_key] %}
+                  {% if lbl != blank %}
+                    <div class="rs-care-icon-box">
+                      <div class="rs-care-icon-box__icon">
+                        {% if ico_img != blank %}
+                          <img src="{{ ico_img | image_url: width: 80 }}" alt="{{ lbl }}" width="40" height="40" loading="lazy">
+                        {% elsif ico_type == 'water' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C6 8 4 13 4 16a8 8 0 0 0 16 0c0-3-2-8-8-14z"/></svg>
+                        {% elsif ico_type == 'sun' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/></svg>
+                        {% elsif ico_type == 'beginner' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        {% elsif ico_type == 'leaf' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 22 L10 14"/></svg>
+                        {% elsif ico_type == 'temp' %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 14.76V3.5"/></svg>
+                        {% else %}
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/></svg>
+                        {% endif %}
+                      </div>
+                      <div class="rs-care-icon-box__label">{{ lbl }}</div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
 
-      {% assign lbl_key = 'icon_label_' | append: i %}
-      {% assign img_key = 'icon_image_' | append: i %}
-      {% assign type_key = 'icon_type_' | append: i %}
+            {% when 'accordion' %}
+              <div class="rs-accordion" {{ block.shopify_attributes }}>
+                {% for i in (1..6) %}
+                  {% assign title_key = 'title_' | append: i %}
+                  {% assign ns_key = 'ns_' | append: i %}
+                  {% assign key_key = 'key_' | append: i %}
+                  {% assign ftype_key = 'ftype_' | append: i %}
+                  {% assign fallback_key = 'fallback_' | append: i %}
+                  {% assign acc_title = block.settings[title_key] %}
+                  {% assign acc_ns = block.settings[ns_key] %}
+                  {% assign acc_key = block.settings[key_key] %}
+                  {% assign acc_ftype = block.settings[ftype_key] %}
+                  {% assign acc_fallback = block.settings[fallback_key] %}
+                  {% if acc_title != blank %}
+                    {% assign acc_content = '' %}
+                    {% if acc_ns != blank and acc_key != blank %}
+                      {% if acc_ftype == 'rich_text' %}
+                        {% assign acc_content = product.metafields[acc_ns][acc_key] | metafield_tag %}
+                      {% else %}
+                        {% assign acc_content = product.metafields[acc_ns][acc_key].value | default: acc_fallback %}
+                      {% endif %}
+                    {% else %}
+                      {% assign acc_content = acc_fallback %}
+                    {% endif %}
+                    {% if acc_content != blank %}
+                      <div class="rs-accordion__item">
+                        <button class="rs-accordion__trigger" onclick="rsAccordionToggle(this)" aria-expanded="false">
+                          {{ acc_title }}
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"/>
+                          </svg>
+                        </button>
+                        <div class="rs-accordion__body">
+                          {% if acc_ftype == 'rich_text' %}{{ acc_content }}{% else %}<p>{{ acc_content }}</p>{% endif %}
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </div>
 
-      {% assign lbl = block.settings[lbl_key] %}
-      {% assign ico_img = block.settings[img_key] %}
-      {% assign ico_type = block.settings[type_key] %}
-
-      {% if lbl != blank %}
-        <div class="rs-care-icon-box">
-          <div class="rs-care-icon-box__icon">
-
-            {% if ico_img != blank %}
-              <img src="{{ ico_img | image_url: width: 80 }}" alt="{{ lbl }}" width="40" height="40" loading="lazy">
-
-            {% elsif ico_type == 'water' %}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2C6 8 4 13 4 16a8 8 0 0 0 16 0c0-3-2-8-8-14z"/></svg>
-
-            {% elsif ico_type == 'sun' %}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="5"/></svg>
-
-            {% elsif ico_type == 'beginner' %}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-
-            {% elsif ico_type == 'leaf' %}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 22 L10 14"/></svg>
-
-            {% elsif ico_type == 'temp' %}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 14.76V3.5"/></svg>
-
-            {% else %}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/></svg>
-            {% endif %}
-
-          </div>
-          <div class="rs-care-icon-box__label">{{ lbl }}</div>
-        </div>
-      {% endif %}
-
-    {% endfor %}
-  </div>
-
-            {%- comment -%} ── ACCORDION BLOCK ── {%- endcomment -%}
-           {% when 'accordion' %}
-  <div class="rs-accordion" {{ block.shopify_attributes }}>
-    {% for i in (1..6) %}
-
-      {% assign title_key = 'title_' | append: i %}
-      {% assign ns_key = 'ns_' | append: i %}
-      {% assign key_key = 'key_' | append: i %}
-      {% assign ftype_key = 'ftype_' | append: i %}
-      {% assign fallback_key = 'fallback_' | append: i %}
-
-      {% assign acc_title = block.settings[title_key] %}
-      {% assign acc_ns = block.settings[ns_key] %}
-      {% assign acc_key = block.settings[key_key] %}
-      {% assign acc_ftype = block.settings[ftype_key] %}
-      {% assign acc_fallback = block.settings[fallback_key] %}
-
-      {% if acc_title != blank %}
-
-        {% assign acc_content = '' %}
-
-        {% if acc_ns != blank and acc_key != blank %}
-          {% if acc_ftype == 'rich_text' %}
-            {% assign acc_content = product.metafields[acc_ns][acc_key] | metafield_tag %}
-          {% else %}
-            {% assign acc_content = product.metafields[acc_ns][acc_key].value | default: acc_fallback %}
-          {% endif %}
-        {% else %}
-          {% assign acc_content = acc_fallback %}
-        {% endif %}
-
-        {% if acc_content != blank %}
-          <div class="rs-accordion__item">
-            <button
-              class="rs-accordion__trigger"
-              onclick="rsAccordionToggle(this)"
-              aria-expanded="false"
-            >
-              {{ acc_title }}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"/>
-              </svg>
-            </button>
-
-            <div class="rs-accordion__body">
-              {% if acc_ftype == 'rich_text' %}
-                {{ acc_content }}
-              {% else %}
-                <p>{{ acc_content }}</p>
-              {% endif %}
-            </div>
-          </div>
-        {% endif %}
-
-      {% endif %}
-
-    {% endfor %}
-  </div>
-
-            {%- comment -%} ── CUSTOM FIELD BLOCK ── {%- endcomment -%}
             {% when 'custom_field' %}
               {%- assign ns = block.settings.metafield_namespace -%}
               {%- assign mkey = block.settings.metafield_key -%}
@@ -1637,9 +1533,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
                   {% if block.settings.show_label and block.settings.label != blank %}
                     <div class="rs-custom-field__label">{{ block.settings.label }}</div>
                   {% endif %}
-                  <div class="rs-custom-field__richtext">
-                    {{ product.metafields[ns][mkey] | metafield_tag }}
-                  </div>
+                  <div class="rs-custom-field__richtext">{{ product.metafields[ns][mkey] | metafield_tag }}</div>
                 </div>
               {% else %}
                 {%- assign pv = product.metafields[ns][mkey].value | default: block.settings.fallback_text -%}
@@ -1659,7 +1553,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
 
           {% endcase %}
         {% endfor %}
-        {%- comment -%} END BLOCKS {%- endcomment -%}
 
       </div>
       {%- comment -%} END INFO {%- endcomment -%}
@@ -1674,7 +1567,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
   <img src="" alt="Zoom" id="rs-zoom-lb-img-{{ section.id }}">
 </div>
 
-{%- comment -%} ═════ PRODUCT JSON DATA ═════ {%- endcomment -%}
+{%- comment -%} PRODUCT JSON DATA {%- endcomment -%}
 <script id="rs-pd-{{ section.id }}" type="application/json">
 {
   "variants": [
@@ -1734,7 +1627,7 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
       if (label) label.textContent = 'Copied!';
       setTimeout(function () {
         btn.classList.remove('copied');
-        if (label) label.textContent = '{{ 'Copy' }}';
+        if (label) label.textContent = 'Copy';
       }, 2200);
     };
     if (navigator.clipboard && window.isSecureContext) {
@@ -1861,12 +1754,9 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
     if (!variant) return;
     CURRENT_VARIANT_ID = variant.id;
 
-    /* Price */
     var priceEl = document.getElementById('rs-price-' + id);
-    if (priceEl) {
-      priceEl.textContent = fmtMoney(variant.price);
-    }
-    /* Discount badge */
+    if (priceEl) priceEl.textContent = fmtMoney(variant.price);
+
     var badge = document.getElementById('rs-discount-badge-' + id);
     if (badge) {
       if (variant.compare_at_price > variant.price) {
@@ -1880,17 +1770,19 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
       }
     }
 
-    /* ATC / Buy Now */
     var atcBtn = document.getElementById('rs-atc-'    + id);
     var buyBtn = document.getElementById('rs-buynow-' + id);
-    if (atcBtn) { atcBtn.disabled = !variant.available; atcBtn.querySelector('span').textContent = variant.available ? atcBtn.querySelector('span').dataset.label || 'ADD TO CART' : 'Sold Out'; }
-    if (buyBtn)  buyBtn.disabled = !variant.available;
+    if (atcBtn) {
+      atcBtn.disabled = !variant.available;
+      atcBtn.querySelector('span').textContent = variant.available
+        ? (atcBtn.querySelector('span').dataset.label || 'ADD TO CART')
+        : 'Sold Out';
+    }
+    if (buyBtn) buyBtn.disabled = !variant.available;
 
-    /* Wishlist price update */
     var wlBtn = document.getElementById('rs-wishlist-' + id);
     if (wlBtn) wlBtn.dataset.productPrice = fmtMoney(variant.price);
 
-    /* Variant image swap */
     if (variant.featured_image) {
       var mi = document.getElementById('rs-main-img-' + id);
       var mv = document.getElementById('rs-main-video-' + id);
@@ -1906,7 +1798,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
       }
     }
 
-    /* URL update */
     var url = new URL(window.location.href);
     url.searchParams.set('variant', variant.id);
     window.history.replaceState({}, '', url.toString());
@@ -1942,7 +1833,6 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
     if (v) updateVariantUI(id, v);
   };
 
-  /* Store the original ATC label */
   document.addEventListener('DOMContentLoaded', function () {
     var atcBtn = document.getElementById('rs-atc-' + SID);
     if (atcBtn) {
@@ -1958,33 +1848,104 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
     inp.value = Math.max(1, Math.min(99, (parseInt(inp.value, 10) || 1) + delta));
   };
 
-  /* ── ADD TO CART ─────────────────────────────────── */
+  /* ── CART BUBBLE UPDATER (from related products pattern) ──────── */
+  function rsUpdateCartBubble(itemCount) {
+    /* Standard count selectors — covers most themes */
+    document.querySelectorAll(
+      '.cart-count, .cart__count, [data-cart-count], .cart-bubble__text-count, ' +
+      '#CartCount, .cart-item-count, .js-cart-count, [data-testid="cart-bubble"]'
+    ).forEach(function (el) {
+      el.textContent = itemCount > 99 ? '99+' : itemCount;
+      el.classList.remove('hidden', 'visually-hidden');
+    });
+
+    /* Show cart bubble wrapper if present */
+    var bubble = document.querySelector('.cart-bubble, .cart-icon-bubble');
+    if (bubble) bubble.classList.remove('visually-hidden', 'hidden');
+
+    /* Fire all standard Shopify / theme cart events */
+    document.dispatchEvent(new CustomEvent('cart:update', {
+      bubbles: true,
+      detail: { data: { itemCount: itemCount, source: 'product-form-component' } }
+    }));
+    document.dispatchEvent(new CustomEvent('cart:updated', {
+      bubbles: true,
+      detail: { itemCount: itemCount }
+    }));
+    document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+    window.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+
+    /* Attempt to refresh cart drawer HTML (Dawn / Prestige / most themes) */
+    var cartDrawer = document.querySelector('cart-drawer');
+    if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
+      fetch('/?section_id=cart-drawer')
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var nd = doc.querySelector('cart-drawer');
+          if (nd) cartDrawer.innerHTML = nd.innerHTML;
+        })
+        .catch(function () {});
+    }
+  }
+
+  /* ── ADD TO CART (with instant cart update, no page refresh) ─── */
   window.rsAddToCart = function (id) {
     var qty    = parseInt(document.getElementById('rs-qty-' + id).value, 10) || 1;
     var msgEl  = document.getElementById('rs-cart-msg-'   + id);
     var atcBtn = document.getElementById('rs-atc-'        + id);
     var origText = atcBtn.querySelector('span').textContent;
+
     atcBtn.disabled = true;
     atcBtn.querySelector('span').textContent = 'Adding…';
     msgEl.className = 'rs-cart-msg';
 
+    /* Collect section IDs for cart drawer sections refresh */
+    var sectionIds = Array.from(
+      document.querySelectorAll('cart-items-component[data-section-id]')
+    ).map(function (el) { return el.dataset.sectionId; }).filter(Boolean);
+
+    var payload = { id: CURRENT_VARIANT_ID, quantity: qty };
+    if (sectionIds.length > 0) { payload.sections = sectionIds.join(','); }
+
     fetch('/cart/add.js', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body: JSON.stringify({ id: CURRENT_VARIANT_ID, quantity: qty })
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
     })
-    .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
-    .then(function () {
+    .then(function (r) {
+      if (!r.ok) throw new Error('Cart add failed');
+      return r.json();
+    })
+    .then(function (data) {
       atcBtn.disabled = false;
       atcBtn.querySelector('span').textContent = origText;
+
+      /* Show success message */
       msgEl.textContent = '✓ Added to cart!';
       msgEl.className   = 'rs-cart-msg success';
-      fetch('/cart.js').then(function (r) { return r.json(); }).then(function (cart) {
-        document.querySelectorAll('.cart-count, [data-cart-count], .cart__count')
-          .forEach(function (el) { el.textContent = cart.item_count; });
-        document.dispatchEvent(new CustomEvent('cart:updated', { detail: { itemCount: cart.item_count } }));
-      });
       setTimeout(function () { msgEl.className = 'rs-cart-msg'; }, 3500);
+
+      /* Fire event with sections data if returned */
+      if (data.sections) {
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: { data: { source: 'product-form-component', sections: data.sections } }
+        }));
+      }
+
+      /* Fetch cart for accurate count and fire all update events */
+      return fetch('/cart.js', {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (cart) {
+        rsUpdateCartBubble(cart.item_count);
+      });
     })
     .catch(function () {
       atcBtn.disabled = false;
@@ -2002,7 +1963,11 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
     btn.disabled = true; btn.textContent = 'Please wait…';
     fetch('/cart/add.js', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Accept': 'application/json'
+      },
       body: JSON.stringify({ id: CURRENT_VARIANT_ID, quantity: qty })
     })
     .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
@@ -2010,7 +1975,11 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
     .catch(function () {
       btn.disabled = false; btn.textContent = 'Buy Now';
       var msgEl = document.getElementById('rs-cart-msg-' + id);
-      if (msgEl) { msgEl.textContent = '✗ Something went wrong.'; msgEl.className = 'rs-cart-msg error'; setTimeout(function () { msgEl.className = 'rs-cart-msg'; }, 3500); }
+      if (msgEl) {
+        msgEl.textContent = '✗ Something went wrong.';
+        msgEl.className = 'rs-cart-msg error';
+        setTimeout(function () { msgEl.className = 'rs-cart-msg'; }, 3500);
+      }
     });
   };
 
@@ -2054,7 +2023,10 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
     var wrap = document.getElementById('rs-pincode-wrap-' + id);
     if (!wrap) return;
     wrap.classList.toggle('show');
-    if (wrap.classList.contains('show')) { var inp = document.getElementById('rs-pincode-input-' + id); if (inp) inp.focus(); }
+    if (wrap.classList.contains('show')) {
+      var inp = document.getElementById('rs-pincode-input-' + id);
+      if (inp) inp.focus();
+    }
   };
   window.rsPincodeCheck = function (id) {
     var val = document.getElementById('rs-pincode-input-' + id).value.trim();
@@ -2257,35 +2229,30 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
         { "type": "text", "id": "key_1", "label": "Metafield Key 1", "default": "description_long" },
         { "type": "select", "id": "ftype_1", "label": "Field Type 1", "options": [{"value":"single_line","label":"Single Line"},{"value":"multi_line","label":"Multi Line"},{"value":"rich_text","label":"Rich Text"}], "default": "rich_text" },
         { "type": "textarea", "id": "fallback_1", "label": "Fallback Content 1" },
-
         { "type": "header", "content": "Tab 2" },
         { "type": "text", "id": "title_2", "label": "Title 2", "default": "Product Details" },
         { "type": "text", "id": "ns_2", "label": "Metafield Namespace 2", "default": "custom" },
         { "type": "text", "id": "key_2", "label": "Metafield Key 2", "default": "product_details" },
         { "type": "select", "id": "ftype_2", "label": "Field Type 2", "options": [{"value":"single_line","label":"Single Line"},{"value":"multi_line","label":"Multi Line"},{"value":"rich_text","label":"Rich Text"}], "default": "rich_text" },
         { "type": "textarea", "id": "fallback_2", "label": "Fallback Content 2" },
-
         { "type": "header", "content": "Tab 3" },
         { "type": "text", "id": "title_3", "label": "Title 3", "default": "Care Instructions" },
         { "type": "text", "id": "ns_3", "label": "Metafield Namespace 3", "default": "custom" },
         { "type": "text", "id": "key_3", "label": "Metafield Key 3", "default": "care_instructions" },
         { "type": "select", "id": "ftype_3", "label": "Field Type 3", "options": [{"value":"single_line","label":"Single Line"},{"value":"multi_line","label":"Multi Line"},{"value":"rich_text","label":"Rich Text"}], "default": "multi_line" },
         { "type": "textarea", "id": "fallback_3", "label": "Fallback Content 3" },
-
         { "type": "header", "content": "Tab 4" },
         { "type": "text", "id": "title_4", "label": "Title 4", "default": "Return and Refund" },
         { "type": "text", "id": "ns_4", "label": "Metafield Namespace 4", "default": "custom" },
         { "type": "text", "id": "key_4", "label": "Metafield Key 4", "default": "return_policy" },
         { "type": "select", "id": "ftype_4", "label": "Field Type 4", "options": [{"value":"single_line","label":"Single Line"},{"value":"multi_line","label":"Multi Line"},{"value":"rich_text","label":"Rich Text"}], "default": "multi_line" },
         { "type": "textarea", "id": "fallback_4", "label": "Fallback Content 4" },
-
         { "type": "header", "content": "Tab 5 (optional)" },
         { "type": "text", "id": "title_5", "label": "Title 5" },
         { "type": "text", "id": "ns_5", "label": "Metafield Namespace 5", "default": "custom" },
         { "type": "text", "id": "key_5", "label": "Metafield Key 5" },
         { "type": "select", "id": "ftype_5", "label": "Field Type 5", "options": [{"value":"single_line","label":"Single Line"},{"value":"multi_line","label":"Multi Line"},{"value":"rich_text","label":"Rich Text"}], "default": "multi_line" },
         { "type": "textarea", "id": "fallback_5", "label": "Fallback Content 5" },
-
         { "type": "header", "content": "Tab 6 (optional)" },
         { "type": "text", "id": "title_6", "label": "Title 6" },
         { "type": "text", "id": "ns_6", "label": "Metafield Namespace 6", "default": "custom" },
@@ -2307,252 +2274,48 @@ span, button, a, div, p { font-family: 'Poppins' !important; }
       ]
     },
     {
-  "type": "features_icons",
-  "name": "Features Icons",
-  "settings": [
-    {
-      "type": "text",
-      "id": "text_1",
-      "label": "Text 1",
-      "default": "Ergonomic Bounce-Back Footbed"
+      "type": "features_icons",
+      "name": "Features Icons",
+      "settings": [
+        { "type": "text", "id": "text_1", "label": "Text 1", "default": "Ergonomic Bounce-Back Footbed" },
+        { "type": "image_picker", "id": "icon_1", "label": "Icon 1" },
+        { "type": "text", "id": "text_2", "label": "Text 2", "default": "Zero-Drop Balanced Sole" },
+        { "type": "image_picker", "id": "icon_2", "label": "Icon 2" },
+        { "type": "text", "id": "text_3", "label": "Text 3", "default": "Adjustable Dual Velcro Straps" },
+        { "type": "image_picker", "id": "icon_3", "label": "Icon 3" },
+        { "type": "text", "id": "text_4", "label": "Text 4", "default": "Lightweight Anti-Skid Outsole" },
+        { "type": "image_picker", "id": "icon_4", "label": "Icon 4" }
+      ]
     },
     {
-      "type": "image_picker",
-      "id": "icon_1",
-      "label": "Icon 1"
-    },
-
-    {
-      "type": "text",
-      "id": "text_2",
-      "label": "Text 2",
-      "default": "Zero-Drop Balanced Sole"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_2",
-      "label": "Icon 2"
-    },
-
-    {
-      "type": "text",
-      "id": "text_3",
-      "label": "Text 3",
-      "default": "Adjustable Dual Velcro Straps"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_3",
-      "label": "Icon 3"
-    },
-
-    {
-      "type": "text",
-      "id": "text_4",
-      "label": "Text 4",
-      "default": "Lightweight Anti-Skid Outsole"
-    },
-    {
-      "type": "image_picker",
-      "id": "icon_4",
-      "label": "Icon 4"
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        { "type": "header", "content": "Layout" },
+        { "type": "range", "id": "padding_top", "label": "Padding Top (Desktop)", "min": 0, "max": 100, "step": 2, "default": 20 },
+        { "type": "range", "id": "padding_bottom", "label": "Padding Bottom (Desktop)", "min": 0, "max": 100, "step": 2, "default": 20 },
+        { "type": "range", "id": "padding_top_mobile", "label": "Padding Top (Mobile)", "min": 0, "max": 60, "step": 2, "default": 10 },
+        { "type": "range", "id": "padding_bottom_mobile", "label": "Padding Bottom (Mobile)", "min": 0, "max": 60, "step": 2, "default": 10 },
+        { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#ffffff" },
+        { "type": "header", "content": "Divider Style" },
+        { "type": "range", "id": "width", "label": "Width (Desktop %)", "min": 10, "max": 100, "step": 5, "default": 60 },
+        { "type": "range", "id": "width_mobile", "label": "Width (Mobile %)", "min": 20, "max": 100, "step": 5, "default": 80 },
+        { "type": "range", "id": "height", "label": "Height (Desktop)", "min": 1, "max": 10, "step": 1, "default": 2 },
+        { "type": "range", "id": "height_mobile", "label": "Height (Mobile)", "min": 1, "max": 10, "step": 1, "default": 2 },
+        { "type": "color", "id": "color", "label": "Divider Color", "default": "#000000" },
+        { "type": "range", "id": "radius", "label": "Border Radius", "min": 0, "max": 20, "step": 1, "default": 2 },
+        { "type": "select", "id": "border_style", "label": "Style", "options": [{"value":"solid","label":"Solid"},{"value":"dashed","label":"Dashed"},{"value":"dotted","label":"Dotted"}], "default": "solid" },
+        { "type": "range", "id": "border_size", "label": "Border Size", "min": 1, "max": 10, "step": 1, "default": 1 },
+        { "type": "header", "content": "Text" },
+        { "type": "checkbox", "id": "show_text", "label": "Show Text", "default": false },
+        { "type": "text", "id": "text", "label": "Divider Text", "default": "Section Title" },
+        { "type": "color", "id": "text_color", "label": "Text Color", "default": "#333333" },
+        { "type": "range", "id": "text_size", "label": "Text Size (Desktop)", "min": 10, "max": 40, "step": 1, "default": 16 },
+        { "type": "range", "id": "text_size_mobile", "label": "Text Size (Mobile)", "min": 10, "max": 30, "step": 1, "default": 14 },
+        { "type": "range", "id": "text_spacing", "label": "Text Bottom Spacing", "min": 0, "max": 30, "step": 2, "default": 10 },
+        { "type": "select", "id": "alignment", "label": "Alignment", "options": [{"value":"left","label":"Left"},{"value":"center","label":"Center"},{"value":"right","label":"Right"}], "default": "center" }
+      ]
     }
-  ]
-},
-
-{
-  "type": "divider",
-  "name": "Divider",
-  "settings": [
-
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Padding Top (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding Bottom (Desktop)",
-      "min": 0,
-      "max": 100,
-      "step": 2,
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding_top_mobile",
-      "label": "Padding Top (Mobile)",
-      "min": 0,
-      "max": 60,
-      "step": 2,
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom_mobile",
-      "label": "Padding Bottom (Mobile)",
-      "min": 0,
-      "max": 60,
-      "step": 2,
-      "default": 10
-    },
-
-    {
-      "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    },
-
-    {
-      "type": "header",
-      "content": "Divider Style"
-    },
-    {
-      "type": "range",
-      "id": "width",
-      "label": "Width (Desktop %)",
-      "min": 10,
-      "max": 100,
-      "step": 5,
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "width_mobile",
-      "label": "Width (Mobile %)",
-      "min": 20,
-      "max": 100,
-      "step": 5,
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "height",
-      "label": "Height (Desktop)",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "default": 2
-    },
-    {
-      "type": "range",
-      "id": "height_mobile",
-      "label": "Height (Mobile)",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "default": 2
-    },
-    {
-      "type": "color",
-      "id": "color",
-      "label": "Divider Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "radius",
-      "label": "Border Radius",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "default": 2
-    },
-    {
-      "type": "select",
-      "id": "border_style",
-      "label": "Style",
-      "options": [
-        { "value": "solid", "label": "Solid" },
-        { "value": "dashed", "label": "Dashed" },
-        { "value": "dotted", "label": "Dotted" }
-      ],
-      "default": "solid"
-    },
-    {
-      "type": "range",
-      "id": "border_size",
-      "label": "Border Size",
-      "min": 1,
-      "max": 10,
-      "step": 1,
-      "default": 1
-    },
-
-    {
-      "type": "header",
-      "content": "Text"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_text",
-      "label": "Show Text",
-      "default": false
-    },
-    {
-      "type": "text",
-      "id": "text",
-      "label": "Divider Text",
-      "default": "Section Title"
-    },
-    {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color",
-      "default": "#333333"
-    },
-    {
-      "type": "range",
-      "id": "text_size",
-      "label": "Text Size (Desktop)",
-      "min": 10,
-      "max": 40,
-      "step": 1,
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "text_size_mobile",
-      "label": "Text Size (Mobile)",
-      "min": 10,
-      "max": 30,
-      "step": 1,
-      "default": 14
-    },
-    {
-      "type": "range",
-      "id": "text_spacing",
-      "label": "Text Bottom Spacing",
-      "min": 0,
-      "max": 30,
-      "step": 2,
-      "default": 10
-    },
-
-    {
-      "type": "select",
-      "id": "alignment",
-      "label": "Alignment",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "center"
-    }
-
-  ]
-}
   ],
   "settings": [],
   "presets": [
