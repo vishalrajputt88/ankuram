@@ -25,13 +25,13 @@
           "type": "features_icons",
           "settings": {
             "text_1": "Air Purifying Plant",
-            "icon_1": "shopify://shop_images/air-purifier_1.png",
+            "icon_1": "shopify://shop_images/nature.png",
             "text_2": "Low Maintenance",
-            "icon_2": "shopify://shop_images/extra-large-plant.png",
+            "icon_2": "shopify://shop_images/low.png",
             "text_3": "Indoor Friendly",
-            "icon_3": "shopify://shop_images/large.png",
+            "icon_3": "shopify://shop_images/shape.png",
             "text_4": "Aesthetic Decor",
-            "icon_4": "shopify://shop_images/large.png"
+            "icon_4": "shopify://shop_images/nature.png"
           }
         },
         "divider_nC6GFk": {
