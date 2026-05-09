@@ -25,7 +25,7 @@
           "type": "features_icons",
           "settings": {
             "text_1": "Air Purifying Plant",
-            "icon_1": "shopify://shop_images/small.png",
+            "icon_1": "shopify://shop_images/air-purifier.png",
             "text_2": "Low Maintenance",
             "icon_2": "shopify://shop_images/extra-large-plant.png",
             "text_3": "Indoor Friendly",
@@ -501,23 +501,6 @@
         "faq_answer_color": "#555555"
       }
     },
-    "related_product_NKChHK": {
-      "type": "related-product",
-      "name": "Related Products",
-      "settings": {
-        "heading": "You May Also Like",
-        "products_per_row_desktop": 4,
-        "products_per_row_mobile": "2",
-        "show_rating": true,
-        "button_text": "Add to Cart",
-        "show_metafield": false,
-        "metafield_reference": "",
-        "show_view_all": true,
-        "view_all_text": "VIEW ALL RELATED PRODUCTS",
-        "show_social_proof": true,
-        "social_proof_text": "507+ bought in last week"
-      }
-    },
     "1776691325f8b5b808": {
       "type": "_blocks",
       "blocks": {
@@ -560,6 +543,23 @@
         "gradient_direction": "to top",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "related_product_NKChHK": {
+      "type": "related-product",
+      "name": "Related Products",
+      "settings": {
+        "heading": "You May Also Like",
+        "products_per_row_desktop": 4,
+        "products_per_row_mobile": "2",
+        "show_rating": true,
+        "button_text": "Add to Cart",
+        "show_metafield": false,
+        "metafield_reference": "",
+        "show_view_all": true,
+        "view_all_text": "VIEW ALL RELATED PRODUCTS",
+        "show_social_proof": true,
+        "social_proof_text": "507+ bought in last week"
       }
     }
   },
