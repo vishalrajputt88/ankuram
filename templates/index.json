@@ -356,6 +356,22 @@
         "button_link": ""
       }
     },
+    "ankooram_banner_tzE79t": {
+      "type": "ankooram-banner",
+      "name": "Ankooram Banner",
+      "settings": {
+        "banner_image": "shopify://shop_images/ankooram_web_banner_8.png",
+        "mobile_image": "shopify://shop_images/ankooram_phn_banner_8.png",
+        "desktop_width_percent": 100,
+        "custom_width": 1340,
+        "object_fit": "cover",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "background_color": "",
+        "banner_link": "",
+        "open_new_tab": false
+      }
+    },
     "watch_and_buy_9ahyKR": {
       "type": "watch-and-buy",
       "blocks": {
@@ -491,6 +507,7 @@
     "ankooram_peoples_chois_plant_8i8btm",
     "ankooram_banner_TmzY7M",
     "video_carousel_6HAFQa",
+    "ankooram_banner_tzE79t",
     "watch_and_buy_9ahyKR",
     "ankooram_product_grid_jiMRtk"
   ]
