@@ -15,8 +15,8 @@
         "slide_7mJRLd": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_djqmridjqmridjqm_1_1.webp",
-            "mobile_image": "shopify://shop_images/ankooram-banner1-mobile.png",
+            "image": "shopify://shop_images/ankooram_web_banner_3.png",
+            "mobile_image": "shopify://shop_images/ankooram_phn_banner_3.png",
             "heading": "",
             "subheading": "",
             "description": "",
@@ -27,8 +27,20 @@
         "slide_bJTpan": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_236.png",
-            "mobile_image": "shopify://shop_images/Frame_236_tab.png",
+            "image": "shopify://shop_images/ankooram_web_banner_4.png",
+            "mobile_image": "shopify://shop_images/ankooram_phn_banner_4.png",
+            "heading": "",
+            "subheading": "",
+            "description": "",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "slide_9UFGVW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/ankooram_web_banner_5.png",
+            "mobile_image": "shopify://shop_images/ankooram_phn_banner_5.png",
             "heading": "",
             "subheading": "",
             "description": "",
@@ -39,7 +51,8 @@
       },
       "block_order": [
         "slide_7mJRLd",
-        "slide_bJTpan"
+        "slide_bJTpan",
+        "slide_9UFGVW"
       ],
       "name": "Ankooram Hero Slider",
       "settings": {
