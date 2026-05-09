@@ -276,7 +276,8 @@
       "type": "ankooram-banner",
       "name": "Ankooram Banner",
       "settings": {
-        "banner_image": "shopify://shop_images/ankooram-second-banner.png",
+        "banner_image": "shopify://shop_images/ankooram_web_banner_7.png",
+        "mobile_image": "shopify://shop_images/ankooram_phn_banner_7.png",
         "desktop_width_percent": 100,
         "custom_width": 1340,
         "object_fit": "cover",
