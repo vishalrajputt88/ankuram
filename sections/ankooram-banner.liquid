@@ -13,20 +13,17 @@
 
   .full-width-image-wrapper-{{ custom_selling_banner }} {
     width: {{ section.settings.desktop_width_percent }}%;
+    max-width: {{ section.settings.custom_width }}px;
     margin: 0 auto;
+    padding: 0 20px;
     position: relative;
-       max-width: {{ section.settings.custom_width }}px;
-      margin: 0 auto;
-      padding: 0px 20px ;
   }
 
   .full-width-image-wrapper-{{ custom_selling_banner }} img {
     width: 100%;
+    height: auto;
     display: block;
-  
-      height: auto;
-      object-fit: cover;
-  
+    object-fit: {{ section.settings.object_fit }};
   }
 
   .full-width-image-placeholder-{{ custom_selling_banner }} {
@@ -36,8 +33,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-   
-   
   }
 
   .full-width-image-placeholder-{{ custom_selling_banner }} svg {
@@ -45,16 +40,26 @@
     height: 100%;
   }
 
+  .full-width-image-{{ custom_selling_banner }} .desktop-img {
+    display: block;
+  }
+
+  .full-width-image-{{ custom_selling_banner }} .mobile-img {
+    display: none;
+  }
+
   @media screen and (max-width: 749px) {
     .full-width-image-wrapper-{{ custom_selling_banner }} {
       width: 100%;
-      
+      padding: 0;
     }
 
-    .full-width-image-placeholder-{{ custom_selling_banner }} {
-      /* {% if section.settings.image_height != 'auto' %}
-        height: {{ section.settings.custom_height_mobile }}px;
-      {% endif %} */
+    .full-width-image-{{ custom_selling_banner }} .desktop-img {
+      display: none;
+    }
+
+    .full-width-image-{{ custom_selling_banner }} .mobile-img {
+      display: block;
     }
   }
 {% endstyle %}
@@ -62,81 +67,107 @@
 <div class="full-width-image-{{ custom_selling_banner }}" {{ section.shopify_attributes }}>
   <div class="full-width-image-wrapper-{{ custom_selling_banner }}">
     <a href="{{ section.settings.banner_link }}"
-   {% if section.settings.open_new_tab %} target="_blank" rel="noopener"{% endif %}>
-    {% if section.settings.banner_image %}
-      <img
-        src="{{ section.settings.banner_image | image_url: width: 2000 }}"
-        srcset="{{ section.settings.banner_image | image_url: width: 600 }} 600w,
-                {{ section.settings.banner_image | image_url: width: 1200 }} 1200w,
-                {{ section.settings.banner_image | image_url: width: 1800 }} 1800w,
-                {{ section.settings.banner_image | image_url: width: 2000 }} 2000w"
-        sizes="100vw"
-        alt="{{ section.settings.banner_image.alt | escape }}"
-        loading="lazy"
-        width="{{ section.settings.banner_image.width }}"
-        height="{{ section.settings.banner_image.height }}"
-      >
-    {% else %}
+      {% if section.settings.open_new_tab %}target="_blank" rel="noopener"{% endif %}>
+
+      {% if section.settings.banner_image %}
+        <img
+          class="desktop-img"
+          src="{{ section.settings.banner_image | image_url: width: 2000 }}"
+          srcset="{{ section.settings.banner_image | image_url: width: 600 }} 600w,
+                  {{ section.settings.banner_image | image_url: width: 1200 }} 1200w,
+                  {{ section.settings.banner_image | image_url: width: 1800 }} 1800w,
+                  {{ section.settings.banner_image | image_url: width: 2000 }} 2000w"
+          sizes="100vw"
+          alt="{{ section.settings.banner_image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.banner_image.width }}"
+          height="{{ section.settings.banner_image.height }}"
+        >
+      {% else %}
+        <div class="full-width-image-placeholder-{{ custom_selling_banner }} desktop-img">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.mobile_image %}
+        <img
+          class="mobile-img"
+          src="{{ section.settings.mobile_image | image_url: width: 800 }}"
+          srcset="{{ section.settings.mobile_image | image_url: width: 400 }} 400w,
+                  {{ section.settings.mobile_image | image_url: width: 600 }} 600w,
+                  {{ section.settings.mobile_image | image_url: width: 800 }} 800w"
+          sizes="100vw"
+          alt="{{ section.settings.mobile_image.alt | escape }}"
+          loading="lazy"
+          width="{{ section.settings.mobile_image.width }}"
+          height="{{ section.settings.mobile_image.height }}"
+        >
+      {% else %}
+        <div class="full-width-image-placeholder-{{ custom_selling_banner }} mobile-img">
+          {{ 'image' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+
     </a>
-      <div class="full-width-image-placeholder-{{ custom_selling_banner }}">
-        {{ 'image' | placeholder_svg_tag }}
-      </div>
-    {% endif %}
   </div>
 </div>
 
 {% schema %}
 {
   "name": "Ankooram Banner",
+  "tag": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Desktop Image"
+    },
     {
       "type": "image_picker",
       "id": "banner_image",
-      "label": "Image"
+      "label": "Desktop Image"
     },
     {
       "type": "header",
-      "content": "Image dimensions"
+      "content": "Mobile Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
+    },
+    {
+      "type": "header",
+      "content": "Image Dimensions"
     },
     {
       "type": "range",
       "id": "desktop_width_percent",
-      "label": "Desktop width",
+      "label": "Desktop Width",
       "min": 50,
       "max": 100,
       "step": 5,
       "unit": "%",
       "default": 100
     },
-   
-   
     {
       "type": "range",
       "id": "custom_width",
-      "label": "Desktop width",
+      "label": "Max Width",
       "min": 200,
       "max": 1360,
       "step": 20,
       "unit": "px",
-      "default": 500
+      "default": 1320
     },
-    
     {
       "type": "select",
       "id": "object_fit",
-      "label": "Image fit",
+      "label": "Image Fit",
       "options": [
-        {
-          "value": "cover",
-          "label": "Cover"
-        },
-        {
-          "value": "contain",
-          "label": "Contain"
-        }
+        { "value": "cover",   "label": "Cover"   },
+        { "value": "contain", "label": "Contain" }
       ],
-      "default": "cover",
-      "info": "Only applies when using custom height"
+      "default": "cover"
     },
     {
       "type": "header",
@@ -145,7 +176,7 @@
     {
       "type": "range",
       "id": "padding_top",
-      "label": "Top padding",
+      "label": "Top Padding",
       "min": 0,
       "max": 100,
       "step": 5,
@@ -155,7 +186,7 @@
     {
       "type": "range",
       "id": "padding_bottom",
-      "label": "Bottom padding",
+      "label": "Bottom Padding",
       "min": 0,
       "max": 100,
       "step": 5,
@@ -169,25 +200,28 @@
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background color"
+      "label": "Background Color"
     },
     {
-  "type": "checkbox",
-  "id": "open_new_tab",
-  "label": "Open link in new tab",
-  "default": false
-},
-{
-  "type": "url",
-  "id": "banner_link",
-  "label": "Banner Link"
-}
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    }
   ],
   "presets": [
     {
       "name": "Ankooram Banner"
     }
-  ],
-  "tag": "section"
+  ]
 }
 {% endschema %}
