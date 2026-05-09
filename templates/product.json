@@ -103,7 +103,7 @@
           "settings": {
             "show_qty": true,
             "atc_label": "ADD TO CART",
-            "atc_sub_text": "Free Size Exchange Available",
+            "atc_sub_text": "",
             "show_buy_now": true,
             "buy_now_label": "Buy Now"
           }
