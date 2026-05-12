@@ -1,0 +1,1228 @@
+{%- comment -%}
+  ============================================
+  PLANT FINDER QUIZ — Custom Shopify Section
+  ============================================
+  Made for: Plant store with 200+ products
+  Logic: Tag-based filtering on 7 quiz questions
+  
+  REQUIRED PRODUCT TAGS (case-sensitive):
+  ----------------------------------------
+  Light:      light-full, light-medium, light-low, light-none
+  Placement:  place-balcony, place-living, place-bedroom, place-desk, place-outdoor
+  Care:       care-low, care-medium, care-high
+  Purpose:    purpose-decor, purpose-air, purpose-vastu, purpose-stress, purpose-gift
+  Pet safety: pet-safe-yes (add this tag if plant is pet-safe)
+  
+  Price filtering uses Shopify product price automatically.
+{%- endcomment -%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<section class="pfq" id="pfq-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div class="pfq__container">
+    
+    {%- comment -%} ============ INTRO SCREEN ============ {%- endcomment -%}
+    <div class="pfq__screen pfq__intro" data-screen="intro">
+      <div class="pfq__intro-art" aria-hidden="true">
+        <svg viewBox="0 0 200 200" class="pfq__leaf-svg">
+          <path d="M100 20 Q 40 60 30 130 Q 60 180 100 170 Q 140 180 170 130 Q 160 60 100 20 Z" fill="currentColor" opacity="0.15"/>
+          <path d="M100 30 L 100 170" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+          <path d="M100 60 Q 70 70 50 90" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M100 60 Q 130 70 150 90" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M100 90 Q 65 100 45 120" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M100 90 Q 135 100 155 120" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M100 120 Q 75 130 60 145" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M100 120 Q 125 130 140 145" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
+        </svg>
+      </div>
+      <p class="pfq__eyebrow">{{ section.settings.eyebrow_text }}</p>
+      <h1 class="pfq__title">{{ section.settings.heading }}</h1>
+      <p class="pfq__subtitle">{{ section.settings.subheading }}</p>
+      <button class="pfq__btn pfq__btn--primary" data-action="start">
+        <span>{{ section.settings.start_button_text }}</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="pfq__meta">⏱ 60 seconds • 7 questions</p>
+    </div>
+
+    {%- comment -%} ============ QUESTIONS SCREEN ============ {%- endcomment -%}
+    <div class="pfq__screen pfq__quiz" data-screen="quiz" hidden>
+      
+      {%- comment -%} Progress Bar {%- endcomment -%}
+      <div class="pfq__progress">
+        <div class="pfq__progress-track">
+          <div class="pfq__progress-fill" data-progress-fill></div>
+        </div>
+        <div class="pfq__progress-text">
+          <span data-current-step>1</span> / 7
+        </div>
+      </div>
+
+      {%- comment -%} Q1: Placement {%- endcomment -%}
+      <div class="pfq__question" data-question="placement" data-step="1">
+        <span class="pfq__q-num">01</span>
+        <h2 class="pfq__q-title">Aap plant kaha rakhoge?</h2>
+        <p class="pfq__q-sub">Placement decide karta hai kaunsi plant survive karegi</p>
+        <div class="pfq__options pfq__options--grid">
+          <button class="pfq__option" data-value="place-balcony">
+            <span class="pfq__option-icon">🪴</span>
+            <span class="pfq__option-label">Balcony</span>
+          </button>
+          <button class="pfq__option" data-value="place-living">
+            <span class="pfq__option-icon">🛋</span>
+            <span class="pfq__option-label">Living Room</span>
+          </button>
+          <button class="pfq__option" data-value="place-bedroom">
+            <span class="pfq__option-icon">🛏</span>
+            <span class="pfq__option-label">Bedroom</span>
+          </button>
+          <button class="pfq__option" data-value="place-desk">
+            <span class="pfq__option-icon">💻</span>
+            <span class="pfq__option-label">Office Desk</span>
+          </button>
+          <button class="pfq__option" data-value="place-outdoor">
+            <span class="pfq__option-icon">🌳</span>
+            <span class="pfq__option-label">Outdoor Garden</span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Q2: Sunlight {%- endcomment -%}
+      <div class="pfq__question" data-question="light" data-step="2" hidden>
+        <span class="pfq__q-num">02</span>
+        <h2 class="pfq__q-title">Aapke space mein sunlight kaisi aati hai?</h2>
+        <p class="pfq__q-sub">Sabse important factor — galat light pe plant mar jati hai</p>
+        <div class="pfq__options">
+          <button class="pfq__option pfq__option--row" data-value="light-full">
+            <span class="pfq__option-icon">☀️</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Full Sunlight</span>
+              <span class="pfq__option-desc">6+ hours direct sun</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="light-medium">
+            <span class="pfq__option-icon">🌤</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Medium Light</span>
+              <span class="pfq__option-desc">3-6 hours daily</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="light-low">
+            <span class="pfq__option-icon">🌥</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Low Light</span>
+              <span class="pfq__option-desc">Bright but indirect light</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="light-none">
+            <span class="pfq__option-icon">🌑</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">No Direct Sun</span>
+              <span class="pfq__option-desc">Dim corners, artificial light</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Q3: Experience {%- endcomment -%}
+      <div class="pfq__question" data-question="experience" data-step="3" hidden>
+        <span class="pfq__q-num">03</span>
+        <h2 class="pfq__q-title">Aapka experience level kya hai?</h2>
+        <p class="pfq__q-sub">Honest raho — hum aapke level ke hisaab se plant denge</p>
+        <div class="pfq__options">
+          <button class="pfq__option pfq__option--row" data-value="care-low">
+            <span class="pfq__option-icon">😅</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Beginner</span>
+              <span class="pfq__option-desc">"Mujhse plants survive nahi karte"</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="care-medium">
+            <span class="pfq__option-icon">🙂</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Intermediate</span>
+              <span class="pfq__option-desc">Kuch plants successfully rakhe hain</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="care-high">
+            <span class="pfq__option-icon">🌿</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Plant Lover</span>
+              <span class="pfq__option-desc">Daily care, propagation, the works</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Q4: Purpose {%- endcomment -%}
+      <div class="pfq__question" data-question="purpose" data-step="4" hidden>
+        <span class="pfq__q-num">04</span>
+        <h2 class="pfq__q-title">Aap plant kis purpose ke liye chahte ho?</h2>
+        <p class="pfq__q-sub">Ek select karo — sabse important wala</p>
+        <div class="pfq__options pfq__options--grid">
+          <button class="pfq__option" data-value="purpose-decor">
+            <span class="pfq__option-icon">✨</span>
+            <span class="pfq__option-label">Decoration</span>
+          </button>
+          <button class="pfq__option" data-value="purpose-air">
+            <span class="pfq__option-icon">💨</span>
+            <span class="pfq__option-label">Air Purifying</span>
+          </button>
+          <button class="pfq__option" data-value="purpose-vastu">
+            <span class="pfq__option-icon">🪙</span>
+            <span class="pfq__option-label">Vastu / Wealth</span>
+          </button>
+          <button class="pfq__option" data-value="purpose-stress">
+            <span class="pfq__option-icon">🧘</span>
+            <span class="pfq__option-label">Stress Relief</span>
+          </button>
+          <button class="pfq__option" data-value="purpose-gift">
+            <span class="pfq__option-icon">🎁</span>
+            <span class="pfq__option-label">Gifting</span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Q5: Maintenance {%- endcomment -%}
+      <div class="pfq__question" data-question="maintenance" data-step="5" hidden>
+        <span class="pfq__q-num">05</span>
+        <h2 class="pfq__q-title">Kitna maintenance handle kar sakte ho?</h2>
+        <p class="pfq__q-sub">Watering, pruning, fertilizing — kitna time de paoge?</p>
+        <div class="pfq__options">
+          <button class="pfq__option pfq__option--row" data-value="care-low">
+            <span class="pfq__option-icon">🌵</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Low</span>
+              <span class="pfq__option-desc">1-2 baar/week paani de paunga</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="care-medium">
+            <span class="pfq__option-icon">🌱</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Medium</span>
+              <span class="pfq__option-desc">Regular care — 3-4 baar/week</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="care-high">
+            <span class="pfq__option-icon">🌺</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">High</span>
+              <span class="pfq__option-desc">Daily attention de sakta hoon</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Q6: Pets {%- endcomment -%}
+      <div class="pfq__question" data-question="pets" data-step="6" hidden>
+        <span class="pfq__q-num">06</span>
+        <h2 class="pfq__q-title">Kya aapke ghar mein pets hain?</h2>
+        <p class="pfq__q-sub">Kuch plants pets ke liye toxic hote hain — safety first</p>
+        <div class="pfq__options pfq__options--two">
+          <button class="pfq__option pfq__option--big" data-value="pet-yes">
+            <span class="pfq__option-icon pfq__option-icon--lg">🐕</span>
+            <span class="pfq__option-label">Yes, pets hain</span>
+            <span class="pfq__option-desc">Sirf pet-safe plants dikhao</span>
+          </button>
+          <button class="pfq__option pfq__option--big" data-value="pet-no">
+            <span class="pfq__option-icon pfq__option-icon--lg">🏠</span>
+            <span class="pfq__option-label">Nahi, koi pets nahi</span>
+            <span class="pfq__option-desc">Saari plants show karo</span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Q7: Budget {%- endcomment -%}
+      <div class="pfq__question" data-question="budget" data-step="7" hidden>
+        <span class="pfq__q-num">07</span>
+        <h2 class="pfq__q-title">Aapka budget kya hai?</h2>
+        <p class="pfq__q-sub">Per plant — hum range ke andar best dhoondenge</p>
+        <div class="pfq__options">
+          <button class="pfq__option pfq__option--row" data-value="0-500">
+            <span class="pfq__option-icon">💰</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Under ₹500</span>
+              <span class="pfq__option-desc">Budget-friendly picks</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="500-1000">
+            <span class="pfq__option-icon">💰💰</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">₹500 – ₹1000</span>
+              <span class="pfq__option-desc">Sweet spot</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="1000-2000">
+            <span class="pfq__option-icon">💰💰💰</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">₹1000 – ₹2000</span>
+              <span class="pfq__option-desc">Premium variety</span>
+            </span>
+          </button>
+          <button class="pfq__option pfq__option--row" data-value="2000-99999">
+            <span class="pfq__option-icon">🌿</span>
+            <span class="pfq__option-content">
+              <span class="pfq__option-label">Premium (₹2000+)</span>
+              <span class="pfq__option-desc">Rare and statement plants</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Back button {%- endcomment -%}
+      <button class="pfq__back" data-action="back" hidden>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
+    </div>
+
+    {%- comment -%} ============ LOADING SCREEN ============ {%- endcomment -%}
+    <div class="pfq__screen pfq__loading" data-screen="loading" hidden>
+      <div class="pfq__loader">
+        <svg viewBox="0 0 100 100" class="pfq__loader-svg">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2" opacity="0.15"/>
+          <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="60 200" class="pfq__loader-circle"/>
+        </svg>
+      </div>
+      <h2 class="pfq__loading-title">Perfect plants dhoondh rahe hain...</h2>
+      <p class="pfq__loading-text" data-loading-text>Aapke jawab analyze ho rahe hain</p>
+    </div>
+
+    {%- comment -%} ============ RESULTS SCREEN ============ {%- endcomment -%}
+    <div class="pfq__screen pfq__results" data-screen="results" hidden>
+      <div class="pfq__results-header">
+        <p class="pfq__eyebrow">✨ Match Found</p>
+        <h2 class="pfq__results-title">Aapke liye perfect plants</h2>
+        <p class="pfq__results-sub" data-result-summary></p>
+      </div>
+
+      <div class="pfq__results-grid" data-results-grid></div>
+
+      <div class="pfq__no-results" data-no-results hidden>
+        <span style="font-size: 48px;">🌵</span>
+        <h3>Exact match nahi mila</h3>
+        <p>Aapke criteria ke liye hum thoda flexibility de rahe hain. Yeh closest matches hain:</p>
+      </div>
+
+      <div class="pfq__results-actions">
+        <button class="pfq__btn pfq__btn--ghost" data-action="restart">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 8a6 6 0 11-2-4.5M14 3v3h-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Quiz dobara karo
+        </button>
+        <a href="/collections/all" class="pfq__btn pfq__btn--primary">
+          Saare plants dekho
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{%- comment -%} ============================================
+     PRODUCT DATA INJECTION
+     Liquid yahan saare products ko JSON mein convert karta hai
+     JS phir client-side filter karega
+============================================ {%- endcomment -%}
+
+<script type="application/json" data-pfq-products>
+[
+  {%- assign products_added = 0 -%}
+  {%- for product in collections.all.products limit: 500 -%}
+    {%- if products_added > 0 -%},{%- endif -%}
+    {
+      "id": {{ product.id }},
+      "title": {{ product.title | json }},
+      "handle": {{ product.handle | json }},
+      "url": {{ product.url | json }},
+      "image": {{ product.featured_image | image_url: width: 600 | json }},
+      "price": {{ product.price | divided_by: 100.0 }},
+      "price_formatted": {{ product.price | money | json }},
+      "available": {{ product.available }},
+      "tags": {{ product.tags | json }},
+      "description": {{ product.description | strip_html | truncate: 100 | json }}
+    }
+    {%- assign products_added = products_added | plus: 1 -%}
+  {%- endfor -%}
+]
+</script>
+
+<script>
+(function() {
+  const sectionEl = document.getElementById('pfq-{{ section.id }}');
+  if (!sectionEl) return;
+
+  // ============ STATE ============
+  const state = {
+    currentStep: 1,
+    totalSteps: 7,
+    answers: {},
+    products: []
+  };
+
+  // Load products from injected JSON
+  try {
+    const dataScript = sectionEl.querySelector('[data-pfq-products]');
+    state.products = JSON.parse(dataScript.textContent);
+  } catch (e) {
+    console.error('PFQ: Product data load failed', e);
+    state.products = [];
+  }
+
+  // ============ DOM REFS ============
+  const screens = {
+    intro: sectionEl.querySelector('[data-screen="intro"]'),
+    quiz: sectionEl.querySelector('[data-screen="quiz"]'),
+    loading: sectionEl.querySelector('[data-screen="loading"]'),
+    results: sectionEl.querySelector('[data-screen="results"]')
+  };
+  const questions = sectionEl.querySelectorAll('.pfq__question');
+  const progressFill = sectionEl.querySelector('[data-progress-fill]');
+  const currentStepEl = sectionEl.querySelector('[data-current-step]');
+  const backBtn = sectionEl.querySelector('[data-action="back"]');
+  const resultsGrid = sectionEl.querySelector('[data-results-grid]');
+  const resultSummary = sectionEl.querySelector('[data-result-summary]');
+  const noResults = sectionEl.querySelector('[data-no-results]');
+  const loadingText = sectionEl.querySelector('[data-loading-text]');
+
+  // ============ HELPERS ============
+  function showScreen(name) {
+    Object.entries(screens).forEach(([k, el]) => {
+      if (k === name) {
+        el.hidden = false;
+        el.classList.add('pfq__screen--active');
+      } else {
+        el.hidden = true;
+        el.classList.remove('pfq__screen--active');
+      }
+    });
+    // Scroll to top of section
+    sectionEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function showQuestion(stepNum) {
+    questions.forEach(q => {
+      const step = parseInt(q.dataset.step);
+      if (step === stepNum) {
+        q.hidden = false;
+        q.classList.add('pfq__question--active');
+      } else {
+        q.hidden = true;
+        q.classList.remove('pfq__question--active');
+      }
+    });
+    state.currentStep = stepNum;
+    currentStepEl.textContent = stepNum;
+    progressFill.style.width = ((stepNum / state.totalSteps) * 100) + '%';
+    backBtn.hidden = stepNum === 1;
+  }
+
+  function nextStep() {
+    if (state.currentStep < state.totalSteps) {
+      showQuestion(state.currentStep + 1);
+    } else {
+      runResults();
+    }
+  }
+
+  function prevStep() {
+    if (state.currentStep > 1) {
+      showQuestion(state.currentStep - 1);
+    }
+  }
+
+  // ============ FILTERING LOGIC ============
+  function filterProducts() {
+    const a = state.answers;
+    const scored = [];
+
+    state.products.forEach(product => {
+      if (!product.available) return;
+      const tags = (product.tags || []).map(t => t.toLowerCase().trim());
+      let score = 0;
+      let critical = true;
+
+      // HARD FILTERS (critical) — agar fail hua toh exclude
+      // 1. Light match (must)
+      if (a.light && !tags.includes(a.light)) critical = false;
+      
+      // 2. Pet safety (must agar pets hain)
+      if (a.pets === 'pet-yes' && !tags.includes('pet-safe-yes')) critical = false;
+      
+      // 3. Budget (must)
+      if (a.budget) {
+        const [min, max] = a.budget.split('-').map(Number);
+        if (product.price < min || product.price > max) critical = false;
+      }
+
+      if (!critical) return;
+
+      // SOFT SCORING — match jitna zyada, score utna upar
+      if (a.placement && tags.includes(a.placement)) score += 10;
+      if (a.experience && tags.includes(a.experience)) score += 8;
+      if (a.maintenance && tags.includes(a.maintenance)) score += 7;
+      if (a.purpose && tags.includes(a.purpose)) score += 9;
+
+      scored.push({ product, score });
+    });
+
+    // Score descending, top 5 dikhayenge
+    scored.sort((x, y) => y.score - x.score);
+    return scored.slice(0, 5).map(s => s.product);
+  }
+
+  // FALLBACK: agar strict filter mein kuch nahi mila, relax karo
+  function filterProductsRelaxed() {
+    const a = state.answers;
+    const scored = [];
+
+    state.products.forEach(product => {
+      if (!product.available) return;
+      const tags = (product.tags || []).map(t => t.toLowerCase().trim());
+      let score = 0;
+
+      // Pet safety abhi bhi strict (safety reason)
+      if (a.pets === 'pet-yes' && !tags.includes('pet-safe-yes')) return;
+
+      if (a.light && tags.includes(a.light)) score += 10;
+      if (a.placement && tags.includes(a.placement)) score += 8;
+      if (a.experience && tags.includes(a.experience)) score += 6;
+      if (a.maintenance && tags.includes(a.maintenance)) score += 5;
+      if (a.purpose && tags.includes(a.purpose)) score += 7;
+
+      if (a.budget) {
+        const [min, max] = a.budget.split('-').map(Number);
+        if (product.price >= min && product.price <= max) score += 5;
+      }
+
+      if (score > 0) scored.push({ product, score });
+    });
+
+    scored.sort((x, y) => y.score - x.score);
+    return scored.slice(0, 5).map(s => s.product);
+  }
+
+  // ============ RESULTS RENDERING ============
+  function renderResults(products, isRelaxed) {
+    resultsGrid.innerHTML = '';
+    noResults.hidden = !isRelaxed;
+
+    if (products.length === 0) {
+      resultsGrid.innerHTML = '<p style="text-align:center;padding:40px;color:var(--pfq-text-muted);">Koi plant match nahi hua. <a href="/collections/all" style="color:var(--pfq-green);text-decoration:underline;">Saari plants browse karo</a></p>';
+      return;
+    }
+
+    // Generate friendly summary
+    const summaryParts = [];
+    if (state.answers.placement) {
+      const placeMap = {
+        'place-balcony': 'balcony', 'place-living': 'living room',
+        'place-bedroom': 'bedroom', 'place-desk': 'desk', 'place-outdoor': 'outdoor space'
+      };
+      summaryParts.push(placeMap[state.answers.placement]);
+    }
+    if (state.answers.light) {
+      const lightMap = {
+        'light-full': 'full sun', 'light-medium': 'medium light',
+        'light-low': 'low light', 'light-none': 'no direct sun'
+      };
+      summaryParts.push(lightMap[state.answers.light]);
+    }
+    resultSummary.textContent = `Match for your ${summaryParts.join(', ')} setup`;
+
+    products.forEach((product, idx) => {
+      const card = document.createElement('a');
+      card.className = 'pfq__card';
+      card.href = product.url;
+      card.style.animationDelay = (idx * 100) + 'ms';
+      card.innerHTML = `
+        ${idx === 0 ? '<span class="pfq__card-badge">★ Best Match</span>' : ''}
+        <div class="pfq__card-img">
+          ${product.image 
+            ? `<img src="${product.image}" alt="${product.title}" loading="lazy">`
+            : '<div class="pfq__card-img-placeholder">🌿</div>'}
+        </div>
+        <div class="pfq__card-body">
+          <h3 class="pfq__card-title">${product.title}</h3>
+          <p class="pfq__card-desc">${product.description || ''}</p>
+          <div class="pfq__card-footer">
+            <span class="pfq__card-price">${product.price_formatted}</span>
+            <span class="pfq__card-cta">View →</span>
+          </div>
+        </div>
+      `;
+      resultsGrid.appendChild(card);
+    });
+  }
+
+  // ============ RUN RESULTS WITH LOADING ============
+  function runResults() {
+    showScreen('loading');
+    
+    const messages = [
+      'Aapke jawab analyze ho rahe hain...',
+      'Light aur placement match kar rahe hain...',
+      'Pet safety check kar rahe hain...',
+      'Best plants choose kar rahe hain...'
+    ];
+    let msgIdx = 0;
+    const msgInterval = setInterval(() => {
+      msgIdx = (msgIdx + 1) % messages.length;
+      loadingText.textContent = messages[msgIdx];
+    }, 700);
+
+    setTimeout(() => {
+      clearInterval(msgInterval);
+      let matched = filterProducts();
+      let isRelaxed = false;
+      if (matched.length === 0) {
+        matched = filterProductsRelaxed();
+        isRelaxed = true;
+      }
+      renderResults(matched, isRelaxed);
+      showScreen('results');
+    }, 2200);
+  }
+
+  // ============ EVENT HANDLERS ============
+  
+  // Start button
+  sectionEl.querySelector('[data-action="start"]').addEventListener('click', () => {
+    showScreen('quiz');
+    showQuestion(1);
+  });
+
+  // Back button
+  backBtn.addEventListener('click', prevStep);
+
+  // Restart button
+  sectionEl.querySelector('[data-action="restart"]').addEventListener('click', () => {
+    state.answers = {};
+    state.currentStep = 1;
+    sectionEl.querySelectorAll('.pfq__option--selected').forEach(o => o.classList.remove('pfq__option--selected'));
+    showScreen('intro');
+  });
+
+  // Option clicks — har question ka answer save aur auto-advance
+  sectionEl.querySelectorAll('.pfq__option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const questionEl = opt.closest('.pfq__question');
+      const qKey = questionEl.dataset.question;
+      const value = opt.dataset.value;
+
+      // Visual selection
+      questionEl.querySelectorAll('.pfq__option').forEach(o => o.classList.remove('pfq__option--selected'));
+      opt.classList.add('pfq__option--selected');
+
+      state.answers[qKey] = value;
+
+      // Auto-advance with slight delay for visual feedback
+      setTimeout(nextStep, 350);
+    });
+  });
+
+})();
+</script>
+
+<style>
+  /* ============================================
+     PLANT FINDER QUIZ — STYLES
+     Aesthetic: Botanical premium / organic-modern
+  ============================================ */
+
+  #pfq-{{ section.id }} {
+    --pfq-green: {{ section.settings.accent_color }};
+    --pfq-green-dark: {{ section.settings.accent_color_dark }};
+    --pfq-cream: {{ section.settings.bg_color }};
+    --pfq-text: {{ section.settings.text_color }};
+    --pfq-text-muted: #6b7763;
+    --pfq-border: rgba(45, 80, 22, 0.12);
+    --pfq-shadow: 0 4px 20px rgba(45, 80, 22, 0.06);
+    --pfq-shadow-lg: 0 12px 40px rgba(45, 80, 22, 0.12);
+    --pfq-radius: 18px;
+    --pfq-font-display: 'Fraunces', Georgia, serif;
+    --pfq-font-body: 'Inter', system-ui, sans-serif;
+    
+    background: var(--pfq-cream);
+    padding: 80px 20px;
+    font-family: var(--pfq-font-body);
+    color: var(--pfq-text);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Decorative background shapes */
+  #pfq-{{ section.id }}::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--pfq-green) 0%, transparent 70%);
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  #pfq-{{ section.id }}::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--pfq-green-dark) 0%, transparent 70%);
+    opacity: 0.04;
+    pointer-events: none;
+  }
+
+  .pfq__container {
+    max-width: 880px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pfq__screen {
+    animation: pfqFadeIn 0.5s ease;
+  }
+  @keyframes pfqFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ INTRO ============ */
+  .pfq__intro {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .pfq__intro-art {
+    display: inline-block;
+    color: var(--pfq-green);
+    margin-bottom: 32px;
+    animation: pfqLeafSway 6s ease-in-out infinite;
+  }
+  @keyframes pfqLeafSway {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  .pfq__leaf-svg {
+    width: 120px;
+    height: 120px;
+  }
+  .pfq__eyebrow {
+    font-family: var(--pfq-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pfq-green-dark);
+    margin: 0 0 16px;
+  }
+  .pfq__title {
+    font-family: var(--pfq-font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    font-weight: 500;
+    margin: 0 0 20px;
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144;
+  }
+  .pfq__subtitle {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--pfq-text-muted);
+    max-width: 540px;
+    margin: 0 auto 36px;
+  }
+  .pfq__meta {
+    font-size: 13px;
+    color: var(--pfq-text-muted);
+    margin-top: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ============ BUTTONS ============ */
+  .pfq__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-family: var(--pfq-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .pfq__btn--primary {
+    background: var(--pfq-green-dark);
+    color: white;
+    box-shadow: var(--pfq-shadow);
+  }
+  .pfq__btn--primary:hover {
+    background: var(--pfq-green);
+    transform: translateY(-2px);
+    box-shadow: var(--pfq-shadow-lg);
+  }
+  .pfq__btn--ghost {
+    background: transparent;
+    color: var(--pfq-text);
+    border: 1.5px solid var(--pfq-border);
+  }
+  .pfq__btn--ghost:hover {
+    border-color: var(--pfq-green-dark);
+    background: rgba(45, 80, 22, 0.03);
+  }
+
+  /* ============ PROGRESS ============ */
+  .pfq__progress {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .pfq__progress-track {
+    flex: 1;
+    height: 4px;
+    background: var(--pfq-border);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .pfq__progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pfq-green), var(--pfq-green-dark));
+    border-radius: 100px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 14.28%;
+  }
+  .pfq__progress-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--pfq-text-muted);
+    letter-spacing: 0.05em;
+    min-width: 40px;
+  }
+
+  /* ============ QUESTIONS ============ */
+  .pfq__question {
+    animation: pfqFadeIn 0.4s ease;
+  }
+  .pfq__q-num {
+    display: inline-block;
+    font-family: var(--pfq-font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pfq-green-dark);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    font-variation-settings: 'opsz' 9;
+  }
+  .pfq__q-title {
+    font-family: var(--pfq-font-display);
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.15;
+    font-weight: 500;
+    margin: 0 0 12px;
+    letter-spacing: -0.015em;
+    font-variation-settings: 'opsz' 144;
+  }
+  .pfq__q-sub {
+    font-size: 15px;
+    color: var(--pfq-text-muted);
+    margin: 0 0 36px;
+    line-height: 1.5;
+  }
+
+  /* ============ OPTIONS ============ */
+  .pfq__options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pfq__options--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+  }
+  .pfq__options--two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .pfq__option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border: 1.5px solid var(--pfq-border);
+    border-radius: var(--pfq-radius);
+    padding: 18px 22px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+    color: inherit;
+    width: 100%;
+  }
+  .pfq__option:hover {
+    border-color: var(--pfq-green);
+    transform: translateY(-2px);
+    box-shadow: var(--pfq-shadow);
+  }
+  .pfq__option--selected {
+    border-color: var(--pfq-green-dark);
+    background: rgba(45, 80, 22, 0.04);
+    box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.08);
+  }
+  
+  /* Grid option style (icon top, label bottom) */
+  .pfq__options--grid .pfq__option {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 16px;
+    gap: 10px;
+  }
+  
+  /* Two-column big option (pets question) */
+  .pfq__option--big {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 20px;
+    gap: 12px;
+  }
+  .pfq__option-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pfq__option-icon--lg {
+    font-size: 48px;
+  }
+  .pfq__option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .pfq__option-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--pfq-text);
+  }
+  .pfq__option-desc {
+    font-size: 13px;
+    color: var(--pfq-text-muted);
+    line-height: 1.4;
+  }
+
+  /* ============ BACK BUTTON ============ */
+  .pfq__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    color: var(--pfq-text-muted);
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 12px 4px;
+    margin-top: 24px;
+    transition: color 0.2s;
+  }
+  .pfq__back:hover {
+    color: var(--pfq-green-dark);
+  }
+
+  /* ============ LOADING ============ */
+  .pfq__loading {
+    text-align: center;
+    padding: 80px 0;
+  }
+  .pfq__loader {
+    display: inline-block;
+    color: var(--pfq-green-dark);
+    margin-bottom: 32px;
+  }
+  .pfq__loader-svg {
+    width: 80px;
+    height: 80px;
+    animation: pfqSpin 1.2s linear infinite;
+  }
+  @keyframes pfqSpin {
+    to { transform: rotate(360deg); }
+  }
+  .pfq__loading-title {
+    font-family: var(--pfq-font-display);
+    font-size: 28px;
+    margin: 0 0 12px;
+    font-weight: 500;
+  }
+  .pfq__loading-text {
+    color: var(--pfq-text-muted);
+    font-size: 15px;
+    transition: opacity 0.3s;
+  }
+
+  /* ============ RESULTS ============ */
+  .pfq__results-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .pfq__results-title {
+    font-family: var(--pfq-font-display);
+    font-size: clamp(32px, 4.5vw, 48px);
+    margin: 8px 0 12px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .pfq__results-sub {
+    color: var(--pfq-text-muted);
+    font-size: 15px;
+    margin: 0;
+  }
+  .pfq__results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .pfq__no-results {
+    text-align: center;
+    padding: 32px;
+    background: rgba(45, 80, 22, 0.03);
+    border-radius: var(--pfq-radius);
+    margin-bottom: 24px;
+  }
+  .pfq__no-results h3 {
+    font-family: var(--pfq-font-display);
+    margin: 12px 0 8px;
+    font-weight: 500;
+  }
+  .pfq__no-results p {
+    color: var(--pfq-text-muted);
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .pfq__card {
+    background: white;
+    border-radius: var(--pfq-radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--pfq-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    opacity: 0;
+    animation: pfqCardIn 0.5s ease forwards;
+    display: flex;
+    flex-direction: column;
+  }
+  @keyframes pfqCardIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .pfq__card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--pfq-shadow-lg);
+  }
+  .pfq__card-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--pfq-green-dark);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    z-index: 2;
+  }
+  .pfq__card-img {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: rgba(45, 80, 22, 0.05);
+  }
+  .pfq__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .pfq__card:hover .pfq__card-img img {
+    transform: scale(1.05);
+  }
+  .pfq__card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    opacity: 0.4;
+  }
+  .pfq__card-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .pfq__card-title {
+    font-family: var(--pfq-font-display);
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 6px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .pfq__card-desc {
+    font-size: 13px;
+    color: var(--pfq-text-muted);
+    line-height: 1.5;
+    margin: 0 0 14px;
+    flex: 1;
+  }
+  .pfq__card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--pfq-border);
+  }
+  .pfq__card-price {
+    font-family: var(--pfq-font-display);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--pfq-text);
+  }
+  .pfq__card-cta {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--pfq-green-dark);
+    letter-spacing: 0.02em;
+  }
+
+  .pfq__results-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 640px) {
+    #pfq-{{ section.id }} {
+      padding: 50px 16px;
+    }
+    .pfq__options--grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pfq__options--two {
+      grid-template-columns: 1fr;
+    }
+    .pfq__option {
+      padding: 16px 18px;
+    }
+    .pfq__results-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .pfq__card-body {
+      padding: 14px 14px 16px;
+    }
+    .pfq__card-title {
+      font-size: 15px;
+    }
+    .pfq__btn {
+      padding: 14px 24px;
+      font-size: 14px;
+    }
+    .pfq__results-actions {
+      flex-direction: column;
+    }
+    .pfq__results-actions .pfq__btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Plant Finder Quiz",
+  "tag": "section",
+  "class": "section-plant-finder-quiz",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Intro Screen"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow text",
+      "default": "🌿 Plant Finder Quiz"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main heading",
+      "default": "Find Your Perfect Plant Match"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "7 quick questions. Personalized plant recommendations based on your space, lifestyle, and budget."
+    },
+    {
+      "type": "text",
+      "id": "start_button_text",
+      "label": "Start button text",
+      "default": "Start Quiz"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color (light green)",
+      "default": "#5a7c3a"
+    },
+    {
+      "type": "color",
+      "id": "accent_color_dark",
+      "label": "Accent color (dark green)",
+      "default": "#2d5016"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#f7f5ef"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1a2412"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plant Finder Quiz"
+    }
+  ]
+}
+{% endschema %}
